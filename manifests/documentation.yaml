@@ -1,0 +1,20 @@
+name: documentation
+description: Audience-layered documentation, implementation blueprints, examples, support, diagrams, and demos.
+principles:
+  - principles/documentation/
+  - principles/service-readiness/
+skills:
+  - skills/documentation/
+  - skills/service-readiness/
+agents:
+  - agents/docs/
+  - agents/customer/
+  - agents/beginner-reviewers/
+templates:
+  - templates/docs/
+  - templates/support/
+prompts:
+  - prompts/reviews/docs-review.md
+  - prompts/troubleshooting/customer-confusion.md
+platforms:
+  - platforms/

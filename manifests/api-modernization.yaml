@@ -1,0 +1,19 @@
+name: api-modernization
+description: Modern API design, compatibility bridges, parity, dual-run migration, and deprecation.
+principles:
+  - principles/api/
+  - principles/modernization/
+skills:
+  - skills/api/
+  - skills/modernization/
+agents:
+  - agents/api/
+  - agents/architecture/
+templates:
+  - templates/api/
+  - templates/migration/
+prompts:
+  - prompts/modernization/
+  - prompts/migration/
+platforms:
+  - platforms/

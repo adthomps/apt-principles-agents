@@ -1,0 +1,14 @@
+{
+  "name": "apt-principles-agents",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "validate": "node scripts/validate-repository.mjs",
+    "test": "node scripts/test-installers.mjs",
+    "check": "npm run validate && npm run test"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}

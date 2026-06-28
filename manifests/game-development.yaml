@@ -1,0 +1,24 @@
+name: game-development
+description: APT beginner-friendly game development, interactive experience, prototype, and playtesting support.
+principles:
+  - principles/thinking/
+  - principles/design/
+  - principles/architecture/
+  - principles/game-development/
+skills:
+  - skills/game-development/
+  - skills/thinking/problem-framing/
+  - skills/thinking/beginner-clarity-review/
+  - skills/design/customer-journey-mapping/
+  - skills/design/demo-flow-design/
+agents:
+  - agents/game-development/
+  - agents/beginner-reviewers/
+templates:
+  - templates/game-development/
+prompts:
+  - prompts/game-development/
+examples:
+  - examples/game-development/
+platforms:
+  - platforms/

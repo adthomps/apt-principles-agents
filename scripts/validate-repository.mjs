@@ -1,0 +1,43 @@
+#!/usr/bin/env node
+import { existsSync, readFileSync, readdirSync, statSync } from "node:fs";
+import path from "node:path";
+import { fileURLToPath } from "node:url";
+const root=path.resolve(path.dirname(fileURLToPath(import.meta.url)),"..");
+const errors=[];const requiredRoot=["README.md","AGENTS.md","CODEX.md","CLAUDE.md","GEMINI.md"];
+for(const file of requiredRoot)if(!existsSync(path.join(root,file)))errors.push("Missing "+file);
+function files(dir){if(!existsSync(dir))return[];return readdirSync(dir,{withFileTypes:true}).flatMap(e=>e.isDirectory()?files(path.join(dir,e.name)):[path.join(dir,e.name)]);}
+const active=files(root).filter(f=>!f.includes(path.sep+".git"+path.sep)&&!f.includes(path.join("docs","archive"))&&path.basename(f)!=="scaffold-repository.mjs");
+for(const file of active){if(statSync(file).size===0)errors.push("Empty file "+path.relative(root,file));}
+const skillHeadings=["# ","## Purpose","## When to Use","## Inputs","## Process","## Outputs","## Quality Bar","## References"];
+for(const file of files(path.join(root,"skills")).filter(f=>f.endsWith("SKILL.md"))){const text=readFileSync(file,"utf8");for(const h of skillHeadings)if(!text.includes(h))errors.push("Skill missing "+h+": "+path.relative(root,file));}
+const agentHeadings=["# ","## Role","## When to Use","## Responsibilities","## Required Skills","## Inputs","## Process","## Outputs","## Escalation Rules","## Quality Bar"];
+for(const file of files(path.join(root,"agents")).filter(f=>f.endsWith(".md")&&!f.endsWith("README.md"))){const text=readFileSync(file,"utf8");for(const h of agentHeadings)if(!text.includes(h))errors.push("Agent missing "+h+": "+path.relative(root,file));}
+for(const file of files(path.join(root,"principles","stablecoin-crypto")).filter(f=>f.endsWith(".md"))){const text=readFileSync(file,"utf8");for(const label of ["Mature today","Emerging","Future-looking","Requires legal/compliance/risk review"])if(!text.includes(label))errors.push("Stablecoin label missing "+label+": "+path.relative(root,file));}
+const sections=["principles","skills","agents","templates","prompts","platforms"];
+for(const file of files(path.join(root,"manifests")).filter(f=>f.endsWith(".yaml"))){const text=readFileSync(file,"utf8");for(const section of sections)if(!text.includes(section+":"))errors.push("Manifest missing "+section+": "+path.relative(root,file));for(const match of text.matchAll(/^\s+-\s+(.+)$/gm)){if(!existsSync(path.join(root,match[1].trim())))errors.push("Manifest path missing "+match[1]+" in "+path.relative(root,file));}}
+const hubBase=path.join(root,"product-hubs","examples","generic-payment-product");for(const file of ["README.md","overview.md","audience-map.md","business-guide.md","bank-acquirer-partner-guide.md","developer-integrator-guide.md","api-guide.md","api-examples.md","ai-usage-examples.md","implementation-blueprint.md","migration-guide.md","operations-guide.md","troubleshooting-guide.md","launch-readiness-checklist.md","diagrams/payment-flow.mmd","demos/demo-plan.md"])if(!existsSync(path.join(hubBase,file)))errors.push("Product Hub missing "+file);
+const gamePrinciples=["README.md","beginner-game-development.md","game-loop-design.md","game-mechanics.md","scope-control.md","prototype-first-development.md","player-experience.md","level-and-scene-design.md","game-architecture.md","game-state-and-save-data.md","input-and-controls.md","game-ui-and-hud.md","audio-and-feedback.md","game-testing.md","game-documentation.md","ai-assisted-game-development.md"];
+const gameSkills=["game-idea-framing","game-scope-review","game-loop-designer","mechanics-designer","prototype-planner","level-design-planner","scene-flow-planner","player-journey-mapping","game-ui-hud-review","input-control-design","game-state-design","save-system-design","game-architecture-review","game-engine-selection","web-game-stack-review","godot-beginner-review","unity-beginner-review","phaser-beginner-review","threejs-beginner-review","pixel-art-pipeline","audio-feedback-review","game-test-plan","playtest-feedback-review","game-dev-learning-plan","ai-assisted-game-prototyping"];
+const gameAgents=["apt-game-development-coach.md","apt-game-designer.md","apt-game-architect.md","apt-game-prototype-planner.md","apt-gameplay-reviewer.md","apt-beginner-game-dev-reviewer.md","apt-game-ui-reviewer.md","apt-game-testing-reviewer.md","apt-game-docs-writer.md","apt-game-scope-guardian.md"];
+const gameTemplates=["game-concept.md","game-design-document.md","game-loop.md","mechanics-map.md","prototype-plan.md","scope-cut-list.md","level-design.md","scene-flow.md","player-journey.md","game-architecture.md","game-state-model.md","save-system.md","input-controls.md","ui-hud-plan.md","asset-list.md","audio-feedback-plan.md","playtest-plan.md","playtest-notes.md","release-checklist.md","learning-plan.md","game-micro-group-review.md"];
+const gamePrompts=["create-game-concept.md","reduce-game-scope.md","create-game-loop.md","create-prototype-plan.md","choose-game-engine.md","design-level.md","review-game-architecture.md","create-playtest-plan.md","analyze-playtest-feedback.md","create-game-dev-learning-plan.md","create-ai-assisted-game-plan.md","game-micro-group-review.md"];
+const gameExamples=["simple-2d-platformer","top-down-collector","card-game","browser-mini-game","payment-api-simulation-game","fitness-habit-game"];
+const requiredGameFiles=[
+  ...gamePrinciples.map(f=>path.join("principles","game-development",f)),
+  ...gameSkills.map(f=>path.join("skills","game-development",f,"SKILL.md")),
+  ...gameAgents.map(f=>path.join("agents","game-development",f)),
+  ...gameTemplates.map(f=>path.join("templates","game-development",f)),
+  ...gamePrompts.map(f=>path.join("prompts","game-development",f)),
+  ...gameExamples.map(f=>path.join("examples","game-development",f,"README.md")),
+  path.join("docs","game-development-glossary.md"),
+  path.join("product-hubs","product-hub-template","game-extension.md"),
+  path.join("manifests","game-development.yaml")
+];
+for(const file of requiredGameFiles)if(!existsSync(path.join(root,file)))errors.push("Game development asset missing "+file);
+const exampleHeadings=["## Scenario","## Audience","## Beginner Goal","## Core Game Loop","## Minimum Playable Prototype","## Suggested Stack","## Relevant Principles","## Relevant Skills","## Relevant Agents","## Example Feature Roadmap","## What To Cut If Scope Grows Too Large","## Open Questions"];
+for(const example of gameExamples){const file=path.join(root,"examples","game-development",example,"README.md");if(existsSync(file)){const text=readFileSync(file,"utf8");for(const heading of exampleHeadings)if(!text.includes(heading))errors.push("Game example missing "+heading+": "+path.relative(root,file));}}
+const reviewFields=["## Perspective","## What works","## What is confusing","## Risks","## Recommended changes","## Cut list","## Approval status"];
+for(const relative of [path.join("templates","game-development","game-micro-group-review.md"),path.join("prompts","game-development","game-micro-group-review.md")]){const file=path.join(root,relative);if(existsSync(file)){const text=readFileSync(file,"utf8").toLowerCase();for(const field of reviewFields)if(!text.includes(field.toLowerCase()))errors.push("Game micro-group review missing "+field+": "+relative);}}
+const glossary=path.join(root,"docs","game-development-glossary.md");if(existsSync(glossary)){const text=readFileSync(glossary,"utf8").toLowerCase();for(const term of ["game loop","mechanic","scene","entity","component","sprite","collision","physics","state","save data","level","playtest","prototype","vertical slice"])if(!text.includes("**"+term+":**"))errors.push("Game glossary missing "+term);}
+for(const file of active.filter(f=>f.endsWith(".md"))){const text=readFileSync(file,"utf8");for(const match of text.matchAll(/\[[^\]]+\]\(([^)]+)\)/g)){const link=match[1];if(link.startsWith("http")||link.startsWith("#")||link.includes("*"))continue;const target=path.resolve(path.dirname(file),link.split("#")[0]);if(!existsSync(target))errors.push("Broken link "+link+" in "+path.relative(root,file));}}
+if(errors.length){console.error(errors.join("\n"));console.error("\nValidation failed: "+errors.length+" issue(s)");process.exit(1);}console.log("APT principles-agents validation: PASS");console.log("Active files checked: "+active.length);console.log("Skills: "+files(path.join(root,"skills")).filter(f=>f.endsWith("SKILL.md")).length);console.log("Agents: "+files(path.join(root,"agents")).filter(f=>f.endsWith(".md")&&!f.endsWith("README.md")).length);

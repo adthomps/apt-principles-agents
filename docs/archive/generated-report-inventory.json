@@ -1,0 +1,100 @@
+{
+  "capturedAt": "2026-06-27",
+  "reports": [
+    {
+      "repository": "apt-principles",
+      "path": "reports/ai-agent-harness-modernization-assessment.md",
+      "sha256": "9df1908ea7a7dff30fec3ba0f75ac8864901a7b10c9d93bbda3a55875a6c8b32"
+    },
+    {
+      "repository": "apt-principles",
+      "path": "reports/apt-principles-framework-audit.md",
+      "sha256": "e0a0f24d5093af0f62cdab6f7a64398c1c0a6c50cbe5bfdf77d86db961f7392a"
+    },
+    {
+      "repository": "apt-principles",
+      "path": "reports/apt-whole-system-completion-gap-matrix.md",
+      "sha256": "f084ced0e80f48299ad965de5befc7a43b926f8cedc04175ed5e06b6464b25fc"
+    },
+    {
+      "repository": "apt-principles",
+      "path": "reports/graphify-action-checklist-2026-06-21.md",
+      "sha256": "03698b4a2fe959375d2e358e3278c338eb3a48474cfa864ac24163ad1e49ff13"
+    },
+    {
+      "repository": "apt-principles",
+      "path": "reports/graphify-apt-gap-analysis-2026-05-22.md",
+      "sha256": "d18591ac2ef14944f6556322a479bba4674986e854c69373db2d15e5da5a5981"
+    },
+    {
+      "repository": "apt-principles",
+      "path": "reports/graphify-apt-gap-analysis-2026-05-23.md",
+      "sha256": "3cd0d38077a43d25d6d481a1c6a0dc561ca220b6468a5ed75601b328b9bf8bfb"
+    },
+    {
+      "repository": "apt-principles",
+      "path": "reports/graphify-apt-gap-analysis-2026-05-24.md",
+      "sha256": "50b9ff7f4a402e3ba6d3fed35a80dc1de8a9075300aee61ac8f0634a0b48f7fe"
+    },
+    {
+      "repository": "apt-principles",
+      "path": "reports/graphify-apt-gap-analysis-2026-06-21.md",
+      "sha256": "d945899641581bb63740265c90e31a0f78cdbba501c2a05fdad5d573ce4ad7e7"
+    },
+    {
+      "repository": "apt-principles",
+      "path": "reports/GRAPHIFY_RUNBOOK.md",
+      "sha256": "8e03e165ac15dffc9bfbac527260b77cca55b0ac07bed5c4e98f5dd34b6196f5"
+    },
+    {
+      "repository": "apt-principles",
+      "path": "reports/project-profile-validation-sweep-2026-05-24.json",
+      "sha256": "de2bf720a621425e70eb59815e70468d422f56c95753821a18fde49511d98066"
+    },
+    {
+      "repository": "apt-principles",
+      "path": "reports/project-profile-validation-sweep-2026-05-24.md",
+      "sha256": "31ab3169e1062b1975d959a9ab9f3301a9a98141d5a4e4b495f71bb44b2531fd"
+    },
+    {
+      "repository": "apt-principles",
+      "path": "reports/project-profile-validation-sweep-2026-05-31.json",
+      "sha256": "25809a29b3b42dd968da5f73455c08db92a71a9455a8dc259d292fce7d293982"
+    },
+    {
+      "repository": "apt-principles",
+      "path": "reports/project-profile-validation-sweep-2026-05-31.md",
+      "sha256": "6e4cf2a31f26b9d39c449469f285083d56981792c120c1faa53aba02d3c6adcd"
+    },
+    {
+      "repository": "apt-principles",
+      "path": "reports/project-profile-validation-sweep-2026-06-01.json",
+      "sha256": "bd94801595f7ee34b43a5fc45efa70ca72c0576d47d4280568755ad4ea6a8a58"
+    },
+    {
+      "repository": "apt-principles",
+      "path": "reports/project-profile-validation-sweep-2026-06-01.md",
+      "sha256": "6c51f5fadb992638ccf30b2bd01a9a23efd84e41fac2dcd83a7d3913837b4ead"
+    },
+    {
+      "repository": "apt-principles",
+      "path": "reports/project-profile-validation-sweep-2026-06-13.json",
+      "sha256": "9a6352dd28bb276732fceb3325549a9513cf34e69c91f48448414c836341ccd7"
+    },
+    {
+      "repository": "apt-principles",
+      "path": "reports/project-profile-validation-sweep-2026-06-13.md",
+      "sha256": "98ac9336cac8057bb5f08bc00809c06a1f31ee161d528d697341407b072fbcbe"
+    },
+    {
+      "repository": "apt-principles",
+      "path": "reports/README.md",
+      "sha256": "87114a643b068778c712f3a120cd965cbc63920019b6f04d6abe9f1e9faeb642"
+    },
+    {
+      "repository": "apt-principles",
+      "path": "reports/VALIDATION_RESULTS_GUIDE.md",
+      "sha256": "a9a0a421ed44579c557bda5545f353e69d1bf0125822132e8d93098526c96739"
+    }
+  ]
+}

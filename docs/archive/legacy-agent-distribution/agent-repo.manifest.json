@@ -1,0 +1,70 @@
+{
+  "name": "apt-agent-standards",
+  "version": "0.1.0",
+  "manifestVersion": "1.0.0",
+  "routingVersion": "2026-06-17",
+  "doctrineSource": "../apt-principles",
+  "compatibility": {
+    "node": ">=18",
+    "legacyManifest": ".agent-standards.json",
+    "agentRepoManifest": ".agent-repo/manifest.json",
+    "localContext": "docs/project-context.md",
+    "localOverrides": ".agent-repo/local-overrides.md"
+  },
+  "profiles": [
+    "apt-core",
+    "minimal",
+    "standard",
+    "documentation",
+    "cloudflare",
+    "api-review",
+    "ux-review",
+    "migration",
+    "modernization",
+    "governance",
+    "security",
+    "knowledge-graph",
+    "lovable",
+    "payments",
+    "health",
+    "training",
+    "ai-development",
+    "full",
+    "custom"
+  ],
+  "routing": {
+    "registry": "routing/model-registry.json",
+    "docs": [
+      "routing/model-routing.md",
+      "routing/local-first-routing.md",
+      "routing/task-classification.md",
+      "routing/token-budgeting.md",
+      "routing/model-capability-matrix.md",
+      "routing/model-update-report.md"
+    ]
+  },
+  "contextPacks": [
+    "context/apt-principles",
+    "context/architecture",
+    "context/cloudflare",
+    "context/documentation",
+    "context/security",
+    "context/ui",
+    "context/payments"
+  ],
+  "migrationNotes": [
+    "Existing .agent-standards.json installs remain supported.",
+    ".agent-repo/manifest.json adds harness metadata and reports.",
+    "docs/project-context.md and .agent-repo/local-overrides.md are preserved by sync and repair."
+  ],
+  "updateMetadata": {
+    "reportsDirectory": ".agent-repo",
+    "generatedReports": [
+      "install-report.md",
+      "scan-report.md",
+      "repair-plan.md",
+      "repair-report.md",
+      "sync-report.md"
+    ]
+  }
+}

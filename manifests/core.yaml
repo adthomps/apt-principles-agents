@@ -1,0 +1,21 @@
+name: core
+description: Four-pillar APT principles, core thinking/design/architecture/execution skills, agents, templates, prompts, and all adapters.
+principles:
+  - principles/thinking/
+  - principles/design/
+  - principles/architecture/
+  - principles/execution/
+skills:
+  - skills/thinking/
+  - skills/design/
+  - skills/architecture/
+agents:
+  - agents/core/
+templates:
+  - templates/product/
+  - templates/decision-records/
+prompts:
+  - prompts/planning/
+  - prompts/reviews/
+platforms:
+  - platforms/

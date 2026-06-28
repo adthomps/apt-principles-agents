@@ -1,0 +1,394 @@
+diff --git a/AGENTS.md b/AGENTS.md
+index 01a81ea..560f2c6 100644
+--- a/AGENTS.md
++++ b/AGENTS.md
+@@ -1,7 +1,7 @@
+ ---
+ title: APT Agent Working Rules
+ version: v1
+-last_updated: 2026-05-31
++last_updated: 2026-06-22
+ owner: APT
+ status: stable
+ ---
+@@ -33,6 +33,7 @@ Canonical doctrine docs (root):
+ 
+ Build-kit folders:
+ - [checklists/](checklists/)
++- [context-packs/](context-packs/)
+ - [prompts/](prompts/)
+ - [examples/](examples/)
+ - [templates/](templates/)
+@@ -40,6 +41,20 @@ Build-kit folders:
+ - [scripts/README.md](scripts/README.md)
+ - [reports/README.md](reports/README.md)
+ 
++## Source-Of-Truth Hierarchy
++
++Use this order when sources appear to conflict:
++
++1. Root canonical doctrine files, especially [apt-principles.md](apt-principles.md) and the relevant lifecycle doc.
++2. Domain standards in [standards/](standards/).
++3. Review gates in [checklists/](checklists/).
++4. Machine-readable contracts in [references/](references/).
++5. Examples and showcases in [examples/](examples/).
++6. Reusable prompts in [prompts/](prompts/).
++7. Context packs in [context-packs/](context-packs/) as source maps for what to read next.
++
++Examples, prompts, and context packs guide application. They do not override canonical doctrine.
++
+ ## Agent Working Rules
+ 
+ 1. Link, do not duplicate.
+@@ -57,6 +72,32 @@ If principle intent or terminology changes, update related checklists/prompts/re
+ 5. Prefer minimal, targeted edits.
+ Avoid broad stylistic rewrites when a focused change resolves the issue.
+ 
++6. Use the right artifact for the job.
++Use principles to understand intent, standards for enforceable rules, checklists for pass/fail review, showcases for applied patterns, prompts for repeatable agent workflows, and context packs for scoped source loading.
++
++7. Read exact sources before final claims.
++Context compression is allowed for discovery, planning, summarization, and cross-repo alignment. It is not sufficient for security, compliance, payment handling, authentication, authorization, final validation, or exact code edits.
++
++8. Do not claim APT compliance without evidence.
++Do not claim a repo follows APT standards unless you checked the relevant files against the relevant checklist and can name the evidence.
++
++9. Keep agent distribution boundaries intact.
++This repo defines doctrine, standards, examples, prompts, references, and source-pack guidance. The sibling `apt-agent-standards` repo owns installer behavior, profile detection, path mapping, tool-native distribution, and managed sync workflows.
++
++## Repo Alignment Output
++
++When asked to review or align another repo, return:
++
++1. Summary.
++2. Repo type classification.
++3. Applicable APT packs and required checks.
++4. Gap report ordered by severity with file/path evidence.
++5. Mandatory fixes versus recommended improvements.
++6. Validation commands run or still required.
++7. Residual risks, assumptions, and follow-up owners when known.
++
++Use [prompts/repo-alignment-review.md](prompts/repo-alignment-review.md) for gap reports and [prompts/apply-apt-principles.md](prompts/apply-apt-principles.md) for patch plans.
++
+ ## Task Routing To Existing Custom Agents
+ 
+ Use these scoped agents when appropriate:
+diff --git a/README.md b/README.md
+index 15b33db..62ea479 100644
+--- a/README.md
++++ b/README.md
+@@ -1,7 +1,7 @@
+ ---
+ title: APT Docs Index
+ version: v1
+-last_updated: 2026-05-31
++last_updated: 2026-06-22
+ owner: APT
+ status: draft
+ ---
+@@ -10,15 +10,16 @@ status: draft
+ 
+ This directory is the canonical doctrine and build kit for APT (Applied Practical Thinking).
+ 
+-APT docs are maintained in three active layers:
++APT docs are maintained in four active layers:
+ 
+ 1. **Doctrine** - the principles, standards, and operating model.
+ 2. **Build kit** - checklists, examples, prompts, and templates that help humans and AI agents apply the doctrine.
+-3. **References** - portable machine-readable contracts that projects and public sites can consume.
++3. **Context packs** - curated source maps that help humans and agents load the right APT material for downstream work.
++4. **References** - portable machine-readable contracts that projects and public sites can consume.
+ 
+ `apt-principles` owns the canonical APT source of truth. `applied-practical-thinking` owns the public APT portfolio, demo, learning, and showcase experience. The public APT Principles view should pull from this folder instead of maintaining a separate doctrine copy.
+ 
+-`apt-agent-standards` is the separate agent harness implementation, installer, and distribution system for applying APT-aligned AI agent standards across projects. It owns harness agents, routing docs, context packs, lifecycle scripts, profile detection, install/sync/scan/repair behavior, `.agent-standards.json` and `.agent-repo/` manifests, and tool-native Claude, Codex, and GitHub Copilot file layouts. It should reference this repository for canonical doctrine instead of becoming a competing source of APT principles.
++`apt-agent-standards` is the separate agent harness implementation, installer, and distribution system for applying APT-aligned AI agent standards across projects. It owns harness agents, routing docs, generated or runtime context packs, lifecycle scripts, profile detection, install/sync/scan/repair behavior, `.agent-standards.json` and `.agent-repo/` manifests, and tool-native Claude, Codex, and GitHub Copilot file layouts. It should reference this repository for canonical doctrine and source-pack guidance instead of becoming a competing source of APT principles.
+ 
+ Historical source/reference material has been saved outside this active package. Do not use external historical files as canonical guidance unless an active doc explicitly points to them.
+ 
+@@ -45,6 +46,7 @@ Root Markdown files are intentional. They are the canonical human-readable APT d
+ - `prompts/` - reusable AI prompts aligned to APT doctrine
+ - `templates/` - starting structures for new docs, examples, checklists, and prompts
+ - `references/` - JSON contracts for tokens, review bundles, architecture maps, knowledge schemas, metadata/versioning, and project profiles
++- `context-packs/` - curated source maps for downstream repo alignment and optional context compression workflows
+ 
+ ## AI Configuration
+ 
+@@ -57,7 +59,7 @@ This repo owns APT AI doctrine, review criteria, prompts, examples, and referenc
+ | Repository | Responsibility |
+ |------------|----------------|
+ | `apt-principles` | Canonical APT doctrine, checklists, prompts, examples, references, project adoption rules, and validation expectations |
+-| `apt-agent-standards` | Agent harness implementation, cross-project installer, profile manifests, routing/context packs, lifecycle scripts, source-to-target AI tool path mapping, `.agent-standards.json`, `.agent-repo/`, dry-run install/sync/scan/repair, and tool parity checks |
++| `apt-agent-standards` | Agent harness implementation, cross-project installer, profile manifests, routing docs, generated/runtime context packs, lifecycle scripts, source-to-target AI tool path mapping, `.agent-standards.json`, `.agent-repo/`, dry-run install/sync/scan/repair, and tool parity checks |
+ 
+ Do not merge harness agents, model registries, installer, profile, lifecycle script, runtime report, or path-mapping behavior into `apt-principles`. Reusable doctrine improvements discovered through installed agent standards should come back here as doctrine/build-kit/reference updates. Harness implementation and distribution changes should stay in `apt-agent-standards`.
+ 
+@@ -123,6 +125,7 @@ The active structure is deliberate:
+ 
+ - `apt-principles/*.md` — canonical doctrine files.
+ - `checklists/` — gates for review, release, adoption, quality, and operational readiness.
++- `context-packs/` — curated source-pack guidance for downstream alignment and optional compression workflows.
+ - `examples/` — applied patterns and real project profile examples.
+ - `prompts/` — reusable AI, agent, and operator prompts.
+ - `references/` — machine-readable contracts for projects and public-site consumers.
+@@ -162,6 +165,26 @@ Projects should document local decisions and exceptions instead of casually fork
+ 
+ Real APT examples include `apt-coach`, `apt-dream-to-reality`, `apt-novel-reviewer`, `apt-payment-rpc-api`, `crt-world`, and future APT projects.
+ 
++## Downstream Application Model
++
++APT can be applied to different repository types without copying the whole doctrine tree. Start by classifying the target repo, select the applicable context packs, run the required checks against exact target files, then record mandatory gaps separately from recommended improvements.
++
++Portable machine-readable mapping: `references/apt-application-model.json`.
++
++| Repo Type | Applicable APT Packs | Required Checks | Suggested Examples |
++|-----------|----------------------|-----------------|--------------------|
++| React/Vite UI app | `apt-core-pack`, `apt-ui-pack`, `apt-docs-pack` | `design-review-checklist`, `quality-testing-checklist`, `repo-alignment-checklist` | `examples/showcases/intent-based-ui-navigation.md`, `examples/ui/navigation-layout-pattern.md`, `examples/ui/dashboard-layout-pattern.md` |
++| Cloudflare Worker / Hono API | `apt-core-pack`, `apt-cloudflare-pack`, `apt-api-pack`, `apt-security-pack` | `architecture-review-checklist`, `api-standards-checklist`, `security-review-checklist`, `operations-support-checklist` | `examples/showcases/cloudflare-worker-hono-structure.md`, `examples/architecture/cloudflare-pages-workers-example.md`, `examples/showcases/api-route-design.md` |
++| Documentation site | `apt-core-pack`, `apt-docs-pack`, `apt-ui-pack` | `documentation-checklist`, `knowledge-system-checklist`, `release-readiness-checklist` | `examples/showcases/documentation-structure.md`, `examples/ui/docs-principles-browser-pattern.md`, `examples/knowledge/canonical-doc-update-example.md` |
++| Payment/API gateway | `apt-core-pack`, `apt-api-pack`, `apt-security-pack`, `apt-cloudflare-pack` | `api-standards-checklist`, `security-review-checklist`, `quality-testing-checklist`, `release-readiness-checklist` | `examples/showcases/api-route-design.md`, `examples/showcases/security-review-expectations.md`, `examples/api/error-response-example.md` |
++| Agent/instructions repository | `apt-core-pack`, `apt-agent-pack`, `apt-docs-pack`, `apt-security-pack` | `ai-agent-review-checklist`, `repo-alignment-checklist`, `documentation-checklist` | `examples/showcases/agent-instruction-structure.md`, `examples/ai-agent/agent-prompt-contract-example.md`, `examples/ai-agent/token-efficient-context-pack-example.md` |
++| Mixed full-stack app | `apt-core-pack`, `apt-ui-pack`, `apt-api-pack`, `apt-security-pack`, `apt-docs-pack` | `repo-alignment-checklist`, `design-review-checklist`, `api-standards-checklist`, `security-review-checklist`, `quality-testing-checklist` | `examples/showcases/intent-based-ui-navigation.md`, `examples/showcases/api-route-design.md`, `examples/showcases/security-review-expectations.md` |
++| Prototype or Lovable-generated app | `apt-core-pack`, `apt-ui-pack`, `apt-docs-pack` | `repo-alignment-checklist`, `design-review-checklist`, `documentation-checklist` | `examples/showcases/intent-based-ui-navigation.md`, `examples/showcases/documentation-structure.md`, `examples/ui/product-portfolio-surface-pattern.md` |
++
++Mandatory artifacts usually include source-of-truth links, exact file evidence, relevant checklist results, validation commands, local decisions or exceptions, and security review evidence when trust boundaries are involved. Recommended artifacts include context-pack summaries, showcase notes, project profiles, diagrams, and public presentation copy.
++
++Context packs are source maps, not generated caches. Headroom or similar tools may compress packs for discovery, planning, summarization, and cross-repo alignment. Compression is not enough for security, compliance, payment handling, final validation, or exact code edits; agents must read the exact canonical and target files before making those claims or changes.
++
+ ## Public Publish Sync (Applied Practical Thinking)
+ 
+ `applied-practical-thinking` is the public presentation layer and should publish APT principles from this canonical package.
+@@ -282,9 +305,10 @@ This runs canonical validation, the workspace sweep, and selected sibling repo `
+ 4. Put detailed reference cases in `examples/`.
+ 5. Put validation gates in `checklists/`.
+ 6. Put reusable AI instructions in `prompts/`.
+-7. Put portable machine-readable contracts in `references/`.
+-8. Keep `package.json` at the root so validation remains portable.
+-9. Keep historical exports outside the active package unless they are intentionally reintroduced as canonical or reference material.
++7. Put source-pack guidance in `context-packs/`.
++8. Put portable machine-readable contracts in `references/`.
++9. Keep `package.json` at the root so validation remains portable.
++10. Keep historical exports outside the active package unless they are intentionally reintroduced as canonical or reference material.
+ 
+ ## What Good Looks Like
+ 
+@@ -300,6 +324,6 @@ A good APT doc:
+ 
+ Older one-shots, generated guides, Lovable themes, Copilot prompts, and source references were useful during consolidation, but they are no longer part of the active package.
+ 
+-Historical material may be harvested again later, but active guidance must live in the canonical doctrine files, build-kit folders, or references folder.
++Historical material may be harvested again later, but active guidance must live in the canonical doctrine files, build-kit folders, context packs, or references folder.
+ 
+ `apt-principles-framework-audit.md` stays top-level while the framework is still being consolidated. When the framework stabilizes, it may move to a future `reports/` pattern or external historical export with a validator update.
+diff --git a/ai-agent-framework.md b/ai-agent-framework.md
+index d451920..c68e721 100644
+--- a/ai-agent-framework.md
++++ b/ai-agent-framework.md
+@@ -115,6 +115,7 @@ When local tools, local models, or repo-local analysis can complete the work saf
+ - Context pack or source index for repeated agent work
+ - Verification evidence for AI-generated or AI-assisted changes
+ - Repository lifecycle evidence when standards are installed, synced, repaired, or upgraded
++- Approved Working Backwards package when an AI agent is asked to implement product work from press release, FAQ, PRD, release, readiness, telemetry, or outcome artifacts
+ 
+ ## Agent Contract
+ 
+@@ -131,6 +132,8 @@ Every durable agent prompt should define:
+ 
+ Health, fitness, biometric, finance, legal, safety, and other high-stakes or high-confidence-risk domains require stricter contracts. Prompts in those areas must name the data boundary, identify whether guidance is informational or professional advice, define referral/escalation conditions, and preserve a deterministic fallback when AI refinement fails.
+ 
++When a Working Backwards package is present, agent prompts should include the package status, approved source artifact IDs, open items, blockers, validation commands, telemetry requirements, readiness gates, outcome measures, and forbidden actions. Agents should pause instead of implementing from missing, stale, blocked, or unapproved package artifacts.
++
+ ## Review Bundle Standard
+ 
+ AI review should use a repeatable bundle of lenses: thinking clarity, design-system alignment, architecture boundaries, system standards, security, quality/testing, release readiness, operations, and knowledge capture.
+diff --git a/checklists/design-review-checklist.md b/checklists/design-review-checklist.md
+index 0b1ec63..e7a45d0 100644
+--- a/checklists/design-review-checklist.md
++++ b/checklists/design-review-checklist.md
+@@ -21,6 +21,9 @@ Run it before a UI change is merged or before a public page becomes a showcase e
+ - [ ] Interaction patterns reuse existing APT patterns.
+ - [ ] New controls, navigation, disclosure, feedback, and technical-content elements reuse the established primitive families before introducing new UI shapes.
+ - [ ] Visual styling uses tokens and approved components.
++- [ ] React, TypeScript, and Tailwind UI uses shadcn/ui as the default repo-owned component foundation unless VPDS or another approved enterprise design system is required.
++- [ ] Existing component structure, `components.json`, aliases, Tailwind configuration, global CSS tokens, and installed primitives were inspected before adding shadcn components.
++- [ ] shadcn primitives are composed or adapted in `components/ui`, reusable Apt-prefixed wrappers live in `components/apt`, and product workflow blocks live in `components/blocks`.
+ - [ ] Typography uses Inter or the approved system fallback for UI/prose and IBM Plex Mono for code, token values, CLI examples, and technical snippets.
+ - [ ] Iconography uses Lucide-style outline icons or the approved AptEmblem pattern; product chrome does not use emoji as decoration.
+ - [ ] Primary actions, links, focus rings, and high-frequency action emphasis use the blue primary/action role.
+@@ -44,6 +47,7 @@ Run it before a UI change is merged or before a public page becomes a showcase e
+ 
+ - Happy-path-only design.
+ - One-off colors, spacing, or component behavior.
++- One-off shadcn additions that ignore existing primitives, wrappers, blocks, aliases, tokens, or enterprise design-system constraints.
+ - Unclear color hierarchy between primary action, secondary action, navigation, selection, and status.
+ - Teal used as the default CTA color without an approved brand decision.
+ - Danger, warning, or success colors used as decoration instead of semantic feedback.
+@@ -64,6 +68,7 @@ Run it before a UI change is merged or before a public page becomes a showcase e
+ - Screenshots or preview notes when visual.
+ - Acceptance criteria.
+ - Token/component notes for navigation, actions, status, selection, focus, hover, and disabled color roles.
++- shadcn/component-layer notes covering primitives, Apt wrappers, product blocks, registry source, and exceptions.
+ - Primitive inventory for new or changed controls, disclosure, feedback, navigation, and technical-content elements.
+ - Chart semantics and color-role notes when data visualization is present.
+ - Surface-pattern notes for docs, content, product, account, dashboard, or email flows.
+diff --git a/design.md b/design.md
+index 79c5652..81d33a7 100644
+--- a/design.md
++++ b/design.md
+@@ -57,6 +57,24 @@ Predictable interaction patterns reduce cognitive load and implementation drift.
+ - Public APT surfaces should use the full APT design system unless a project has an approved brand layer.
+ - Critical design lint failures block promotion unless a decision record accepts the exception.
+ 
++## UI Component Implementation Standard
++
++For APT-aligned React, TypeScript, and Tailwind projects, shadcn/ui is the default UI implementation foundation unless the project requires VPDS or another approved enterprise design system.
++
++shadcn/ui should be treated as repo-owned source code, a composable UI pattern system, a registry-based distribution model, and an agent-friendly way to apply consistent UI across repositories. Components installed from shadcn are owned by the repo and may be modified to fit APT tokens, naming, accessibility, and product workflow needs.
++
++Use a layered component model:
++
++- `components/ui` for shadcn primitives.
++- `components/apt` for reusable Apt-prefixed wrappers.
++- `components/blocks` for product, domain, and workflow blocks.
++
++Agents and implementers must inspect existing structure, installed components, `components.json`, aliases, Tailwind configuration, global CSS tokens, and enterprise design-system requirements before adding shadcn components. Reuse existing primitives and wrappers before creating one-off UI.
++
++Preserve accessibility, keyboard behavior, focus states, semantic structure, ARIA behavior, design tokens, CSS variables, Tailwind utilities, and APT naming conventions when adapting primitives.
++
++Do not use shadcn/ui when the project is not React/Tailwind, when VPDS or another enterprise design system is mandatory, when transactional email constraints apply, or when a simpler static surface does not need component infrastructure.
++
+ ## Baseline Visual Language
+ 
+ - Dark-first background with deep navy/cosmic tones.
+@@ -130,6 +148,12 @@ The APT design system covers:
+ 
+ Token and lint contracts live in `references/design-tokens.json` and `references/design-lint-gates.json`.
+ 
++## Working Backwards Design Artifacts
++
++Demo/mock artifacts and end-user docs are design evidence, not polish. A demo or mock should test whether the intended user can understand the offer, workflow, states, and recovery path before implementation hardens the wrong interaction.
++
++End-user docs should describe how the target user starts, succeeds, recovers, and gets support. When demo/mock evidence is deferred, the reason and risk should be visible in the Working Backwards package.
++
+ ## Brand, Background, and Iconography
+ 
+ APT's visual signature is a dark-first cosmic surface with restrained glass, blue action emphasis, and a small set of reusable identity elements.
+diff --git a/examples/README.md b/examples/README.md
+index 8fdf095..07630ec 100644
+--- a/examples/README.md
++++ b/examples/README.md
+@@ -1,7 +1,7 @@
+ ---
+ title: APT Examples
+ version: v1
+-last_updated: 2026-05-31
++last_updated: 2026-06-22
+ owner: APT
+ status: draft
+ ---
+@@ -23,6 +23,7 @@ Use examples when a principle needs a reusable pattern, sample contract, state m
+ - `projects/` - real APT project profiles and showcase patterns
+ - `quality/` - validation plans, validation matrices, and evidence patterns
+ - `security/` - auth, sessions, MFA, trust boundaries, and threat review
++- `showcases/` - reusable applied patterns for downstream repo alignment and public examples
+ - `thinking/` - problem framing, outcome evidence, and decision clarity
+ - `ui/` - layout and interaction patterns
+ - `workflows/` - spec, delivery increment, preview, release, and operations flows
+diff --git a/execution.md b/execution.md
+index f952eb9..2a3f334 100644
+--- a/execution.md
++++ b/execution.md
+@@ -65,6 +65,13 @@ Build, test, validation, docs sync, and deployment checks should be repeatable.
+ - Validation evidence
+ - Release note or changelog entry when user-facing behavior changes
+ - Increment plan with owner, dependencies, stop condition, and validation command
++- Working Backwards package for product work that needs press release, FAQ, PRD, release decomposition, readiness, telemetry, and outcome evidence before build handoff
++
++## Working Backwards To Build
++
++When a Working Backwards package is available, implementation should be driven from approved artifacts in this order: press release, external FAQ, internal FAQ, demo/mock evidence, end-user docs, telemetry plan, requirements/PRD, release decomposition, readiness checklist, outcome tracker, and what-to-build handoff.
++
++AI agents and engineers should pause when required package artifacts are missing, stale, blocked, or deferred without a reason. Release decomposition should convert the package into small slices with input artifact, output artifact, validation evidence, and stop condition.
+ 
+ ## Good Example
+ 
+diff --git a/knowledge-system.md b/knowledge-system.md
+index d8902a1..5132a2d 100644
+--- a/knowledge-system.md
++++ b/knowledge-system.md
+@@ -82,6 +82,8 @@ Canonical doctrine uses `knowledge-system` for this layer. Public routes may use
+ - Decision records
+ - Project profiles
+ - Release notes
++- Working Backwards packages
++- Outcome trackers
+ 
+ ## Runtime Knowledge Contracts
+ 
+@@ -105,6 +107,10 @@ support finding or incident
+ -> link the learning from the next release or project profile update
+ ```
+ 
++## Working Backwards Learning Loop
++
++Outcome trackers convert shipped work into reusable knowledge. A Working Backwards package should define adoption, usage, love or satisfaction, and revenue or business-value signals before release. After release, those results should update docs, examples, tests, runbooks, decisions, or the project profile.
++
+ ## Good Example
+ 
+ A new API standard is added to `system-standards.md`, demonstrated in `examples/api/rest-api-example.md`, enforced in `checklists/api-standards-checklist.md`, and referenced by `prompts/api-review-prompt.md`.
+diff --git a/operations-support.md b/operations-support.md
+index 2577265..d82223c 100644
+--- a/operations-support.md
++++ b/operations-support.md
+@@ -68,6 +68,7 @@ Errors should be actionable without leaking sensitive implementation detail.
+ - Support-facing explanation of user-visible errors
+ - Degraded-mode and fallback behavior for critical workflows
+ - Incident-to-learning follow-up path
++- Telemetry plan for Working Backwards packages that names adoption, usage, failure, support, and outcome signals when relevant
+ 
+ ## Minimum Telemetry Shape
+ 
+@@ -85,6 +86,10 @@ Errors should be actionable without leaking sensitive implementation detail.
+ }
+ ```
+ 
++## Working Backwards Telemetry
++
++Telemetry should be planned before release, not after success becomes hard to explain. A Working Backwards package should name which events prove adoption, usage, satisfaction or love, and revenue or business value. Critical workflows should also identify failure and degraded states so support can connect user reports to operational evidence.
++
+ ## Good Example
+ 
+ A failed knowledge query returns a user-safe message, logs a correlation ID, records degraded status, and links support to the relevant runbook.
+diff --git a/release-change-management.md b/release-change-management.md
+index 7dd8de1..03320b0 100644
+--- a/release-change-management.md
++++ b/release-change-management.md
+@@ -66,6 +66,11 @@ Support needs known issues, rollback notes, and user-facing behavior changes.
+ - Support handoff notes
+ - Known issue and residual risk notes
+ - Source and version reference for doctrine, generated docs, or copied assets
++- Release decomposition and readiness evidence from the Working Backwards package when the change is product-facing or operationally risky
++
++## Working Backwards Release Readiness
++
++Release decomposition turns the approved package into meaningful slices that can be validated independently. Readiness should cover quality, security, operations, support, docs, telemetry, rollback, and outcome measurement before production promotion.
+ 
+ ## Good Example
+ 
+diff --git a/thinking.md b/thinking.md
+index b2238f9..e3e0ec3 100644
+--- a/thinking.md
++++ b/thinking.md
+@@ -68,6 +68,12 @@ Define what success looks like before build work begins.
+ - Baseline and target outcome evidence
+ - Out-of-scope notes for tempting but deferred work
+ 
++## Working Backwards Package
++
++For product and feature work, a Working Backwards package is an APT-compatible way to make intent reviewable before implementation. The press release captures the customer, problem, desired outcome, and why the work matters before a feature list or technical solution is accepted.
++
++External FAQ answers customer, buyer, adopter, workflow, trust, cost, and support questions. Internal FAQ answers engineering, operations, security, legal/compliance, business, and ownership questions. Open items are allowed only when they are visible, owned, and carried forward into requirements or readiness decisions.
++
+ ## Good Example
+ 
+ Before building a review dashboard, define the actual outcome:

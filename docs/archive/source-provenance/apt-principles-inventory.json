@@ -1,0 +1,1679 @@
+{
+  "capturedAt": "2026-06-27",
+  "baseCommit": "0a9a46980c18476f1296610843ed1c1d83143994",
+  "status": [
+    "M AGENTS.md",
+    " M README.md",
+    " M ai-agent-framework.md",
+    " M checklists/design-review-checklist.md",
+    " M design.md",
+    " M examples/README.md",
+    " M execution.md",
+    " M knowledge-system.md",
+    " M operations-support.md",
+    " M release-change-management.md",
+    " M thinking.md",
+    "?? checklists/documentation-checklist.md",
+    "?? checklists/repo-alignment-checklist.md",
+    "?? checklists/working-backwards-package-readiness-checklist.md",
+    "?? context-packs/",
+    "?? examples/showcases/",
+    "?? prompts/apply-apt-principles.md",
+    "?? prompts/generate-context-pack.md",
+    "?? prompts/repo-alignment-review.md",
+    "?? prompts/update-agent-standards.md",
+    "?? references/apt-application-model.json"
+  ],
+  "files": [
+    {
+      "path": ".gitattributes",
+      "bytes": 66,
+      "sha256": "1a1dbe176bc233b499d35a57db7513f2941c99ab9759f177830c9149be99005b"
+    },
+    {
+      "path": ".github/agents/api-architect.agent.md",
+      "bytes": 1986,
+      "sha256": "89b81c8479261fcfb337f8ae2e08eab11fe02ccb6d66649d4ef25fdaf647b1e1"
+    },
+    {
+      "path": ".github/agents/apt-auditor-readonly.agent.md",
+      "bytes": 1387,
+      "sha256": "666520ae88773b41eec5ea9428d0a029eeb8829a04e8fee8c025eb79be715c18"
+    },
+    {
+      "path": ".github/agents/apt-principles-maintainer.agent.md",
+      "bytes": 2545,
+      "sha256": "362e170a5c6733d1d8cd8ad995503e3dff103484fe211c21292fbb8eced28f1f"
+    },
+    {
+      "path": ".github/agents/checklist-synchronizer.agent.md",
+      "bytes": 1276,
+      "sha256": "6abf2c9bf5861ff34ab5674aa7861f57d7a044cb7dde70d4ad7c67c7c8db4d25"
+    },
+    {
+      "path": ".github/agents/docs-maintainer.agent.md",
+      "bytes": 1776,
+      "sha256": "7b9ec899d3a5e0bcdd63e9fa3692069f0026bdc8d13ef0403c91345671f4b50c"
+    },
+    {
+      "path": ".github/agents/frontend-implementer.agent.md",
+      "bytes": 1908,
+      "sha256": "3c55d51434e201415689fe26ea3a7decfc67b51247617371bca3e804f65d8b51"
+    },
+    {
+      "path": ".github/agents/prompt-curator.agent.md",
+      "bytes": 1374,
+      "sha256": "97f4d74db7920d112130c232ca1629205b63111e3926bfbb7aa5c44ada9b6f38"
+    },
+    {
+      "path": ".github/agents/security-reviewer.agent.md",
+      "bytes": 1892,
+      "sha256": "3123e6d96a994482effd148c3ebb479c2df522634e0e1e1eda3cb98e9d9aa7ff"
+    },
+    {
+      "path": ".github/agents/test-engineer.agent.md",
+      "bytes": 2015,
+      "sha256": "20a42f2e31117bc555b403c1e269bfe8c9cc63e37fc97ebe80f73fd7c296ee39"
+    },
+    {
+      "path": ".github/copilot-instructions.md",
+      "bytes": 275,
+      "sha256": "738a282718a46a857a28232d72999740213ee1b0824ca92a6c54cf1c5cd57602"
+    },
+    {
+      "path": ".github/instructions/checklists-only.instructions.md",
+      "bytes": 1092,
+      "sha256": "72050b112f7fc5512e9295c8da69b650b48d995856dcb39389609049ebf68874"
+    },
+    {
+      "path": ".github/instructions/doctrine-root.instructions.md",
+      "bytes": 1318,
+      "sha256": "eee8fe2f3eab0c91086f1938707d4e6a867086da51b2cfd04f78debc8082244c"
+    },
+    {
+      "path": ".github/prompts/add-feature.prompt.md",
+      "bytes": 3407,
+      "sha256": "2accec31741a22824713806dc38f07297b4b41301dbbfee611e13216d038bd80"
+    },
+    {
+      "path": ".github/prompts/create-docs.prompt.md",
+      "bytes": 2945,
+      "sha256": "4b92e3134a8e757c1bbf0bd90d7c363ab7791956f981629934504091e2cc2d0b"
+    },
+    {
+      "path": ".github/prompts/generate-api.prompt.md",
+      "bytes": 2745,
+      "sha256": "e5b438c504bddb82e8dd36642e45e49e69c05ed16abf0b62c819db98973a3130"
+    },
+    {
+      "path": ".github/prompts/review-repo.prompt.md",
+      "bytes": 2898,
+      "sha256": "f17b65f6e5dbc5ef623383d5717537222925300dba099fa8ede829a307ae4dcb"
+    },
+    {
+      "path": ".github/prompts/standard-repo-audit.prompt.md",
+      "bytes": 2193,
+      "sha256": "4095a3a6ab6e6e429dbcedf776cadf5a6d2d583c05c5fcb98df8f41f47aa304a"
+    },
+    {
+      "path": ".github/skills/ai-assistant-feature-builder/SKILL.md",
+      "bytes": 403,
+      "sha256": "eb888f3419190f01858fc023f94e256dabfef19ed35f48ad1910e9324e6ec781"
+    },
+    {
+      "path": ".github/skills/api-first-openapi-designer/SKILL.md",
+      "bytes": 573,
+      "sha256": "bdba5d964ed18c239b85b93f623ccc6b92e99daf60730f2d57ac17b119dc3ddd"
+    },
+    {
+      "path": ".github/skills/apt-repo-architect/SKILL.md",
+      "bytes": 431,
+      "sha256": "f582743515ca9de571d28b9254d72035de1844ba9a6998fc2185689191077033"
+    },
+    {
+      "path": ".github/skills/cloudflare-hono-worker-builder/SKILL.md",
+      "bytes": 473,
+      "sha256": "7ba2aac5b562b3ad81b5b252f49832aacd70de9be614362b268e8af3d75f38ea"
+    },
+    {
+      "path": ".github/skills/docs-kb-maintainer/SKILL.md",
+      "bytes": 430,
+      "sha256": "bc6e94d5c9b335d188e26a5ae7cbf62200f54560a50c099c1d6682dd7a896fd8"
+    },
+    {
+      "path": ".github/skills/graphql-adapter-reviewer/SKILL.md",
+      "bytes": 412,
+      "sha256": "8c62eab36a93192c6329116a54d372d8df9d46ea8a8ab6b6f3dab54c251713e6"
+    },
+    {
+      "path": ".github/skills/health-data-ingestion-designer/SKILL.md",
+      "bytes": 455,
+      "sha256": "b97ed6dd6d8d5e2a09044188ed0aebda81b6d22bd31aa522c115bcf8517da7f6"
+    },
+    {
+      "path": ".github/skills/payments-integration-architect/SKILL.md",
+      "bytes": 512,
+      "sha256": "fe9615705c57287f14e610fe27148cb9a9603aeb839322987257ddfd46474aed"
+    },
+    {
+      "path": ".github/skills/principle-change-sync/SKILL.md",
+      "bytes": 2493,
+      "sha256": "77a3b4f11cd8698d4416a3e108b86b368448315c6abefae5230bb9e02b400c77"
+    },
+    {
+      "path": ".github/skills/react-typescript-ui-builder/SKILL.md",
+      "bytes": 597,
+      "sha256": "6da654cedfd54aebdf7c91099cfa810649adbd9e9a5f82b834cb3877821e4af1"
+    },
+    {
+      "path": ".github/skills/security-auth-reviewer/SKILL.md",
+      "bytes": 460,
+      "sha256": "df811f9e59ff07e31c098f75a5fb0b2247af9673bb7852bea2bce7cd110d3e0a"
+    },
+    {
+      "path": ".github/skills/testing-validation-runner/SKILL.md",
+      "bytes": 483,
+      "sha256": "c755126b674edc472a571bca303369a2581110ca9b4c4efd4e88a735e42f7abd"
+    },
+    {
+      "path": ".github/skills/webhook-event-designer/SKILL.md",
+      "bytes": 346,
+      "sha256": "2fdb43cfbc69ccbf17936fd80891c6c7f7bf99d3c6546c86853c30a470cf5b1d"
+    },
+    {
+      "path": ".gitignore",
+      "bytes": 294,
+      "sha256": "4e17c9c58a4c086d49113430a4eb902ca7554c0dff48255a00128ebb1e214350"
+    },
+    {
+      "path": ".graphifyignore",
+      "bytes": 893,
+      "sha256": "9fa305dfc8b9b28e6a7fe3b098d79196d550244a6d0ab4d070367662b484a7da"
+    },
+    {
+      "path": "AGENTS.md",
+      "bytes": 6749,
+      "sha256": "ae22f903b4d7ead86c7348a8c31c87de98d2464a6c314551d7c48dde37fd53a8"
+    },
+    {
+      "path": "ai-agent-framework.md",
+      "bytes": 15423,
+      "sha256": "faa3cd1c81e2c7fb56169858d395b9ffb99b5087bbc4b33a396126e4293501bf"
+    },
+    {
+      "path": "apt-principles.md",
+      "bytes": 7729,
+      "sha256": "e2e51b8db74024860cf13fbc6bdb715bf508f202e24af60c5f83e353fda54361"
+    },
+    {
+      "path": "architecture.md",
+      "bytes": 6855,
+      "sha256": "f73f89315c0c49a071b8eff6abe3346168e1379ae6f84dd74b1e3f851b923364"
+    },
+    {
+      "path": "checklists/ai-agent-review-checklist.md",
+      "bytes": 5142,
+      "sha256": "cde87891acd631744dbd85906c74038ff95a09950f435a0c319b9f161dc53146"
+    },
+    {
+      "path": "checklists/api-standards-checklist.md",
+      "bytes": 1990,
+      "sha256": "abc2087a8cc863c0ae084b37de509bf06de46cde67e03a2b294d48a095793a10"
+    },
+    {
+      "path": "checklists/architecture-review-checklist.md",
+      "bytes": 2379,
+      "sha256": "0efedf2d65510b8a3640daeaa2950e1b22fcdfe9a7f4af9ed26c57359e706754"
+    },
+    {
+      "path": "checklists/design-review-checklist.md",
+      "bytes": 6155,
+      "sha256": "e9ece6f95d3202f344fe8c72776a04b121552edeaabc599565d3e577cce8bd12"
+    },
+    {
+      "path": "checklists/documentation-checklist.md",
+      "bytes": 2673,
+      "sha256": "51028335c983af32b341833e27837408420eb1773472785d8201e95691d30768"
+    },
+    {
+      "path": "checklists/execution-readiness-checklist.md",
+      "bytes": 1966,
+      "sha256": "30678a1f2dac5589ae20ac5fd1c3baa8a1b73c611e8cda0eb8bf68df286f72c0"
+    },
+    {
+      "path": "checklists/knowledge-system-checklist.md",
+      "bytes": 2473,
+      "sha256": "496a4b57f85a526c449fa449114ff5c39dda5e48df292d27894ab5b0702d6790"
+    },
+    {
+      "path": "checklists/operations-support-checklist.md",
+      "bytes": 2102,
+      "sha256": "a646b919cc60ebc3f205b8144e0e83c763b856cc115d2a2c913f1a55457d6773"
+    },
+    {
+      "path": "checklists/project-adoption-checklist.md",
+      "bytes": 2116,
+      "sha256": "a20837c0228ab8f5ae0b8350fecdab8954b22ef4c8f3ef2ede5a6396a98e01a3"
+    },
+    {
+      "path": "checklists/quality-testing-checklist.md",
+      "bytes": 2102,
+      "sha256": "cc53ff19d3a166c636c2804e5b45bb896ded2ddca0c033b49c7a2fbf9f2a4ddd"
+    },
+    {
+      "path": "checklists/release-readiness-checklist.md",
+      "bytes": 2118,
+      "sha256": "228b121ec90725507639c06773c3f7b8d42ec2740d8088cb291dd5a17dd1930b"
+    },
+    {
+      "path": "checklists/repo-alignment-checklist.md",
+      "bytes": 3455,
+      "sha256": "bb95d91abb18e2f89687ce81e96d1bf9ef5e00a932952d4dc9aaa82b3275d5be"
+    },
+    {
+      "path": "checklists/security-review-checklist.md",
+      "bytes": 2738,
+      "sha256": "0812da47080e999bd39fceec72662ee9029bbfddd5183dbe884112e942fb3bf3"
+    },
+    {
+      "path": "checklists/thinking-review-checklist.md",
+      "bytes": 2120,
+      "sha256": "181b4cd961cf0706dbebeaa05101196f80a589fbe96fe4e8584164019419f180"
+    },
+    {
+      "path": "checklists/working-backwards-package-readiness-checklist.md",
+      "bytes": 2839,
+      "sha256": "33c35d1cc5349946d8121c76fba4c589d9bf3bba4b9696812aa9c79b9d3b43dc"
+    },
+    {
+      "path": "context-packs/apt-agent-pack.md",
+      "bytes": 2761,
+      "sha256": "8c9a580aa3631be99e27ff5e1425443cf1aec5fe6930f63c8246d25950bf3df4"
+    },
+    {
+      "path": "context-packs/apt-api-pack.md",
+      "bytes": 2321,
+      "sha256": "db6272e0f8ab1c87a246ce778f6fcb63699bd2d49a34fca43f2de899cd83f162"
+    },
+    {
+      "path": "context-packs/apt-cloudflare-pack.md",
+      "bytes": 2498,
+      "sha256": "044cee6722b8bcacebeeba9ad41d53aead53fbb974bcc32359e49551eaec09b8"
+    },
+    {
+      "path": "context-packs/apt-core-pack.md",
+      "bytes": 2577,
+      "sha256": "f3a57e8c4fae40aa2396bc41299c8361df902f9a4b66da815b7d479ea753bd34"
+    },
+    {
+      "path": "context-packs/apt-docs-pack.md",
+      "bytes": 2337,
+      "sha256": "6601d6a6d76596c80e7d50cacfd4fbcc56e2c8c1164302b4b7fdbd3c17bb85d7"
+    },
+    {
+      "path": "context-packs/apt-security-pack.md",
+      "bytes": 2624,
+      "sha256": "fc660b4cb18fc5512818353f9b1f18cda1daab5d62d1ea69585920fc5a2ed166"
+    },
+    {
+      "path": "context-packs/apt-ui-pack.md",
+      "bytes": 2945,
+      "sha256": "17d0dcccde72b3c1bb2f1f618d26afc7b3aa6d762044e468ac1e106bc317562c"
+    },
+    {
+      "path": "context-packs/README.md",
+      "bytes": 3263,
+      "sha256": "cdbf9cb6029b91cb6719a4d62c84aaabe687da9e2f0355847e981dd0f2c5e8b7"
+    },
+    {
+      "path": "CONTRIBUTING.md",
+      "bytes": 5039,
+      "sha256": "895496cafab303ae17a0d5b6474bf98bda9ba459b6ee000110c5f413430273b9"
+    },
+    {
+      "path": "design.md",
+      "bytes": 17116,
+      "sha256": "5d89352b3a05757eb595fbb61f0009d3cd3a76da5f30bbc03eedec1b46579077"
+    },
+    {
+      "path": "docs/diagrams/apt-lifecycle.md",
+      "bytes": 5644,
+      "sha256": "feedc0c40e91cda71485837c16d9ef1be26d93d34f777ab6b94bc72bb4be5a9f"
+    },
+    {
+      "path": "docs/diagrams/documentation-layers.md",
+      "bytes": 8561,
+      "sha256": "153244fa465dc8ae4c22c920cfa1096a1a5cc3b8e78edc784602a3a02b914ae5"
+    },
+    {
+      "path": "docs/diagrams/file-relationships.md",
+      "bytes": 6383,
+      "sha256": "a2fe140d1323c7cd582e7c97957bce47e26f4b6efa5f150858c4cb1c3c3b7a99"
+    },
+    {
+      "path": "docs/diagrams/reference-architecture.md",
+      "bytes": 9495,
+      "sha256": "237770e5f736d884ff4c6ae9e0f96ee23c993af9358893517ac4189274ab0855"
+    },
+    {
+      "path": "docs/diagrams/repository-structure.md",
+      "bytes": 5856,
+      "sha256": "294a040461abdcb9aaf15c4d429a7306f72de92bcabeca5d499a32eb7289e19c"
+    },
+    {
+      "path": "examples/ai-agent/agent-harness-flow-example.md",
+      "bytes": 3611,
+      "sha256": "ec198f724f73de114989db51dd1d56eb2115aa5a1fc51cda7044bfa59de9b975"
+    },
+    {
+      "path": "examples/ai-agent/agent-prompt-contract-example.md",
+      "bytes": 2023,
+      "sha256": "0651031071a16f32b597d450ef188eb4d2d4325c8e4a715b55c4131cbcb55a2f"
+    },
+    {
+      "path": "examples/ai-agent/ai-evaluation-case-example.md",
+      "bytes": 2026,
+      "sha256": "1cf35ef26213fafc91fee789c28f7c30aec34605b6e4dc4c1db50fec29262101"
+    },
+    {
+      "path": "examples/ai-agent/apt-agent-standards-crosswalk-example.md",
+      "bytes": 5258,
+      "sha256": "d6c5d130059a74f545308952d4bd81435994f4677dbc15980edc1f9907a6fb44"
+    },
+    {
+      "path": "examples/ai-agent/health-coaching-prompt-boundary-example.md",
+      "bytes": 2616,
+      "sha256": "8527856bd240eb7d68ebf2325a4a0550b6cbd44ed999492c1283dea2ec955336"
+    },
+    {
+      "path": "examples/ai-agent/model-routing-decision-example.md",
+      "bytes": 3502,
+      "sha256": "3daa39c8322664f16b8a3c45306be75d881ccfd22aa7ecffc37106c1764a2c7a"
+    },
+    {
+      "path": "examples/ai-agent/token-efficient-context-pack-example.md",
+      "bytes": 3543,
+      "sha256": "96bfe2a02e38fc1d23718893efbc9850aa74f243a196b53ae4cf22598fcd6374"
+    },
+    {
+      "path": "examples/ai-agent/workspace-knowledge-example.md",
+      "bytes": 4650,
+      "sha256": "a67ac5a6b2e2f3361a5ffc2d9ef432ca3dbf5e4caa561dd49c962523ba6745ac"
+    },
+    {
+      "path": "examples/api/error-response-example.md",
+      "bytes": 1669,
+      "sha256": "9f8e146676b9426e72dc504d9ade4878ca3333dd61b475c64371de80a0baf82b"
+    },
+    {
+      "path": "examples/api/pagination-example.md",
+      "bytes": 1694,
+      "sha256": "a81f605b2a73c45f61639baadd084811cba1335fa61e311f91f096574d1d2f70"
+    },
+    {
+      "path": "examples/api/rest-api-example.md",
+      "bytes": 2041,
+      "sha256": "ed8f93a4641f30e813cb5fdeb1a136f716c51ac332c1c81df3c70d28112562d8"
+    },
+    {
+      "path": "examples/architecture/cloudflare-pages-workers-example.md",
+      "bytes": 1993,
+      "sha256": "6d1251db88a318cd794a7d8de7d33fa73737a7edfd5c06eb9f488495f0f6c88a"
+    },
+    {
+      "path": "examples/architecture/monorepo-layout-example.md",
+      "bytes": 1957,
+      "sha256": "3f0945b4e29bd6a5fe6fe0efba25b06c17f43952ebfa5b4161d8d8728cfe7f6e"
+    },
+    {
+      "path": "examples/architecture/pattern-ownership-command-matrix-example.md",
+      "bytes": 2428,
+      "sha256": "f1e88b22b591056f625be526734b37c142115dcea2446fdd31bcd8dc49119030"
+    },
+    {
+      "path": "examples/knowledge/canonical-doc-update-example.md",
+      "bytes": 1948,
+      "sha256": "78290ecd0c8b25217fce0ae28164eb1f9de62b829c34e88a595a7fdb390a1c1a"
+    },
+    {
+      "path": "examples/knowledge/incident-to-knowledge-example.md",
+      "bytes": 2008,
+      "sha256": "122ce16b7fececeef8b4b66fd646d0cd4a7cab19ffe6315631d49ef2e6b45160"
+    },
+    {
+      "path": "examples/projects/apt-project-profile-example.md",
+      "bytes": 3903,
+      "sha256": "17666fe4624e4ea79dfaf6d8151a1b1bb6b34213fbb6da99dd813036a99d3cb4"
+    },
+    {
+      "path": "examples/quality/validation-matrix-example.md",
+      "bytes": 2194,
+      "sha256": "ba14e3b0893ec565fa31e45b81e531c0f9dc90809e6e82adc5042dc4862f57be"
+    },
+    {
+      "path": "examples/quality/validation-plan-example.md",
+      "bytes": 1865,
+      "sha256": "fe6d0cdd899146d6bf46829c0ae4703d5582082e85ea23fa0278559b952fa25d"
+    },
+    {
+      "path": "examples/README.md",
+      "bytes": 2851,
+      "sha256": "3ca2de329df9d8450649ecce3cda2201ff95170153e6a80cee1de73d5f858c51"
+    },
+    {
+      "path": "examples/security/login-session-flow.md",
+      "bytes": 1628,
+      "sha256": "a49d98a33e41edf8fe034eae0d5ec450cfec04d8ab95342e60d7431655ad6ab5"
+    },
+    {
+      "path": "examples/security/magic-link-flow.md",
+      "bytes": 1724,
+      "sha256": "c210ccd4992d89e9a471c4fd99346fa00d2a0ec01347677f2b4f318e1c7d9b70"
+    },
+    {
+      "path": "examples/security/mfa-extension.md",
+      "bytes": 1887,
+      "sha256": "0631aa3ede50ed9d902cec31082b9e80c9acb448abf41cace49f1e71b95c5410"
+    },
+    {
+      "path": "examples/security/threat-auth-review-example.md",
+      "bytes": 2254,
+      "sha256": "4c833fa62d61c2da6fff26d99b99056a96e41974398391cdac173d63fb1ef237"
+    },
+    {
+      "path": "examples/showcases/agent-instruction-structure.md",
+      "bytes": 3036,
+      "sha256": "3762fbcedbf05068f8e58dfc1afe23d7e15eeec5b8bf9c519e265b96e846682a"
+    },
+    {
+      "path": "examples/showcases/api-route-design.md",
+      "bytes": 3174,
+      "sha256": "93a2968ae5817a6f9327d82e391b0a4a60b55b7da05bef937fddce56e18bfa17"
+    },
+    {
+      "path": "examples/showcases/cloudflare-worker-hono-structure.md",
+      "bytes": 3107,
+      "sha256": "5aa0875f005ea5a2b5fa5757c177905a55cf090f16b8fe6cefacfef444e84b5b"
+    },
+    {
+      "path": "examples/showcases/documentation-structure.md",
+      "bytes": 3017,
+      "sha256": "60379bcd6ba8760aa5efb0ca68ae8cecb4e629d87e8a8c209817d3fe80844175"
+    },
+    {
+      "path": "examples/showcases/intent-based-ui-navigation.md",
+      "bytes": 3242,
+      "sha256": "6e2959085392bbcd1b47c519e525a86c8a0a1c2fda8095af922000f82888a9e4"
+    },
+    {
+      "path": "examples/showcases/security-review-expectations.md",
+      "bytes": 3248,
+      "sha256": "1718ec33dc6f138cbf1445baa2734b4cf726ce3827e55ab02f7de6ac38a1b505"
+    },
+    {
+      "path": "examples/thinking/decision-log-outcome-example.md",
+      "bytes": 2496,
+      "sha256": "7fadc5da0bf40546efbe20831878b49de583ace37b306af54e11ebfa76ba122f"
+    },
+    {
+      "path": "examples/thinking/problem-framing-example.md",
+      "bytes": 2049,
+      "sha256": "b04147ba133091f1280679260dc5e6c242d5e95662dee171d6fdaf2d988558c1"
+    },
+    {
+      "path": "examples/ui/account-auth-settings-pattern.md",
+      "bytes": 2422,
+      "sha256": "3327922e194ba4ccc0a70c8f1741e41f996b1052d53748a01acb2f65393d4369"
+    },
+    {
+      "path": "examples/ui/chart-data-visualization-pattern.md",
+      "bytes": 2322,
+      "sha256": "f2256977345f368b776335b5452ea0b2361dd828885aec06c509a08dd08bec89"
+    },
+    {
+      "path": "examples/ui/content-insights-card-pattern.md",
+      "bytes": 2046,
+      "sha256": "0f80fccc0db152e567aacb39a965a0cbaab0bc54e494d3dbd84dc2d3b1627538"
+    },
+    {
+      "path": "examples/ui/dashboard-layout-pattern.md",
+      "bytes": 1732,
+      "sha256": "bb1337d08f785a1606427ef0c3c586d1324a115021633554171fb9594b644111"
+    },
+    {
+      "path": "examples/ui/design-reference-kit/assets/blog-ai-developers-journey.webp",
+      "bytes": 30972,
+      "sha256": "974fa3d93d270dcbec41d488350e076bf0bc196426b9e7614615b3fe43096db9"
+    },
+    {
+      "path": "examples/ui/design-reference-kit/assets/blog-creative-coding.webp",
+      "bytes": 35920,
+      "sha256": "47667697ea6f37f742c90eb18edbeaa8e693b6ce0154d43e92253d59c678e630"
+    },
+    {
+      "path": "examples/ui/design-reference-kit/assets/blog-decision-driven.webp",
+      "bytes": 33584,
+      "sha256": "9e445c0164067fde1c912120e96e918ac1696085abdb02a1eca5fdfbff12c51f"
+    },
+    {
+      "path": "examples/ui/design-reference-kit/assets/blog-feedback-multiplier.webp",
+      "bytes": 28200,
+      "sha256": "6535ece3e316cf6bae379a6a1738521c7e4cb40bcbab7b5554ebc3d6d85efb4f"
+    },
+    {
+      "path": "examples/ui/design-reference-kit/assets/profile.jpg",
+      "bytes": 110400,
+      "sha256": "26a4d55a2a04fa1b261f9810fea3711490146fe1b9dbe17b41dfbb4f7fb1dce6"
+    },
+    {
+      "path": "examples/ui/design-reference-kit/colors_and_type.css",
+      "bytes": 9752,
+      "sha256": "0a2930fab4f4510d5103db5ad114bbe4e8b309c9985f107ee87a8f686ce1daaf"
+    },
+    {
+      "path": "examples/ui/design-reference-kit/preview/accordion.html",
+      "bytes": 2993,
+      "sha256": "1295ae1696a917aa0a89b7fcea63fe73afad33a00d40651ee2c761d4e0598034"
+    },
+    {
+      "path": "examples/ui/design-reference-kit/preview/alerts-inline.html",
+      "bytes": 3575,
+      "sha256": "cab6ebc820440e506342c216b4e344373538b4bcb2a64ad0ae018b1b2cafd474"
+    },
+    {
+      "path": "examples/ui/design-reference-kit/preview/alerts-toast.html",
+      "bytes": 4249,
+      "sha256": "cfa009550a1f9ede7b4ac2f04fd05ab6dcca3690b019d616e1078d190488bc1c"
+    },
+    {
+      "path": "examples/ui/design-reference-kit/preview/badges-status.html",
+      "bytes": 3282,
+      "sha256": "3b828f2cbcb6ed25b2f898bd5287d0285d8c2a8b7ef4ae45c0fe4541f35648d3"
+    },
+    {
+      "path": "examples/ui/design-reference-kit/preview/buttons.html",
+      "bytes": 1833,
+      "sha256": "7ed4c88f699d3c501ae6b938c97d492f9b369df11999e92e74c8009b3959ea98"
+    },
+    {
+      "path": "examples/ui/design-reference-kit/preview/card-anatomy.html",
+      "bytes": 2166,
+      "sha256": "5604db6a84fdbdbe9e6ead7e109ddc52e1e8b93b8a3fee26ca30bb9b1a24f28f"
+    },
+    {
+      "path": "examples/ui/design-reference-kit/preview/chart-compare.html",
+      "bytes": 3018,
+      "sha256": "2003f3c7976a443a7377286fee6b1c4cc4a1745d0f789bd366b94769b62f239e"
+    },
+    {
+      "path": "examples/ui/design-reference-kit/preview/chart-multiline.html",
+      "bytes": 2774,
+      "sha256": "c99f23e04f667b89d3af08ae85b3333051327b561ce726edc541919367618c84"
+    },
+    {
+      "path": "examples/ui/design-reference-kit/preview/chart-palette.html",
+      "bytes": 2338,
+      "sha256": "ad3c535480ad1e4ea36e41a8488fa3e7312201f71ccc0388a0b8a8be37a835eb"
+    },
+    {
+      "path": "examples/ui/design-reference-kit/preview/chart-ranking.html",
+      "bytes": 2111,
+      "sha256": "64b1dde98431b04f4e749ccf3f66a7b7a8b5f5286a09d2e9d0e47f8aaa90d6bf"
+    },
+    {
+      "path": "examples/ui/design-reference-kit/preview/chart-stats.html",
+      "bytes": 4040,
+      "sha256": "3006e174be7ad44e132a1486d40e7b51dfaf5087c009e68f91bd402ab2856fb5"
+    },
+    {
+      "path": "examples/ui/design-reference-kit/preview/chart-trend-compare.html",
+      "bytes": 3956,
+      "sha256": "f3c9a8189a8ddb407504b15117f808a6b607d8d10e991f78028f83ae502999e0"
+    },
+    {
+      "path": "examples/ui/design-reference-kit/preview/chart-trend.html",
+      "bytes": 2905,
+      "sha256": "1eef6c038e6e727d7dcc9e3830fdc05205dcb309abbc87a9a49053516e75b354"
+    },
+    {
+      "path": "examples/ui/design-reference-kit/preview/code-block.html",
+      "bytes": 2398,
+      "sha256": "38e9ca70956c3ead8311f23fd9ee5693b163865b5402b412e1ac2b476a35e827"
+    },
+    {
+      "path": "examples/ui/design-reference-kit/preview/colors-accent.html",
+      "bytes": 2762,
+      "sha256": "358c9c17b7bec9b47af2b9b665f44a62550e997b8ebca05b14eac9e921ca57c2"
+    },
+    {
+      "path": "examples/ui/design-reference-kit/preview/colors-brand.html",
+      "bytes": 2054,
+      "sha256": "806bbe5d22ac46deae2af5bf91feeaf0b1ed78e07450f2d9069ab5456d9d53cf"
+    },
+    {
+      "path": "examples/ui/design-reference-kit/preview/colors-core.html",
+      "bytes": 1888,
+      "sha256": "2a1e05c8747a941f734e5d1d803b2bdf82230e37ea99e7efe0a7a7df29076a5e"
+    },
+    {
+      "path": "examples/ui/design-reference-kit/preview/colors-semantic.html",
+      "bytes": 1859,
+      "sha256": "5a2953e2ed6e577b498cc8097e871d418d1d270a5112ad83fb6a00bb0fa151fc"
+    },
+    {
+      "path": "examples/ui/design-reference-kit/preview/cosmic-background.html",
+      "bytes": 2576,
+      "sha256": "ce61052cb321f43e97c550d4023f93aff2455a47951271fa06144f2ed71faf0a"
+    },
+    {
+      "path": "examples/ui/design-reference-kit/preview/dropdowns.html",
+      "bytes": 3171,
+      "sha256": "81154f98d72164fd4d8221add7da8906c735b0c73a6f8f78839a689036c6686d"
+    },
+    {
+      "path": "examples/ui/design-reference-kit/preview/elevation.html",
+      "bytes": 1363,
+      "sha256": "aef90fc94e5b148fd317cbc7fd7f1e0976770a7a6a7f25dcb82e9b1ed4d3749c"
+    },
+    {
+      "path": "examples/ui/design-reference-kit/preview/emblem.html",
+      "bytes": 1857,
+      "sha256": "b71089c2126163a4346650bb8f7c04faa4852f2d60b3aa41765adc123cbc344c"
+    },
+    {
+      "path": "examples/ui/design-reference-kit/preview/file-actions.html",
+      "bytes": 4080,
+      "sha256": "2a8454e67147e44f7af24cd97e95a0c845680ab5c2b37838de64bae1f1c735dc"
+    },
+    {
+      "path": "examples/ui/design-reference-kit/preview/fonts.html",
+      "bytes": 2750,
+      "sha256": "648f15d76c4c5a7219c6f6b8c9f3df292899390bdb18b7510a8e86a19baba3b8"
+    },
+    {
+      "path": "examples/ui/design-reference-kit/preview/imagery.html",
+      "bytes": 1218,
+      "sha256": "69577daabf81dbb64c226870d5e32ad1a1806e108dae6267805666338729471b"
+    },
+    {
+      "path": "examples/ui/design-reference-kit/preview/inputs.html",
+      "bytes": 2962,
+      "sha256": "22e2e09d79f23ae1abe0cbb84f2510ff9fb049e8d1c186ad600e3018ea641fae"
+    },
+    {
+      "path": "examples/ui/design-reference-kit/preview/motion.html",
+      "bytes": 1779,
+      "sha256": "8c93ea9c0ac2bbd1339e59a4b9bf8743fede098bfbb2907c341f0b5cc7b374eb"
+    },
+    {
+      "path": "examples/ui/design-reference-kit/preview/nav-footer.html",
+      "bytes": 2419,
+      "sha256": "35b406547b5818b8adcd61a5e6fb843ba16541e6f371659b0dc8784f972afe4e"
+    },
+    {
+      "path": "examples/ui/design-reference-kit/preview/nav-header.html",
+      "bytes": 3507,
+      "sha256": "b9b085b845e9d422b7c70bf916886bb927d8281cb68649aade86171784f9c563"
+    },
+    {
+      "path": "examples/ui/design-reference-kit/preview/pagination.html",
+      "bytes": 3222,
+      "sha256": "d4148acfa9957fefe2577b319553fb3e04ab71e5d708bacd2e750eca96614311"
+    },
+    {
+      "path": "examples/ui/design-reference-kit/preview/radii.html",
+      "bytes": 1466,
+      "sha256": "9ff9a5e88285fd76c9d479fc2d2165ba68ea018bd7782523a268b25aad42d1dd"
+    },
+    {
+      "path": "examples/ui/design-reference-kit/preview/selection-controls.html",
+      "bytes": 3419,
+      "sha256": "b80cacbd8198c08fd438dd876efb990863e08b7a4a57df11c6245dac3a7875b6"
+    },
+    {
+      "path": "examples/ui/design-reference-kit/preview/spacing.html",
+      "bytes": 1633,
+      "sha256": "6d4ca37bee3106b7eea3257bf90d387c8cb834e7b91591858bc7eef7cf41ce0f"
+    },
+    {
+      "path": "examples/ui/design-reference-kit/preview/states.html",
+      "bytes": 3557,
+      "sha256": "e3d725ac8f12c781d9d5e8e9eedb8e687e693349d0cc44f5ffedc74c02b77ddd"
+    },
+    {
+      "path": "examples/ui/design-reference-kit/preview/stepper.html",
+      "bytes": 2541,
+      "sha256": "1f4ea141bd5276b7772c7190551dff3e5f01cabfc442bba07d7dd92c992a605a"
+    },
+    {
+      "path": "examples/ui/design-reference-kit/preview/tabs.html",
+      "bytes": 2270,
+      "sha256": "fae2289dd7e2fdead0a27b65997b1049fc7a861738fa547a84fad00a5ad0a6a6"
+    },
+    {
+      "path": "examples/ui/design-reference-kit/preview/tags.html",
+      "bytes": 2483,
+      "sha256": "d9bae556dda86e1f03bb2b9b654145ddb82c9b0929a545042537391668747311"
+    },
+    {
+      "path": "examples/ui/design-reference-kit/preview/type-body.html",
+      "bytes": 1471,
+      "sha256": "f9c742a27e3c1179d9f4a1d58d2651da546bd9cd324e0fdbdc0e017642d5bd50"
+    },
+    {
+      "path": "examples/ui/design-reference-kit/preview/type-display.html",
+      "bytes": 1737,
+      "sha256": "1942f58ee2077d19bbadbebe4fb518442aa5d2dbcd1e90dd9778a1203842be05"
+    },
+    {
+      "path": "examples/ui/design-reference-kit/preview/type-serif.html",
+      "bytes": 1156,
+      "sha256": "c18d57a77fe18777eb8ec1079730711762c00e26da16d8d651c4ca152a70045c"
+    },
+    {
+      "path": "examples/ui/design-reference-kit/styles.css",
+      "bytes": 882,
+      "sha256": "93956e1f12fd25ecfe1edc6eeb58eda8c77eb03a5725787666a5a78b7c97ff90"
+    },
+    {
+      "path": "examples/ui/design-reference-kit/ui_kits/account/app.jsx",
+      "bytes": 14496,
+      "sha256": "ba12d3d9ca206839db7ca3e3933e562c9d48a9353181f6b02a68e785052c82d6"
+    },
+    {
+      "path": "examples/ui/design-reference-kit/ui_kits/account/index.html",
+      "bytes": 1391,
+      "sha256": "722ee1d3e01044f5acef73666587fc17be4273a48c18bc7bfa4ae21ec682ccb0"
+    },
+    {
+      "path": "examples/ui/design-reference-kit/ui_kits/account/kit.css",
+      "bytes": 11087,
+      "sha256": "0f520bd83460bb4f5470c97a028f2699f06f78d642cc96ee77282f051465b771"
+    },
+    {
+      "path": "examples/ui/design-reference-kit/ui_kits/account/README.md",
+      "bytes": 1518,
+      "sha256": "ccdd656c2446140f7077d6a3bdc9fcb25ef3d8d1d7ba11a31f547a37cea7004f"
+    },
+    {
+      "path": "examples/ui/design-reference-kit/ui_kits/dashboard/app.jsx",
+      "bytes": 9087,
+      "sha256": "a0488048f94e25378d1f035bd2a400e5e32adfeb367c6d1587003d88f5dbaf8d"
+    },
+    {
+      "path": "examples/ui/design-reference-kit/ui_kits/dashboard/index.html",
+      "bytes": 1405,
+      "sha256": "0be0d8fb6848a8fbcb55708c423dd334ddd351c8dcc366b842198b878c98892c"
+    },
+    {
+      "path": "examples/ui/design-reference-kit/ui_kits/dashboard/kit.css",
+      "bytes": 8961,
+      "sha256": "6f4940e7e648a0c26c05c32675ea8063b1c8ecf85ae85d47d809e14aacf359c0"
+    },
+    {
+      "path": "examples/ui/design-reference-kit/ui_kits/dashboard/README.md",
+      "bytes": 1492,
+      "sha256": "267e3754dfd55d4a454f3a655fe23b04bb728b8febd3b84f981561579061fa87"
+    },
+    {
+      "path": "examples/ui/design-reference-kit/ui_kits/docs/app.jsx",
+      "bytes": 7567,
+      "sha256": "698c5a82d611f6ab46412e9da77edb9681fab1d8b830c3c411e9704298149799"
+    },
+    {
+      "path": "examples/ui/design-reference-kit/ui_kits/docs/index.html",
+      "bytes": 1397,
+      "sha256": "c7640ade6077e857b8682b2c843f7dca33cd9cb597cd9d1bfedab89537da4910"
+    },
+    {
+      "path": "examples/ui/design-reference-kit/ui_kits/docs/kit.css",
+      "bytes": 7003,
+      "sha256": "e311ed6faf4e87f19d2c1dadbd3f69ce6a1b9facbbe5957280bf8dc32b9cc72e"
+    },
+    {
+      "path": "examples/ui/design-reference-kit/ui_kits/docs/README.md",
+      "bytes": 1478,
+      "sha256": "2057ddf2ed0d171c0023bbac20e8c231204f50193f1983f7baa83f6fe1c374f7"
+    },
+    {
+      "path": "examples/ui/design-reference-kit/ui_kits/email/index.html",
+      "bytes": 7602,
+      "sha256": "43f1d4a88af14b01c308244f2187d2d628a01f7d3fce1e46efa91d7cb02a9eff"
+    },
+    {
+      "path": "examples/ui/design-reference-kit/ui_kits/email/README.md",
+      "bytes": 1372,
+      "sha256": "2938100d0b786658471d8ae04b47f526643c670c892c195321504fa23b30251f"
+    },
+    {
+      "path": "examples/ui/design-reference-kit/ui_kits/insights/app.jsx",
+      "bytes": 6296,
+      "sha256": "bab3139706974f227a2115c54c4e85891c9aac335a180c9a8a6f7866fdcd0655"
+    },
+    {
+      "path": "examples/ui/design-reference-kit/ui_kits/insights/components.jsx",
+      "bytes": 3036,
+      "sha256": "2f6c529b4204ff2dc175661573019fa16b64494ae7427c11dac7908f9c4bc2be"
+    },
+    {
+      "path": "examples/ui/design-reference-kit/ui_kits/insights/index.html",
+      "bytes": 1453,
+      "sha256": "8407db7d4257ee479505d6de4cef9a0c900a61cc50f30f71332820c3ba1b70c3"
+    },
+    {
+      "path": "examples/ui/design-reference-kit/ui_kits/insights/kit.css",
+      "bytes": 7447,
+      "sha256": "d177bd7934349205b01c6dc1314bdb8892269c9f4795bba08c24facd58cb455f"
+    },
+    {
+      "path": "examples/ui/design-reference-kit/ui_kits/insights/README.md",
+      "bytes": 1381,
+      "sha256": "db9d6b8cd6c250b55a8c44a6b3e2a08ec0661a2c6cfd1eeb6eac53d5f1ba5e07"
+    },
+    {
+      "path": "examples/ui/design-reference-kit/ui_kits/patterns/app.jsx",
+      "bytes": 15125,
+      "sha256": "0fb4efcdbd19800e6cad3a6823576fa8c5bbc4d35b8f8be90bc351864d00eaaa"
+    },
+    {
+      "path": "examples/ui/design-reference-kit/ui_kits/patterns/index.html",
+      "bytes": 1232,
+      "sha256": "599e882ea9e8f7c384f40dff76d06ce287def705539ce3b2536c2db523e8bcbd"
+    },
+    {
+      "path": "examples/ui/design-reference-kit/ui_kits/patterns/index.standalone.html",
+      "bytes": 2082,
+      "sha256": "81257e75075357ee1aa19f284a0fd04a7a49574da961f113482f19b4f4c575f6"
+    },
+    {
+      "path": "examples/ui/design-reference-kit/ui_kits/patterns/kit.css",
+      "bytes": 11296,
+      "sha256": "9126706ef1caffd071cda8b712c5b46edb1eaa1f6ed7ce81bbe4c87b4fed2f2c"
+    },
+    {
+      "path": "examples/ui/design-reference-kit/ui_kits/patterns/README.md",
+      "bytes": 1528,
+      "sha256": "a4f5cab4f65146431558cb3daed45f03779886fee64711a0f7b62a354a90f44d"
+    },
+    {
+      "path": "examples/ui/design-reference-kit/ui_kits/portfolio/app.jsx",
+      "bytes": 9456,
+      "sha256": "fe3f932fdc9c23895d17adef95dda03eaf72a9210e63bfdf75eae4ed9c68a0d2"
+    },
+    {
+      "path": "examples/ui/design-reference-kit/ui_kits/portfolio/components.jsx",
+      "bytes": 6997,
+      "sha256": "3bf4c740643d3d99f770993a88962a1e438a161ac97031ce65042e05227be38f"
+    },
+    {
+      "path": "examples/ui/design-reference-kit/ui_kits/portfolio/index.html",
+      "bytes": 1477,
+      "sha256": "5f4c1505a91548f2ce38d281e7cd6887316383735edf05fb3dbeed954397b344"
+    },
+    {
+      "path": "examples/ui/design-reference-kit/ui_kits/portfolio/kit.css",
+      "bytes": 9978,
+      "sha256": "5eb1f2b7e5e92dad3b5c1f21606a61e34368e9cbafde741d9ec79ce708a888f7"
+    },
+    {
+      "path": "examples/ui/design-reference-kit/ui_kits/portfolio/README.md",
+      "bytes": 1473,
+      "sha256": "c06268ba6f086363c048970bb1f7d7fc2769befc136b05608dc3e4e5f6f122fd"
+    },
+    {
+      "path": "examples/ui/design-reference-kit/ui_kits/primitives/app.jsx",
+      "bytes": 1574,
+      "sha256": "60f2f4c06e1adc95382af4f5555512bf97b52ececd5ab8d9e5516b08ab8350a1"
+    },
+    {
+      "path": "examples/ui/design-reference-kit/ui_kits/primitives/components.jsx",
+      "bytes": 3142,
+      "sha256": "5e1751da9580a97b34f081c0c62a9c746c9153021772ba3ec4b2cd23a8ecaa60"
+    },
+    {
+      "path": "examples/ui/design-reference-kit/ui_kits/primitives/controls.jsx",
+      "bytes": 8599,
+      "sha256": "40667273a010762d1a83760fc2f24fe5e905243ac63c8cd981d3fb6a9a6c752a"
+    },
+    {
+      "path": "examples/ui/design-reference-kit/ui_kits/primitives/datacode.jsx",
+      "bytes": 5605,
+      "sha256": "e36c923c1902bf1945d83d878ad0fab0b02d2019161b88d45aedb66da01390f3"
+    },
+    {
+      "path": "examples/ui/design-reference-kit/ui_kits/primitives/disclosure.jsx",
+      "bytes": 6279,
+      "sha256": "717155a5a72ff516b57d9f039455725bd236cc3c8ec310c110252295e475b57c"
+    },
+    {
+      "path": "examples/ui/design-reference-kit/ui_kits/primitives/feedback.jsx",
+      "bytes": 7762,
+      "sha256": "1d12e3df2f60ebe6593459d6125a712dc70ca7a2bcfe5bc2b1bd63f2a083d763"
+    },
+    {
+      "path": "examples/ui/design-reference-kit/ui_kits/primitives/index.html",
+      "bytes": 1563,
+      "sha256": "24665fbb9ee9b59608e76daba9943fd24c625d2a748420a2b84298ec47e7bc63"
+    },
+    {
+      "path": "examples/ui/design-reference-kit/ui_kits/primitives/kit.css",
+      "bytes": 24763,
+      "sha256": "c0e0c9ecca20d93a1d3f27562e780dc40c4b31d08b93a74b394044f0fdc1ff3d"
+    },
+    {
+      "path": "examples/ui/design-reference-kit/ui_kits/primitives/nav.jsx",
+      "bytes": 7235,
+      "sha256": "6897af998302556b403da83ccccbc64de2b7b0c28791921ad8e7e8fbdc4770ad"
+    },
+    {
+      "path": "examples/ui/design-reference-kit/ui_kits/product/app.jsx",
+      "bytes": 9862,
+      "sha256": "86eaf97a84d2b745549980201bad62baaa83eb05cd20e0b75ea61c4487010245"
+    },
+    {
+      "path": "examples/ui/design-reference-kit/ui_kits/product/index.html",
+      "bytes": 1417,
+      "sha256": "7dd2f91c5c748e667e2501714292af8c20b1342cfc5ad1d91d63a1afc4789153"
+    },
+    {
+      "path": "examples/ui/design-reference-kit/ui_kits/product/kit.css",
+      "bytes": 10253,
+      "sha256": "7ebf7968a0dcfe9ddde9a554aed3b1c9bc8829a65c12f5c59a7a9601745b00f9"
+    },
+    {
+      "path": "examples/ui/design-reference-kit/ui_kits/product/README.md",
+      "bytes": 1453,
+      "sha256": "5941bdaeb9057636a81e5292937daf09a23ef58e9ec5542bd4d0377e2fcc2063"
+    },
+    {
+      "path": "examples/ui/design-reference-kit/_adherence.oxlintrc.json",
+      "bytes": 5218,
+      "sha256": "83c593b2b9452c43343b1b9130d3a62ae7ab16be1674fb2d7c7c63994afaf6bb"
+    },
+    {
+      "path": "examples/ui/design-reference-kit/_ds_manifest.json",
+      "bytes": 19342,
+      "sha256": "48a829f6b36595f20c4774051250826899b970ee1f31480c8aece942e2446206"
+    },
+    {
+      "path": "examples/ui/design-reference-kit.md",
+      "bytes": 2313,
+      "sha256": "040e73ea5720484224618b841b5a90a14a87d5ed9907f49f77abab70b4743dc2"
+    },
+    {
+      "path": "examples/ui/design-system-primitives-pattern.md",
+      "bytes": 2783,
+      "sha256": "d66ebc78085cd989d51e59c8fd97bccfbe5a89421257f093b0c6f1181624122c"
+    },
+    {
+      "path": "examples/ui/docs-principles-browser-pattern.md",
+      "bytes": 2211,
+      "sha256": "993ef379a9126a40deb1116fa2bd2dad875e50e2e72a36c2dfefdaa58b2e2c54"
+    },
+    {
+      "path": "examples/ui/feedback-alert-toast-pattern.md",
+      "bytes": 2458,
+      "sha256": "fbf447febb0154b884652c63777e47fc98d7b5fed4ad4420602354cc2a153df0"
+    },
+    {
+      "path": "examples/ui/footer-layout-pattern.md",
+      "bytes": 3874,
+      "sha256": "f2ab0adbb8bc982f0208777a3b03a3813fb0e96c79fa6d33306a3abb08650e5f"
+    },
+    {
+      "path": "examples/ui/navigation-layout-pattern.md",
+      "bytes": 1854,
+      "sha256": "91a713ad2a0a748127373fac83c456cc7da59c8c62380839cb146df9452c0d6e"
+    },
+    {
+      "path": "examples/ui/product-portfolio-surface-pattern.md",
+      "bytes": 2525,
+      "sha256": "5fee716d03482a9d6b747a35c6a73dd461e3d475f109851c1c6e076bea0b3733"
+    },
+    {
+      "path": "examples/ui/transactional-email-pattern.md",
+      "bytes": 2057,
+      "sha256": "75bf3286a0bcca73d3e5e5f29a900e035925a8419c160cde714b162c57941284"
+    },
+    {
+      "path": "examples/workflows/apt-principles-public-sync-flow.md",
+      "bytes": 3409,
+      "sha256": "72c9784658bbec963dc8bc1dddaa45cfae5d5b127e8fd215120ab613abd77ff4"
+    },
+    {
+      "path": "examples/workflows/delivery-increment-plan-example.md",
+      "bytes": 2101,
+      "sha256": "f30ad686cec060db945c187549e3ce8f20ed92ea18ccfc2b4946a38d4a1aec5b"
+    },
+    {
+      "path": "examples/workflows/operational-runbook-example.md",
+      "bytes": 2200,
+      "sha256": "9e32c01709af76cbf12db906072f36d7a3b080fee6e2bd457d2ce98aae36e02e"
+    },
+    {
+      "path": "examples/workflows/preview-to-prod-flow.md",
+      "bytes": 1755,
+      "sha256": "1a791e7199f861feb1306c319e9195ed82d0ba9da1fb97a77b13ea8b24519430"
+    },
+    {
+      "path": "examples/workflows/release-record-example.md",
+      "bytes": 2065,
+      "sha256": "23283618d83a07169487e2cab5c0d90760a5e6ceae3b6cb1815c4e91c5fdc116"
+    },
+    {
+      "path": "examples/workflows/repository-drift-repair-flow.md",
+      "bytes": 3629,
+      "sha256": "fb21cebb7ae0c2a1d107d3b683ade413f14a5a0b39b2b6f75001c1e6da5ca270"
+    },
+    {
+      "path": "examples/workflows/spec-to-story-flow.md",
+      "bytes": 1846,
+      "sha256": "e9b20acff27aa97c959aa5127e921f32ebc6ed619f5ff9cf85a1f40cc012d6bb"
+    },
+    {
+      "path": "execution.md",
+      "bytes": 4147,
+      "sha256": "93586d0c3154bbcbf424c15105e767644c954267b3e2c7fdc231880ba76fff76"
+    },
+    {
+      "path": "governance/architecture-review.md",
+      "bytes": 2941,
+      "sha256": "bc990eed56f4e04214d38e126c9f338e37f148ce9745355b1bbaa05d0303b9f9"
+    },
+    {
+      "path": "governance/design-review.md",
+      "bytes": 3007,
+      "sha256": "3966e29668f658919c4990111cb5febd763f4d109aa2bb8984d3a827c8a41eff"
+    },
+    {
+      "path": "governance/maturity-model.md",
+      "bytes": 3985,
+      "sha256": "8849ba7814bc990b3d6449dba7bd9dbba48525dac08a301adb37d783644867ac"
+    },
+    {
+      "path": "governance/README.md",
+      "bytes": 1213,
+      "sha256": "d77643476206bd41bf2d1d5920c9c5f0c8e2099e2687bbe6760635126c209529"
+    },
+    {
+      "path": "governance/repository-review.md",
+      "bytes": 2754,
+      "sha256": "16eb536443f3ec6efa2109a31ec2ea356d0ed5bdb08fd8e934ab206062de14f8"
+    },
+    {
+      "path": "governance/scorecard.md",
+      "bytes": 1817,
+      "sha256": "1a1eb36231a422c5d1b7804189bc195eecfcf576efe9f717eb01af3d873961f8"
+    },
+    {
+      "path": "governance/service-readiness-review.md",
+      "bytes": 3709,
+      "sha256": "436870435fa77fe0ec7238a1d4f7b0294d634c1c5db5065095a27dce4cf7a22c"
+    },
+    {
+      "path": "knowledge-system.md",
+      "bytes": 5900,
+      "sha256": "056f8fd6ee34c69c354f02a6dbe13c65ffe47ff63f26ba54061be1b6cc55d09e"
+    },
+    {
+      "path": "operations-support.md",
+      "bytes": 4277,
+      "sha256": "6e9d4dfec68a84240e8a287e88a4b7f49ebd3c25892bad70bf4064e929847013"
+    },
+    {
+      "path": "package.json",
+      "bytes": 1448,
+      "sha256": "dc4083bf471b95ca2d46e424405babd90b8390bba0fcba5540e24e6bf521072d"
+    },
+    {
+      "path": "principles/ai.md",
+      "bytes": 1854,
+      "sha256": "dbe8b374379203b9be4393b417ed1f04d9587024f8f2e080c94845c0892aa084"
+    },
+    {
+      "path": "principles/architecture.md",
+      "bytes": 1808,
+      "sha256": "87c95311d78f3e788a63cd6eef8389d48014de8121a3c967a67046364ea24169"
+    },
+    {
+      "path": "principles/delivery.md",
+      "bytes": 1920,
+      "sha256": "1cec4918ac8598ee73e8111cba8b81b7e97f8d598e56e84dd430f98bbf59fb4c"
+    },
+    {
+      "path": "principles/design.md",
+      "bytes": 1573,
+      "sha256": "58b8a44b8067519a054ef2b692a394d607f780ee0e4617cb60268f302b9e0f81"
+    },
+    {
+      "path": "principles/learning.md",
+      "bytes": 2058,
+      "sha256": "b1d63f9fe3f1cbf4daa2efb23984159f60363dfd0c6fb635d9cf01f090d86da1"
+    },
+    {
+      "path": "principles/operations.md",
+      "bytes": 1515,
+      "sha256": "2b9b826a4f88126f8409211e00cfe0ebe8e916293b7e7352f92258a9b3ec800a"
+    },
+    {
+      "path": "principles/outcomes.md",
+      "bytes": 1523,
+      "sha256": "95964d6ab084e52cd98b1e3b6a0cd8dc2f30c72cbc3ff09124272f9add4963cd"
+    },
+    {
+      "path": "principles/README.md",
+      "bytes": 1656,
+      "sha256": "2bba1551d8de438d7281814f1787b9488bd28ff98b0ace18bc4b245c67dac7c6"
+    },
+    {
+      "path": "principles/security.md",
+      "bytes": 1691,
+      "sha256": "b9973eb714e966b8bbb5614f550956f867d887462e42769d06432dc7ba1afb08"
+    },
+    {
+      "path": "principles/thinking.md",
+      "bytes": 1284,
+      "sha256": "68f797dde975bdc0f0f86131ec30a33d0b7650ae37ed009841318c9e8f5a478a"
+    },
+    {
+      "path": "prompts/agent-harness-review-prompt.md",
+      "bytes": 3153,
+      "sha256": "7c924db32b2f78f55faf2f5b17a4ef5e47fc099a442ce9c89f7603253fb7dbc3"
+    },
+    {
+      "path": "prompts/api-review-prompt.md",
+      "bytes": 1748,
+      "sha256": "16103471a9dc6e8a475357bf0b5d2fa26700440b028c96cb554f4a8140e6dac4"
+    },
+    {
+      "path": "prompts/apply-apt-principles.md",
+      "bytes": 2808,
+      "sha256": "762067f8e6b46fe33ad9e56419f7c01329ea1dcbb21d23833a6187edc820467c"
+    },
+    {
+      "path": "prompts/apt-agent-conformance-review-prompt.md",
+      "bytes": 3321,
+      "sha256": "a1f82b9c65433a9d1706df99201706f89cf242d78e084b2a6942422794684e87"
+    },
+    {
+      "path": "prompts/apt-one-shot-build-prompt.md",
+      "bytes": 2757,
+      "sha256": "2b22426e82a2dba9a7ecf747d9211b1bd6b4247c87560aecfe4e2f3e97f70178"
+    },
+    {
+      "path": "prompts/architecture-review-prompt.md",
+      "bytes": 2024,
+      "sha256": "4d2b4c396ec30e0d0f963abc7586d8a876bc7c75086de734188eb1e803855c50"
+    },
+    {
+      "path": "prompts/design-review-prompt.md",
+      "bytes": 4012,
+      "sha256": "dc94a9cbf160c7c5128cfebc4f3aa5245f8e28ceabd49d8360dae96af7955ec8"
+    },
+    {
+      "path": "prompts/framework-review-prompt.md",
+      "bytes": 2213,
+      "sha256": "6a2485fae1462f20a94b887a71a7d7c2da675d831fd5170477c33f5b1256c5f3"
+    },
+    {
+      "path": "prompts/generate-context-pack.md",
+      "bytes": 2885,
+      "sha256": "ddc95749c64f8536a59d6451fa31ac91a84c98a22da928e734c40a622acf9246"
+    },
+    {
+      "path": "prompts/knowledge-review-prompt.md",
+      "bytes": 1978,
+      "sha256": "992ece1ee39bd98bf4e4d6b8cf6cca0f671910cc5cbd24ce9f6be40a6d26ba93"
+    },
+    {
+      "path": "prompts/model-routing-review-prompt.md",
+      "bytes": 3125,
+      "sha256": "68440195b6cf1acea7d6102e6da95a644e8d3608e5f7b984abeaa4a081bfa7e3"
+    },
+    {
+      "path": "prompts/operations-review-prompt.md",
+      "bytes": 2071,
+      "sha256": "42b354c9300061a66a7c8dbdbdae06ffc9dfb98bd37a9dc8a388a82a276e3735"
+    },
+    {
+      "path": "prompts/project-adoption-prompt.md",
+      "bytes": 2409,
+      "sha256": "55f179a873fddeab905fc9b6d329046870f1bd7cf76737af3cd77dccac7ddc13"
+    },
+    {
+      "path": "prompts/release-review-prompt.md",
+      "bytes": 1945,
+      "sha256": "9b21534e7761aea8aa3c86c2478349735fb906cabb04f1fa18a04aab3e0a1e33"
+    },
+    {
+      "path": "prompts/repo-alignment-review.md",
+      "bytes": 3388,
+      "sha256": "d996c7a89c95d162981fdb282b09c29fabe115870ff9ec8130c4ea8889e4d7f3"
+    },
+    {
+      "path": "prompts/repository-lifecycle-review-prompt.md",
+      "bytes": 3031,
+      "sha256": "9321f36882f121e72235beba02460e3ab6c68c492cdf1c84fc802ac01ae2257b"
+    },
+    {
+      "path": "prompts/security-review-prompt.md",
+      "bytes": 2192,
+      "sha256": "8efac5bce1aaf304a12bcbff6def73a34fb4b932912d9fe4d88eb88f0914b1f2"
+    },
+    {
+      "path": "prompts/testing-review-prompt.md",
+      "bytes": 2022,
+      "sha256": "43b17294ff180a3a01e15f89619b92efa7322e23092d7df178770ffa4c74ed85"
+    },
+    {
+      "path": "prompts/update-agent-standards.md",
+      "bytes": 2921,
+      "sha256": "9af47edea8385d09c83fa2940299afdfd94aefc90f613466e6f7539fbdd7780d"
+    },
+    {
+      "path": "prompts/workspace-knowledge-prompt.md",
+      "bytes": 4996,
+      "sha256": "ba3e01e849332d96233640bf6ad850fc600d83f3cb08fd0afd8e1902b2823273"
+    },
+    {
+      "path": "quality-testing.md",
+      "bytes": 3466,
+      "sha256": "2f24a5da816527839ec1ddb0a75d544cf9c52b159cca24b5227e4c01f7b1e6ce"
+    },
+    {
+      "path": "README.md",
+      "bytes": 19931,
+      "sha256": "340626c354293a31224a37d7fdf05cfc9811136e777932a44a0656b7d38281b9"
+    },
+    {
+      "path": "references/agent-standards-contract.json",
+      "bytes": 6270,
+      "sha256": "a0b0d54ffbecd0fd56936e68a5877580726650e712555ba2e9b5393e0fe12505"
+    },
+    {
+      "path": "references/ai-harness-contract.json",
+      "bytes": 3163,
+      "sha256": "67f49172a772379d2858f168bb2988b821f332847526702a3ff2b40e612ea2b9"
+    },
+    {
+      "path": "references/ai-review-bundle.json",
+      "bytes": 2241,
+      "sha256": "1cfde17896cb87b4996c1b9db35c1c7488a42ddbc82cb21faf2db910f79afb6e"
+    },
+    {
+      "path": "references/apt-application-model.json",
+      "bytes": 5035,
+      "sha256": "a0e1dcb44efb8090938eb3e196739a2901a23c114302549fbe501aacf82d829a"
+    },
+    {
+      "path": "references/architecture-map.json",
+      "bytes": 2872,
+      "sha256": "6c65908e834128a2af9c09a408ff8119a07fc4b94e14657bde001df14b91cdb9"
+    },
+    {
+      "path": "references/design-lint-gates.json",
+      "bytes": 4693,
+      "sha256": "6cb5f0a572548318f6117c84a063ba5b9476f6b0d5d9e3220518c8ebf0d55e30"
+    },
+    {
+      "path": "references/design-tokens.json",
+      "bytes": 5688,
+      "sha256": "879993a514cbc7b5a31c99f016356aeea4912a3d856209c2c2b721a9dce0a81d"
+    },
+    {
+      "path": "references/knowledge-contracts.json",
+      "bytes": 2826,
+      "sha256": "9cc5524dfc5c37805ba518a27c012b8c7e95a761a14662fd8e5136d5b4e71b61"
+    },
+    {
+      "path": "references/metadata-versioning-contract.json",
+      "bytes": 2235,
+      "sha256": "ef5ba96ffae610447098de43c659f4765b094d56cccf126a21c330eecb7ebb5a"
+    },
+    {
+      "path": "references/project-profile.schema.json",
+      "bytes": 1820,
+      "sha256": "2eded24db6e4d163c344cb288d54eec3ca4e3a0454be7afd0bfa00990552d894"
+    },
+    {
+      "path": "release-change-management.md",
+      "bytes": 3643,
+      "sha256": "d0b3f158b010868a90db80c68075ef125e90e26ca311d37601e1de253992006e"
+    },
+    {
+      "path": "reports/ai-agent-harness-modernization-assessment.md",
+      "bytes": 12074,
+      "sha256": "9df1908ea7a7dff30fec3ba0f75ac8864901a7b10c9d93bbda3a55875a6c8b32"
+    },
+    {
+      "path": "reports/apt-principles-framework-audit.md",
+      "bytes": 12231,
+      "sha256": "e0a0f24d5093af0f62cdab6f7a64398c1c0a6c50cbe5bfdf77d86db961f7392a"
+    },
+    {
+      "path": "reports/apt-whole-system-completion-gap-matrix.md",
+      "bytes": 4196,
+      "sha256": "f084ced0e80f48299ad965de5befc7a43b926f8cedc04175ed5e06b6464b25fc"
+    },
+    {
+      "path": "reports/graphify-action-checklist-2026-06-21.md",
+      "bytes": 2146,
+      "sha256": "03698b4a2fe959375d2e358e3278c338eb3a48474cfa864ac24163ad1e49ff13"
+    },
+    {
+      "path": "reports/graphify-apt-gap-analysis-2026-05-22.md",
+      "bytes": 37244,
+      "sha256": "d18591ac2ef14944f6556322a479bba4674986e854c69373db2d15e5da5a5981"
+    },
+    {
+      "path": "reports/graphify-apt-gap-analysis-2026-05-23.md",
+      "bytes": 30321,
+      "sha256": "3cd0d38077a43d25d6d481a1c6a0dc561ca220b6468a5ed75601b328b9bf8bfb"
+    },
+    {
+      "path": "reports/graphify-apt-gap-analysis-2026-05-24.md",
+      "bytes": 30210,
+      "sha256": "50b9ff7f4a402e3ba6d3fed35a80dc1de8a9075300aee61ac8f0634a0b48f7fe"
+    },
+    {
+      "path": "reports/graphify-apt-gap-analysis-2026-06-21.md",
+      "bytes": 30245,
+      "sha256": "d945899641581bb63740265c90e31a0f78cdbba501c2a05fdad5d573ce4ad7e7"
+    },
+    {
+      "path": "reports/GRAPHIFY_RUNBOOK.md",
+      "bytes": 17113,
+      "sha256": "8e03e165ac15dffc9bfbac527260b77cca55b0ac07bed5c4e98f5dd34b6196f5"
+    },
+    {
+      "path": "reports/project-profile-validation-sweep-2026-05-24.json",
+      "bytes": 22645,
+      "sha256": "de2bf720a621425e70eb59815e70468d422f56c95753821a18fde49511d98066"
+    },
+    {
+      "path": "reports/project-profile-validation-sweep-2026-05-24.md",
+      "bytes": 6770,
+      "sha256": "31ab3169e1062b1975d959a9ab9f3301a9a98141d5a4e4b495f71bb44b2531fd"
+    },
+    {
+      "path": "reports/project-profile-validation-sweep-2026-05-31.json",
+      "bytes": 23318,
+      "sha256": "25809a29b3b42dd968da5f73455c08db92a71a9455a8dc259d292fce7d293982"
+    },
+    {
+      "path": "reports/project-profile-validation-sweep-2026-05-31.md",
+      "bytes": 6922,
+      "sha256": "6e4cf2a31f26b9d39c449469f285083d56981792c120c1faa53aba02d3c6adcd"
+    },
+    {
+      "path": "reports/project-profile-validation-sweep-2026-06-01.json",
+      "bytes": 23318,
+      "sha256": "bd94801595f7ee34b43a5fc45efa70ca72c0576d47d4280568755ad4ea6a8a58"
+    },
+    {
+      "path": "reports/project-profile-validation-sweep-2026-06-01.md",
+      "bytes": 6922,
+      "sha256": "6c51f5fadb992638ccf30b2bd01a9a23efd84e41fac2dcd83a7d3913837b4ead"
+    },
+    {
+      "path": "reports/project-profile-validation-sweep-2026-06-13.json",
+      "bytes": 25621,
+      "sha256": "9a6352dd28bb276732fceb3325549a9513cf34e69c91f48448414c836341ccd7"
+    },
+    {
+      "path": "reports/project-profile-validation-sweep-2026-06-13.md",
+      "bytes": 7593,
+      "sha256": "98ac9336cac8057bb5f08bc00809c06a1f31ee161d528d697341407b072fbcbe"
+    },
+    {
+      "path": "reports/README.md",
+      "bytes": 2979,
+      "sha256": "87114a643b068778c712f3a120cd965cbc63920019b6f04d6abe9f1e9faeb642"
+    },
+    {
+      "path": "reports/VALIDATION_RESULTS_GUIDE.md",
+      "bytes": 5120,
+      "sha256": "a9a0a421ed44579c557bda5545f353e69d1bf0125822132e8d93098526c96739"
+    },
+    {
+      "path": "scripts/check-agent-sync.mjs",
+      "bytes": 3040,
+      "sha256": "a93d69d65c2a8edd64df6555a4190b60187646de6274ed6a0d8d1aeff24b3048"
+    },
+    {
+      "path": "scripts/check-docs.mjs",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "scripts/graphify-apt-workspace.mjs",
+      "bytes": 7062,
+      "sha256": "807f95e24702f2ddf232f60790bdb24f90a6bea3ce83db67ba5cd25714373b6c"
+    },
+    {
+      "path": "scripts/graphify-check.mjs",
+      "bytes": 2393,
+      "sha256": "11d242c0a1f92c339bd5013b6a2288ba6e7b5b0317ed513f6feb70a1be2dd6ac"
+    },
+    {
+      "path": "scripts/graphify-clean.mjs",
+      "bytes": 1648,
+      "sha256": "965dc85aa6b88df516dced3582e3357ed534b820327a035d10f4a0eb64680968"
+    },
+    {
+      "path": "scripts/graphify-config.mjs",
+      "bytes": 1569,
+      "sha256": "71c06c5263d615fde0580ae3c54f9f130fdbb2d76d70c1929a92ca3e859742ae"
+    },
+    {
+      "path": "scripts/graphify-gap-report.mjs",
+      "bytes": 7323,
+      "sha256": "c2e1ae3c40cd84a380778aeff46c71de2b6e0fda5b33691c40386a58eebe01e1"
+    },
+    {
+      "path": "scripts/graphify-install-openai.mjs",
+      "bytes": 326,
+      "sha256": "11264d70a13db0824332831a75f3dcd606ce732bacb475f9b3cb05b3303a9bbf"
+    },
+    {
+      "path": "scripts/README.md",
+      "bytes": 4345,
+      "sha256": "a7619a6d1201b59b2a77c33c3341310b7ed9eb1d5b3c1fffb7fab41b42c0dba2"
+    },
+    {
+      "path": "scripts/run-all-checks.mjs",
+      "bytes": 4556,
+      "sha256": "6543efc5465b517c66972d5eaa6acc66bf41c84006cd02f33d3b4bb50d5ba0f5"
+    },
+    {
+      "path": "scripts/scaffold-apt-audit-report.mjs",
+      "bytes": 6187,
+      "sha256": "3ff7582da80879306bada53375be5ab4fe02ad890c94beb741f4926ead18f744"
+    },
+    {
+      "path": "scripts/smoke-test.mjs",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "scripts/sweep-project-profiles.mjs",
+      "bytes": 19660,
+      "sha256": "eafd79977c10b341d7f1e0fcfdd2478681f9e9086668ef95db092d70e3052ec2"
+    },
+    {
+      "path": "scripts/validate-ai-readiness.mjs",
+      "bytes": 27974,
+      "sha256": "ab0b5e9b3c018e5728c38b472ff631204363179ef37feedc6b59b802bdffa367"
+    },
+    {
+      "path": "scripts/validate-apt-principles.mjs",
+      "bytes": 19570,
+      "sha256": "5ad7cfef956e7f99b92299d92311f2700e6b150372b4efd929479dec53aada05"
+    },
+    {
+      "path": "scripts/validate-project-profile.mjs",
+      "bytes": 2069,
+      "sha256": "b2f74b2960bdc324c22c30d84c915fd77f78c1c6ed11b3600acbd30875349ea8"
+    },
+    {
+      "path": "scripts/validate-repo.mjs",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "security.md",
+      "bytes": 4650,
+      "sha256": "a3150bae6dd32c460f12229ad73f8ac7fd111dd630974a74454d1e17a89b0e6c"
+    },
+    {
+      "path": "standards/ai/agent-harness-standard.md",
+      "bytes": 3754,
+      "sha256": "6378056de2df73926d85e1506a3316bbb70a1524749578577ae8556a5e5424f2"
+    },
+    {
+      "path": "standards/ai/ai-orchestration-standard.md",
+      "bytes": 3362,
+      "sha256": "e5c371dda9ec6f925a49d6e13cc6011977ccec3cb5cedc1d732d1b4803817fc5"
+    },
+    {
+      "path": "standards/ai/local-first-ai-standard.md",
+      "bytes": 2658,
+      "sha256": "d608eeb8c53660cd3b5c9b7e93646bec57cacb18b69cda21e58a839fa65ccb27"
+    },
+    {
+      "path": "standards/ai/model-routing-standard.md",
+      "bytes": 3370,
+      "sha256": "a6cb18132a4d5bb60806cef8bda6f2205abde68d32234b79c9af0063d8413813"
+    },
+    {
+      "path": "standards/ai/repository-lifecycle-standard.md",
+      "bytes": 3192,
+      "sha256": "7074fcd692b0cdd760544f66d6283fa6416690d7232e757ff561217f576c2494"
+    },
+    {
+      "path": "standards/ai/security-harness-standard.md",
+      "bytes": 3200,
+      "sha256": "16080a218a51cf7739a1ee09e91ccb8bbf8035cc5b4e635a814f8bae3bd83b0d"
+    },
+    {
+      "path": "standards/ai/token-efficiency-standard.md",
+      "bytes": 2822,
+      "sha256": "7d2feb96fa72c5bca734db887d80110b254544404f54d7aa4ffac14c77181ca8"
+    },
+    {
+      "path": "standards/ai/verification-standard.md",
+      "bytes": 2925,
+      "sha256": "1c95d9c3c734781097e6df049c18cdd1c6cef331ca556e9df3e08ae354657ccc"
+    },
+    {
+      "path": "standards/api/api-standards.md",
+      "bytes": 2015,
+      "sha256": "dad29bbf55ef8e36ccf094c7351ee5fe219085bc8c8aa696908c4bae1dd98c43"
+    },
+    {
+      "path": "standards/coding/coding-standards.md",
+      "bytes": 2967,
+      "sha256": "a148035251f5fa17e2eecda45972eb89ff1ebe655f308a9a6b8718eec13cd96c"
+    },
+    {
+      "path": "standards/data/data-standards.md",
+      "bytes": 1880,
+      "sha256": "168c34ad7486cb5477f0b020d2ada99ddc14dcb1a0825dcf85ffbe29ea1491bd"
+    },
+    {
+      "path": "standards/documentation/documentation-standards.md",
+      "bytes": 2224,
+      "sha256": "63f5ffc698aab561fac76e1ef795c4fda6f33dde7c3d23c90c93a5633f87a36a"
+    },
+    {
+      "path": "standards/observability/observability-standards.md",
+      "bytes": 2440,
+      "sha256": "59b38971b741a8f4b70b71a80f1cd7e0fae9bfc04c908fadc0ddce443a571349"
+    },
+    {
+      "path": "standards/README.md",
+      "bytes": 2853,
+      "sha256": "da18d18957ef2b0b3650d97f0363f68e0b33ce4e03c835fb8c53ebe9b7e3512c"
+    },
+    {
+      "path": "standards/testing/testing-standards.md",
+      "bytes": 2148,
+      "sha256": "f6a3741d97e80cedf6d2976a1ba1501161813c68f24d7a666bd45cc1d37fb017"
+    },
+    {
+      "path": "system-standards.md",
+      "bytes": 4373,
+      "sha256": "1a98b6b5378d8e9764c18fb230db381155c2eaaeafea14a0ea65ed68ba1f8428"
+    },
+    {
+      "path": "templates/ADR-TEMPLATE.md",
+      "bytes": 1363,
+      "sha256": "111f20be038d5f6ea47eb4a65edb1945d199b5ae9ecf0dcd313b09b38f41c5a8"
+    },
+    {
+      "path": "templates/AGENTS.md",
+      "bytes": 2808,
+      "sha256": "a040bfe6c04fa18c1c5f57687350ca9f0a5d36f114087bdf520dbe426b6ef98e"
+    },
+    {
+      "path": "templates/apt-audit-report-template.md",
+      "bytes": 3552,
+      "sha256": "f1e792bd6adb4fb4b901d86ce558db37549538ea7221ba7e3ecc6b3940a5c6e7"
+    },
+    {
+      "path": "templates/ARCHITECTURE.md",
+      "bytes": 6968,
+      "sha256": "82a9f75486b5f9006355e19159d8a21544e1f576bafd813143b7ddfd58dbc713"
+    },
+    {
+      "path": "templates/checklist-template.md",
+      "bytes": 2151,
+      "sha256": "1b7a8ed947c25378c5cc60c92e0c743e7d56be32abbe68d16f16f0bc59806723"
+    },
+    {
+      "path": "templates/CONTRIBUTING.md",
+      "bytes": 3180,
+      "sha256": "ae728e454424db3dd0a41ba45d388b3bdfae79fc417c448174c37e5a4c6a2b51"
+    },
+    {
+      "path": "templates/copilot-instructions.md",
+      "bytes": 1585,
+      "sha256": "bacd8b57fc45b2c2ef67140e9985128a7974cab934156d251f0f93bd057f681e"
+    },
+    {
+      "path": "templates/DESIGN.md",
+      "bytes": 2404,
+      "sha256": "fff9f54f40d2cd9dc212113bf456fc8875e4f7250d13990a446eb138a21b3dcb"
+    },
+    {
+      "path": "templates/example-template.md",
+      "bytes": 2103,
+      "sha256": "8b24df402448d983ccd2da91a50c0c80d33890fefa42b5be4704e833df80424f"
+    },
+    {
+      "path": "templates/principle-doc-template.md",
+      "bytes": 2213,
+      "sha256": "85ffe7c37eb75ad84a474eef46b059e6f13ceb440f0f5a646f11fcb4a127be0b"
+    },
+    {
+      "path": "templates/project-adoption-template.md",
+      "bytes": 2322,
+      "sha256": "edd77aaefc1ee06ca1eb2f8709cae77b3a77b6b80cc96d8a9ed6d1021ced5978"
+    },
+    {
+      "path": "templates/prompt-template.md",
+      "bytes": 2302,
+      "sha256": "fd893afbf1dbe40c9ef5ff5c4ff208ee7a0276e1448cf389adf74a955b148f4d"
+    },
+    {
+      "path": "templates/README.md",
+      "bytes": 2121,
+      "sha256": "83a2c42dbfbacb40834b97b765b9139df7f2e27bc4778a72752539a25e33418d"
+    },
+    {
+      "path": "thinking.md",
+      "bytes": 4040,
+      "sha256": "66120f4bf12b771c4a8099b63127b1d5555295860331852c048e062af5c5e659"
+    }
+  ]
+}

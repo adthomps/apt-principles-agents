@@ -1,0 +1,17 @@
+name: full
+description: All active APT principles, skills, agents, templates, prompts, examples, Product Hubs, and adapters, including game development.
+principles:
+  - principles/
+skills:
+  - skills/
+agents:
+  - agents/
+templates:
+  - templates/
+  - product-hubs/
+prompts:
+  - prompts/
+examples:
+  - examples/
+platforms:
+  - platforms/

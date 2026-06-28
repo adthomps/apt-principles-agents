@@ -1,0 +1,594 @@
+diff --git a/AGENTS.md b/AGENTS.md
+index e9615d0..300eba8 100644
+--- a/AGENTS.md
++++ b/AGENTS.md
+@@ -4,6 +4,62 @@
+ 
+ This repository is the canonical source for APT agent standards. It ships reusable instructions, profiles, and installer scripts that can be applied to product, documentation, API, Cloudflare, migration, and governance repositories.
+ 
++## Read Order
++
++Before changing this repo, read:
++
++1. `README.md`
++2. this `AGENTS.md`
++3. relevant docs under `docs/`
++4. relevant profile manifests under `profiles/`
++5. affected source files under `standards/`, `apt-core/`, `agents/`, `routing/`, `context/`, `codex/`, `claude/`, `github-copilot/`, `checklists/`, `showcases/`, or `prompts/`
++6. relevant scripts under `scripts/` when install, sync, scan, repair, detection, or validation behavior changes
++
++## Source-Of-Truth Rules
++
++- `apt-principles` owns canonical APT doctrine.
++- This repo owns installable agent standards, profiles, path mapping, lifecycle scripts, context-pack strategy, checklists, showcases, and reusable prompts.
++- Keep `apt-core/` as installable summaries, not a competing doctrine source.
++- Keep `context/` as the installable context-pack source; `context-packs/` explains strategy.
++- Keep `github-copilot/prompts/` tool-native; `prompts/` is for reusable tool-neutral prompt templates.
++- Keep local target-repo context in `docs/project-context.md` or `.agent-repo/local-overrides.md`, not managed standards files.
++
++## Using Principles, Standards, Showcases, Checklists, And Packs
++
++- Use principles to decide intent and tradeoffs.
++- Use standards to decide concrete repo, API, UI, docs, Cloudflare, and agent rules.
++- Use showcases as short examples of good and weak patterns.
++- Use checklists to verify claims and separate mandatory gaps from recommended improvements.
++- Use context packs for discovery, planning, summarization, and cross-repo alignment.
++- Read exact source before security, compliance, payment handling, final validation, or exact code edits.
++
++Compression is allowed for discovery, planning, summarization, and cross-repo alignment. Compression is not enough for security, compliance, payment handling, final validation, or exact code edits.
++
++Headroom or similar tools are optional context-compression support, not required infrastructure.
++
++## Prohibited Shortcuts
++
++- Do not claim a repo follows APT standards unless you checked the relevant files against the relevant checklist.
++- Do not move installable source folders or change managed paths unless the installer, sync behavior, docs, and profiles are updated together.
++- Do not treat compressed context as proof for sensitive or final-change workflows.
++- Do not duplicate long doctrine from `apt-principles`.
++- Do not add empty placeholder files.
++- Do not make Headroom mandatory.
++
++## Repo Alignment Output
++
++For repo alignment work, return:
++
++- repo type
++- selected profiles and context packs
++- required checks performed
++- mandatory gaps
++- recommended improvements
++- evidence and file references
++- examples or showcases to follow
++- validation commands
++- next safe change
++
+ ## Build Rules
+ 
+ - Use Node.js built-in modules only for scripts in `scripts/`.
+diff --git a/README.md b/README.md
+index 5ca121e..1859820 100644
+--- a/README.md
++++ b/README.md
+@@ -14,6 +14,22 @@ Keep this repo separate from `apt-principles`.
+ 
+ Canonical contract: `../apt-principles/references/agent-standards-contract.json`.
+ 
++## What This Repo Owns
++
++Use this repo as the reusable source of truth for installing and operating APT-aligned agent standards across projects.
++
++| Area | Purpose | Source-of-truth rule |
++| --- | --- | --- |
++| Canonical doctrine | APT principles, deep review criteria, reusable doctrine | Owned by `apt-principles`; referenced here |
++| Installable standards | Agent instructions, profile files, generated project context starter | Owned here in `standards/`, `apt-core/`, and `profiles/` |
++| Harness guidance | routing, model selection, verifier, lifecycle agents, token control | Owned here in `agents/`, `routing/`, `context/`, and `skills/` |
++| Context packs | compact planning and alignment inputs for agents | Strategy in `context-packs/`; installable sources in `context/` |
++| Checklists | required checks for repo alignment, docs, API, UI, security, and agents | Owned here in `checklists/` |
++| Showcases | short reusable examples of APT-aligned patterns | Owned here in `showcases/` |
++| Reusable prompts | tool-neutral prompt templates | Owned here in `prompts/`; Copilot-native prompts remain in `github-copilot/prompts/` |
++
++Do not move existing installable folders just to match a public documentation shape. `context/`, `apt-core/`, `standards/`, `codex/skills/`, and `github-copilot/prompts/` are part of the current install and sync contract.
++
+ ## Why APT Core Is Always Installed
+ 
+ APT Core is the baseline contract for every repo: preserve working behavior, make intent visible, prefer boring maintainable architecture, and review AI output before it becomes project policy. Profiles can add capabilities, but they should never replace the baseline.
+@@ -46,6 +62,51 @@ Start with [docs/HARNESS-ARCHITECTURE.md](docs/HARNESS-ARCHITECTURE.md), [docs/A
+ 
+ Profiles are composable capabilities, not repo types. A project can install any combination of `cloudflare`, `documentation`, `api-review`, `ux-review`, `migration`, `modernization`, `governance`, `lovable`, `payments`, `health`, `training`, and `ai-development`. The installer always includes `apt-core`.
+ 
++## How To Use This Repo From Another Repo
++
++1. Identify the target repo type from source files, scripts, docs, runtime config, and deployment settings.
++2. Read the target repo's `README.md`, `AGENTS.md` if present, `docs/project-context.md` if present, package scripts, and relevant source.
++3. Choose profiles from [docs/PROFILE-REFERENCE.md](docs/PROFILE-REFERENCE.md).
++4. Load the smallest useful context pack set from [context-packs/README.md](context-packs/README.md) and `context/`.
++5. Apply the relevant checklist from `checklists/`.
++6. Use showcases from `showcases/` when a target repo needs an example pattern.
++7. Use prompts from `prompts/` for tool-neutral work, or `github-copilot/prompts/` for GitHub Copilot Chat.
++8. Run install, sync, scan, repair, and validation commands from [docs/OPERATING.md](docs/OPERATING.md).
++
++Do not claim a target repo follows APT standards unless the relevant files were checked against the relevant checklist.
++
++## APT Application Model
++
++| Repo type | Applicable APT packs and profiles | Required checks | Suggested examples |
++| --- | --- | --- | --- |
++| React/Vite UI app | `apt-core`, `ux-review`, `documentation`; `context/ui` | UI workflow, docs, agent instructions | `showcases/ui/intent-based-navigation.md` |
++| Cloudflare Worker / Hono API | `apt-core`, `cloudflare`, `api-review`, `documentation`; `context/cloudflare` | API, security, deployment, bindings | `showcases/cloudflare/worker-hono-structure.md`, `showcases/api/route-design.md` |
++| Documentation site | `apt-core`, `documentation`, `governance`; `context/documentation` | docs structure, setup accuracy, source-of-truth boundaries | `showcases/docs/documentation-structure.md` |
++| Payment/API gateway | `apt-core`, `payments`, `api-review`, `security`, `governance` | API, webhook, auth, idempotency, secret handling | `showcases/api/route-design.md`, `showcases/security/security-review-expectations.md` |
++| Agent/instructions repository | `apt-core`, `ai-development`, `governance`, `documentation` | agent instructions, prompts, skills, profile composition | `showcases/agents/instruction-structure.md` |
++| Mixed full-stack app | `standard` plus `ux-review`, `api-review`, `cloudflare`, `security` as applicable | repo alignment, UI, API, docs, security | UI, API, docs, and Cloudflare showcases as applicable |
++| Prototype or Lovable-generated app | `lovable`, `migration`, `documentation`, optional `cloudflare` and `modernization` | migration risk, behavior preservation, docs normalization | docs, UI, and Cloudflare showcases as applicable |
++
++Mandatory checks are the minimum evidence required before claiming alignment. Recommended checks are improvements that reduce future risk but may be staged after the first install or audit.
++
++## Mandatory Versus Recommended
++
++Mandatory:
++
++- Preserve current behavior unless the requested change explicitly changes it.
++- Read exact source before security, compliance, payment, final validation, or exact code edits.
++- Keep `apt-principles` canonical for doctrine and this repo canonical for distribution and harness behavior.
++- Keep `docs/project-context.md` and `.agent-repo/local-overrides.md` project-owned.
++- Use `--dry-run` before writes to real target repos.
++- Do not overwrite existing target files unless `--force` is intentional.
++
++Recommended:
++
++- Use compressed context packs for discovery, planning, summarization, and cross-repo alignment.
++- Use Headroom or similar tools only as optional context-compression support.
++- Create a short improvement backlog after repo alignment work.
++- Prefer reusable templates and examples over long theory.
++
+ ## Operating Guides
+ 
+ - Start with [docs/SETUP.md](docs/SETUP.md) when preparing this standards repo locally.
+diff --git a/agents/apt-router.md b/agents/apt-router.md
+index 13cc4ba..df2c30b 100644
+--- a/agents/apt-router.md
++++ b/agents/apt-router.md
+@@ -7,6 +7,7 @@ Turn a user request into a compact, reviewable task packet for the smallest suit
+ 
+ ## Responsibilities
+ - Identify intent, affected surfaces, risk level, and expected output.
++- Detect whether a Working Backwards package, PRD, press release, FAQ set, readiness checklist, telemetry plan, or outcome tracker is available.
+ - Select relevant profiles, skills, agents, prompts, and context packs.
+ - Decide whether the request is planning, review, implementation, install, scan, repair, sync, or verification.
+ - Build a task packet with goal, scope, inputs, constraints, validation, and human-approval gates.
+@@ -28,6 +29,7 @@ Return a task packet with:
+ - model routing request
+ - verification requirements
+ - human approval points
++- Working Backwards package status, missing artifacts, blockers, deferred items, and approved source artifact IDs when available
+ 
+ ## Boundaries
+ Do not implement material changes directly. Do not approve execution. Route uncertain, high-risk, or cross-system work to specialist review and verification.
+diff --git a/agents/apt-ui-reviewer.md b/agents/apt-ui-reviewer.md
+index 866baa5..e31bd1d 100644
+--- a/agents/apt-ui-reviewer.md
++++ b/agents/apt-ui-reviewer.md
+@@ -9,6 +9,9 @@ Review UI work through intent, workflow continuity, state design, accessibility,
+ - Evaluate task paths, navigation, feedback, and error recovery.
+ - Check semantic controls, keyboard flow, focus behavior, and readable copy.
+ - Use local UI standards and project context before suggesting changes.
++- For React, TypeScript, and Tailwind projects, treat shadcn/ui as the default repo-owned foundation unless VPDS or another enterprise design system is required.
++- Before recommending new shadcn components, inspect `components.json`, aliases, Tailwind config or global CSS, installed primitives, and existing `components/ui`, `components/apt`, and `components/blocks` structure.
++- Flag one-off UI decisions when an existing primitive, APT wrapper, or product block should be reused.
+ 
+ ## Output
+-Return task blockers first, then accessibility issues, state gaps, responsive issues, and polish opportunities.
++Return task blockers first, then accessibility issues, state gaps, component-foundation gaps, responsive issues, and polish opportunities.
+diff --git a/agents/apt-verifier.md b/agents/apt-verifier.md
+index 4560e43..3e9fe8e 100644
+--- a/agents/apt-verifier.md
++++ b/agents/apt-verifier.md
+@@ -10,6 +10,7 @@ Verify outputs, installs, repairs, routing config, and documentation alignment b
+ - Confirm commands were run or clearly mark unverified commands.
+ - Verify sync preserves local context and only touches managed files.
+ - Validate that implementation matches the approved plan.
++- When a Working Backwards package is present, verify traceability, readiness gates, telemetry coverage, release decomposition, outcome tracker coverage, blockers, and deferred-artifact reasons before build or release claims.
+ 
+ ## Output
+ Return verification result, evidence, failed checks, unverified assumptions, and required follow-up.
+diff --git a/apt-core/ux-standards.md b/apt-core/ux-standards.md
+index 2713d63..c21c893 100644
+--- a/apt-core/ux-standards.md
++++ b/apt-core/ux-standards.md
+@@ -2,6 +2,22 @@
+ 
+ UX review should begin with user intent and task completion, then evaluate layout, language, interaction states, accessibility, and error recovery.
+ 
++## UI Component Foundation
++
++For APT-aligned React, TypeScript, and Tailwind projects, use shadcn/ui as the default UI implementation foundation unless the project requires VPDS or another approved enterprise design system.
++
++Treat shadcn/ui as repo-owned source code and a composable pattern system, not as an external black-box component library. Components installed from shadcn may be modified to fit local tokens, naming, accessibility requirements, and product workflows.
++
++Use this layering model:
++
++- `components/ui` for shadcn primitives.
++- `components/apt` for reusable APT wrappers such as `AptPageShell`, `AptEmptyState`, `AptStatusBadge`, `AptNextActionPanel`, `AptDataTable`, `AptReviewChecklist`, and `AptDocsLayout`.
++- `components/blocks` for domain or product workflow blocks.
++
++Before adding shadcn components, inspect the existing repo structure, package manager, `components.json`, import aliases, Tailwind version, global CSS/token file, installed primitives, local wrappers, and any enterprise design-system requirement. Do not add components blindly.
++
++Do not use shadcn/ui when the project is not React/Tailwind, when VPDS or another enterprise system is mandatory, when transactional email constraints apply, or when a simple static surface does not need component infrastructure.
++
+ ## Checklist
+ 
+ - Primary user intent is clear on first interaction.
+@@ -9,3 +25,4 @@ UX review should begin with user intent and task completion, then evaluate layou
+ - Empty, loading, error, and success states are designed.
+ - Text fits its container across supported viewports.
+ - Accessibility is treated as product quality.
++- UI uses token-based styling, semantic structure, keyboard behavior, focus states, and ARIA behavior from the installed primitives.
+diff --git a/claude/agents/apt-readiness-auditor.md b/claude/agents/apt-readiness-auditor.md
+index 8e1dada..4dac632 100644
+--- a/claude/agents/apt-readiness-auditor.md
++++ b/claude/agents/apt-readiness-auditor.md
+@@ -14,6 +14,7 @@ Score each category from 0 to 5:
+ - Testing.
+ - Cloudflare readiness.
+ - Maintainability.
++- Working Backwards package completeness when product work or implementation handoff depends on press release, FAQ, PRD, release, readiness, telemetry, or outcome artifacts.
+ 
+ ## Required Reading
+ 
+@@ -21,4 +22,4 @@ Read `docs/project-context.md`, `AGENTS.md`, README files, package scripts, docs
+ 
+ ## Output Format
+ 
+-Return a score table with evidence, then top risks, quick wins, larger follow-ups, and recommended rollout order. Do not edit files during the first pass.
++Return a score table with evidence, then top risks, quick wins, larger follow-ups, Working Backwards package gaps when relevant, and recommended rollout order. Do not edit files during the first pass.
+diff --git a/codex/skills/ux-review/SKILL.md b/codex/skills/ux-review/SKILL.md
+index 29232c9..0bb6e56 100644
+--- a/codex/skills/ux-review/SKILL.md
++++ b/codex/skills/ux-review/SKILL.md
+@@ -15,10 +15,10 @@ Use for pages, flows, dashboards, forms, onboarding, and responsive UI changes.
+ Do not use for backend-only changes.
+ 
+ ## Required Reading
+-Read `apt-core/ux-standards.md`, product context, relevant UI code, and screenshots if available.
++Read `apt-core/ux-standards.md`, product context, relevant UI code, and screenshots if available. For React, TypeScript, and Tailwind projects, also inspect `components.json` when present, component folders, import aliases, Tailwind config or global CSS, installed shadcn primitives, APT wrappers, and product blocks before recommending new components.
+ 
+ ## Process
+-Identify primary intent, inspect states, check responsive layout and accessibility, and prioritize workflow blockers.
++Identify primary intent, inspect states, check responsive layout and accessibility, and prioritize workflow blockers. When shadcn/ui applies, verify the project composes existing `components/ui` primitives before adding components, keeps reusable APT wrappers in `components/apt`, keeps workflow blocks in `components/blocks`, and preserves token styling, semantic structure, keyboard behavior, focus states, and ARIA behavior.
+ 
+ ## Output Format
+ Return findings, affected workflows, severity, and recommended changes.
+@@ -27,3 +27,4 @@ Return findings, affected workflows, severity, and recommended changes.
+ - Loading, empty, error, and success states are considered.
+ - Text fits across viewports.
+ - Accessibility risks are named.
++- Existing shadcn/ui structure, aliases, installed components, and local APT wrappers are checked before new UI is proposed.
+diff --git a/context/ui/README.md b/context/ui/README.md
+index 479e251..5ebcd6c 100644
+--- a/context/ui/README.md
++++ b/context/ui/README.md
+@@ -7,7 +7,11 @@ Load:
+ - product context
+ - routes/pages/components
+ - design or UX standards
++- `components.json`, import aliases, Tailwind config or global CSS, and installed shadcn components when present
++- `components/ui`, `components/apt`, and `components/blocks` layering
+ - screenshots when available
+ - tests for user workflows
+ 
+ Focus on user intent, state handling, and task completion.
++
++For React, TypeScript, and Tailwind projects, treat shadcn/ui as the default repo-owned component foundation unless VPDS or another approved enterprise design system is required. Inspect existing structure before adding primitives, wrappers, or blocks.
+diff --git a/docs/AI-TOOL-LAYOUT.md b/docs/AI-TOOL-LAYOUT.md
+index 12df137..63e4822 100644
+--- a/docs/AI-TOOL-LAYOUT.md
++++ b/docs/AI-TOOL-LAYOUT.md
+@@ -11,6 +11,10 @@ standards/
+ agents/
+ routing/
+ context/
++context-packs/
++checklists/
++showcases/
++prompts/
+ skills/token-efficiency/
+ claude/agents/
+ codex/skills/
+@@ -20,6 +24,8 @@ github-copilot/prompts/
+ 
+ These folders are easier to review in the standards repo and match the profile manifests.
+ 
++`context-packs/`, `checklists/`, `showcases/`, and `prompts/` are public guidance layers for operators and agents. They do not replace the installable source folders and are not automatically installed unless a future profile explicitly includes them.
++
+ ## Installed Layout In Target Repos
+ 
+ The installer maps those source paths into the locations AI tools expect:
+@@ -40,6 +46,17 @@ The installer maps those source paths into the locations AI tools expect:
+ 
+ APT Core files stay installed under `apt-core/`, harness files stay in their stable source paths, and project context stays at `docs/project-context.md`.
+ 
++The public guidance folders stay in this repo by default:
++
++| Folder | Role |
++| --- | --- |
++| `context-packs/` | Strategy for compressed and generated context packs; points to installable `context/` sources. |
++| `checklists/` | Repo alignment, documentation, API, UI, security, and agent verification checklists. |
++| `showcases/` | Short examples of APT-aligned patterns. |
++| `prompts/` | Tool-neutral reusable prompts. |
++
++Do not confuse `prompts/` with `github-copilot/prompts/`. Copilot-native prompt files still install to `.github/prompts/`.
++
+ ## Why This Split Exists
+ 
+ - `AGENTS.md` belongs at the target repo root so agent tools can find the nearest agent instruction file.
+@@ -138,3 +155,16 @@ Run this check after adding or renaming skills, prompts, or profiles:
+ ```bash
+ node scripts/check-ai-tool-parity.mjs
+ ```
++
++## Alignment Guidance Layers
++
++For cross-repo alignment, use the public guidance folders before choosing install or sync actions:
++
++```text
++context-packs/README.md
++checklists/
++showcases/
++prompts/
++```
++
++These files help decide what to inspect and how to report findings. They are not proof of compliance by themselves. Compliance claims require checking the target repo's relevant files against the relevant checklist.
+diff --git a/docs/HARNESS-ARCHITECTURE.md b/docs/HARNESS-ARCHITECTURE.md
+index a23d406..5e5b6c4 100644
+--- a/docs/HARNESS-ARCHITECTURE.md
++++ b/docs/HARNESS-ARCHITECTURE.md
+@@ -36,6 +36,7 @@ Every routed task should name:
+ - goal and success criteria
+ - target repository or files
+ - selected profiles, skills, agents, and context packs
++- Working Backwards package status, source artifact IDs, blockers, and deferred artifacts when available
+ - model tier recommendation
+ - token budget
+ - material-change approval gates
+diff --git a/docs/OPERATING.md b/docs/OPERATING.md
+index e5f4e72..35473d4 100644
+--- a/docs/OPERATING.md
++++ b/docs/OPERATING.md
+@@ -17,6 +17,10 @@ This repo owns the operational harness:
+ - `agents/` for canonical harness agent roles.
+ - `routing/` for model tiers, local-first routing, task classification, token budgeting, and registry validation.
+ - `context/` for shared context packs.
++- `context-packs/` for public context-pack strategy and compression rules.
++- `checklists/` for required repo-alignment, docs, API, UI, security, and agent checks.
++- `showcases/` for small examples of APT-aligned patterns.
++- `prompts/` for tool-neutral reusable prompt templates.
+ - `skills/token-efficiency/` for model-agnostic token control.
+ - `agent-repo.manifest.json` for source manifest metadata.
+ - `.agent-repo/` in target repos for install, scan, repair, and sync reports.
+@@ -47,6 +51,22 @@ This repo owns the operational harness:
+ 4. Compare the recommendation with `docs/PROFILE-REFERENCE.md`.
+ 5. Decide whether to install detected profiles or a curated list.
+ 
++## Repo Alignment Before Install
++
++For unfamiliar target repos, run a lightweight alignment pass before applying standards:
++
++1. Identify the repo type from files, scripts, docs, runtime config, and deployment settings.
++2. Read the target `README.md`, `AGENTS.md` if present, and `docs/project-context.md` if present.
++3. Select relevant profiles with `docs/PROFILE-REFERENCE.md`.
++4. Select context packs with `context-packs/README.md`.
++5. Apply the relevant checklist under `checklists/`.
++6. Use `showcases/` only as pattern examples, not as proof of compliance.
++7. Return mandatory gaps separately from recommended improvements.
++
++Do not claim the target repo follows APT standards unless the relevant files were checked against the relevant checklist.
++
++Compression is allowed for discovery, planning, summarization, and cross-repo alignment. Compression is not enough for security, compliance, payment handling, final validation, or exact code edits.
++
+ ## Run Guide
+ 
+ Use these commands from this standards repository.
+@@ -268,6 +288,12 @@ Maintain it whenever:
+ - Installed profiles change.
+ - Local conventions or known risks change.
+ 
++## Context Pack Usage
++
++Use context packs to reduce repeated reading during planning and cross-repo alignment. The installable pack sources live in `context/`; the public strategy guide lives in `context-packs/README.md`.
++
++For sensitive or final-change work, read exact source files even when a context pack or compressed summary was already loaded. Exact reads are required for security, compliance, payment handling, final validation, and exact code edits.
++
+ ## Validation Checklist
+ 
+ After installing or syncing standards in a target repo:
+@@ -347,4 +373,4 @@ Before tagging a new standards version:
+ 5. Run the workspace audit against representative sibling repos.
+ 6. Run install and sync smoke tests.
+ 7. Update `CHANGELOG.md`.
+-8. Review `README.md`, `docs/SETUP.md`, this operating guide, `docs/ACTIONS.md`, `docs/WORKSPACE-ROLLOUT.md`, and `docs/PROFILE-REFERENCE.md`.
++8. Review `README.md`, `AGENTS.md`, `docs/SETUP.md`, this operating guide, `docs/ACTIONS.md`, `docs/WORKSPACE-ROLLOUT.md`, `docs/POST-OPERATION-CHECKS.md`, `docs/USING-INSTALLED-STANDARDS.md`, `docs/AI-TOOL-LAYOUT.md`, and `docs/PROFILE-REFERENCE.md`.
+diff --git a/docs/POST-OPERATION-CHECKS.md b/docs/POST-OPERATION-CHECKS.md
+index 0396342..d3879e1 100644
+--- a/docs/POST-OPERATION-CHECKS.md
++++ b/docs/POST-OPERATION-CHECKS.md
+@@ -207,6 +207,23 @@ Check that `docs/project-context.md` includes:
+ - Local standards.
+ - Known risks.
+ 
++For this standards repo, also check that public guidance links and folders are usable:
++
++```text
++context-packs/README.md
++checklists/
++showcases/
++prompts/
++```
++
++Confirm:
++
++- new folders contain useful files, not empty placeholders.
++- README links point to existing files.
++- `context-packs/` explains optional compression without making Headroom mandatory.
++- `prompts/` is clearly separate from `github-copilot/prompts/`.
++- checklist-backed evidence is required before claiming APT compliance.
++
+ ## Payment Or API Repo Checks
+ 
+ For repos with payment or API profiles, additionally inspect:
+diff --git a/docs/PROFILE-REFERENCE.md b/docs/PROFILE-REFERENCE.md
+index 15a8a1e..159c7ec 100644
+--- a/docs/PROFILE-REFERENCE.md
++++ b/docs/PROFILE-REFERENCE.md
+@@ -54,11 +54,11 @@ Primary installed areas: API standards, `.claude/agents/api-experience-reviewer.
+ 
+ ## ux-review
+ 
+-Intent UX reviewer and UX review skill.
++Intent UX reviewer, UX review skill, and shadcn/ui usage guidance for APT React, TypeScript, and Tailwind projects.
+ 
+ Install when: the repo contains UI components, pages, routes, forms, dashboards, or user workflows.
+ 
+-Primary installed areas: UX standards, `.claude/agents/intent-ux-reviewer.md`, `.codex/skills/ux-review`, `.github/instructions/frontend.instructions.md`, `.github/prompts/ux-review.prompt.md`.
++Primary installed areas: UX standards, `.claude/agents/intent-ux-reviewer.md`, `.codex/skills/ux-review`, `.github/instructions/frontend.instructions.md`, `.github/prompts/ux-review.prompt.md`. Use `docs/SHADCN-UI-STANDARD.md` from this standards repo for extended shadcn structure, registry, command, and migration guidance.
+ 
+ ## migration
+ 
+diff --git a/docs/PROMPT-CATALOG.md b/docs/PROMPT-CATALOG.md
+index 7ef9d3a..16714e1 100644
+--- a/docs/PROMPT-CATALOG.md
++++ b/docs/PROMPT-CATALOG.md
+@@ -1,5 +1,14 @@
+ # Prompt Catalog
+ 
++## Tool-Neutral Standards Prompts
++
++These prompts live in `prompts/` and are meant for agents or operators working from this standards repo. They are not GitHub Copilot prompt files and are not installed into `.github/prompts/` by current profiles.
++
++- `prompts/repo-alignment-review.md`
++- `prompts/apply-apt-principles.md`
++- `prompts/generate-context-pack.md`
++- `prompts/update-agent-standards.md`
++
+ ## Canonical Same-Name Skill Prompts
+ 
+ These prompts mirror Codex skills so GitHub Copilot Chat can follow the same workflow:
+@@ -34,5 +43,6 @@ The following prompts are intentionally retained as user-friendly aliases or gen
+ 
+ - Keep same-name skill prompts canonical for parity checks.
+ - Keep alias prompts short and direct; point new detailed behavior to the canonical prompt when possible.
++- Keep `prompts/` tool-neutral and `github-copilot/prompts/` Copilot-native.
+ - Do not duplicate long doctrine from `apt-principles`.
+ - Prefer source-backed instructions and file references over examples that may drift.
+diff --git a/docs/USING-INSTALLED-STANDARDS.md b/docs/USING-INSTALLED-STANDARDS.md
+index aa2e725..e9147de 100644
+--- a/docs/USING-INSTALLED-STANDARDS.md
++++ b/docs/USING-INSTALLED-STANDARDS.md
+@@ -17,6 +17,32 @@ Use this loop for updates, fixes, modernization, and cleanup:
+ 9. Update docs if behavior, setup, architecture, API contracts, or workflows changed.
+ 10. Review the diff.
+ 
++## Repo Alignment With This Standards Repo
++
++When using this standards repo to review another repo, start with the public alignment guidance before editing:
++
++1. Use `prompts/repo-alignment-review.md` for the review shape.
++2. Choose context packs with `context-packs/README.md`.
++3. Apply the relevant checklist from `checklists/`.
++4. Use `showcases/` as examples for recommended patterns.
++5. Use installable profiles only after the repo type and required capabilities are clear.
++
++Return mandatory gaps separately from recommended improvements. A repo is not APT-aligned merely because it has installed files; the relevant files must be checked against the relevant checklist.
++
++## Context Packs And Compression
++
++Context packs and compressed summaries are useful for discovery, planning, summarization, and cross-repo alignment. Headroom or similar tools may help create compact summaries, but they are optional.
++
++Do not rely on compressed context alone for:
++
++- security findings
++- compliance claims
++- payment handling
++- final validation
++- exact code edits
++
++For those workflows, read the exact source files, configs, schemas, docs, and local agent instructions before final findings or edits.
++
+ ## Choose The Right AI Mode
+ 
+ Pick the mode before you paste a prompt or invoke a skill.
+@@ -79,6 +105,7 @@ Do not edit files yet. Return a staged plan first.
+ | --- | --- |
+ | General repo review | `AGENTS.md`, `.codex/skills/apt-review/SKILL.md`, `.claude/agents/apt-principles-reviewer.md` |
+ | Readiness audit | `.codex/skills/apt-readiness-audit/SKILL.md`, `.claude/agents/apt-readiness-auditor.md`, `.github/prompts/apt-readiness-audit.prompt.md` |
++| Working Backwards handoff review | `context/working-backwards/README.md`, `.claude/agents/apt-readiness-auditor.md`, `agents/apt-verifier.md` |
+ | Fix or refactor safely | `.codex/skills/refactor-safety/SKILL.md`, `.github/prompts/refactor-safety.prompt.md`, `.github/prompts/review-diff.prompt.md` |
+ | Generate tests | `.codex/skills/test-generator/SKILL.md`, `.github/prompts/test-generator.prompt.md`, `.github/prompts/generate-tests.prompt.md` |
+ | Update docs | `.codex/skills/docs-sync/SKILL.md`, `.github/prompts/docs-sync.prompt.md`, `.github/prompts/update-docs.prompt.md` |
+@@ -90,6 +117,19 @@ Do not edit files yet. Return a staged plan first.
+ | Audit AI output | `.codex/skills/ai-output-review/SKILL.md`, `.claude/agents/ai-output-auditor.md`, `.github/prompts/ai-output-review.prompt.md` |
+ | Lovable migration | `.codex/skills/lovable-to-apt/SKILL.md`, `.codex/skills/lovable-to-cloudflare/SKILL.md`, `.github/prompts/lovable-to-apt.prompt.md`, `.github/prompts/lovable-to-cloudflare.prompt.md` |
+ 
++## Public Standards-Repo Files To Use
++
++These files are used from this standards repo and are not automatically installed into target repos by current profiles:
++
++| Task | Standards repo files |
++| --- | --- |
++| Repo alignment review | `prompts/repo-alignment-review.md`, `checklists/repo-alignment-checklist.md` |
++| Apply APT principles | `prompts/apply-apt-principles.md`, relevant checklist and showcase |
++| Apply shadcn UI standards | `docs/SHADCN-UI-STANDARD.md`, `checklists/ui-checklist.md`, `context/ui/README.md` |
++| Generate a context pack | `prompts/generate-context-pack.md`, `context-packs/README.md` |
++| Update agent standards | `prompts/update-agent-standards.md`, `checklists/agent-checklist.md` |
++| Pattern examples | `showcases/` |
++
+ ## Example Prompts To Run In A Target Repo
+ 
+ Use these from the target repo after standards are installed.
+@@ -107,6 +147,17 @@ Score APT alignment, architecture, documentation, UX, API, testing, Cloudflare r
+ Return findings, evidence, risks, and a prioritized improvement plan. Do not edit files yet.
+ ```
+ 
++### Working Backwards Handoff Review
++
++```text
++Mode: Chat or Review mode before implementation.
++
++Read context/working-backwards/README.md from apt-agent-standards and the target repo's Working Backwards package or equivalent artifacts.
++
++Check press release, external FAQ, internal FAQ, demo/mock, end-user docs, telemetry plan, PRD/requirements, release decomposition, readiness checklist, outcome tracker, what-to-build, and agent handoff.
++Return missing artifacts, blockers, deferred items without reasons, validation commands, and whether build or release handoff is ready. Do not edit files yet.
++```
++
+ ### Fix A Bug Safely
+ 
+ ```text
+@@ -156,6 +207,7 @@ Read and follow .codex/skills/ux-review/SKILL.md and .claude/agents/intent-ux-re
+ If they are not auto-discovered, open those files directly and follow their guidance.
+ 
+ Review the main user workflows, loading states, empty states, error states, responsive behavior, accessibility, and task completion.
++For React, TypeScript, and Tailwind projects, also use docs/SHADCN-UI-STANDARD.md from apt-agent-standards to inspect shadcn structure, component layering, installed primitives, and migration readiness.
+ Return workflow blockers first, then polish opportunities.
+ ```
+ 
+diff --git a/github-copilot/instructions/frontend.instructions.md b/github-copilot/instructions/frontend.instructions.md
+index 4880caa..15c25c6 100644
+--- a/github-copilot/instructions/frontend.instructions.md
++++ b/github-copilot/instructions/frontend.instructions.md
+@@ -5,6 +5,10 @@ Design around user intent, workflow continuity, and accessibility.
+ ## UI Rules
+ 
+ - Keep UI changes consistent with local components, spacing, typography, and state patterns.
++- For React, TypeScript, and Tailwind projects, prefer shadcn/ui as the default repo-owned component foundation unless VPDS or another approved enterprise design system is required.
++- Before adding shadcn components, inspect existing component folders, `components.json`, aliases, Tailwind config or global CSS, installed primitives, package manager, and local wrappers or blocks.
++- Layer UI as `components/ui` for shadcn primitives, `components/apt` for reusable APT wrappers, and `components/blocks` for product workflow blocks.
++- Reuse or adapt installed primitives before creating one-off styled markup.
+ - Account for loading, empty, error, disabled, success, and retry states.
+ - Ensure text fits across supported viewport sizes.
+ - Prefer clear controls over explanatory copy when the interaction is familiar.
+@@ -15,6 +19,7 @@ Design around user intent, workflow continuity, and accessibility.
+ - Preserve keyboard navigation and focus states.
+ - Use semantic controls for buttons, links, forms, tabs, and dialogs.
+ - Keep labels and error messages tied to the relevant inputs.
++- Preserve ARIA behavior and focus management when modifying shadcn/Radix primitives.
+ 
+ ## Review Focus

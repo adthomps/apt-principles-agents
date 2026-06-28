@@ -1,0 +1,29 @@
+name: payments
+description: Payment, ecommerce, API, transaction intelligence, risk, documentation, and readiness assets.
+principles:
+  - principles/payments/
+  - principles/ecommerce/
+  - principles/api/
+  - principles/security-risk/
+skills:
+  - skills/payments/
+  - skills/ecommerce/
+  - skills/api/
+  - skills/service-readiness/
+agents:
+  - agents/payments/
+  - agents/ecommerce/
+  - agents/api/
+  - agents/risk/
+templates:
+  - templates/payments/
+  - templates/api/
+  - templates/support/
+prompts:
+  - prompts/reviews/payment-review.md
+  - prompts/troubleshooting/payment-decline.md
+platforms:
+  - platforms/codex/
+  - platforms/github-copilot/
+  - platforms/claude/
+  - platforms/gemini/
