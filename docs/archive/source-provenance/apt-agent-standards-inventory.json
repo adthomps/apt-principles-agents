@@ -1,6 +1,7 @@
 {
   "capturedAt": "2026-06-27",
   "baseCommit": "7fc319e5a4892a6a04573748c94d43b256904bb9",
+  "finalSourceCommit": "d5ab88f1ccc412f2f1a495435f9c3744fff143d2",
   "status": [
     "M AGENTS.md",
     " M README.md",

@@ -6,6 +6,9 @@ status: active
 owner: APT
 last_updated: 2026-06-27
 source: consolidated APT guidance
+title: "GraphQL Review"
+domain: "api"
+source_paths: ["apt-principles-agents/skills/api/graphql-review/SKILL.md"]
 ---
 
 # GraphQL Review
@@ -41,6 +44,15 @@ A concise recommendation, evidence map, required changes, risks, validation plan
 
 The output is practical, source-backed, audience-aware, testable, reversible where possible, and does not state assumptions as facts.
 
+## Domain Checklist
+
+- Treat **Graphql Review** as an explicit decision with defined scope, evidence, owner, and validation.
+- Justify graph traversal needs and address authorization depth, query cost, schema evolution, and caching.
+- State what is verified, what is assumed, and what requires specialist or human approval.
+
+## Required Reading
+
+Read the canonical Api principle hub, the closest enforceable standard, the applicable checklist, and exact target-repository evidence.
 ## References
 
 - [API principles](../../../principles/api/README.md)

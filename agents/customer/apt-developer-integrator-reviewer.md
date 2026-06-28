@@ -5,6 +5,8 @@ status: active
 owner: APT
 last_updated: 2026-06-27
 source: apt-agent-standards roles and APT doctrine
+domain: "customer"
+source_paths: ["apt-principles-agents/agents/customer/apt-developer-integrator-reviewer.md"]
 ---
 
 # Apt Developer Integrator Reviewer

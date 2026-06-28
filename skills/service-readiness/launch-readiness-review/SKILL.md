@@ -6,6 +6,9 @@ status: active
 owner: APT
 last_updated: 2026-06-27
 source: consolidated APT guidance
+title: "Launch Readiness Review"
+domain: "service-readiness"
+source_paths: ["apt-principles-agents/skills/service-readiness/launch-readiness-review/SKILL.md"]
 ---
 
 # Launch Readiness Review
@@ -41,6 +44,15 @@ A concise recommendation, evidence map, required changes, risks, validation plan
 
 The output is practical, source-backed, audience-aware, testable, reversible where possible, and does not state assumptions as facts.
 
+## Domain Checklist
+
+- Treat **Launch Readiness Review** as an explicit decision with defined scope, evidence, owner, and validation.
+- Require named owners, evidence, operational checks, support handoff, rollback, communications, and approval.
+- State what is verified, what is assumed, and what requires specialist or human approval.
+
+## Required Reading
+
+Read the canonical Service Readiness principle hub, the closest enforceable standard, the applicable checklist, and exact target-repository evidence.
 ## References
 
 - [Service Readiness principles](../../../principles/service-readiness/README.md)

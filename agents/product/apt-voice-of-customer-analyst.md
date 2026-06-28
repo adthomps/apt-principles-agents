@@ -5,6 +5,8 @@ status: active
 owner: APT
 last_updated: 2026-06-27
 source: apt-agent-standards roles and APT doctrine
+domain: "product"
+source_paths: ["apt-principles-agents/agents/product/apt-voice-of-customer-analyst.md"]
 ---
 
 # Apt Voice Of Customer Analyst

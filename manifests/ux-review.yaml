@@ -1,0 +1,21 @@
+name: ux-review
+description: Intent-based UI, accessibility, roles, journeys, responsive behavior, and design review.
+principles:
+  - principles/design/
+standards:
+  - standards/installable-summaries/ux-standards.md
+checklists:
+  - checklists/design-review-checklist.md
+context:
+  - context-packs/apt-ui-pack.md
+  - context/ui/
+skills:
+  - skills/design/
+  - platforms/codex/source/skills/ux-review/
+agents:
+  - agents/core/apt-design-lead.md
+  - platforms/claude/source/agents/intent-ux-reviewer.md
+templates:
+prompts:
+  - prompts/reviews/ui-api-alignment-review.md
+platforms:

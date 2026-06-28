@@ -5,6 +5,8 @@ status: active
 owner: APT
 last_updated: 2026-06-27
 source: apt-principles and apt-agent-standards
+domain: "payments"
+source_paths: ["apt-principles-agents/principles/payments/transaction-intelligence.md"]
 ---
 
 # Transaction Intelligence
@@ -37,6 +39,13 @@ Review for invented provider behavior, double processing, confused authorization
 4. How will engineering, security, documentation, and support verify readiness?
 5. What remains uncertain and who must approve it?
 
+## Topic-Specific Guidance
+
+- Treat **Transaction Intelligence** as an explicit decision with defined scope, evidence, owner, and validation.
+- Required evidence: transaction states, money movement, tokens, provider mapping, risk, funding, reconciliation.
+- State what is verified, what is assumed, and what requires specialist or human approval.
+
+See the [Payments canonical hub](README.md) and linked standards/checklists before making final claims.
 ## Related
 
 - [APT Principles](../README.md)

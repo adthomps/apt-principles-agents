@@ -6,6 +6,9 @@ status: active
 owner: APT
 last_updated: 2026-06-27
 source: consolidated APT guidance
+title: "Gateway Abstraction"
+domain: "payments"
+source_paths: ["apt-principles-agents/skills/payments/gateway-abstraction/SKILL.md"]
 ---
 
 # Gateway Abstraction
@@ -41,6 +44,15 @@ A concise recommendation, evidence map, required changes, risks, validation plan
 
 The output is practical, source-backed, audience-aware, testable, reversible where possible, and does not state assumptions as facts.
 
+## Domain Checklist
+
+- Treat **Gateway Abstraction** as an explicit decision with defined scope, evidence, owner, and validation.
+- Keep provider-specific fields behind explicit adapters and document parity, gaps, and escape hatches.
+- State what is verified, what is assumed, and what requires specialist or human approval.
+
+## Required Reading
+
+Read the canonical Payments principle hub, the closest enforceable standard, the applicable checklist, and exact target-repository evidence.
 ## References
 
 - [Payments principles](../../../principles/payments/README.md)

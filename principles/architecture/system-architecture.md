@@ -5,6 +5,8 @@ status: active
 owner: APT
 last_updated: 2026-06-27
 source: apt-principles and apt-agent-standards
+domain: "architecture"
+source_paths: ["apt-principles-agents/principles/architecture/system-architecture.md"]
 ---
 
 # System Architecture
@@ -37,6 +39,13 @@ Review for unclear ownership, accidental coupling, irreversible migrations, prov
 4. How will engineering, security, documentation, and support verify readiness?
 5. What remains uncertain and who must approve it?
 
+## Topic-Specific Guidance
+
+- Treat **System Architecture** as an explicit decision with defined scope, evidence, owner, and validation.
+- Define boundaries, ownership, contracts, failure modes, deployment, observability, and reversibility.
+- State what is verified, what is assumed, and what requires specialist or human approval.
+
+See the [Architecture canonical hub](README.md) and linked standards/checklists before making final claims.
 ## Related
 
 - [APT Principles](../README.md)

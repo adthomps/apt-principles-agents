@@ -6,6 +6,9 @@ status: active
 owner: APT
 last_updated: 2026-06-27
 source: consolidated APT guidance
+title: "Operational Runbook Writer"
+domain: "service-readiness"
+source_paths: ["apt-principles-agents/skills/service-readiness/operational-runbook-writer/SKILL.md"]
 ---
 
 # Operational Runbook Writer
@@ -41,6 +44,15 @@ A concise recommendation, evidence map, required changes, risks, validation plan
 
 The output is practical, source-backed, audience-aware, testable, reversible where possible, and does not state assumptions as facts.
 
+## Domain Checklist
+
+- Treat **Operational Runbook Writer** as an explicit decision with defined scope, evidence, owner, and validation.
+- Make triggers, prerequisites, exact actions, expected evidence, rollback, escalation, and ownership executable.
+- State what is verified, what is assumed, and what requires specialist or human approval.
+
+## Required Reading
+
+Read the canonical Service Readiness principle hub, the closest enforceable standard, the applicable checklist, and exact target-repository evidence.
 ## References
 
 - [Service Readiness principles](../../../principles/service-readiness/README.md)

@@ -5,6 +5,8 @@ status: active
 owner: APT
 last_updated: 2026-06-27
 source: apt-principles and apt-agent-standards
+domain: "payments"
+source_paths: ["apt-principles-agents/principles/payments/fraud-risk.md"]
 ---
 
 # Fraud Risk
@@ -37,6 +39,13 @@ Review for invented provider behavior, double processing, confused authorization
 4. How will engineering, security, documentation, and support verify readiness?
 5. What remains uncertain and who must approve it?
 
+## Topic-Specific Guidance
+
+- Treat **Fraud Risk** as an explicit decision with defined scope, evidence, owner, and validation.
+- Separate detection signals, decision rules, explainability, false positives, overrides, and monitoring.
+- State what is verified, what is assumed, and what requires specialist or human approval.
+
+See the [Payments canonical hub](README.md) and linked standards/checklists before making final claims.
 ## Related
 
 - [APT Principles](../README.md)

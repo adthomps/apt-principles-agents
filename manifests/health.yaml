@@ -1,0 +1,15 @@
+name: health
+description: High-accuracy health application review with privacy and human escalation.
+extends:
+  - security
+  - documentation
+principles:
+standards:
+checklists:
+context:
+skills:
+  - platforms/github-copilot/source/skills/health-data-ingestion-designer/
+agents:
+templates:
+prompts:
+platforms:

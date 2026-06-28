@@ -5,6 +5,8 @@ status: active
 owner: APT
 last_updated: 2026-06-27
 source: APT consolidation
+domain: "modernization"
+source_paths: ["apt-principles-agents/principles/modernization/README.md"]
 ---
 
 # Modernization Principles

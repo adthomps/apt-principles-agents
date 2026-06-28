@@ -5,6 +5,8 @@ status: active
 owner: APT
 last_updated: 2026-06-27
 source: APT source templates
+domain: "product"
+source_paths: ["apt-principles-agents/templates/product/audience-map.md"]
 ---
 
 # Audience Map

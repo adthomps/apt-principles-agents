@@ -6,6 +6,9 @@ status: active
 owner: APT
 last_updated: 2026-06-27
 source: consolidated APT guidance
+title: "Partner Acquirer Guide Writer"
+domain: "documentation"
+source_paths: ["apt-principles-agents/skills/documentation/partner-acquirer-guide-writer/SKILL.md"]
 ---
 
 # Partner Acquirer Guide Writer
@@ -41,6 +44,15 @@ A concise recommendation, evidence map, required changes, risks, validation plan
 
 The output is practical, source-backed, audience-aware, testable, reversible where possible, and does not state assumptions as facts.
 
+## Domain Checklist
+
+- Treat **Partner Acquirer Guide Writer** as an explicit decision with defined scope, evidence, owner, and validation.
+- Required evidence: canonical source, audience layer, executable example, troubleshooting, freshness owner.
+- State what is verified, what is assumed, and what requires specialist or human approval.
+
+## Required Reading
+
+Read the canonical Documentation principle hub, the closest enforceable standard, the applicable checklist, and exact target-repository evidence.
 ## References
 
 - [Documentation principles](../../../principles/documentation/README.md)

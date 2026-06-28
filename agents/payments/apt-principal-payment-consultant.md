@@ -5,6 +5,8 @@ status: active
 owner: APT
 last_updated: 2026-06-27
 source: apt-agent-standards roles and APT doctrine
+domain: "payments"
+source_paths: ["apt-principles-agents/agents/payments/apt-principal-payment-consultant.md"]
 ---
 
 # Apt Principal Payment Consultant

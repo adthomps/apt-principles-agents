@@ -1,0 +1,3046 @@
+{
+  "schemaVersion": 1,
+  "generatedAt": "2026-06-28",
+  "sourceFileCount": 505,
+  "counts": {
+    "merged": 62,
+    "migrated": 330,
+    "historical": 1,
+    "retired": 2,
+    "external": 91,
+    "historical_generated": 19
+  },
+  "sha256": "ae0a8f6eeb1f068fb6dadf34e86692c6479f0f19bd5f6501414de1e7fcbe04e3",
+  "files": [
+    {
+      "source": "apt-agent-standards/.gitattributes",
+      "classification": "merged",
+      "destination": "docs/migration-from-old-repos.md",
+      "rationale": "Repository-level behavior is consolidated into the new canonical repository."
+    },
+    {
+      "source": "apt-agent-standards/agent-repo.manifest.json",
+      "classification": "merged",
+      "destination": "docs/migration-from-old-repos.md",
+      "rationale": "Repository-level behavior is consolidated into the new canonical repository."
+    },
+    {
+      "source": "apt-agent-standards/AGENTS.md",
+      "classification": "merged",
+      "destination": "docs/migration-from-old-repos.md",
+      "rationale": "Repository-level behavior is consolidated into the new canonical repository."
+    },
+    {
+      "source": "apt-agent-standards/agents/apt-architect.md",
+      "classification": "migrated",
+      "destination": "agents/harness/apt-architect.md",
+      "rationale": "Preserved as active source-backed guidance."
+    },
+    {
+      "source": "apt-agent-standards/agents/apt-cloudflare-builder.md",
+      "classification": "migrated",
+      "destination": "agents/harness/apt-cloudflare-builder.md",
+      "rationale": "Preserved as active source-backed guidance."
+    },
+    {
+      "source": "apt-agent-standards/agents/apt-code-reviewer.md",
+      "classification": "migrated",
+      "destination": "agents/harness/apt-code-reviewer.md",
+      "rationale": "Preserved as active source-backed guidance."
+    },
+    {
+      "source": "apt-agent-standards/agents/apt-cost-controller.md",
+      "classification": "migrated",
+      "destination": "agents/harness/apt-cost-controller.md",
+      "rationale": "Preserved as active source-backed guidance."
+    },
+    {
+      "source": "apt-agent-standards/agents/apt-docs-reviewer.md",
+      "classification": "migrated",
+      "destination": "agents/harness/apt-docs-reviewer.md",
+      "rationale": "Preserved as active source-backed guidance."
+    },
+    {
+      "source": "apt-agent-standards/agents/apt-installer.md",
+      "classification": "migrated",
+      "destination": "agents/harness/apt-installer.md",
+      "rationale": "Preserved as active source-backed guidance."
+    },
+    {
+      "source": "apt-agent-standards/agents/apt-model-router.md",
+      "classification": "migrated",
+      "destination": "agents/harness/apt-model-router.md",
+      "rationale": "Preserved as active source-backed guidance."
+    },
+    {
+      "source": "apt-agent-standards/agents/apt-repair-agent.md",
+      "classification": "migrated",
+      "destination": "agents/harness/apt-repair-agent.md",
+      "rationale": "Preserved as active source-backed guidance."
+    },
+    {
+      "source": "apt-agent-standards/agents/apt-repo-scanner.md",
+      "classification": "migrated",
+      "destination": "agents/harness/apt-repo-scanner.md",
+      "rationale": "Preserved as active source-backed guidance."
+    },
+    {
+      "source": "apt-agent-standards/agents/apt-router.md",
+      "classification": "migrated",
+      "destination": "agents/harness/apt-router.md",
+      "rationale": "Preserved as active source-backed guidance."
+    },
+    {
+      "source": "apt-agent-standards/agents/apt-security-reviewer.md",
+      "classification": "migrated",
+      "destination": "agents/harness/apt-security-reviewer.md",
+      "rationale": "Preserved as active source-backed guidance."
+    },
+    {
+      "source": "apt-agent-standards/agents/apt-ui-reviewer.md",
+      "classification": "migrated",
+      "destination": "agents/harness/apt-ui-reviewer.md",
+      "rationale": "Preserved as active source-backed guidance."
+    },
+    {
+      "source": "apt-agent-standards/agents/apt-verifier.md",
+      "classification": "migrated",
+      "destination": "agents/harness/apt-verifier.md",
+      "rationale": "Preserved as active source-backed guidance."
+    },
+    {
+      "source": "apt-agent-standards/apt-core/api-standards.md",
+      "classification": "migrated",
+      "destination": "standards/installable-summaries/api-standards.md",
+      "rationale": "Preserved as active source-backed guidance."
+    },
+    {
+      "source": "apt-agent-standards/apt-core/APT.md",
+      "classification": "migrated",
+      "destination": "standards/installable-summaries/APT.md",
+      "rationale": "Preserved as active source-backed guidance."
+    },
+    {
+      "source": "apt-agent-standards/apt-core/cloudflare-standards.md",
+      "classification": "migrated",
+      "destination": "standards/installable-summaries/cloudflare-standards.md",
+      "rationale": "Preserved as active source-backed guidance."
+    },
+    {
+      "source": "apt-agent-standards/apt-core/decision-frameworks.md",
+      "classification": "migrated",
+      "destination": "standards/installable-summaries/decision-frameworks.md",
+      "rationale": "Preserved as active source-backed guidance."
+    },
+    {
+      "source": "apt-agent-standards/apt-core/documentation-standards.md",
+      "classification": "migrated",
+      "destination": "standards/installable-summaries/documentation-standards.md",
+      "rationale": "Preserved as active source-backed guidance."
+    },
+    {
+      "source": "apt-agent-standards/apt-core/knowledge-graph-standards.md",
+      "classification": "migrated",
+      "destination": "standards/installable-summaries/knowledge-graph-standards.md",
+      "rationale": "Preserved as active source-backed guidance."
+    },
+    {
+      "source": "apt-agent-standards/apt-core/migration-standards.md",
+      "classification": "migrated",
+      "destination": "standards/installable-summaries/migration-standards.md",
+      "rationale": "Preserved as active source-backed guidance."
+    },
+    {
+      "source": "apt-agent-standards/apt-core/principles.md",
+      "classification": "migrated",
+      "destination": "standards/installable-summaries/principles.md",
+      "rationale": "Preserved as active source-backed guidance."
+    },
+    {
+      "source": "apt-agent-standards/apt-core/review-checklists.md",
+      "classification": "migrated",
+      "destination": "standards/installable-summaries/review-checklists.md",
+      "rationale": "Preserved as active source-backed guidance."
+    },
+    {
+      "source": "apt-agent-standards/apt-core/ux-standards.md",
+      "classification": "migrated",
+      "destination": "standards/installable-summaries/ux-standards.md",
+      "rationale": "Preserved as active source-backed guidance."
+    },
+    {
+      "source": "apt-agent-standards/CHANGELOG.md",
+      "classification": "historical",
+      "destination": "docs/archive/apt-agent-standards-CHANGELOG.md",
+      "rationale": "Preserved as distribution-system release history."
+    },
+    {
+      "source": "apt-agent-standards/checklists/agent-checklist.md",
+      "classification": "migrated",
+      "destination": "checklists/distribution/agent-checklist.md",
+      "rationale": "Preserved as active source-backed guidance."
+    },
+    {
+      "source": "apt-agent-standards/checklists/api-checklist.md",
+      "classification": "migrated",
+      "destination": "checklists/distribution/api-checklist.md",
+      "rationale": "Preserved as active source-backed guidance."
+    },
+    {
+      "source": "apt-agent-standards/checklists/documentation-checklist.md",
+      "classification": "migrated",
+      "destination": "checklists/distribution/documentation-checklist.md",
+      "rationale": "Preserved as active source-backed guidance."
+    },
+    {
+      "source": "apt-agent-standards/checklists/repo-alignment-checklist.md",
+      "classification": "migrated",
+      "destination": "checklists/distribution/repo-alignment-checklist.md",
+      "rationale": "Preserved as active source-backed guidance."
+    },
+    {
+      "source": "apt-agent-standards/checklists/security-checklist.md",
+      "classification": "migrated",
+      "destination": "checklists/distribution/security-checklist.md",
+      "rationale": "Preserved as active source-backed guidance."
+    },
+    {
+      "source": "apt-agent-standards/checklists/ui-checklist.md",
+      "classification": "migrated",
+      "destination": "checklists/distribution/ui-checklist.md",
+      "rationale": "Preserved as active source-backed guidance."
+    },
+    {
+      "source": "apt-agent-standards/claude/agents/ai-output-auditor.md",
+      "classification": "migrated",
+      "destination": "platforms/claude/source/agents/ai-output-auditor.md",
+      "rationale": "Preserved as active source-backed guidance."
+    },
+    {
+      "source": "apt-agent-standards/claude/agents/api-experience-reviewer.md",
+      "classification": "migrated",
+      "destination": "platforms/claude/source/agents/api-experience-reviewer.md",
+      "rationale": "Preserved as active source-backed guidance."
+    },
+    {
+      "source": "apt-agent-standards/claude/agents/apt-principles-reviewer.md",
+      "classification": "migrated",
+      "destination": "platforms/claude/source/agents/apt-principles-reviewer.md",
+      "rationale": "Preserved as active source-backed guidance."
+    },
+    {
+      "source": "apt-agent-standards/claude/agents/apt-readiness-auditor.md",
+      "classification": "migrated",
+      "destination": "platforms/claude/source/agents/apt-readiness-auditor.md",
+      "rationale": "Preserved as active source-backed guidance."
+    },
+    {
+      "source": "apt-agent-standards/claude/agents/cloudflare-architect.md",
+      "classification": "migrated",
+      "destination": "platforms/claude/source/agents/cloudflare-architect.md",
+      "rationale": "Preserved as active source-backed guidance."
+    },
+    {
+      "source": "apt-agent-standards/claude/agents/cloudflare-modernization-architect.md",
+      "classification": "migrated",
+      "destination": "platforms/claude/source/agents/cloudflare-modernization-architect.md",
+      "rationale": "Preserved as active source-backed guidance."
+    },
+    {
+      "source": "apt-agent-standards/claude/agents/cloudflare-react-hono-architect.md",
+      "classification": "migrated",
+      "destination": "platforms/claude/source/agents/cloudflare-react-hono-architect.md",
+      "rationale": "Preserved as active source-backed guidance."
+    },
+    {
+      "source": "apt-agent-standards/claude/agents/documentation-architect.md",
+      "classification": "migrated",
+      "destination": "platforms/claude/source/agents/documentation-architect.md",
+      "rationale": "Preserved as active source-backed guidance."
+    },
+    {
+      "source": "apt-agent-standards/claude/agents/documentation-normalizer.md",
+      "classification": "migrated",
+      "destination": "platforms/claude/source/agents/documentation-normalizer.md",
+      "rationale": "Preserved as active source-backed guidance."
+    },
+    {
+      "source": "apt-agent-standards/claude/agents/intent-ux-reviewer.md",
+      "classification": "migrated",
+      "destination": "platforms/claude/source/agents/intent-ux-reviewer.md",
+      "rationale": "Preserved as active source-backed guidance."
+    },
+    {
+      "source": "apt-agent-standards/claude/agents/lovable-to-apt-architect.md",
+      "classification": "migrated",
+      "destination": "platforms/claude/source/agents/lovable-to-apt-architect.md",
+      "rationale": "Preserved as active source-backed guidance."
+    },
+    {
+      "source": "apt-agent-standards/claude/agents/lovable-to-cloudflare-architect.md",
+      "classification": "migrated",
+      "destination": "platforms/claude/source/agents/lovable-to-cloudflare-architect.md",
+      "rationale": "Preserved as active source-backed guidance."
+    },
+    {
+      "source": "apt-agent-standards/claude/agents/repo-standardizer.md",
+      "classification": "migrated",
+      "destination": "platforms/claude/source/agents/repo-standardizer.md",
+      "rationale": "Preserved as active source-backed guidance."
+    },
+    {
+      "source": "apt-agent-standards/claude/agents/service-readiness-reviewer.md",
+      "classification": "migrated",
+      "destination": "platforms/claude/source/agents/service-readiness-reviewer.md",
+      "rationale": "Preserved as active source-backed guidance."
+    },
+    {
+      "source": "apt-agent-standards/codex/skills/ai-output-review/SKILL.md",
+      "classification": "migrated",
+      "destination": "platforms/codex/source/skills/ai-output-review/SKILL.md",
+      "rationale": "Preserved as active source-backed guidance."
+    },
+    {
+      "source": "apt-agent-standards/codex/skills/api-review/SKILL.md",
+      "classification": "migrated",
+      "destination": "platforms/codex/source/skills/api-review/SKILL.md",
+      "rationale": "Preserved as active source-backed guidance."
+    },
+    {
+      "source": "apt-agent-standards/codex/skills/apt-readiness-audit/SKILL.md",
+      "classification": "migrated",
+      "destination": "platforms/codex/source/skills/apt-readiness-audit/SKILL.md",
+      "rationale": "Preserved as active source-backed guidance."
+    },
+    {
+      "source": "apt-agent-standards/codex/skills/apt-review/SKILL.md",
+      "classification": "migrated",
+      "destination": "platforms/codex/source/skills/apt-review/SKILL.md",
+      "rationale": "Preserved as active source-backed guidance."
+    },
+    {
+      "source": "apt-agent-standards/codex/skills/cloudflare-modernization/SKILL.md",
+      "classification": "migrated",
+      "destination": "platforms/codex/source/skills/cloudflare-modernization/SKILL.md",
+      "rationale": "Preserved as active source-backed guidance."
+    },
+    {
+      "source": "apt-agent-standards/codex/skills/cloudflare-react-hono/SKILL.md",
+      "classification": "migrated",
+      "destination": "platforms/codex/source/skills/cloudflare-react-hono/SKILL.md",
+      "rationale": "Preserved as active source-backed guidance."
+    },
+    {
+      "source": "apt-agent-standards/codex/skills/docs-sync/SKILL.md",
+      "classification": "migrated",
+      "destination": "platforms/codex/source/skills/docs-sync/SKILL.md",
+      "rationale": "Preserved as active source-backed guidance."
+    },
+    {
+      "source": "apt-agent-standards/codex/skills/documentation-normalization/SKILL.md",
+      "classification": "migrated",
+      "destination": "platforms/codex/source/skills/documentation-normalization/SKILL.md",
+      "rationale": "Preserved as active source-backed guidance."
+    },
+    {
+      "source": "apt-agent-standards/codex/skills/knowledge-graph-review/SKILL.md",
+      "classification": "migrated",
+      "destination": "platforms/codex/source/skills/knowledge-graph-review/SKILL.md",
+      "rationale": "Preserved as active source-backed guidance."
+    },
+    {
+      "source": "apt-agent-standards/codex/skills/lovable-to-apt/SKILL.md",
+      "classification": "migrated",
+      "destination": "platforms/codex/source/skills/lovable-to-apt/SKILL.md",
+      "rationale": "Preserved as active source-backed guidance."
+    },
+    {
+      "source": "apt-agent-standards/codex/skills/lovable-to-cloudflare/SKILL.md",
+      "classification": "migrated",
+      "destination": "platforms/codex/source/skills/lovable-to-cloudflare/SKILL.md",
+      "rationale": "Preserved as active source-backed guidance."
+    },
+    {
+      "source": "apt-agent-standards/codex/skills/refactor-safety/SKILL.md",
+      "classification": "migrated",
+      "destination": "platforms/codex/source/skills/refactor-safety/SKILL.md",
+      "rationale": "Preserved as active source-backed guidance."
+    },
+    {
+      "source": "apt-agent-standards/codex/skills/repo-standardization/SKILL.md",
+      "classification": "migrated",
+      "destination": "platforms/codex/source/skills/repo-standardization/SKILL.md",
+      "rationale": "Preserved as active source-backed guidance."
+    },
+    {
+      "source": "apt-agent-standards/codex/skills/test-generator/SKILL.md",
+      "classification": "migrated",
+      "destination": "platforms/codex/source/skills/test-generator/SKILL.md",
+      "rationale": "Preserved as active source-backed guidance."
+    },
+    {
+      "source": "apt-agent-standards/codex/skills/ux-review/SKILL.md",
+      "classification": "migrated",
+      "destination": "platforms/codex/source/skills/ux-review/SKILL.md",
+      "rationale": "Preserved as active source-backed guidance."
+    },
+    {
+      "source": "apt-agent-standards/context-packs/README.md",
+      "classification": "migrated",
+      "destination": "context-packs/agent-distribution.md",
+      "rationale": "Preserved as active source-backed guidance."
+    },
+    {
+      "source": "apt-agent-standards/context/apt-principles/README.md",
+      "classification": "migrated",
+      "destination": "context/apt-principles/README.md",
+      "rationale": "Preserved as active source-backed guidance."
+    },
+    {
+      "source": "apt-agent-standards/context/architecture/README.md",
+      "classification": "migrated",
+      "destination": "context/architecture/README.md",
+      "rationale": "Preserved as active source-backed guidance."
+    },
+    {
+      "source": "apt-agent-standards/context/cloudflare/README.md",
+      "classification": "migrated",
+      "destination": "context/cloudflare/README.md",
+      "rationale": "Preserved as active source-backed guidance."
+    },
+    {
+      "source": "apt-agent-standards/context/documentation/README.md",
+      "classification": "migrated",
+      "destination": "context/documentation/README.md",
+      "rationale": "Preserved as active source-backed guidance."
+    },
+    {
+      "source": "apt-agent-standards/context/payments/README.md",
+      "classification": "migrated",
+      "destination": "context/payments/README.md",
+      "rationale": "Preserved as active source-backed guidance."
+    },
+    {
+      "source": "apt-agent-standards/context/security/README.md",
+      "classification": "migrated",
+      "destination": "context/security/README.md",
+      "rationale": "Preserved as active source-backed guidance."
+    },
+    {
+      "source": "apt-agent-standards/context/ui/README.md",
+      "classification": "migrated",
+      "destination": "context/ui/README.md",
+      "rationale": "Preserved as active source-backed guidance."
+    },
+    {
+      "source": "apt-agent-standards/context/working-backwards/README.md",
+      "classification": "migrated",
+      "destination": "context/working-backwards/README.md",
+      "rationale": "Preserved as active source-backed guidance."
+    },
+    {
+      "source": "apt-agent-standards/docs/ACTIONS.md",
+      "classification": "migrated",
+      "destination": "docs/distribution/ACTIONS.md",
+      "rationale": "Preserved as active source-backed guidance."
+    },
+    {
+      "source": "apt-agent-standards/docs/AGENT-CATALOG.md",
+      "classification": "migrated",
+      "destination": "docs/distribution/AGENT-CATALOG.md",
+      "rationale": "Preserved as active source-backed guidance."
+    },
+    {
+      "source": "apt-agent-standards/docs/AI-TOOL-LAYOUT.md",
+      "classification": "migrated",
+      "destination": "docs/distribution/AI-TOOL-LAYOUT.md",
+      "rationale": "Preserved as active source-backed guidance."
+    },
+    {
+      "source": "apt-agent-standards/docs/CURRENT-STATE-ASSESSMENT.md",
+      "classification": "migrated",
+      "destination": "docs/distribution/CURRENT-STATE-ASSESSMENT.md",
+      "rationale": "Preserved as active source-backed guidance."
+    },
+    {
+      "source": "apt-agent-standards/docs/EXAMPLE-APT-ANET-ACCEPT-SUITE-TOOLBOX.md",
+      "classification": "migrated",
+      "destination": "docs/distribution/EXAMPLE-APT-ANET-ACCEPT-SUITE-TOOLBOX.md",
+      "rationale": "Preserved as active source-backed guidance."
+    },
+    {
+      "source": "apt-agent-standards/docs/GOVERNANCE-ARCHITECTURE.md",
+      "classification": "migrated",
+      "destination": "docs/distribution/GOVERNANCE-ARCHITECTURE.md",
+      "rationale": "Preserved as active source-backed guidance."
+    },
+    {
+      "source": "apt-agent-standards/docs/HARNESS-ARCHITECTURE.md",
+      "classification": "migrated",
+      "destination": "docs/distribution/HARNESS-ARCHITECTURE.md",
+      "rationale": "Preserved as active source-backed guidance."
+    },
+    {
+      "source": "apt-agent-standards/docs/MIGRATION-ROADMAP.md",
+      "classification": "migrated",
+      "destination": "docs/distribution/MIGRATION-ROADMAP.md",
+      "rationale": "Preserved as active source-backed guidance."
+    },
+    {
+      "source": "apt-agent-standards/docs/OPERATING.md",
+      "classification": "migrated",
+      "destination": "docs/distribution/OPERATING.md",
+      "rationale": "Preserved as active source-backed guidance."
+    },
+    {
+      "source": "apt-agent-standards/docs/POST-OPERATION-CHECKS.md",
+      "classification": "migrated",
+      "destination": "docs/distribution/POST-OPERATION-CHECKS.md",
+      "rationale": "Preserved as active source-backed guidance."
+    },
+    {
+      "source": "apt-agent-standards/docs/PROFILE-REFERENCE.md",
+      "classification": "migrated",
+      "destination": "docs/distribution/PROFILE-REFERENCE.md",
+      "rationale": "Preserved as active source-backed guidance."
+    },
+    {
+      "source": "apt-agent-standards/docs/PROMPT-CATALOG.md",
+      "classification": "migrated",
+      "destination": "docs/distribution/PROMPT-CATALOG.md",
+      "rationale": "Preserved as active source-backed guidance."
+    },
+    {
+      "source": "apt-agent-standards/docs/PROPOSED-FILE-CHANGES.md",
+      "classification": "migrated",
+      "destination": "docs/distribution/PROPOSED-FILE-CHANGES.md",
+      "rationale": "Preserved as active source-backed guidance."
+    },
+    {
+      "source": "apt-agent-standards/docs/RISK-ASSESSMENT.md",
+      "classification": "migrated",
+      "destination": "docs/distribution/RISK-ASSESSMENT.md",
+      "rationale": "Preserved as active source-backed guidance."
+    },
+    {
+      "source": "apt-agent-standards/docs/SETUP.md",
+      "classification": "migrated",
+      "destination": "docs/distribution/SETUP.md",
+      "rationale": "Preserved as active source-backed guidance."
+    },
+    {
+      "source": "apt-agent-standards/docs/SHADCN-UI-STANDARD.md",
+      "classification": "migrated",
+      "destination": "docs/distribution/SHADCN-UI-STANDARD.md",
+      "rationale": "Preserved as active source-backed guidance."
+    },
+    {
+      "source": "apt-agent-standards/docs/SKILL-CATALOG.md",
+      "classification": "migrated",
+      "destination": "docs/distribution/SKILL-CATALOG.md",
+      "rationale": "Preserved as active source-backed guidance."
+    },
+    {
+      "source": "apt-agent-standards/docs/USING-INSTALLED-STANDARDS.md",
+      "classification": "migrated",
+      "destination": "docs/distribution/USING-INSTALLED-STANDARDS.md",
+      "rationale": "Preserved as active source-backed guidance."
+    },
+    {
+      "source": "apt-agent-standards/docs/WORKSPACE-ROLLOUT.md",
+      "classification": "migrated",
+      "destination": "docs/distribution/WORKSPACE-ROLLOUT.md",
+      "rationale": "Preserved as active source-backed guidance."
+    },
+    {
+      "source": "apt-agent-standards/github-copilot/instructions/api.instructions.md",
+      "classification": "migrated",
+      "destination": "platforms/github-copilot/distribution/instructions/api.instructions.md",
+      "rationale": "Preserved as active source-backed guidance."
+    },
+    {
+      "source": "apt-agent-standards/github-copilot/instructions/apt.instructions.md",
+      "classification": "migrated",
+      "destination": "platforms/github-copilot/distribution/instructions/apt.instructions.md",
+      "rationale": "Preserved as active source-backed guidance."
+    },
+    {
+      "source": "apt-agent-standards/github-copilot/instructions/cloudflare.instructions.md",
+      "classification": "migrated",
+      "destination": "platforms/github-copilot/distribution/instructions/cloudflare.instructions.md",
+      "rationale": "Preserved as active source-backed guidance."
+    },
+    {
+      "source": "apt-agent-standards/github-copilot/instructions/docs.instructions.md",
+      "classification": "migrated",
+      "destination": "platforms/github-copilot/distribution/instructions/docs.instructions.md",
+      "rationale": "Preserved as active source-backed guidance."
+    },
+    {
+      "source": "apt-agent-standards/github-copilot/instructions/frontend.instructions.md",
+      "classification": "migrated",
+      "destination": "platforms/github-copilot/distribution/instructions/frontend.instructions.md",
+      "rationale": "Preserved as active source-backed guidance."
+    },
+    {
+      "source": "apt-agent-standards/github-copilot/instructions/lovable-migration.instructions.md",
+      "classification": "migrated",
+      "destination": "platforms/github-copilot/distribution/instructions/lovable-migration.instructions.md",
+      "rationale": "Preserved as active source-backed guidance."
+    },
+    {
+      "source": "apt-agent-standards/github-copilot/instructions/testing.instructions.md",
+      "classification": "migrated",
+      "destination": "platforms/github-copilot/distribution/instructions/testing.instructions.md",
+      "rationale": "Preserved as active source-backed guidance."
+    },
+    {
+      "source": "apt-agent-standards/github-copilot/prompts/ai-output-review.prompt.md",
+      "classification": "migrated",
+      "destination": "platforms/github-copilot/distribution/prompts/ai-output-review.prompt.md",
+      "rationale": "Preserved as active source-backed guidance."
+    },
+    {
+      "source": "apt-agent-standards/github-copilot/prompts/api-review.prompt.md",
+      "classification": "migrated",
+      "destination": "platforms/github-copilot/distribution/prompts/api-review.prompt.md",
+      "rationale": "Preserved as active source-backed guidance."
+    },
+    {
+      "source": "apt-agent-standards/github-copilot/prompts/apt-readiness-audit.prompt.md",
+      "classification": "migrated",
+      "destination": "platforms/github-copilot/distribution/prompts/apt-readiness-audit.prompt.md",
+      "rationale": "Preserved as active source-backed guidance."
+    },
+    {
+      "source": "apt-agent-standards/github-copilot/prompts/apt-review.prompt.md",
+      "classification": "migrated",
+      "destination": "platforms/github-copilot/distribution/prompts/apt-review.prompt.md",
+      "rationale": "Preserved as active source-backed guidance."
+    },
+    {
+      "source": "apt-agent-standards/github-copilot/prompts/cloudflare-modernization.prompt.md",
+      "classification": "migrated",
+      "destination": "platforms/github-copilot/distribution/prompts/cloudflare-modernization.prompt.md",
+      "rationale": "Preserved as active source-backed guidance."
+    },
+    {
+      "source": "apt-agent-standards/github-copilot/prompts/cloudflare-react-hono.prompt.md",
+      "classification": "migrated",
+      "destination": "platforms/github-copilot/distribution/prompts/cloudflare-react-hono.prompt.md",
+      "rationale": "Preserved as active source-backed guidance."
+    },
+    {
+      "source": "apt-agent-standards/github-copilot/prompts/docs-sync.prompt.md",
+      "classification": "migrated",
+      "destination": "platforms/github-copilot/distribution/prompts/docs-sync.prompt.md",
+      "rationale": "Preserved as active source-backed guidance."
+    },
+    {
+      "source": "apt-agent-standards/github-copilot/prompts/documentation-normalization.prompt.md",
+      "classification": "migrated",
+      "destination": "platforms/github-copilot/distribution/prompts/documentation-normalization.prompt.md",
+      "rationale": "Preserved as active source-backed guidance."
+    },
+    {
+      "source": "apt-agent-standards/github-copilot/prompts/generate-tests.prompt.md",
+      "classification": "migrated",
+      "destination": "platforms/github-copilot/distribution/prompts/generate-tests.prompt.md",
+      "rationale": "Preserved as active source-backed guidance."
+    },
+    {
+      "source": "apt-agent-standards/github-copilot/prompts/knowledge-graph-review.prompt.md",
+      "classification": "migrated",
+      "destination": "platforms/github-copilot/distribution/prompts/knowledge-graph-review.prompt.md",
+      "rationale": "Preserved as active source-backed guidance."
+    },
+    {
+      "source": "apt-agent-standards/github-copilot/prompts/lovable-to-apt.prompt.md",
+      "classification": "migrated",
+      "destination": "platforms/github-copilot/distribution/prompts/lovable-to-apt.prompt.md",
+      "rationale": "Preserved as active source-backed guidance."
+    },
+    {
+      "source": "apt-agent-standards/github-copilot/prompts/lovable-to-cloudflare.prompt.md",
+      "classification": "migrated",
+      "destination": "platforms/github-copilot/distribution/prompts/lovable-to-cloudflare.prompt.md",
+      "rationale": "Preserved as active source-backed guidance."
+    },
+    {
+      "source": "apt-agent-standards/github-copilot/prompts/refactor-safety.prompt.md",
+      "classification": "migrated",
+      "destination": "platforms/github-copilot/distribution/prompts/refactor-safety.prompt.md",
+      "rationale": "Preserved as active source-backed guidance."
+    },
+    {
+      "source": "apt-agent-standards/github-copilot/prompts/repo-standardization.prompt.md",
+      "classification": "migrated",
+      "destination": "platforms/github-copilot/distribution/prompts/repo-standardization.prompt.md",
+      "rationale": "Preserved as active source-backed guidance."
+    },
+    {
+      "source": "apt-agent-standards/github-copilot/prompts/repo-standardize.prompt.md",
+      "classification": "migrated",
+      "destination": "platforms/github-copilot/distribution/prompts/repo-standardize.prompt.md",
+      "rationale": "Preserved as active source-backed guidance."
+    },
+    {
+      "source": "apt-agent-standards/github-copilot/prompts/review-api.prompt.md",
+      "classification": "migrated",
+      "destination": "platforms/github-copilot/distribution/prompts/review-api.prompt.md",
+      "rationale": "Preserved as active source-backed guidance."
+    },
+    {
+      "source": "apt-agent-standards/github-copilot/prompts/review-diff.prompt.md",
+      "classification": "migrated",
+      "destination": "platforms/github-copilot/distribution/prompts/review-diff.prompt.md",
+      "rationale": "Preserved as active source-backed guidance."
+    },
+    {
+      "source": "apt-agent-standards/github-copilot/prompts/test-generator.prompt.md",
+      "classification": "migrated",
+      "destination": "platforms/github-copilot/distribution/prompts/test-generator.prompt.md",
+      "rationale": "Preserved as active source-backed guidance."
+    },
+    {
+      "source": "apt-agent-standards/github-copilot/prompts/update-docs.prompt.md",
+      "classification": "migrated",
+      "destination": "platforms/github-copilot/distribution/prompts/update-docs.prompt.md",
+      "rationale": "Preserved as active source-backed guidance."
+    },
+    {
+      "source": "apt-agent-standards/github-copilot/prompts/ux-review.prompt.md",
+      "classification": "migrated",
+      "destination": "platforms/github-copilot/distribution/prompts/ux-review.prompt.md",
+      "rationale": "Preserved as active source-backed guidance."
+    },
+    {
+      "source": "apt-agent-standards/package.json",
+      "classification": "merged",
+      "destination": "docs/migration-from-old-repos.md",
+      "rationale": "Repository-level behavior is consolidated into the new canonical repository."
+    },
+    {
+      "source": "apt-agent-standards/profiles/ai-development.json",
+      "classification": "merged",
+      "destination": "manifests/ai-development.yaml",
+      "rationale": "Profile capability is represented by a new manifest."
+    },
+    {
+      "source": "apt-agent-standards/profiles/api-review.json",
+      "classification": "merged",
+      "destination": "manifests/api-review.yaml",
+      "rationale": "Profile capability is represented by a new manifest."
+    },
+    {
+      "source": "apt-agent-standards/profiles/apt-core.json",
+      "classification": "merged",
+      "destination": "manifests/core.yaml",
+      "rationale": "Profile capability is represented by a new manifest."
+    },
+    {
+      "source": "apt-agent-standards/profiles/cloudflare.json",
+      "classification": "merged",
+      "destination": "manifests/cloudflare.yaml",
+      "rationale": "Profile capability is represented by a new manifest."
+    },
+    {
+      "source": "apt-agent-standards/profiles/custom.json",
+      "classification": "merged",
+      "destination": "manifests/custom.yaml",
+      "rationale": "Profile capability is represented by a new manifest."
+    },
+    {
+      "source": "apt-agent-standards/profiles/documentation.json",
+      "classification": "merged",
+      "destination": "manifests/documentation.yaml",
+      "rationale": "Profile capability is represented by a new manifest."
+    },
+    {
+      "source": "apt-agent-standards/profiles/full.json",
+      "classification": "merged",
+      "destination": "manifests/full.yaml",
+      "rationale": "Profile capability is represented by a new manifest."
+    },
+    {
+      "source": "apt-agent-standards/profiles/governance.json",
+      "classification": "merged",
+      "destination": "manifests/governance.yaml",
+      "rationale": "Profile capability is represented by a new manifest."
+    },
+    {
+      "source": "apt-agent-standards/profiles/health.json",
+      "classification": "merged",
+      "destination": "manifests/health.yaml",
+      "rationale": "Profile capability is represented by a new manifest."
+    },
+    {
+      "source": "apt-agent-standards/profiles/knowledge-graph.json",
+      "classification": "merged",
+      "destination": "manifests/knowledge-graph.yaml",
+      "rationale": "Profile capability is represented by a new manifest."
+    },
+    {
+      "source": "apt-agent-standards/profiles/lovable.json",
+      "classification": "merged",
+      "destination": "manifests/lovable.yaml",
+      "rationale": "Profile capability is represented by a new manifest."
+    },
+    {
+      "source": "apt-agent-standards/profiles/migration.json",
+      "classification": "merged",
+      "destination": "manifests/migration.yaml",
+      "rationale": "Profile capability is represented by a new manifest."
+    },
+    {
+      "source": "apt-agent-standards/profiles/minimal.json",
+      "classification": "merged",
+      "destination": "manifests/minimal.yaml",
+      "rationale": "Profile capability is represented by a new manifest."
+    },
+    {
+      "source": "apt-agent-standards/profiles/modernization.json",
+      "classification": "merged",
+      "destination": "manifests/modernization.yaml",
+      "rationale": "Profile capability is represented by a new manifest."
+    },
+    {
+      "source": "apt-agent-standards/profiles/payments.json",
+      "classification": "merged",
+      "destination": "manifests/payments.yaml",
+      "rationale": "Profile capability is represented by a new manifest."
+    },
+    {
+      "source": "apt-agent-standards/profiles/security.json",
+      "classification": "merged",
+      "destination": "manifests/security.yaml",
+      "rationale": "Profile capability is represented by a new manifest."
+    },
+    {
+      "source": "apt-agent-standards/profiles/standard.json",
+      "classification": "merged",
+      "destination": "manifests/standard.yaml",
+      "rationale": "Profile capability is represented by a new manifest."
+    },
+    {
+      "source": "apt-agent-standards/profiles/training.json",
+      "classification": "merged",
+      "destination": "manifests/training.yaml",
+      "rationale": "Profile capability is represented by a new manifest."
+    },
+    {
+      "source": "apt-agent-standards/profiles/ux-review.json",
+      "classification": "merged",
+      "destination": "manifests/ux-review.yaml",
+      "rationale": "Profile capability is represented by a new manifest."
+    },
+    {
+      "source": "apt-agent-standards/prompts/apply-apt-principles.md",
+      "classification": "migrated",
+      "destination": "prompts/distribution/apply-apt-principles.md",
+      "rationale": "Preserved as active source-backed guidance."
+    },
+    {
+      "source": "apt-agent-standards/prompts/generate-context-pack.md",
+      "classification": "migrated",
+      "destination": "prompts/distribution/generate-context-pack.md",
+      "rationale": "Preserved as active source-backed guidance."
+    },
+    {
+      "source": "apt-agent-standards/prompts/repo-alignment-review.md",
+      "classification": "migrated",
+      "destination": "prompts/distribution/repo-alignment-review.md",
+      "rationale": "Preserved as active source-backed guidance."
+    },
+    {
+      "source": "apt-agent-standards/prompts/update-agent-standards.md",
+      "classification": "migrated",
+      "destination": "prompts/distribution/update-agent-standards.md",
+      "rationale": "Preserved as active source-backed guidance."
+    },
+    {
+      "source": "apt-agent-standards/README.md",
+      "classification": "merged",
+      "destination": "docs/migration-from-old-repos.md",
+      "rationale": "Repository-level behavior is consolidated into the new canonical repository."
+    },
+    {
+      "source": "apt-agent-standards/routing/local-first-routing.md",
+      "classification": "migrated",
+      "destination": "routing/local-first-routing.md",
+      "rationale": "Preserved as active source-backed guidance."
+    },
+    {
+      "source": "apt-agent-standards/routing/model-capability-matrix.md",
+      "classification": "migrated",
+      "destination": "routing/model-capability-matrix.md",
+      "rationale": "Preserved as active source-backed guidance."
+    },
+    {
+      "source": "apt-agent-standards/routing/model-registry.json",
+      "classification": "migrated",
+      "destination": "routing/model-registry.json",
+      "rationale": "Preserved as active source-backed guidance."
+    },
+    {
+      "source": "apt-agent-standards/routing/model-routing.md",
+      "classification": "migrated",
+      "destination": "routing/model-routing.md",
+      "rationale": "Preserved as active source-backed guidance."
+    },
+    {
+      "source": "apt-agent-standards/routing/model-update-report.md",
+      "classification": "migrated",
+      "destination": "routing/model-update-report.md",
+      "rationale": "Preserved as active source-backed guidance."
+    },
+    {
+      "source": "apt-agent-standards/routing/task-classification.md",
+      "classification": "migrated",
+      "destination": "routing/task-classification.md",
+      "rationale": "Preserved as active source-backed guidance."
+    },
+    {
+      "source": "apt-agent-standards/routing/token-budgeting.md",
+      "classification": "migrated",
+      "destination": "routing/token-budgeting.md",
+      "rationale": "Preserved as active source-backed guidance."
+    },
+    {
+      "source": "apt-agent-standards/scripts/agent-repo-utils.mjs",
+      "classification": "merged",
+      "destination": "scripts/apt-assets.mjs",
+      "rationale": "Useful validation/distribution behavior is consolidated into the new lifecycle tooling."
+    },
+    {
+      "source": "apt-agent-standards/scripts/audit-workspace-agent-standards.mjs",
+      "classification": "merged",
+      "destination": "scripts/apt-assets.mjs",
+      "rationale": "Useful validation/distribution behavior is consolidated into the new lifecycle tooling."
+    },
+    {
+      "source": "apt-agent-standards/scripts/check-ai-tool-parity.mjs",
+      "classification": "merged",
+      "destination": "scripts/apt-assets.mjs",
+      "rationale": "Useful validation/distribution behavior is consolidated into the new lifecycle tooling."
+    },
+    {
+      "source": "apt-agent-standards/scripts/check-local-models.mjs",
+      "classification": "merged",
+      "destination": "scripts/apt-assets.mjs",
+      "rationale": "Useful validation/distribution behavior is consolidated into the new lifecycle tooling."
+    },
+    {
+      "source": "apt-agent-standards/scripts/detect-profiles.mjs",
+      "classification": "merged",
+      "destination": "scripts/apt-assets.mjs",
+      "rationale": "Useful validation/distribution behavior is consolidated into the new lifecycle tooling."
+    },
+    {
+      "source": "apt-agent-standards/scripts/install-agent-repo.mjs",
+      "classification": "merged",
+      "destination": "scripts/apt-assets.mjs",
+      "rationale": "Useful validation/distribution behavior is consolidated into the new lifecycle tooling."
+    },
+    {
+      "source": "apt-agent-standards/scripts/install-agent-standards.mjs",
+      "classification": "merged",
+      "destination": "scripts/apt-assets.mjs",
+      "rationale": "Useful validation/distribution behavior is consolidated into the new lifecycle tooling."
+    },
+    {
+      "source": "apt-agent-standards/scripts/path-mapping.mjs",
+      "classification": "merged",
+      "destination": "scripts/apt-assets.mjs",
+      "rationale": "Useful validation/distribution behavior is consolidated into the new lifecycle tooling."
+    },
+    {
+      "source": "apt-agent-standards/scripts/repair-agent-install.mjs",
+      "classification": "merged",
+      "destination": "scripts/apt-assets.mjs",
+      "rationale": "Useful validation/distribution behavior is consolidated into the new lifecycle tooling."
+    },
+    {
+      "source": "apt-agent-standards/scripts/scan-agent-install.mjs",
+      "classification": "merged",
+      "destination": "scripts/apt-assets.mjs",
+      "rationale": "Useful validation/distribution behavior is consolidated into the new lifecycle tooling."
+    },
+    {
+      "source": "apt-agent-standards/scripts/sync-agent-repo.mjs",
+      "classification": "merged",
+      "destination": "scripts/apt-assets.mjs",
+      "rationale": "Useful validation/distribution behavior is consolidated into the new lifecycle tooling."
+    },
+    {
+      "source": "apt-agent-standards/scripts/sync-agent-standards.mjs",
+      "classification": "merged",
+      "destination": "scripts/apt-assets.mjs",
+      "rationale": "Useful validation/distribution behavior is consolidated into the new lifecycle tooling."
+    },
+    {
+      "source": "apt-agent-standards/scripts/update-model-registry.mjs",
+      "classification": "merged",
+      "destination": "scripts/apt-assets.mjs",
+      "rationale": "Useful validation/distribution behavior is consolidated into the new lifecycle tooling."
+    },
+    {
+      "source": "apt-agent-standards/scripts/validate-model-routing.mjs",
+      "classification": "merged",
+      "destination": "scripts/apt-assets.mjs",
+      "rationale": "Useful validation/distribution behavior is consolidated into the new lifecycle tooling."
+    },
+    {
+      "source": "apt-agent-standards/showcases/agents/instruction-structure.md",
+      "classification": "migrated",
+      "destination": "examples/distribution-showcases/agents/instruction-structure.md",
+      "rationale": "Preserved as active source-backed guidance."
+    },
+    {
+      "source": "apt-agent-standards/showcases/api/route-design.md",
+      "classification": "migrated",
+      "destination": "examples/distribution-showcases/api/route-design.md",
+      "rationale": "Preserved as active source-backed guidance."
+    },
+    {
+      "source": "apt-agent-standards/showcases/cloudflare/worker-hono-structure.md",
+      "classification": "migrated",
+      "destination": "examples/distribution-showcases/cloudflare/worker-hono-structure.md",
+      "rationale": "Preserved as active source-backed guidance."
+    },
+    {
+      "source": "apt-agent-standards/showcases/docs/documentation-structure.md",
+      "classification": "migrated",
+      "destination": "examples/distribution-showcases/docs/documentation-structure.md",
+      "rationale": "Preserved as active source-backed guidance."
+    },
+    {
+      "source": "apt-agent-standards/showcases/security/security-review-expectations.md",
+      "classification": "migrated",
+      "destination": "examples/distribution-showcases/security/security-review-expectations.md",
+      "rationale": "Preserved as active source-backed guidance."
+    },
+    {
+      "source": "apt-agent-standards/showcases/ui/intent-based-navigation.md",
+      "classification": "migrated",
+      "destination": "examples/distribution-showcases/ui/intent-based-navigation.md",
+      "rationale": "Preserved as active source-backed guidance."
+    },
+    {
+      "source": "apt-agent-standards/skills/token-efficiency/SKILL.md",
+      "classification": "migrated",
+      "destination": "skills/source-backed/token-efficiency/SKILL.md",
+      "rationale": "Preserved as active source-backed guidance."
+    },
+    {
+      "source": "apt-agent-standards/standards/AGENTS.md",
+      "classification": "migrated",
+      "destination": "platforms/shared-source/AGENTS.md",
+      "rationale": "Preserved as active source-backed guidance."
+    },
+    {
+      "source": "apt-agent-standards/standards/CLAUDE.md",
+      "classification": "migrated",
+      "destination": "platforms/shared-source/CLAUDE.md",
+      "rationale": "Preserved as active source-backed guidance."
+    },
+    {
+      "source": "apt-agent-standards/standards/copilot-instructions.md",
+      "classification": "migrated",
+      "destination": "platforms/shared-source/copilot-instructions.md",
+      "rationale": "Preserved as active source-backed guidance."
+    },
+    {
+      "source": "apt-agent-standards/standards/project-context.template.md",
+      "classification": "migrated",
+      "destination": "platforms/shared-source/project-context.template.md",
+      "rationale": "Preserved as active source-backed guidance."
+    },
+    {
+      "source": "apt-agent-standards/templates/agent-standards.manifest.template.json",
+      "classification": "migrated",
+      "destination": "templates/distribution/agent-standards.manifest.template.json",
+      "rationale": "Preserved as active source-backed guidance."
+    },
+    {
+      "source": "apt-principles/.gitattributes",
+      "classification": "merged",
+      "destination": "docs/migration-from-old-repos.md",
+      "rationale": "Repository-level behavior is consolidated into the new canonical repository."
+    },
+    {
+      "source": "apt-principles/.github/agents/api-architect.agent.md",
+      "classification": "migrated",
+      "destination": "platforms/github-copilot/source/agents/api-architect.agent.md",
+      "rationale": "Preserved as active source-backed guidance."
+    },
+    {
+      "source": "apt-principles/.github/agents/apt-auditor-readonly.agent.md",
+      "classification": "migrated",
+      "destination": "platforms/github-copilot/source/agents/apt-auditor-readonly.agent.md",
+      "rationale": "Preserved as active source-backed guidance."
+    },
+    {
+      "source": "apt-principles/.github/agents/apt-principles-maintainer.agent.md",
+      "classification": "migrated",
+      "destination": "platforms/github-copilot/source/agents/apt-principles-maintainer.agent.md",
+      "rationale": "Preserved as active source-backed guidance."
+    },
+    {
+      "source": "apt-principles/.github/agents/checklist-synchronizer.agent.md",
+      "classification": "migrated",
+      "destination": "platforms/github-copilot/source/agents/checklist-synchronizer.agent.md",
+      "rationale": "Preserved as active source-backed guidance."
+    },
+    {
+      "source": "apt-principles/.github/agents/docs-maintainer.agent.md",
+      "classification": "migrated",
+      "destination": "platforms/github-copilot/source/agents/docs-maintainer.agent.md",
+      "rationale": "Preserved as active source-backed guidance."
+    },
+    {
+      "source": "apt-principles/.github/agents/frontend-implementer.agent.md",
+      "classification": "migrated",
+      "destination": "platforms/github-copilot/source/agents/frontend-implementer.agent.md",
+      "rationale": "Preserved as active source-backed guidance."
+    },
+    {
+      "source": "apt-principles/.github/agents/prompt-curator.agent.md",
+      "classification": "migrated",
+      "destination": "platforms/github-copilot/source/agents/prompt-curator.agent.md",
+      "rationale": "Preserved as active source-backed guidance."
+    },
+    {
+      "source": "apt-principles/.github/agents/security-reviewer.agent.md",
+      "classification": "migrated",
+      "destination": "platforms/github-copilot/source/agents/security-reviewer.agent.md",
+      "rationale": "Preserved as active source-backed guidance."
+    },
+    {
+      "source": "apt-principles/.github/agents/test-engineer.agent.md",
+      "classification": "migrated",
+      "destination": "platforms/github-copilot/source/agents/test-engineer.agent.md",
+      "rationale": "Preserved as active source-backed guidance."
+    },
+    {
+      "source": "apt-principles/.github/copilot-instructions.md",
+      "classification": "migrated",
+      "destination": "platforms/github-copilot/source/copilot-instructions.md",
+      "rationale": "Preserved as active source-backed guidance."
+    },
+    {
+      "source": "apt-principles/.github/instructions/checklists-only.instructions.md",
+      "classification": "migrated",
+      "destination": "platforms/github-copilot/source/instructions/checklists-only.instructions.md",
+      "rationale": "Preserved as active source-backed guidance."
+    },
+    {
+      "source": "apt-principles/.github/instructions/doctrine-root.instructions.md",
+      "classification": "migrated",
+      "destination": "platforms/github-copilot/source/instructions/doctrine-root.instructions.md",
+      "rationale": "Preserved as active source-backed guidance."
+    },
+    {
+      "source": "apt-principles/.github/prompts/add-feature.prompt.md",
+      "classification": "migrated",
+      "destination": "platforms/github-copilot/source/prompts/add-feature.prompt.md",
+      "rationale": "Preserved as active source-backed guidance."
+    },
+    {
+      "source": "apt-principles/.github/prompts/create-docs.prompt.md",
+      "classification": "migrated",
+      "destination": "platforms/github-copilot/source/prompts/create-docs.prompt.md",
+      "rationale": "Preserved as active source-backed guidance."
+    },
+    {
+      "source": "apt-principles/.github/prompts/generate-api.prompt.md",
+      "classification": "migrated",
+      "destination": "platforms/github-copilot/source/prompts/generate-api.prompt.md",
+      "rationale": "Preserved as active source-backed guidance."
+    },
+    {
+      "source": "apt-principles/.github/prompts/review-repo.prompt.md",
+      "classification": "migrated",
+      "destination": "platforms/github-copilot/source/prompts/review-repo.prompt.md",
+      "rationale": "Preserved as active source-backed guidance."
+    },
+    {
+      "source": "apt-principles/.github/prompts/standard-repo-audit.prompt.md",
+      "classification": "migrated",
+      "destination": "platforms/github-copilot/source/prompts/standard-repo-audit.prompt.md",
+      "rationale": "Preserved as active source-backed guidance."
+    },
+    {
+      "source": "apt-principles/.github/skills/ai-assistant-feature-builder/SKILL.md",
+      "classification": "migrated",
+      "destination": "platforms/github-copilot/source/skills/ai-assistant-feature-builder/SKILL.md",
+      "rationale": "Preserved as active source-backed guidance."
+    },
+    {
+      "source": "apt-principles/.github/skills/api-first-openapi-designer/SKILL.md",
+      "classification": "migrated",
+      "destination": "platforms/github-copilot/source/skills/api-first-openapi-designer/SKILL.md",
+      "rationale": "Preserved as active source-backed guidance."
+    },
+    {
+      "source": "apt-principles/.github/skills/apt-repo-architect/SKILL.md",
+      "classification": "migrated",
+      "destination": "platforms/github-copilot/source/skills/apt-repo-architect/SKILL.md",
+      "rationale": "Preserved as active source-backed guidance."
+    },
+    {
+      "source": "apt-principles/.github/skills/cloudflare-hono-worker-builder/SKILL.md",
+      "classification": "migrated",
+      "destination": "platforms/github-copilot/source/skills/cloudflare-hono-worker-builder/SKILL.md",
+      "rationale": "Preserved as active source-backed guidance."
+    },
+    {
+      "source": "apt-principles/.github/skills/docs-kb-maintainer/SKILL.md",
+      "classification": "migrated",
+      "destination": "platforms/github-copilot/source/skills/docs-kb-maintainer/SKILL.md",
+      "rationale": "Preserved as active source-backed guidance."
+    },
+    {
+      "source": "apt-principles/.github/skills/graphql-adapter-reviewer/SKILL.md",
+      "classification": "migrated",
+      "destination": "platforms/github-copilot/source/skills/graphql-adapter-reviewer/SKILL.md",
+      "rationale": "Preserved as active source-backed guidance."
+    },
+    {
+      "source": "apt-principles/.github/skills/health-data-ingestion-designer/SKILL.md",
+      "classification": "migrated",
+      "destination": "platforms/github-copilot/source/skills/health-data-ingestion-designer/SKILL.md",
+      "rationale": "Preserved as active source-backed guidance."
+    },
+    {
+      "source": "apt-principles/.github/skills/payments-integration-architect/SKILL.md",
+      "classification": "migrated",
+      "destination": "platforms/github-copilot/source/skills/payments-integration-architect/SKILL.md",
+      "rationale": "Preserved as active source-backed guidance."
+    },
+    {
+      "source": "apt-principles/.github/skills/principle-change-sync/SKILL.md",
+      "classification": "migrated",
+      "destination": "platforms/github-copilot/source/skills/principle-change-sync/SKILL.md",
+      "rationale": "Preserved as active source-backed guidance."
+    },
+    {
+      "source": "apt-principles/.github/skills/react-typescript-ui-builder/SKILL.md",
+      "classification": "migrated",
+      "destination": "platforms/github-copilot/source/skills/react-typescript-ui-builder/SKILL.md",
+      "rationale": "Preserved as active source-backed guidance."
+    },
+    {
+      "source": "apt-principles/.github/skills/security-auth-reviewer/SKILL.md",
+      "classification": "migrated",
+      "destination": "platforms/github-copilot/source/skills/security-auth-reviewer/SKILL.md",
+      "rationale": "Preserved as active source-backed guidance."
+    },
+    {
+      "source": "apt-principles/.github/skills/testing-validation-runner/SKILL.md",
+      "classification": "migrated",
+      "destination": "platforms/github-copilot/source/skills/testing-validation-runner/SKILL.md",
+      "rationale": "Preserved as active source-backed guidance."
+    },
+    {
+      "source": "apt-principles/.github/skills/webhook-event-designer/SKILL.md",
+      "classification": "migrated",
+      "destination": "platforms/github-copilot/source/skills/webhook-event-designer/SKILL.md",
+      "rationale": "Preserved as active source-backed guidance."
+    },
+    {
+      "source": "apt-principles/.gitignore",
+      "classification": "merged",
+      "destination": "docs/migration-from-old-repos.md",
+      "rationale": "Repository-level behavior is consolidated into the new canonical repository."
+    },
+    {
+      "source": "apt-principles/.graphifyignore",
+      "classification": "merged",
+      "destination": "docs/migration-from-old-repos.md",
+      "rationale": "Repository-level behavior is consolidated into the new canonical repository."
+    },
+    {
+      "source": "apt-principles/AGENTS.md",
+      "classification": "merged",
+      "destination": "docs/migration-from-old-repos.md",
+      "rationale": "Repository-level behavior is consolidated into the new canonical repository."
+    },
+    {
+      "source": "apt-principles/ai-agent-framework.md",
+      "classification": "migrated",
+      "destination": "principles/ai/README.md",
+      "rationale": "Promoted into the canonical APT principles hub."
+    },
+    {
+      "source": "apt-principles/apt-principles.md",
+      "classification": "migrated",
+      "destination": "principles/framework.md",
+      "rationale": "Promoted into the canonical APT principles hub."
+    },
+    {
+      "source": "apt-principles/architecture.md",
+      "classification": "migrated",
+      "destination": "principles/architecture/README.md",
+      "rationale": "Promoted into the canonical APT principles hub."
+    },
+    {
+      "source": "apt-principles/checklists/ai-agent-review-checklist.md",
+      "classification": "migrated",
+      "destination": "checklists/ai-agent-review-checklist.md",
+      "rationale": "Moved from the canonical doctrine/build-kit source."
+    },
+    {
+      "source": "apt-principles/checklists/api-standards-checklist.md",
+      "classification": "migrated",
+      "destination": "checklists/api-standards-checklist.md",
+      "rationale": "Moved from the canonical doctrine/build-kit source."
+    },
+    {
+      "source": "apt-principles/checklists/architecture-review-checklist.md",
+      "classification": "migrated",
+      "destination": "checklists/architecture-review-checklist.md",
+      "rationale": "Moved from the canonical doctrine/build-kit source."
+    },
+    {
+      "source": "apt-principles/checklists/design-review-checklist.md",
+      "classification": "migrated",
+      "destination": "checklists/design-review-checklist.md",
+      "rationale": "Moved from the canonical doctrine/build-kit source."
+    },
+    {
+      "source": "apt-principles/checklists/documentation-checklist.md",
+      "classification": "migrated",
+      "destination": "checklists/documentation-checklist.md",
+      "rationale": "Moved from the canonical doctrine/build-kit source."
+    },
+    {
+      "source": "apt-principles/checklists/execution-readiness-checklist.md",
+      "classification": "migrated",
+      "destination": "checklists/execution-readiness-checklist.md",
+      "rationale": "Moved from the canonical doctrine/build-kit source."
+    },
+    {
+      "source": "apt-principles/checklists/knowledge-system-checklist.md",
+      "classification": "migrated",
+      "destination": "checklists/knowledge-system-checklist.md",
+      "rationale": "Moved from the canonical doctrine/build-kit source."
+    },
+    {
+      "source": "apt-principles/checklists/operations-support-checklist.md",
+      "classification": "migrated",
+      "destination": "checklists/operations-support-checklist.md",
+      "rationale": "Moved from the canonical doctrine/build-kit source."
+    },
+    {
+      "source": "apt-principles/checklists/project-adoption-checklist.md",
+      "classification": "migrated",
+      "destination": "checklists/project-adoption-checklist.md",
+      "rationale": "Moved from the canonical doctrine/build-kit source."
+    },
+    {
+      "source": "apt-principles/checklists/quality-testing-checklist.md",
+      "classification": "migrated",
+      "destination": "checklists/quality-testing-checklist.md",
+      "rationale": "Moved from the canonical doctrine/build-kit source."
+    },
+    {
+      "source": "apt-principles/checklists/release-readiness-checklist.md",
+      "classification": "migrated",
+      "destination": "checklists/release-readiness-checklist.md",
+      "rationale": "Moved from the canonical doctrine/build-kit source."
+    },
+    {
+      "source": "apt-principles/checklists/repo-alignment-checklist.md",
+      "classification": "migrated",
+      "destination": "checklists/repo-alignment-checklist.md",
+      "rationale": "Moved from the canonical doctrine/build-kit source."
+    },
+    {
+      "source": "apt-principles/checklists/security-review-checklist.md",
+      "classification": "migrated",
+      "destination": "checklists/security-review-checklist.md",
+      "rationale": "Moved from the canonical doctrine/build-kit source."
+    },
+    {
+      "source": "apt-principles/checklists/thinking-review-checklist.md",
+      "classification": "migrated",
+      "destination": "checklists/thinking-review-checklist.md",
+      "rationale": "Moved from the canonical doctrine/build-kit source."
+    },
+    {
+      "source": "apt-principles/checklists/working-backwards-package-readiness-checklist.md",
+      "classification": "migrated",
+      "destination": "checklists/working-backwards-package-readiness-checklist.md",
+      "rationale": "Moved from the canonical doctrine/build-kit source."
+    },
+    {
+      "source": "apt-principles/context-packs/apt-agent-pack.md",
+      "classification": "migrated",
+      "destination": "context-packs/apt-agent-pack.md",
+      "rationale": "Moved from the canonical doctrine/build-kit source."
+    },
+    {
+      "source": "apt-principles/context-packs/apt-api-pack.md",
+      "classification": "migrated",
+      "destination": "context-packs/apt-api-pack.md",
+      "rationale": "Moved from the canonical doctrine/build-kit source."
+    },
+    {
+      "source": "apt-principles/context-packs/apt-cloudflare-pack.md",
+      "classification": "migrated",
+      "destination": "context-packs/apt-cloudflare-pack.md",
+      "rationale": "Moved from the canonical doctrine/build-kit source."
+    },
+    {
+      "source": "apt-principles/context-packs/apt-core-pack.md",
+      "classification": "migrated",
+      "destination": "context-packs/apt-core-pack.md",
+      "rationale": "Moved from the canonical doctrine/build-kit source."
+    },
+    {
+      "source": "apt-principles/context-packs/apt-docs-pack.md",
+      "classification": "migrated",
+      "destination": "context-packs/apt-docs-pack.md",
+      "rationale": "Moved from the canonical doctrine/build-kit source."
+    },
+    {
+      "source": "apt-principles/context-packs/apt-security-pack.md",
+      "classification": "migrated",
+      "destination": "context-packs/apt-security-pack.md",
+      "rationale": "Moved from the canonical doctrine/build-kit source."
+    },
+    {
+      "source": "apt-principles/context-packs/apt-ui-pack.md",
+      "classification": "migrated",
+      "destination": "context-packs/apt-ui-pack.md",
+      "rationale": "Moved from the canonical doctrine/build-kit source."
+    },
+    {
+      "source": "apt-principles/context-packs/README.md",
+      "classification": "migrated",
+      "destination": "context-packs/README.md",
+      "rationale": "Moved from the canonical doctrine/build-kit source."
+    },
+    {
+      "source": "apt-principles/CONTRIBUTING.md",
+      "classification": "merged",
+      "destination": "CONTRIBUTING.md",
+      "rationale": "Repository-level behavior is consolidated into the new canonical repository."
+    },
+    {
+      "source": "apt-principles/design.md",
+      "classification": "migrated",
+      "destination": "principles/design/README.md",
+      "rationale": "Promoted into the canonical APT principles hub."
+    },
+    {
+      "source": "apt-principles/docs/diagrams/apt-lifecycle.md",
+      "classification": "migrated",
+      "destination": "docs/diagrams/apt-lifecycle.md",
+      "rationale": "Preserved as active source-backed guidance."
+    },
+    {
+      "source": "apt-principles/docs/diagrams/documentation-layers.md",
+      "classification": "migrated",
+      "destination": "docs/diagrams/documentation-layers.md",
+      "rationale": "Preserved as active source-backed guidance."
+    },
+    {
+      "source": "apt-principles/docs/diagrams/file-relationships.md",
+      "classification": "migrated",
+      "destination": "docs/diagrams/file-relationships.md",
+      "rationale": "Preserved as active source-backed guidance."
+    },
+    {
+      "source": "apt-principles/docs/diagrams/reference-architecture.md",
+      "classification": "migrated",
+      "destination": "docs/diagrams/reference-architecture.md",
+      "rationale": "Preserved as active source-backed guidance."
+    },
+    {
+      "source": "apt-principles/docs/diagrams/repository-structure.md",
+      "classification": "migrated",
+      "destination": "docs/diagrams/repository-structure.md",
+      "rationale": "Preserved as active source-backed guidance."
+    },
+    {
+      "source": "apt-principles/examples/ai-agent/agent-harness-flow-example.md",
+      "classification": "migrated",
+      "destination": "examples/ai-agent/agent-harness-flow-example.md",
+      "rationale": "Preserved as active source-backed guidance."
+    },
+    {
+      "source": "apt-principles/examples/ai-agent/agent-prompt-contract-example.md",
+      "classification": "migrated",
+      "destination": "examples/ai-agent/agent-prompt-contract-example.md",
+      "rationale": "Preserved as active source-backed guidance."
+    },
+    {
+      "source": "apt-principles/examples/ai-agent/ai-evaluation-case-example.md",
+      "classification": "migrated",
+      "destination": "examples/ai-agent/ai-evaluation-case-example.md",
+      "rationale": "Preserved as active source-backed guidance."
+    },
+    {
+      "source": "apt-principles/examples/ai-agent/apt-agent-standards-crosswalk-example.md",
+      "classification": "migrated",
+      "destination": "examples/ai-agent/apt-agent-standards-crosswalk-example.md",
+      "rationale": "Preserved as active source-backed guidance."
+    },
+    {
+      "source": "apt-principles/examples/ai-agent/health-coaching-prompt-boundary-example.md",
+      "classification": "migrated",
+      "destination": "examples/ai-agent/health-coaching-prompt-boundary-example.md",
+      "rationale": "Preserved as active source-backed guidance."
+    },
+    {
+      "source": "apt-principles/examples/ai-agent/model-routing-decision-example.md",
+      "classification": "migrated",
+      "destination": "examples/ai-agent/model-routing-decision-example.md",
+      "rationale": "Preserved as active source-backed guidance."
+    },
+    {
+      "source": "apt-principles/examples/ai-agent/token-efficient-context-pack-example.md",
+      "classification": "migrated",
+      "destination": "examples/ai-agent/token-efficient-context-pack-example.md",
+      "rationale": "Preserved as active source-backed guidance."
+    },
+    {
+      "source": "apt-principles/examples/ai-agent/workspace-knowledge-example.md",
+      "classification": "migrated",
+      "destination": "examples/ai-agent/workspace-knowledge-example.md",
+      "rationale": "Preserved as active source-backed guidance."
+    },
+    {
+      "source": "apt-principles/examples/api/error-response-example.md",
+      "classification": "migrated",
+      "destination": "examples/api/error-response-example.md",
+      "rationale": "Preserved as active source-backed guidance."
+    },
+    {
+      "source": "apt-principles/examples/api/pagination-example.md",
+      "classification": "migrated",
+      "destination": "examples/api/pagination-example.md",
+      "rationale": "Preserved as active source-backed guidance."
+    },
+    {
+      "source": "apt-principles/examples/api/rest-api-example.md",
+      "classification": "migrated",
+      "destination": "examples/api/rest-api-example.md",
+      "rationale": "Preserved as active source-backed guidance."
+    },
+    {
+      "source": "apt-principles/examples/architecture/cloudflare-pages-workers-example.md",
+      "classification": "migrated",
+      "destination": "examples/architecture/cloudflare-pages-workers-example.md",
+      "rationale": "Preserved as active source-backed guidance."
+    },
+    {
+      "source": "apt-principles/examples/architecture/monorepo-layout-example.md",
+      "classification": "migrated",
+      "destination": "examples/architecture/monorepo-layout-example.md",
+      "rationale": "Preserved as active source-backed guidance."
+    },
+    {
+      "source": "apt-principles/examples/architecture/pattern-ownership-command-matrix-example.md",
+      "classification": "migrated",
+      "destination": "examples/architecture/pattern-ownership-command-matrix-example.md",
+      "rationale": "Preserved as active source-backed guidance."
+    },
+    {
+      "source": "apt-principles/examples/knowledge/canonical-doc-update-example.md",
+      "classification": "migrated",
+      "destination": "examples/knowledge/canonical-doc-update-example.md",
+      "rationale": "Preserved as active source-backed guidance."
+    },
+    {
+      "source": "apt-principles/examples/knowledge/incident-to-knowledge-example.md",
+      "classification": "migrated",
+      "destination": "examples/knowledge/incident-to-knowledge-example.md",
+      "rationale": "Preserved as active source-backed guidance."
+    },
+    {
+      "source": "apt-principles/examples/projects/apt-project-profile-example.md",
+      "classification": "migrated",
+      "destination": "examples/projects/apt-project-profile-example.md",
+      "rationale": "Preserved as active source-backed guidance."
+    },
+    {
+      "source": "apt-principles/examples/quality/validation-matrix-example.md",
+      "classification": "migrated",
+      "destination": "examples/quality/validation-matrix-example.md",
+      "rationale": "Preserved as active source-backed guidance."
+    },
+    {
+      "source": "apt-principles/examples/quality/validation-plan-example.md",
+      "classification": "migrated",
+      "destination": "examples/quality/validation-plan-example.md",
+      "rationale": "Preserved as active source-backed guidance."
+    },
+    {
+      "source": "apt-principles/examples/README.md",
+      "classification": "retired",
+      "destination": null,
+      "rationale": "No active canonical or operational dependency remains; source history and hashes preserve the artifact."
+    },
+    {
+      "source": "apt-principles/examples/security/login-session-flow.md",
+      "classification": "migrated",
+      "destination": "examples/security/login-session-flow.md",
+      "rationale": "Preserved as active source-backed guidance."
+    },
+    {
+      "source": "apt-principles/examples/security/magic-link-flow.md",
+      "classification": "migrated",
+      "destination": "examples/security/magic-link-flow.md",
+      "rationale": "Preserved as active source-backed guidance."
+    },
+    {
+      "source": "apt-principles/examples/security/mfa-extension.md",
+      "classification": "migrated",
+      "destination": "examples/security/mfa-extension.md",
+      "rationale": "Preserved as active source-backed guidance."
+    },
+    {
+      "source": "apt-principles/examples/security/threat-auth-review-example.md",
+      "classification": "migrated",
+      "destination": "examples/security/threat-auth-review-example.md",
+      "rationale": "Preserved as active source-backed guidance."
+    },
+    {
+      "source": "apt-principles/examples/showcases/agent-instruction-structure.md",
+      "classification": "migrated",
+      "destination": "examples/showcases/agent-instruction-structure.md",
+      "rationale": "Preserved as active source-backed guidance."
+    },
+    {
+      "source": "apt-principles/examples/showcases/api-route-design.md",
+      "classification": "migrated",
+      "destination": "examples/showcases/api-route-design.md",
+      "rationale": "Preserved as active source-backed guidance."
+    },
+    {
+      "source": "apt-principles/examples/showcases/cloudflare-worker-hono-structure.md",
+      "classification": "migrated",
+      "destination": "examples/showcases/cloudflare-worker-hono-structure.md",
+      "rationale": "Preserved as active source-backed guidance."
+    },
+    {
+      "source": "apt-principles/examples/showcases/documentation-structure.md",
+      "classification": "migrated",
+      "destination": "examples/showcases/documentation-structure.md",
+      "rationale": "Preserved as active source-backed guidance."
+    },
+    {
+      "source": "apt-principles/examples/showcases/intent-based-ui-navigation.md",
+      "classification": "migrated",
+      "destination": "examples/showcases/intent-based-ui-navigation.md",
+      "rationale": "Preserved as active source-backed guidance."
+    },
+    {
+      "source": "apt-principles/examples/showcases/security-review-expectations.md",
+      "classification": "migrated",
+      "destination": "examples/showcases/security-review-expectations.md",
+      "rationale": "Preserved as active source-backed guidance."
+    },
+    {
+      "source": "apt-principles/examples/thinking/decision-log-outcome-example.md",
+      "classification": "migrated",
+      "destination": "examples/thinking/decision-log-outcome-example.md",
+      "rationale": "Preserved as active source-backed guidance."
+    },
+    {
+      "source": "apt-principles/examples/thinking/problem-framing-example.md",
+      "classification": "migrated",
+      "destination": "examples/thinking/problem-framing-example.md",
+      "rationale": "Preserved as active source-backed guidance."
+    },
+    {
+      "source": "apt-principles/examples/ui/account-auth-settings-pattern.md",
+      "classification": "migrated",
+      "destination": "examples/ui/account-auth-settings-pattern.md",
+      "rationale": "Preserved as active source-backed guidance."
+    },
+    {
+      "source": "apt-principles/examples/ui/chart-data-visualization-pattern.md",
+      "classification": "migrated",
+      "destination": "examples/ui/chart-data-visualization-pattern.md",
+      "rationale": "Preserved as active source-backed guidance."
+    },
+    {
+      "source": "apt-principles/examples/ui/content-insights-card-pattern.md",
+      "classification": "migrated",
+      "destination": "examples/ui/content-insights-card-pattern.md",
+      "rationale": "Preserved as active source-backed guidance."
+    },
+    {
+      "source": "apt-principles/examples/ui/dashboard-layout-pattern.md",
+      "classification": "migrated",
+      "destination": "examples/ui/dashboard-layout-pattern.md",
+      "rationale": "Preserved as active source-backed guidance."
+    },
+    {
+      "source": "apt-principles/examples/ui/design-reference-kit.md",
+      "classification": "migrated",
+      "destination": "examples/ui/design-reference-kit.md",
+      "rationale": "Preserved as active source-backed guidance."
+    },
+    {
+      "source": "apt-principles/examples/ui/design-reference-kit/_adherence.oxlintrc.json",
+      "classification": "external",
+      "destination": "apt-design-reference",
+      "rationale": "The design reference repository already contains the reusable asset; unique README files are handled in its cutover."
+    },
+    {
+      "source": "apt-principles/examples/ui/design-reference-kit/_ds_manifest.json",
+      "classification": "external",
+      "destination": "apt-design-reference",
+      "rationale": "The design reference repository already contains the reusable asset; unique README files are handled in its cutover."
+    },
+    {
+      "source": "apt-principles/examples/ui/design-reference-kit/assets/blog-ai-developers-journey.webp",
+      "classification": "external",
+      "destination": "apt-design-reference",
+      "rationale": "The design reference repository already contains the reusable asset; unique README files are handled in its cutover."
+    },
+    {
+      "source": "apt-principles/examples/ui/design-reference-kit/assets/blog-creative-coding.webp",
+      "classification": "external",
+      "destination": "apt-design-reference",
+      "rationale": "The design reference repository already contains the reusable asset; unique README files are handled in its cutover."
+    },
+    {
+      "source": "apt-principles/examples/ui/design-reference-kit/assets/blog-decision-driven.webp",
+      "classification": "external",
+      "destination": "apt-design-reference",
+      "rationale": "The design reference repository already contains the reusable asset; unique README files are handled in its cutover."
+    },
+    {
+      "source": "apt-principles/examples/ui/design-reference-kit/assets/blog-feedback-multiplier.webp",
+      "classification": "external",
+      "destination": "apt-design-reference",
+      "rationale": "The design reference repository already contains the reusable asset; unique README files are handled in its cutover."
+    },
+    {
+      "source": "apt-principles/examples/ui/design-reference-kit/assets/profile.jpg",
+      "classification": "external",
+      "destination": "apt-design-reference",
+      "rationale": "The design reference repository already contains the reusable asset; unique README files are handled in its cutover."
+    },
+    {
+      "source": "apt-principles/examples/ui/design-reference-kit/colors_and_type.css",
+      "classification": "external",
+      "destination": "apt-design-reference",
+      "rationale": "The design reference repository already contains the reusable asset; unique README files are handled in its cutover."
+    },
+    {
+      "source": "apt-principles/examples/ui/design-reference-kit/preview/accordion.html",
+      "classification": "external",
+      "destination": "apt-design-reference",
+      "rationale": "The design reference repository already contains the reusable asset; unique README files are handled in its cutover."
+    },
+    {
+      "source": "apt-principles/examples/ui/design-reference-kit/preview/alerts-inline.html",
+      "classification": "external",
+      "destination": "apt-design-reference",
+      "rationale": "The design reference repository already contains the reusable asset; unique README files are handled in its cutover."
+    },
+    {
+      "source": "apt-principles/examples/ui/design-reference-kit/preview/alerts-toast.html",
+      "classification": "external",
+      "destination": "apt-design-reference",
+      "rationale": "The design reference repository already contains the reusable asset; unique README files are handled in its cutover."
+    },
+    {
+      "source": "apt-principles/examples/ui/design-reference-kit/preview/badges-status.html",
+      "classification": "external",
+      "destination": "apt-design-reference",
+      "rationale": "The design reference repository already contains the reusable asset; unique README files are handled in its cutover."
+    },
+    {
+      "source": "apt-principles/examples/ui/design-reference-kit/preview/buttons.html",
+      "classification": "external",
+      "destination": "apt-design-reference",
+      "rationale": "The design reference repository already contains the reusable asset; unique README files are handled in its cutover."
+    },
+    {
+      "source": "apt-principles/examples/ui/design-reference-kit/preview/card-anatomy.html",
+      "classification": "external",
+      "destination": "apt-design-reference",
+      "rationale": "The design reference repository already contains the reusable asset; unique README files are handled in its cutover."
+    },
+    {
+      "source": "apt-principles/examples/ui/design-reference-kit/preview/chart-compare.html",
+      "classification": "external",
+      "destination": "apt-design-reference",
+      "rationale": "The design reference repository already contains the reusable asset; unique README files are handled in its cutover."
+    },
+    {
+      "source": "apt-principles/examples/ui/design-reference-kit/preview/chart-multiline.html",
+      "classification": "external",
+      "destination": "apt-design-reference",
+      "rationale": "The design reference repository already contains the reusable asset; unique README files are handled in its cutover."
+    },
+    {
+      "source": "apt-principles/examples/ui/design-reference-kit/preview/chart-palette.html",
+      "classification": "external",
+      "destination": "apt-design-reference",
+      "rationale": "The design reference repository already contains the reusable asset; unique README files are handled in its cutover."
+    },
+    {
+      "source": "apt-principles/examples/ui/design-reference-kit/preview/chart-ranking.html",
+      "classification": "external",
+      "destination": "apt-design-reference",
+      "rationale": "The design reference repository already contains the reusable asset; unique README files are handled in its cutover."
+    },
+    {
+      "source": "apt-principles/examples/ui/design-reference-kit/preview/chart-stats.html",
+      "classification": "external",
+      "destination": "apt-design-reference",
+      "rationale": "The design reference repository already contains the reusable asset; unique README files are handled in its cutover."
+    },
+    {
+      "source": "apt-principles/examples/ui/design-reference-kit/preview/chart-trend-compare.html",
+      "classification": "external",
+      "destination": "apt-design-reference",
+      "rationale": "The design reference repository already contains the reusable asset; unique README files are handled in its cutover."
+    },
+    {
+      "source": "apt-principles/examples/ui/design-reference-kit/preview/chart-trend.html",
+      "classification": "external",
+      "destination": "apt-design-reference",
+      "rationale": "The design reference repository already contains the reusable asset; unique README files are handled in its cutover."
+    },
+    {
+      "source": "apt-principles/examples/ui/design-reference-kit/preview/code-block.html",
+      "classification": "external",
+      "destination": "apt-design-reference",
+      "rationale": "The design reference repository already contains the reusable asset; unique README files are handled in its cutover."
+    },
+    {
+      "source": "apt-principles/examples/ui/design-reference-kit/preview/colors-accent.html",
+      "classification": "external",
+      "destination": "apt-design-reference",
+      "rationale": "The design reference repository already contains the reusable asset; unique README files are handled in its cutover."
+    },
+    {
+      "source": "apt-principles/examples/ui/design-reference-kit/preview/colors-brand.html",
+      "classification": "external",
+      "destination": "apt-design-reference",
+      "rationale": "The design reference repository already contains the reusable asset; unique README files are handled in its cutover."
+    },
+    {
+      "source": "apt-principles/examples/ui/design-reference-kit/preview/colors-core.html",
+      "classification": "external",
+      "destination": "apt-design-reference",
+      "rationale": "The design reference repository already contains the reusable asset; unique README files are handled in its cutover."
+    },
+    {
+      "source": "apt-principles/examples/ui/design-reference-kit/preview/colors-semantic.html",
+      "classification": "external",
+      "destination": "apt-design-reference",
+      "rationale": "The design reference repository already contains the reusable asset; unique README files are handled in its cutover."
+    },
+    {
+      "source": "apt-principles/examples/ui/design-reference-kit/preview/cosmic-background.html",
+      "classification": "external",
+      "destination": "apt-design-reference",
+      "rationale": "The design reference repository already contains the reusable asset; unique README files are handled in its cutover."
+    },
+    {
+      "source": "apt-principles/examples/ui/design-reference-kit/preview/dropdowns.html",
+      "classification": "external",
+      "destination": "apt-design-reference",
+      "rationale": "The design reference repository already contains the reusable asset; unique README files are handled in its cutover."
+    },
+    {
+      "source": "apt-principles/examples/ui/design-reference-kit/preview/elevation.html",
+      "classification": "external",
+      "destination": "apt-design-reference",
+      "rationale": "The design reference repository already contains the reusable asset; unique README files are handled in its cutover."
+    },
+    {
+      "source": "apt-principles/examples/ui/design-reference-kit/preview/emblem.html",
+      "classification": "external",
+      "destination": "apt-design-reference",
+      "rationale": "The design reference repository already contains the reusable asset; unique README files are handled in its cutover."
+    },
+    {
+      "source": "apt-principles/examples/ui/design-reference-kit/preview/file-actions.html",
+      "classification": "external",
+      "destination": "apt-design-reference",
+      "rationale": "The design reference repository already contains the reusable asset; unique README files are handled in its cutover."
+    },
+    {
+      "source": "apt-principles/examples/ui/design-reference-kit/preview/fonts.html",
+      "classification": "external",
+      "destination": "apt-design-reference",
+      "rationale": "The design reference repository already contains the reusable asset; unique README files are handled in its cutover."
+    },
+    {
+      "source": "apt-principles/examples/ui/design-reference-kit/preview/imagery.html",
+      "classification": "external",
+      "destination": "apt-design-reference",
+      "rationale": "The design reference repository already contains the reusable asset; unique README files are handled in its cutover."
+    },
+    {
+      "source": "apt-principles/examples/ui/design-reference-kit/preview/inputs.html",
+      "classification": "external",
+      "destination": "apt-design-reference",
+      "rationale": "The design reference repository already contains the reusable asset; unique README files are handled in its cutover."
+    },
+    {
+      "source": "apt-principles/examples/ui/design-reference-kit/preview/motion.html",
+      "classification": "external",
+      "destination": "apt-design-reference",
+      "rationale": "The design reference repository already contains the reusable asset; unique README files are handled in its cutover."
+    },
+    {
+      "source": "apt-principles/examples/ui/design-reference-kit/preview/nav-footer.html",
+      "classification": "external",
+      "destination": "apt-design-reference",
+      "rationale": "The design reference repository already contains the reusable asset; unique README files are handled in its cutover."
+    },
+    {
+      "source": "apt-principles/examples/ui/design-reference-kit/preview/nav-header.html",
+      "classification": "external",
+      "destination": "apt-design-reference",
+      "rationale": "The design reference repository already contains the reusable asset; unique README files are handled in its cutover."
+    },
+    {
+      "source": "apt-principles/examples/ui/design-reference-kit/preview/pagination.html",
+      "classification": "external",
+      "destination": "apt-design-reference",
+      "rationale": "The design reference repository already contains the reusable asset; unique README files are handled in its cutover."
+    },
+    {
+      "source": "apt-principles/examples/ui/design-reference-kit/preview/radii.html",
+      "classification": "external",
+      "destination": "apt-design-reference",
+      "rationale": "The design reference repository already contains the reusable asset; unique README files are handled in its cutover."
+    },
+    {
+      "source": "apt-principles/examples/ui/design-reference-kit/preview/selection-controls.html",
+      "classification": "external",
+      "destination": "apt-design-reference",
+      "rationale": "The design reference repository already contains the reusable asset; unique README files are handled in its cutover."
+    },
+    {
+      "source": "apt-principles/examples/ui/design-reference-kit/preview/spacing.html",
+      "classification": "external",
+      "destination": "apt-design-reference",
+      "rationale": "The design reference repository already contains the reusable asset; unique README files are handled in its cutover."
+    },
+    {
+      "source": "apt-principles/examples/ui/design-reference-kit/preview/states.html",
+      "classification": "external",
+      "destination": "apt-design-reference",
+      "rationale": "The design reference repository already contains the reusable asset; unique README files are handled in its cutover."
+    },
+    {
+      "source": "apt-principles/examples/ui/design-reference-kit/preview/stepper.html",
+      "classification": "external",
+      "destination": "apt-design-reference",
+      "rationale": "The design reference repository already contains the reusable asset; unique README files are handled in its cutover."
+    },
+    {
+      "source": "apt-principles/examples/ui/design-reference-kit/preview/tabs.html",
+      "classification": "external",
+      "destination": "apt-design-reference",
+      "rationale": "The design reference repository already contains the reusable asset; unique README files are handled in its cutover."
+    },
+    {
+      "source": "apt-principles/examples/ui/design-reference-kit/preview/tags.html",
+      "classification": "external",
+      "destination": "apt-design-reference",
+      "rationale": "The design reference repository already contains the reusable asset; unique README files are handled in its cutover."
+    },
+    {
+      "source": "apt-principles/examples/ui/design-reference-kit/preview/type-body.html",
+      "classification": "external",
+      "destination": "apt-design-reference",
+      "rationale": "The design reference repository already contains the reusable asset; unique README files are handled in its cutover."
+    },
+    {
+      "source": "apt-principles/examples/ui/design-reference-kit/preview/type-display.html",
+      "classification": "external",
+      "destination": "apt-design-reference",
+      "rationale": "The design reference repository already contains the reusable asset; unique README files are handled in its cutover."
+    },
+    {
+      "source": "apt-principles/examples/ui/design-reference-kit/preview/type-serif.html",
+      "classification": "external",
+      "destination": "apt-design-reference",
+      "rationale": "The design reference repository already contains the reusable asset; unique README files are handled in its cutover."
+    },
+    {
+      "source": "apt-principles/examples/ui/design-reference-kit/styles.css",
+      "classification": "external",
+      "destination": "apt-design-reference",
+      "rationale": "The design reference repository already contains the reusable asset; unique README files are handled in its cutover."
+    },
+    {
+      "source": "apt-principles/examples/ui/design-reference-kit/ui_kits/account/app.jsx",
+      "classification": "external",
+      "destination": "apt-design-reference",
+      "rationale": "The design reference repository already contains the reusable asset; unique README files are handled in its cutover."
+    },
+    {
+      "source": "apt-principles/examples/ui/design-reference-kit/ui_kits/account/index.html",
+      "classification": "external",
+      "destination": "apt-design-reference",
+      "rationale": "The design reference repository already contains the reusable asset; unique README files are handled in its cutover."
+    },
+    {
+      "source": "apt-principles/examples/ui/design-reference-kit/ui_kits/account/kit.css",
+      "classification": "external",
+      "destination": "apt-design-reference",
+      "rationale": "The design reference repository already contains the reusable asset; unique README files are handled in its cutover."
+    },
+    {
+      "source": "apt-principles/examples/ui/design-reference-kit/ui_kits/account/README.md",
+      "classification": "external",
+      "destination": "apt-design-reference",
+      "rationale": "The design reference repository already contains the reusable asset; unique README files are handled in its cutover."
+    },
+    {
+      "source": "apt-principles/examples/ui/design-reference-kit/ui_kits/dashboard/app.jsx",
+      "classification": "external",
+      "destination": "apt-design-reference",
+      "rationale": "The design reference repository already contains the reusable asset; unique README files are handled in its cutover."
+    },
+    {
+      "source": "apt-principles/examples/ui/design-reference-kit/ui_kits/dashboard/index.html",
+      "classification": "external",
+      "destination": "apt-design-reference",
+      "rationale": "The design reference repository already contains the reusable asset; unique README files are handled in its cutover."
+    },
+    {
+      "source": "apt-principles/examples/ui/design-reference-kit/ui_kits/dashboard/kit.css",
+      "classification": "external",
+      "destination": "apt-design-reference",
+      "rationale": "The design reference repository already contains the reusable asset; unique README files are handled in its cutover."
+    },
+    {
+      "source": "apt-principles/examples/ui/design-reference-kit/ui_kits/dashboard/README.md",
+      "classification": "external",
+      "destination": "apt-design-reference",
+      "rationale": "The design reference repository already contains the reusable asset; unique README files are handled in its cutover."
+    },
+    {
+      "source": "apt-principles/examples/ui/design-reference-kit/ui_kits/docs/app.jsx",
+      "classification": "external",
+      "destination": "apt-design-reference",
+      "rationale": "The design reference repository already contains the reusable asset; unique README files are handled in its cutover."
+    },
+    {
+      "source": "apt-principles/examples/ui/design-reference-kit/ui_kits/docs/index.html",
+      "classification": "external",
+      "destination": "apt-design-reference",
+      "rationale": "The design reference repository already contains the reusable asset; unique README files are handled in its cutover."
+    },
+    {
+      "source": "apt-principles/examples/ui/design-reference-kit/ui_kits/docs/kit.css",
+      "classification": "external",
+      "destination": "apt-design-reference",
+      "rationale": "The design reference repository already contains the reusable asset; unique README files are handled in its cutover."
+    },
+    {
+      "source": "apt-principles/examples/ui/design-reference-kit/ui_kits/docs/README.md",
+      "classification": "external",
+      "destination": "apt-design-reference",
+      "rationale": "The design reference repository already contains the reusable asset; unique README files are handled in its cutover."
+    },
+    {
+      "source": "apt-principles/examples/ui/design-reference-kit/ui_kits/email/index.html",
+      "classification": "external",
+      "destination": "apt-design-reference",
+      "rationale": "The design reference repository already contains the reusable asset; unique README files are handled in its cutover."
+    },
+    {
+      "source": "apt-principles/examples/ui/design-reference-kit/ui_kits/email/README.md",
+      "classification": "external",
+      "destination": "apt-design-reference",
+      "rationale": "The design reference repository already contains the reusable asset; unique README files are handled in its cutover."
+    },
+    {
+      "source": "apt-principles/examples/ui/design-reference-kit/ui_kits/insights/app.jsx",
+      "classification": "external",
+      "destination": "apt-design-reference",
+      "rationale": "The design reference repository already contains the reusable asset; unique README files are handled in its cutover."
+    },
+    {
+      "source": "apt-principles/examples/ui/design-reference-kit/ui_kits/insights/components.jsx",
+      "classification": "external",
+      "destination": "apt-design-reference",
+      "rationale": "The design reference repository already contains the reusable asset; unique README files are handled in its cutover."
+    },
+    {
+      "source": "apt-principles/examples/ui/design-reference-kit/ui_kits/insights/index.html",
+      "classification": "external",
+      "destination": "apt-design-reference",
+      "rationale": "The design reference repository already contains the reusable asset; unique README files are handled in its cutover."
+    },
+    {
+      "source": "apt-principles/examples/ui/design-reference-kit/ui_kits/insights/kit.css",
+      "classification": "external",
+      "destination": "apt-design-reference",
+      "rationale": "The design reference repository already contains the reusable asset; unique README files are handled in its cutover."
+    },
+    {
+      "source": "apt-principles/examples/ui/design-reference-kit/ui_kits/insights/README.md",
+      "classification": "external",
+      "destination": "apt-design-reference",
+      "rationale": "The design reference repository already contains the reusable asset; unique README files are handled in its cutover."
+    },
+    {
+      "source": "apt-principles/examples/ui/design-reference-kit/ui_kits/patterns/app.jsx",
+      "classification": "external",
+      "destination": "apt-design-reference",
+      "rationale": "The design reference repository already contains the reusable asset; unique README files are handled in its cutover."
+    },
+    {
+      "source": "apt-principles/examples/ui/design-reference-kit/ui_kits/patterns/index.html",
+      "classification": "external",
+      "destination": "apt-design-reference",
+      "rationale": "The design reference repository already contains the reusable asset; unique README files are handled in its cutover."
+    },
+    {
+      "source": "apt-principles/examples/ui/design-reference-kit/ui_kits/patterns/index.standalone.html",
+      "classification": "external",
+      "destination": "apt-design-reference",
+      "rationale": "The design reference repository already contains the reusable asset; unique README files are handled in its cutover."
+    },
+    {
+      "source": "apt-principles/examples/ui/design-reference-kit/ui_kits/patterns/kit.css",
+      "classification": "external",
+      "destination": "apt-design-reference",
+      "rationale": "The design reference repository already contains the reusable asset; unique README files are handled in its cutover."
+    },
+    {
+      "source": "apt-principles/examples/ui/design-reference-kit/ui_kits/patterns/README.md",
+      "classification": "external",
+      "destination": "apt-design-reference",
+      "rationale": "The design reference repository already contains the reusable asset; unique README files are handled in its cutover."
+    },
+    {
+      "source": "apt-principles/examples/ui/design-reference-kit/ui_kits/portfolio/app.jsx",
+      "classification": "external",
+      "destination": "apt-design-reference",
+      "rationale": "The design reference repository already contains the reusable asset; unique README files are handled in its cutover."
+    },
+    {
+      "source": "apt-principles/examples/ui/design-reference-kit/ui_kits/portfolio/components.jsx",
+      "classification": "external",
+      "destination": "apt-design-reference",
+      "rationale": "The design reference repository already contains the reusable asset; unique README files are handled in its cutover."
+    },
+    {
+      "source": "apt-principles/examples/ui/design-reference-kit/ui_kits/portfolio/index.html",
+      "classification": "external",
+      "destination": "apt-design-reference",
+      "rationale": "The design reference repository already contains the reusable asset; unique README files are handled in its cutover."
+    },
+    {
+      "source": "apt-principles/examples/ui/design-reference-kit/ui_kits/portfolio/kit.css",
+      "classification": "external",
+      "destination": "apt-design-reference",
+      "rationale": "The design reference repository already contains the reusable asset; unique README files are handled in its cutover."
+    },
+    {
+      "source": "apt-principles/examples/ui/design-reference-kit/ui_kits/portfolio/README.md",
+      "classification": "external",
+      "destination": "apt-design-reference",
+      "rationale": "The design reference repository already contains the reusable asset; unique README files are handled in its cutover."
+    },
+    {
+      "source": "apt-principles/examples/ui/design-reference-kit/ui_kits/primitives/app.jsx",
+      "classification": "external",
+      "destination": "apt-design-reference",
+      "rationale": "The design reference repository already contains the reusable asset; unique README files are handled in its cutover."
+    },
+    {
+      "source": "apt-principles/examples/ui/design-reference-kit/ui_kits/primitives/components.jsx",
+      "classification": "external",
+      "destination": "apt-design-reference",
+      "rationale": "The design reference repository already contains the reusable asset; unique README files are handled in its cutover."
+    },
+    {
+      "source": "apt-principles/examples/ui/design-reference-kit/ui_kits/primitives/controls.jsx",
+      "classification": "external",
+      "destination": "apt-design-reference",
+      "rationale": "The design reference repository already contains the reusable asset; unique README files are handled in its cutover."
+    },
+    {
+      "source": "apt-principles/examples/ui/design-reference-kit/ui_kits/primitives/datacode.jsx",
+      "classification": "external",
+      "destination": "apt-design-reference",
+      "rationale": "The design reference repository already contains the reusable asset; unique README files are handled in its cutover."
+    },
+    {
+      "source": "apt-principles/examples/ui/design-reference-kit/ui_kits/primitives/disclosure.jsx",
+      "classification": "external",
+      "destination": "apt-design-reference",
+      "rationale": "The design reference repository already contains the reusable asset; unique README files are handled in its cutover."
+    },
+    {
+      "source": "apt-principles/examples/ui/design-reference-kit/ui_kits/primitives/feedback.jsx",
+      "classification": "external",
+      "destination": "apt-design-reference",
+      "rationale": "The design reference repository already contains the reusable asset; unique README files are handled in its cutover."
+    },
+    {
+      "source": "apt-principles/examples/ui/design-reference-kit/ui_kits/primitives/index.html",
+      "classification": "external",
+      "destination": "apt-design-reference",
+      "rationale": "The design reference repository already contains the reusable asset; unique README files are handled in its cutover."
+    },
+    {
+      "source": "apt-principles/examples/ui/design-reference-kit/ui_kits/primitives/kit.css",
+      "classification": "external",
+      "destination": "apt-design-reference",
+      "rationale": "The design reference repository already contains the reusable asset; unique README files are handled in its cutover."
+    },
+    {
+      "source": "apt-principles/examples/ui/design-reference-kit/ui_kits/primitives/nav.jsx",
+      "classification": "external",
+      "destination": "apt-design-reference",
+      "rationale": "The design reference repository already contains the reusable asset; unique README files are handled in its cutover."
+    },
+    {
+      "source": "apt-principles/examples/ui/design-reference-kit/ui_kits/product/app.jsx",
+      "classification": "external",
+      "destination": "apt-design-reference",
+      "rationale": "The design reference repository already contains the reusable asset; unique README files are handled in its cutover."
+    },
+    {
+      "source": "apt-principles/examples/ui/design-reference-kit/ui_kits/product/index.html",
+      "classification": "external",
+      "destination": "apt-design-reference",
+      "rationale": "The design reference repository already contains the reusable asset; unique README files are handled in its cutover."
+    },
+    {
+      "source": "apt-principles/examples/ui/design-reference-kit/ui_kits/product/kit.css",
+      "classification": "external",
+      "destination": "apt-design-reference",
+      "rationale": "The design reference repository already contains the reusable asset; unique README files are handled in its cutover."
+    },
+    {
+      "source": "apt-principles/examples/ui/design-reference-kit/ui_kits/product/README.md",
+      "classification": "external",
+      "destination": "apt-design-reference",
+      "rationale": "The design reference repository already contains the reusable asset; unique README files are handled in its cutover."
+    },
+    {
+      "source": "apt-principles/examples/ui/design-system-primitives-pattern.md",
+      "classification": "migrated",
+      "destination": "examples/ui/design-system-primitives-pattern.md",
+      "rationale": "Preserved as active source-backed guidance."
+    },
+    {
+      "source": "apt-principles/examples/ui/docs-principles-browser-pattern.md",
+      "classification": "migrated",
+      "destination": "examples/ui/docs-principles-browser-pattern.md",
+      "rationale": "Preserved as active source-backed guidance."
+    },
+    {
+      "source": "apt-principles/examples/ui/feedback-alert-toast-pattern.md",
+      "classification": "migrated",
+      "destination": "examples/ui/feedback-alert-toast-pattern.md",
+      "rationale": "Preserved as active source-backed guidance."
+    },
+    {
+      "source": "apt-principles/examples/ui/footer-layout-pattern.md",
+      "classification": "migrated",
+      "destination": "examples/ui/footer-layout-pattern.md",
+      "rationale": "Preserved as active source-backed guidance."
+    },
+    {
+      "source": "apt-principles/examples/ui/navigation-layout-pattern.md",
+      "classification": "migrated",
+      "destination": "examples/ui/navigation-layout-pattern.md",
+      "rationale": "Preserved as active source-backed guidance."
+    },
+    {
+      "source": "apt-principles/examples/ui/product-portfolio-surface-pattern.md",
+      "classification": "migrated",
+      "destination": "examples/ui/product-portfolio-surface-pattern.md",
+      "rationale": "Preserved as active source-backed guidance."
+    },
+    {
+      "source": "apt-principles/examples/ui/transactional-email-pattern.md",
+      "classification": "migrated",
+      "destination": "examples/ui/transactional-email-pattern.md",
+      "rationale": "Preserved as active source-backed guidance."
+    },
+    {
+      "source": "apt-principles/examples/workflows/apt-principles-public-sync-flow.md",
+      "classification": "migrated",
+      "destination": "examples/workflows/apt-principles-public-sync-flow.md",
+      "rationale": "Preserved as active source-backed guidance."
+    },
+    {
+      "source": "apt-principles/examples/workflows/delivery-increment-plan-example.md",
+      "classification": "migrated",
+      "destination": "examples/workflows/delivery-increment-plan-example.md",
+      "rationale": "Preserved as active source-backed guidance."
+    },
+    {
+      "source": "apt-principles/examples/workflows/operational-runbook-example.md",
+      "classification": "migrated",
+      "destination": "examples/workflows/operational-runbook-example.md",
+      "rationale": "Preserved as active source-backed guidance."
+    },
+    {
+      "source": "apt-principles/examples/workflows/preview-to-prod-flow.md",
+      "classification": "migrated",
+      "destination": "examples/workflows/preview-to-prod-flow.md",
+      "rationale": "Preserved as active source-backed guidance."
+    },
+    {
+      "source": "apt-principles/examples/workflows/release-record-example.md",
+      "classification": "migrated",
+      "destination": "examples/workflows/release-record-example.md",
+      "rationale": "Preserved as active source-backed guidance."
+    },
+    {
+      "source": "apt-principles/examples/workflows/repository-drift-repair-flow.md",
+      "classification": "migrated",
+      "destination": "examples/workflows/repository-drift-repair-flow.md",
+      "rationale": "Preserved as active source-backed guidance."
+    },
+    {
+      "source": "apt-principles/examples/workflows/spec-to-story-flow.md",
+      "classification": "migrated",
+      "destination": "examples/workflows/spec-to-story-flow.md",
+      "rationale": "Preserved as active source-backed guidance."
+    },
+    {
+      "source": "apt-principles/execution.md",
+      "classification": "migrated",
+      "destination": "principles/execution/delivery-increments.md",
+      "rationale": "Promoted into the canonical APT principles hub."
+    },
+    {
+      "source": "apt-principles/governance/architecture-review.md",
+      "classification": "migrated",
+      "destination": "governance/architecture-review.md",
+      "rationale": "Moved from the canonical doctrine/build-kit source."
+    },
+    {
+      "source": "apt-principles/governance/design-review.md",
+      "classification": "migrated",
+      "destination": "governance/design-review.md",
+      "rationale": "Moved from the canonical doctrine/build-kit source."
+    },
+    {
+      "source": "apt-principles/governance/maturity-model.md",
+      "classification": "migrated",
+      "destination": "governance/maturity-model.md",
+      "rationale": "Moved from the canonical doctrine/build-kit source."
+    },
+    {
+      "source": "apt-principles/governance/README.md",
+      "classification": "migrated",
+      "destination": "governance/README.md",
+      "rationale": "Moved from the canonical doctrine/build-kit source."
+    },
+    {
+      "source": "apt-principles/governance/repository-review.md",
+      "classification": "migrated",
+      "destination": "governance/repository-review.md",
+      "rationale": "Moved from the canonical doctrine/build-kit source."
+    },
+    {
+      "source": "apt-principles/governance/scorecard.md",
+      "classification": "migrated",
+      "destination": "governance/scorecard.md",
+      "rationale": "Moved from the canonical doctrine/build-kit source."
+    },
+    {
+      "source": "apt-principles/governance/service-readiness-review.md",
+      "classification": "migrated",
+      "destination": "governance/service-readiness-review.md",
+      "rationale": "Moved from the canonical doctrine/build-kit source."
+    },
+    {
+      "source": "apt-principles/knowledge-system.md",
+      "classification": "migrated",
+      "destination": "principles/execution/knowledge-and-learning.md",
+      "rationale": "Promoted into the canonical APT principles hub."
+    },
+    {
+      "source": "apt-principles/operations-support.md",
+      "classification": "migrated",
+      "destination": "principles/execution/operations-and-support.md",
+      "rationale": "Promoted into the canonical APT principles hub."
+    },
+    {
+      "source": "apt-principles/package.json",
+      "classification": "merged",
+      "destination": "docs/migration-from-old-repos.md",
+      "rationale": "Repository-level behavior is consolidated into the new canonical repository."
+    },
+    {
+      "source": "apt-principles/principles/ai.md",
+      "classification": "migrated",
+      "destination": "principles/quick-reference/ai.md",
+      "rationale": "Preserved as active source-backed guidance."
+    },
+    {
+      "source": "apt-principles/principles/architecture.md",
+      "classification": "migrated",
+      "destination": "principles/quick-reference/architecture.md",
+      "rationale": "Preserved as active source-backed guidance."
+    },
+    {
+      "source": "apt-principles/principles/delivery.md",
+      "classification": "migrated",
+      "destination": "principles/quick-reference/delivery.md",
+      "rationale": "Preserved as active source-backed guidance."
+    },
+    {
+      "source": "apt-principles/principles/design.md",
+      "classification": "migrated",
+      "destination": "principles/quick-reference/design.md",
+      "rationale": "Preserved as active source-backed guidance."
+    },
+    {
+      "source": "apt-principles/principles/learning.md",
+      "classification": "migrated",
+      "destination": "principles/quick-reference/learning.md",
+      "rationale": "Preserved as active source-backed guidance."
+    },
+    {
+      "source": "apt-principles/principles/operations.md",
+      "classification": "migrated",
+      "destination": "principles/quick-reference/operations.md",
+      "rationale": "Preserved as active source-backed guidance."
+    },
+    {
+      "source": "apt-principles/principles/outcomes.md",
+      "classification": "migrated",
+      "destination": "principles/quick-reference/outcomes.md",
+      "rationale": "Preserved as active source-backed guidance."
+    },
+    {
+      "source": "apt-principles/principles/README.md",
+      "classification": "migrated",
+      "destination": "principles/quick-reference/README.md",
+      "rationale": "Preserved as active source-backed guidance."
+    },
+    {
+      "source": "apt-principles/principles/security.md",
+      "classification": "migrated",
+      "destination": "principles/quick-reference/security.md",
+      "rationale": "Preserved as active source-backed guidance."
+    },
+    {
+      "source": "apt-principles/principles/thinking.md",
+      "classification": "migrated",
+      "destination": "principles/quick-reference/thinking.md",
+      "rationale": "Preserved as active source-backed guidance."
+    },
+    {
+      "source": "apt-principles/prompts/agent-harness-review-prompt.md",
+      "classification": "migrated",
+      "destination": "prompts/agent-harness-review-prompt.md",
+      "rationale": "Preserved as active source-backed guidance."
+    },
+    {
+      "source": "apt-principles/prompts/api-review-prompt.md",
+      "classification": "migrated",
+      "destination": "prompts/api-review-prompt.md",
+      "rationale": "Preserved as active source-backed guidance."
+    },
+    {
+      "source": "apt-principles/prompts/apply-apt-principles.md",
+      "classification": "migrated",
+      "destination": "prompts/apply-apt-principles.md",
+      "rationale": "Preserved as active source-backed guidance."
+    },
+    {
+      "source": "apt-principles/prompts/apt-agent-conformance-review-prompt.md",
+      "classification": "migrated",
+      "destination": "prompts/apt-agent-conformance-review-prompt.md",
+      "rationale": "Preserved as active source-backed guidance."
+    },
+    {
+      "source": "apt-principles/prompts/apt-one-shot-build-prompt.md",
+      "classification": "migrated",
+      "destination": "prompts/apt-one-shot-build-prompt.md",
+      "rationale": "Preserved as active source-backed guidance."
+    },
+    {
+      "source": "apt-principles/prompts/architecture-review-prompt.md",
+      "classification": "migrated",
+      "destination": "prompts/architecture-review-prompt.md",
+      "rationale": "Preserved as active source-backed guidance."
+    },
+    {
+      "source": "apt-principles/prompts/design-review-prompt.md",
+      "classification": "migrated",
+      "destination": "prompts/design-review-prompt.md",
+      "rationale": "Preserved as active source-backed guidance."
+    },
+    {
+      "source": "apt-principles/prompts/framework-review-prompt.md",
+      "classification": "migrated",
+      "destination": "prompts/framework-review-prompt.md",
+      "rationale": "Preserved as active source-backed guidance."
+    },
+    {
+      "source": "apt-principles/prompts/generate-context-pack.md",
+      "classification": "migrated",
+      "destination": "prompts/generate-context-pack.md",
+      "rationale": "Preserved as active source-backed guidance."
+    },
+    {
+      "source": "apt-principles/prompts/knowledge-review-prompt.md",
+      "classification": "migrated",
+      "destination": "prompts/knowledge-review-prompt.md",
+      "rationale": "Preserved as active source-backed guidance."
+    },
+    {
+      "source": "apt-principles/prompts/model-routing-review-prompt.md",
+      "classification": "migrated",
+      "destination": "prompts/model-routing-review-prompt.md",
+      "rationale": "Preserved as active source-backed guidance."
+    },
+    {
+      "source": "apt-principles/prompts/operations-review-prompt.md",
+      "classification": "migrated",
+      "destination": "prompts/operations-review-prompt.md",
+      "rationale": "Preserved as active source-backed guidance."
+    },
+    {
+      "source": "apt-principles/prompts/project-adoption-prompt.md",
+      "classification": "migrated",
+      "destination": "prompts/project-adoption-prompt.md",
+      "rationale": "Preserved as active source-backed guidance."
+    },
+    {
+      "source": "apt-principles/prompts/release-review-prompt.md",
+      "classification": "migrated",
+      "destination": "prompts/release-review-prompt.md",
+      "rationale": "Preserved as active source-backed guidance."
+    },
+    {
+      "source": "apt-principles/prompts/repo-alignment-review.md",
+      "classification": "migrated",
+      "destination": "prompts/repo-alignment-review.md",
+      "rationale": "Preserved as active source-backed guidance."
+    },
+    {
+      "source": "apt-principles/prompts/repository-lifecycle-review-prompt.md",
+      "classification": "migrated",
+      "destination": "prompts/repository-lifecycle-review-prompt.md",
+      "rationale": "Preserved as active source-backed guidance."
+    },
+    {
+      "source": "apt-principles/prompts/security-review-prompt.md",
+      "classification": "migrated",
+      "destination": "prompts/security-review-prompt.md",
+      "rationale": "Preserved as active source-backed guidance."
+    },
+    {
+      "source": "apt-principles/prompts/testing-review-prompt.md",
+      "classification": "migrated",
+      "destination": "prompts/testing-review-prompt.md",
+      "rationale": "Preserved as active source-backed guidance."
+    },
+    {
+      "source": "apt-principles/prompts/update-agent-standards.md",
+      "classification": "migrated",
+      "destination": "prompts/update-agent-standards.md",
+      "rationale": "Preserved as active source-backed guidance."
+    },
+    {
+      "source": "apt-principles/prompts/workspace-knowledge-prompt.md",
+      "classification": "migrated",
+      "destination": "prompts/workspace-knowledge-prompt.md",
+      "rationale": "Preserved as active source-backed guidance."
+    },
+    {
+      "source": "apt-principles/quality-testing.md",
+      "classification": "migrated",
+      "destination": "principles/execution/quality-and-testing.md",
+      "rationale": "Promoted into the canonical APT principles hub."
+    },
+    {
+      "source": "apt-principles/README.md",
+      "classification": "merged",
+      "destination": "docs/migration-from-old-repos.md",
+      "rationale": "Repository-level behavior is consolidated into the new canonical repository."
+    },
+    {
+      "source": "apt-principles/references/agent-standards-contract.json",
+      "classification": "migrated",
+      "destination": "references/agent-standards-contract.json",
+      "rationale": "Moved from the canonical doctrine/build-kit source."
+    },
+    {
+      "source": "apt-principles/references/ai-harness-contract.json",
+      "classification": "migrated",
+      "destination": "references/ai-harness-contract.json",
+      "rationale": "Moved from the canonical doctrine/build-kit source."
+    },
+    {
+      "source": "apt-principles/references/ai-review-bundle.json",
+      "classification": "migrated",
+      "destination": "references/ai-review-bundle.json",
+      "rationale": "Moved from the canonical doctrine/build-kit source."
+    },
+    {
+      "source": "apt-principles/references/apt-application-model.json",
+      "classification": "migrated",
+      "destination": "references/apt-application-model.json",
+      "rationale": "Moved from the canonical doctrine/build-kit source."
+    },
+    {
+      "source": "apt-principles/references/architecture-map.json",
+      "classification": "migrated",
+      "destination": "references/architecture-map.json",
+      "rationale": "Moved from the canonical doctrine/build-kit source."
+    },
+    {
+      "source": "apt-principles/references/design-lint-gates.json",
+      "classification": "migrated",
+      "destination": "references/design-lint-gates.json",
+      "rationale": "Moved from the canonical doctrine/build-kit source."
+    },
+    {
+      "source": "apt-principles/references/design-tokens.json",
+      "classification": "migrated",
+      "destination": "references/design-tokens.json",
+      "rationale": "Moved from the canonical doctrine/build-kit source."
+    },
+    {
+      "source": "apt-principles/references/knowledge-contracts.json",
+      "classification": "migrated",
+      "destination": "references/knowledge-contracts.json",
+      "rationale": "Moved from the canonical doctrine/build-kit source."
+    },
+    {
+      "source": "apt-principles/references/metadata-versioning-contract.json",
+      "classification": "migrated",
+      "destination": "references/metadata-versioning-contract.json",
+      "rationale": "Moved from the canonical doctrine/build-kit source."
+    },
+    {
+      "source": "apt-principles/references/project-profile.schema.json",
+      "classification": "migrated",
+      "destination": "references/project-profile.schema.json",
+      "rationale": "Moved from the canonical doctrine/build-kit source."
+    },
+    {
+      "source": "apt-principles/release-change-management.md",
+      "classification": "migrated",
+      "destination": "principles/execution/release-and-change-management.md",
+      "rationale": "Promoted into the canonical APT principles hub."
+    },
+    {
+      "source": "apt-principles/reports/ai-agent-harness-modernization-assessment.md",
+      "classification": "historical_generated",
+      "destination": null,
+      "rationale": "Historical audit or generated evidence remains in the archived source repository and provenance inventory."
+    },
+    {
+      "source": "apt-principles/reports/apt-principles-framework-audit.md",
+      "classification": "historical_generated",
+      "destination": null,
+      "rationale": "Historical audit or generated evidence remains in the archived source repository and provenance inventory."
+    },
+    {
+      "source": "apt-principles/reports/apt-whole-system-completion-gap-matrix.md",
+      "classification": "historical_generated",
+      "destination": null,
+      "rationale": "Historical audit or generated evidence remains in the archived source repository and provenance inventory."
+    },
+    {
+      "source": "apt-principles/reports/GRAPHIFY_RUNBOOK.md",
+      "classification": "historical_generated",
+      "destination": null,
+      "rationale": "Historical audit or generated evidence remains in the archived source repository and provenance inventory."
+    },
+    {
+      "source": "apt-principles/reports/graphify-action-checklist-2026-06-21.md",
+      "classification": "historical_generated",
+      "destination": null,
+      "rationale": "Historical audit or generated evidence remains in the archived source repository and provenance inventory."
+    },
+    {
+      "source": "apt-principles/reports/graphify-apt-gap-analysis-2026-05-22.md",
+      "classification": "historical_generated",
+      "destination": null,
+      "rationale": "Historical audit or generated evidence remains in the archived source repository and provenance inventory."
+    },
+    {
+      "source": "apt-principles/reports/graphify-apt-gap-analysis-2026-05-23.md",
+      "classification": "historical_generated",
+      "destination": null,
+      "rationale": "Historical audit or generated evidence remains in the archived source repository and provenance inventory."
+    },
+    {
+      "source": "apt-principles/reports/graphify-apt-gap-analysis-2026-05-24.md",
+      "classification": "historical_generated",
+      "destination": null,
+      "rationale": "Historical audit or generated evidence remains in the archived source repository and provenance inventory."
+    },
+    {
+      "source": "apt-principles/reports/graphify-apt-gap-analysis-2026-06-21.md",
+      "classification": "historical_generated",
+      "destination": null,
+      "rationale": "Historical audit or generated evidence remains in the archived source repository and provenance inventory."
+    },
+    {
+      "source": "apt-principles/reports/project-profile-validation-sweep-2026-05-24.json",
+      "classification": "historical_generated",
+      "destination": null,
+      "rationale": "Historical audit or generated evidence remains in the archived source repository and provenance inventory."
+    },
+    {
+      "source": "apt-principles/reports/project-profile-validation-sweep-2026-05-24.md",
+      "classification": "historical_generated",
+      "destination": null,
+      "rationale": "Historical audit or generated evidence remains in the archived source repository and provenance inventory."
+    },
+    {
+      "source": "apt-principles/reports/project-profile-validation-sweep-2026-05-31.json",
+      "classification": "historical_generated",
+      "destination": null,
+      "rationale": "Historical audit or generated evidence remains in the archived source repository and provenance inventory."
+    },
+    {
+      "source": "apt-principles/reports/project-profile-validation-sweep-2026-05-31.md",
+      "classification": "historical_generated",
+      "destination": null,
+      "rationale": "Historical audit or generated evidence remains in the archived source repository and provenance inventory."
+    },
+    {
+      "source": "apt-principles/reports/project-profile-validation-sweep-2026-06-01.json",
+      "classification": "historical_generated",
+      "destination": null,
+      "rationale": "Historical audit or generated evidence remains in the archived source repository and provenance inventory."
+    },
+    {
+      "source": "apt-principles/reports/project-profile-validation-sweep-2026-06-01.md",
+      "classification": "historical_generated",
+      "destination": null,
+      "rationale": "Historical audit or generated evidence remains in the archived source repository and provenance inventory."
+    },
+    {
+      "source": "apt-principles/reports/project-profile-validation-sweep-2026-06-13.json",
+      "classification": "historical_generated",
+      "destination": null,
+      "rationale": "Historical audit or generated evidence remains in the archived source repository and provenance inventory."
+    },
+    {
+      "source": "apt-principles/reports/project-profile-validation-sweep-2026-06-13.md",
+      "classification": "historical_generated",
+      "destination": null,
+      "rationale": "Historical audit or generated evidence remains in the archived source repository and provenance inventory."
+    },
+    {
+      "source": "apt-principles/reports/README.md",
+      "classification": "historical_generated",
+      "destination": null,
+      "rationale": "Historical audit or generated evidence remains in the archived source repository and provenance inventory."
+    },
+    {
+      "source": "apt-principles/reports/VALIDATION_RESULTS_GUIDE.md",
+      "classification": "historical_generated",
+      "destination": null,
+      "rationale": "Historical audit or generated evidence remains in the archived source repository and provenance inventory."
+    },
+    {
+      "source": "apt-principles/scripts/check-agent-sync.mjs",
+      "classification": "merged",
+      "destination": "scripts/apt-assets.mjs",
+      "rationale": "Useful validation/distribution behavior is consolidated into the new lifecycle tooling."
+    },
+    {
+      "source": "apt-principles/scripts/check-docs.mjs",
+      "classification": "merged",
+      "destination": "scripts/apt-assets.mjs",
+      "rationale": "Useful validation/distribution behavior is consolidated into the new lifecycle tooling."
+    },
+    {
+      "source": "apt-principles/scripts/graphify-apt-workspace.mjs",
+      "classification": "merged",
+      "destination": "scripts/apt-assets.mjs",
+      "rationale": "Useful validation/distribution behavior is consolidated into the new lifecycle tooling."
+    },
+    {
+      "source": "apt-principles/scripts/graphify-check.mjs",
+      "classification": "merged",
+      "destination": "scripts/apt-assets.mjs",
+      "rationale": "Useful validation/distribution behavior is consolidated into the new lifecycle tooling."
+    },
+    {
+      "source": "apt-principles/scripts/graphify-clean.mjs",
+      "classification": "merged",
+      "destination": "scripts/apt-assets.mjs",
+      "rationale": "Useful validation/distribution behavior is consolidated into the new lifecycle tooling."
+    },
+    {
+      "source": "apt-principles/scripts/graphify-config.mjs",
+      "classification": "merged",
+      "destination": "scripts/apt-assets.mjs",
+      "rationale": "Useful validation/distribution behavior is consolidated into the new lifecycle tooling."
+    },
+    {
+      "source": "apt-principles/scripts/graphify-gap-report.mjs",
+      "classification": "merged",
+      "destination": "scripts/apt-assets.mjs",
+      "rationale": "Useful validation/distribution behavior is consolidated into the new lifecycle tooling."
+    },
+    {
+      "source": "apt-principles/scripts/graphify-install-openai.mjs",
+      "classification": "merged",
+      "destination": "scripts/apt-assets.mjs",
+      "rationale": "Useful validation/distribution behavior is consolidated into the new lifecycle tooling."
+    },
+    {
+      "source": "apt-principles/scripts/README.md",
+      "classification": "merged",
+      "destination": "scripts/apt-assets.mjs",
+      "rationale": "Useful validation/distribution behavior is consolidated into the new lifecycle tooling."
+    },
+    {
+      "source": "apt-principles/scripts/run-all-checks.mjs",
+      "classification": "merged",
+      "destination": "scripts/apt-assets.mjs",
+      "rationale": "Useful validation/distribution behavior is consolidated into the new lifecycle tooling."
+    },
+    {
+      "source": "apt-principles/scripts/scaffold-apt-audit-report.mjs",
+      "classification": "merged",
+      "destination": "scripts/apt-assets.mjs",
+      "rationale": "Useful validation/distribution behavior is consolidated into the new lifecycle tooling."
+    },
+    {
+      "source": "apt-principles/scripts/smoke-test.mjs",
+      "classification": "merged",
+      "destination": "scripts/apt-assets.mjs",
+      "rationale": "Useful validation/distribution behavior is consolidated into the new lifecycle tooling."
+    },
+    {
+      "source": "apt-principles/scripts/sweep-project-profiles.mjs",
+      "classification": "merged",
+      "destination": "scripts/apt-assets.mjs",
+      "rationale": "Useful validation/distribution behavior is consolidated into the new lifecycle tooling."
+    },
+    {
+      "source": "apt-principles/scripts/validate-ai-readiness.mjs",
+      "classification": "merged",
+      "destination": "scripts/apt-assets.mjs",
+      "rationale": "Useful validation/distribution behavior is consolidated into the new lifecycle tooling."
+    },
+    {
+      "source": "apt-principles/scripts/validate-apt-principles.mjs",
+      "classification": "merged",
+      "destination": "scripts/apt-assets.mjs",
+      "rationale": "Useful validation/distribution behavior is consolidated into the new lifecycle tooling."
+    },
+    {
+      "source": "apt-principles/scripts/validate-project-profile.mjs",
+      "classification": "merged",
+      "destination": "scripts/apt-assets.mjs",
+      "rationale": "Useful validation/distribution behavior is consolidated into the new lifecycle tooling."
+    },
+    {
+      "source": "apt-principles/scripts/validate-repo.mjs",
+      "classification": "merged",
+      "destination": "scripts/apt-assets.mjs",
+      "rationale": "Useful validation/distribution behavior is consolidated into the new lifecycle tooling."
+    },
+    {
+      "source": "apt-principles/security.md",
+      "classification": "migrated",
+      "destination": "principles/security-risk/README.md",
+      "rationale": "Promoted into the canonical APT principles hub."
+    },
+    {
+      "source": "apt-principles/standards/ai/agent-harness-standard.md",
+      "classification": "migrated",
+      "destination": "standards/ai/agent-harness-standard.md",
+      "rationale": "Moved from the canonical doctrine/build-kit source."
+    },
+    {
+      "source": "apt-principles/standards/ai/ai-orchestration-standard.md",
+      "classification": "migrated",
+      "destination": "standards/ai/ai-orchestration-standard.md",
+      "rationale": "Moved from the canonical doctrine/build-kit source."
+    },
+    {
+      "source": "apt-principles/standards/ai/local-first-ai-standard.md",
+      "classification": "migrated",
+      "destination": "standards/ai/local-first-ai-standard.md",
+      "rationale": "Moved from the canonical doctrine/build-kit source."
+    },
+    {
+      "source": "apt-principles/standards/ai/model-routing-standard.md",
+      "classification": "migrated",
+      "destination": "standards/ai/model-routing-standard.md",
+      "rationale": "Moved from the canonical doctrine/build-kit source."
+    },
+    {
+      "source": "apt-principles/standards/ai/repository-lifecycle-standard.md",
+      "classification": "migrated",
+      "destination": "standards/ai/repository-lifecycle-standard.md",
+      "rationale": "Moved from the canonical doctrine/build-kit source."
+    },
+    {
+      "source": "apt-principles/standards/ai/security-harness-standard.md",
+      "classification": "migrated",
+      "destination": "standards/ai/security-harness-standard.md",
+      "rationale": "Moved from the canonical doctrine/build-kit source."
+    },
+    {
+      "source": "apt-principles/standards/ai/token-efficiency-standard.md",
+      "classification": "migrated",
+      "destination": "standards/ai/token-efficiency-standard.md",
+      "rationale": "Moved from the canonical doctrine/build-kit source."
+    },
+    {
+      "source": "apt-principles/standards/ai/verification-standard.md",
+      "classification": "migrated",
+      "destination": "standards/ai/verification-standard.md",
+      "rationale": "Moved from the canonical doctrine/build-kit source."
+    },
+    {
+      "source": "apt-principles/standards/api/api-standards.md",
+      "classification": "migrated",
+      "destination": "standards/api/api-standards.md",
+      "rationale": "Moved from the canonical doctrine/build-kit source."
+    },
+    {
+      "source": "apt-principles/standards/coding/coding-standards.md",
+      "classification": "migrated",
+      "destination": "standards/coding/coding-standards.md",
+      "rationale": "Moved from the canonical doctrine/build-kit source."
+    },
+    {
+      "source": "apt-principles/standards/data/data-standards.md",
+      "classification": "migrated",
+      "destination": "standards/data/data-standards.md",
+      "rationale": "Moved from the canonical doctrine/build-kit source."
+    },
+    {
+      "source": "apt-principles/standards/documentation/documentation-standards.md",
+      "classification": "migrated",
+      "destination": "standards/documentation/documentation-standards.md",
+      "rationale": "Moved from the canonical doctrine/build-kit source."
+    },
+    {
+      "source": "apt-principles/standards/observability/observability-standards.md",
+      "classification": "migrated",
+      "destination": "standards/observability/observability-standards.md",
+      "rationale": "Moved from the canonical doctrine/build-kit source."
+    },
+    {
+      "source": "apt-principles/standards/README.md",
+      "classification": "migrated",
+      "destination": "standards/README.md",
+      "rationale": "Moved from the canonical doctrine/build-kit source."
+    },
+    {
+      "source": "apt-principles/standards/testing/testing-standards.md",
+      "classification": "migrated",
+      "destination": "standards/testing/testing-standards.md",
+      "rationale": "Moved from the canonical doctrine/build-kit source."
+    },
+    {
+      "source": "apt-principles/system-standards.md",
+      "classification": "migrated",
+      "destination": "principles/system-standards/README.md",
+      "rationale": "Promoted into the canonical APT principles hub."
+    },
+    {
+      "source": "apt-principles/templates/ADR-TEMPLATE.md",
+      "classification": "migrated",
+      "destination": "templates/ADR-TEMPLATE.md",
+      "rationale": "Preserved as active source-backed guidance."
+    },
+    {
+      "source": "apt-principles/templates/AGENTS.md",
+      "classification": "migrated",
+      "destination": "templates/AGENTS.md",
+      "rationale": "Preserved as active source-backed guidance."
+    },
+    {
+      "source": "apt-principles/templates/apt-audit-report-template.md",
+      "classification": "migrated",
+      "destination": "templates/apt-audit-report-template.md",
+      "rationale": "Preserved as active source-backed guidance."
+    },
+    {
+      "source": "apt-principles/templates/ARCHITECTURE.md",
+      "classification": "migrated",
+      "destination": "templates/ARCHITECTURE.md",
+      "rationale": "Preserved as active source-backed guidance."
+    },
+    {
+      "source": "apt-principles/templates/checklist-template.md",
+      "classification": "migrated",
+      "destination": "templates/checklist-template.md",
+      "rationale": "Preserved as active source-backed guidance."
+    },
+    {
+      "source": "apt-principles/templates/CONTRIBUTING.md",
+      "classification": "migrated",
+      "destination": "templates/CONTRIBUTING.md",
+      "rationale": "Preserved as active source-backed guidance."
+    },
+    {
+      "source": "apt-principles/templates/copilot-instructions.md",
+      "classification": "migrated",
+      "destination": "templates/copilot-instructions.md",
+      "rationale": "Preserved as active source-backed guidance."
+    },
+    {
+      "source": "apt-principles/templates/DESIGN.md",
+      "classification": "migrated",
+      "destination": "templates/DESIGN.md",
+      "rationale": "Preserved as active source-backed guidance."
+    },
+    {
+      "source": "apt-principles/templates/example-template.md",
+      "classification": "migrated",
+      "destination": "templates/example-template.md",
+      "rationale": "Preserved as active source-backed guidance."
+    },
+    {
+      "source": "apt-principles/templates/principle-doc-template.md",
+      "classification": "migrated",
+      "destination": "templates/principle-doc-template.md",
+      "rationale": "Preserved as active source-backed guidance."
+    },
+    {
+      "source": "apt-principles/templates/project-adoption-template.md",
+      "classification": "migrated",
+      "destination": "templates/project-adoption-template.md",
+      "rationale": "Preserved as active source-backed guidance."
+    },
+    {
+      "source": "apt-principles/templates/prompt-template.md",
+      "classification": "migrated",
+      "destination": "templates/prompt-template.md",
+      "rationale": "Preserved as active source-backed guidance."
+    },
+    {
+      "source": "apt-principles/templates/README.md",
+      "classification": "retired",
+      "destination": null,
+      "rationale": "No active canonical or operational dependency remains; source history and hashes preserve the artifact."
+    },
+    {
+      "source": "apt-principles/thinking.md",
+      "classification": "migrated",
+      "destination": "principles/thinking/README.md",
+      "rationale": "Promoted into the canonical APT principles hub."
+    }
+  ]
+}

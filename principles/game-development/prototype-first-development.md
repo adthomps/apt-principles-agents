@@ -5,6 +5,8 @@ status: active
 owner: APT
 last_updated: 2026-06-27
 source: APT game-development enhancement
+domain: "game-development"
+source_paths: ["apt-principles-agents/principles/game-development/prototype-first-development.md"]
 ---
 
 # Prototype-First Game Development

@@ -5,6 +5,8 @@ status: active
 owner: APT
 last_updated: 2026-06-27
 source: APT consolidated examples
+domain: "payment-api"
+source_paths: ["apt-principles-agents/examples/payment-api/README.md"]
 ---
 
 # Payment API

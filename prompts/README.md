@@ -5,6 +5,8 @@ status: active
 owner: APT
 last_updated: 2026-06-27
 source: APT consolidation
+domain: "README"
+source_paths: ["apt-principles-agents/prompts/README.md"]
 ---
 
 # APT Prompts

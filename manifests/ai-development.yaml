@@ -1,0 +1,21 @@
+name: ai-development
+description: Agent routing, model selection, prompt engineering, evaluation, and AI output review.
+principles:
+  - principles/ai/
+standards:
+  - standards/ai/
+checklists:
+  - checklists/ai-agent-review-checklist.md
+context:
+  - context-packs/apt-agent-pack.md
+skills:
+  - skills/ai-agents/
+  - platforms/codex/source/skills/ai-output-review/
+agents:
+  - agents/harness/
+  - agents/core/apt-router.md
+templates:
+prompts:
+  - prompts/swarm-reviews/
+  - prompts/agent-harness-review-prompt.md
+platforms:

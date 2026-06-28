@@ -5,6 +5,8 @@ status: active
 owner: APT
 last_updated: 2026-06-27
 source: APT consolidated examples
+domain: "stablecoin-payment"
+source_paths: ["apt-principles-agents/examples/stablecoin-payment/README.md"]
 ---
 
 # Stablecoin Payment

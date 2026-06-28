@@ -1,17 +1,24 @@
 name: full
-description: All active APT principles, skills, agents, templates, prompts, examples, Product Hubs, and adapters, including game development.
+description: All supported APT capabilities.
+extends:
+  - standard
+  - cloudflare
+  - migration
+  - modernization
+  - knowledge-graph
+  - lovable
+  - payments
+  - health
+  - training
+  - ai-development
+  - product-hub
+  - game-development
 principles:
-  - principles/
+standards:
+checklists:
+context:
 skills:
-  - skills/
 agents:
-  - agents/
 templates:
-  - templates/
-  - product-hubs/
 prompts:
-  - prompts/
-examples:
-  - examples/
 platforms:
-  - platforms/

@@ -5,6 +5,8 @@ status: active
 owner: APT
 last_updated: 2026-06-27
 source: APT consolidated examples
+domain: "nvp-to-rest"
+source_paths: ["apt-principles-agents/examples/nvp-to-rest/README.md"]
 ---
 
 # NVP To Rest

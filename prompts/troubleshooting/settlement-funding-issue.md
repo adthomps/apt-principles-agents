@@ -5,6 +5,8 @@ status: active
 owner: APT
 last_updated: 2026-06-27
 source: APT prompt consolidation
+domain: "troubleshooting"
+source_paths: ["apt-principles-agents/prompts/troubleshooting/settlement-funding-issue.md"]
 ---
 
 # Settlement Funding Issue

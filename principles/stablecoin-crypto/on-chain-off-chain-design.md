@@ -5,6 +5,8 @@ status: active
 owner: APT
 last_updated: 2026-06-27
 source: apt-principles and apt-agent-standards
+domain: "stablecoin-crypto"
+source_paths: ["apt-principles-agents/principles/stablecoin-crypto/on-chain-off-chain-design.md"]
 ---
 
 # On Chain Off Chain Design
@@ -41,6 +43,13 @@ Every decision must state one: **Mature today**, **Emerging**, **Future-looking*
 4. How will engineering, security, documentation, and support verify readiness?
 5. What remains uncertain and who must approve it?
 
+## Topic-Specific Guidance
+
+- Treat **On Chain Off Chain Design** as an explicit decision with defined scope, evidence, owner, and validation.
+- Separate on-chain finality and fees from off-chain ledger, custody, reconciliation, and counterparty behavior.
+- State what is verified, what is assumed, and what requires specialist or human approval.
+
+See the [Stablecoin Crypto canonical hub](README.md) and linked standards/checklists before making final claims.
 ## Related
 
 - [APT Principles](../README.md)

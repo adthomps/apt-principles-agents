@@ -5,6 +5,8 @@ status: active
 owner: APT
 last_updated: 2026-06-27
 source: APT consolidation
+domain: "service-readiness"
+source_paths: ["apt-principles-agents/principles/service-readiness/README.md"]
 ---
 
 # Service Readiness Principles

@@ -5,6 +5,8 @@ status: active
 owner: APT
 last_updated: 2026-06-27
 source: APT consolidation
+domain: "platforms"
+source_paths: ["apt-principles-agents/platforms/claude/README.md"]
 ---
 
 # Claude Adapter

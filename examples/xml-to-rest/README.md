@@ -5,6 +5,8 @@ status: active
 owner: APT
 last_updated: 2026-06-27
 source: APT consolidated examples
+domain: "xml-to-rest"
+source_paths: ["apt-principles-agents/examples/xml-to-rest/README.md"]
 ---
 
 # XML To Rest

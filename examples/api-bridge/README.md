@@ -5,6 +5,8 @@ status: active
 owner: APT
 last_updated: 2026-06-27
 source: APT consolidated examples
+domain: "api-bridge"
+source_paths: ["apt-principles-agents/examples/api-bridge/README.md"]
 ---
 
 # API Bridge

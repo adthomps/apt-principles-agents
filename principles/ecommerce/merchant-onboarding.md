@@ -5,6 +5,8 @@ status: active
 owner: APT
 last_updated: 2026-06-27
 source: apt-principles and apt-agent-standards
+domain: "ecommerce"
+source_paths: ["apt-principles-agents/principles/ecommerce/merchant-onboarding.md"]
 ---
 
 # Merchant Onboarding
@@ -37,6 +39,13 @@ Review for conversion-only design, hidden fees or states, brittle checkout recov
 4. How will engineering, security, documentation, and support verify readiness?
 5. What remains uncertain and who must approve it?
 
+## Topic-Specific Guidance
+
+- Treat **Merchant Onboarding** as an explicit decision with defined scope, evidence, owner, and validation.
+- Cover eligibility, identity, configuration, permissions, training, readiness, and support handoff.
+- State what is verified, what is assumed, and what requires specialist or human approval.
+
+See the [Ecommerce canonical hub](README.md) and linked standards/checklists before making final claims.
 ## Related
 
 - [APT Principles](../README.md)

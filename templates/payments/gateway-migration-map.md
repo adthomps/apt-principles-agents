@@ -5,6 +5,8 @@ status: active
 owner: APT
 last_updated: 2026-06-27
 source: APT source templates
+domain: "payments"
+source_paths: ["apt-principles-agents/templates/payments/gateway-migration-map.md"]
 ---
 
 # Gateway Migration Map

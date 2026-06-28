@@ -5,6 +5,8 @@ status: active
 owner: APT
 last_updated: 2026-06-27
 source: APT consolidation
+domain: "launch-readiness"
+source_paths: ["apt-principles-agents/templates/launch-readiness/README.md"]
 ---
 
 # Launch Readiness Templates

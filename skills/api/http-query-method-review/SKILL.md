@@ -6,6 +6,9 @@ status: active
 owner: APT
 last_updated: 2026-06-27
 source: consolidated APT guidance
+title: "HTTP Query Method Review"
+domain: "api"
+source_paths: ["apt-principles-agents/skills/api/http-query-method-review/SKILL.md"]
 ---
 
 # HTTP Query Method Review
@@ -41,6 +44,15 @@ A concise recommendation, evidence map, required changes, risks, validation plan
 
 The output is practical, source-backed, audience-aware, testable, reversible where possible, and does not state assumptions as facts.
 
+## Domain Checklist
+
+- Treat **Http Query Method Review** as an explicit decision with defined scope, evidence, owner, and validation.
+- Document query safety, cache behavior, intermediary support, payload limits, authorization, and fallbacks.
+- State what is verified, what is assumed, and what requires specialist or human approval.
+
+## Required Reading
+
+Read the canonical Api principle hub, the closest enforceable standard, the applicable checklist, and exact target-repository evidence.
 ## References
 
 - [API principles](../../../principles/api/README.md)

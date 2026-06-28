@@ -5,6 +5,8 @@ status: active
 owner: APT
 last_updated: 2026-06-27
 source: APT source templates
+domain: "agent-reviews"
+source_paths: ["apt-principles-agents/templates/agent-reviews/micro-group-review.md"]
 ---
 
 # Micro Group Review

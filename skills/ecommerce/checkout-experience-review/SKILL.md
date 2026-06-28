@@ -6,6 +6,9 @@ status: active
 owner: APT
 last_updated: 2026-06-27
 source: consolidated APT guidance
+title: "Checkout Experience Review"
+domain: "ecommerce"
+source_paths: ["apt-principles-agents/skills/ecommerce/checkout-experience-review/SKILL.md"]
 ---
 
 # Checkout Experience Review
@@ -41,6 +44,15 @@ A concise recommendation, evidence map, required changes, risks, validation plan
 
 The output is practical, source-backed, audience-aware, testable, reversible where possible, and does not state assumptions as facts.
 
+## Domain Checklist
+
+- Treat **Checkout Experience Review** as an explicit decision with defined scope, evidence, owner, and validation.
+- Map customer intent through validation, payment, confirmation, recovery, accessibility, and support.
+- State what is verified, what is assumed, and what requires specialist or human approval.
+
+## Required Reading
+
+Read the canonical Ecommerce principle hub, the closest enforceable standard, the applicable checklist, and exact target-repository evidence.
 ## References
 
 - [Ecommerce principles](../../../principles/ecommerce/README.md)

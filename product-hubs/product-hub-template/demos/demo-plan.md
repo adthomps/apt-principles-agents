@@ -5,6 +5,8 @@ status: active
 owner: APT
 last_updated: 2026-06-27
 source: APT source templates
+domain: "repository"
+source_paths: ["apt-principles-agents/product-hubs/product-hub-template/demos/demo-plan.md"]
 ---
 
 # Demo Plan

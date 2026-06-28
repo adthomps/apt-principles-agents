@@ -5,6 +5,8 @@ status: active
 owner: APT
 last_updated: 2026-06-27
 source: apt-agent-standards roles and APT doctrine
+domain: "api"
+source_paths: ["apt-principles-agents/agents/api/apt-api-reviewer.md"]
 ---
 
 # Apt API Reviewer

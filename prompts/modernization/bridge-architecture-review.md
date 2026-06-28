@@ -5,6 +5,8 @@ status: active
 owner: APT
 last_updated: 2026-06-27
 source: APT prompt consolidation
+domain: "modernization"
+source_paths: ["apt-principles-agents/prompts/modernization/bridge-architecture-review.md"]
 ---
 
 # Bridge Architecture Review

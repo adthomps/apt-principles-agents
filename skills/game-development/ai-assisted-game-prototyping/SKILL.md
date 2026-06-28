@@ -6,6 +6,9 @@ status: active
 owner: APT
 last_updated: 2026-06-27
 source: APT game-development enhancement
+title: "AI-Assisted Game Prototyping"
+domain: "game-development"
+source_paths: ["apt-principles-agents/skills/game-development/ai-assisted-game-prototyping/SKILL.md"]
 ---
 
 # AI-Assisted Game Prototyping

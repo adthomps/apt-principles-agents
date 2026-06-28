@@ -5,6 +5,8 @@ status: active
 owner: APT
 last_updated: 2026-06-27
 source: APT consolidation
+domain: "support"
+source_paths: ["apt-principles-agents/templates/support/README.md"]
 ---
 
 # Support Templates

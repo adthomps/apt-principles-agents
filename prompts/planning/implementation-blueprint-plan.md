@@ -5,6 +5,8 @@ status: active
 owner: APT
 last_updated: 2026-06-27
 source: APT prompt consolidation
+domain: "planning"
+source_paths: ["apt-principles-agents/prompts/planning/implementation-blueprint-plan.md"]
 ---
 
 # Implementation Blueprint Plan

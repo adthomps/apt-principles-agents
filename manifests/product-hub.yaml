@@ -1,20 +1,17 @@
 name: product-hub
-description: Product Hub standards, templates, reviews, and generic payment example.
+description: Audience-layered Product Hub construction and review.
+extends:
+  - documentation
+  - governance
 principles:
-  - principles/documentation/product-hub-standard.md
-  - principles/design/
+standards:
+checklists:
+context:
 skills:
-  - skills/documentation/product-hub-builder/
-  - skills/documentation/audience-layered-docs/
 agents:
-  - agents/docs/apt-product-hub-builder.md
-  - agents/customer/
-  - agents/beginner-reviewers/
 templates:
   - product-hubs/product-hub-template/
   - templates/product/
-  - templates/docs/
 prompts:
   - prompts/product-hubs/
 platforms:
-  - platforms/

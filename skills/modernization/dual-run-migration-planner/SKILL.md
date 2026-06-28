@@ -6,6 +6,9 @@ status: active
 owner: APT
 last_updated: 2026-06-27
 source: consolidated APT guidance
+title: "Dual Run Migration Planner"
+domain: "modernization"
+source_paths: ["apt-principles-agents/skills/modernization/dual-run-migration-planner/SKILL.md"]
 ---
 
 # Dual Run Migration Planner
@@ -41,6 +44,15 @@ A concise recommendation, evidence map, required changes, risks, validation plan
 
 The output is practical, source-backed, audience-aware, testable, reversible where possible, and does not state assumptions as facts.
 
+## Domain Checklist
+
+- Treat **Dual Run Migration Planner** as an explicit decision with defined scope, evidence, owner, and validation.
+- Define traffic selection, comparison metrics, divergence handling, rollback, and exit thresholds.
+- State what is verified, what is assumed, and what requires specialist or human approval.
+
+## Required Reading
+
+Read the canonical Modernization principle hub, the closest enforceable standard, the applicable checklist, and exact target-repository evidence.
 ## References
 
 - [Modernization principles](../../../principles/modernization/README.md)

@@ -5,6 +5,8 @@ status: active
 owner: APT
 last_updated: 2026-06-27
 source: APT source templates
+domain: "prd"
+source_paths: ["apt-principles-agents/templates/prd/PRD.md"]
 ---
 
 # PRD

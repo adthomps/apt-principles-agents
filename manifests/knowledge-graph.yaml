@@ -1,0 +1,16 @@
+name: knowledge-graph
+description: Knowledge graph hygiene, graph-backed review, provenance, and evidence.
+principles:
+  - principles/execution/knowledge-and-learning.md
+standards:
+  - standards/installable-summaries/knowledge-graph-standards.md
+checklists:
+context:
+  - context-packs/
+skills:
+  - platforms/codex/source/skills/knowledge-graph-review/
+agents:
+templates:
+prompts:
+  - platforms/github-copilot/distribution/prompts/knowledge-graph-review.prompt.md
+platforms:

@@ -6,6 +6,9 @@ status: active
 owner: APT
 last_updated: 2026-06-27
 source: APT game-development enhancement
+title: "Scene Flow Planner"
+domain: "game-development"
+source_paths: ["apt-principles-agents/skills/game-development/scene-flow-planner/SKILL.md"]
 ---
 
 # Scene Flow Planner

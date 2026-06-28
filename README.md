@@ -5,11 +5,13 @@ status: active
 owner: APT
 last_updated: 2026-06-27
 source: APT consolidation
+domain: "repository"
+source_paths: ["apt-principles-agents/README.md"]
 ---
 
 # APT Principles + Agents
 
-**apt-principles-agents** is the canonical operating system for APT thinking, design, architecture, and execution. It consolidates the doctrine from **apt-principles** with the reusable agent workflows from **apt-agent-standards** while keeping principles distinct from procedures and platform adapters.
+**apt-principles-agents** is the canonical operating system for APT thinking, design, architecture, and execution. It consolidates the doctrine from **apt-principles-agents** with the reusable agent workflows from **apt-principles-agents** while keeping principles distinct from procedures and platform adapters.
 
 ## Four Pillars
 
@@ -20,7 +22,7 @@ source: APT consolidation
 
 ## Use It As A Human
 
-Start in [principles](principles/README.md), choose a [template](templates/README.md), use a [skill](skills/README.md) for the workflow, and ask the relevant [agent perspective](agents/README.md) to review the result. Product-facing work should use a [Product Hub](product-hubs/README.md).
+Start in [principles](principles/README.md), choose a [template](./templates/README.md), use a [skill](skills/README.md) for the workflow, and ask the relevant [agent perspective](agents/README.md) to review the result. Product-facing work should use a [Product Hub](product-hubs/README.md).
 
 ## Use It With AI Tools
 
@@ -41,6 +43,8 @@ Choose a manifest such as **core**, **payments**, **api-modernization**, **docum
 ```bash
 ./installers/install-skills.sh --target ../my-project --manifest core --dry-run
 ```
+
+See [distribution setup](docs/operations/setup.md), [routine operations](docs/operations/operating.md), and the [workspace rollout gate](docs/operations/workspace-rollout.md).
 
 Existing files are skipped by default. The force option creates timestamped backups before replacement.
 

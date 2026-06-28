@@ -5,6 +5,8 @@ status: active
 owner: APT
 last_updated: 2026-06-27
 source: apt-principles and apt-agent-standards
+domain: "api"
+source_paths: ["apt-principles-agents/principles/api/webhook-design.md"]
 ---
 
 # Webhook Design
@@ -37,6 +39,13 @@ Review for fashion-driven protocol choices, ambiguous errors, unsafe retries, un
 4. How will engineering, security, documentation, and support verify readiness?
 5. What remains uncertain and who must approve it?
 
+## Topic-Specific Guidance
+
+- Treat **Webhook Design** as an explicit decision with defined scope, evidence, owner, and validation.
+- Cover signatures, replay defense, duplicate delivery, ordering, retries, dead letters, and operator recovery.
+- State what is verified, what is assumed, and what requires specialist or human approval.
+
+See the [Api canonical hub](README.md) and linked standards/checklists before making final claims.
 ## Related
 
 - [APT Principles](../README.md)

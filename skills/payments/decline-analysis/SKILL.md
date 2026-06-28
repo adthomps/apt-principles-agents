@@ -6,6 +6,9 @@ status: active
 owner: APT
 last_updated: 2026-06-27
 source: consolidated APT guidance
+title: "Decline Analysis"
+domain: "payments"
+source_paths: ["apt-principles-agents/skills/payments/decline-analysis/SKILL.md"]
 ---
 
 # Decline Analysis
@@ -41,6 +44,15 @@ A concise recommendation, evidence map, required changes, risks, validation plan
 
 The output is practical, source-backed, audience-aware, testable, reversible where possible, and does not state assumptions as facts.
 
+## Domain Checklist
+
+- Treat **Decline Analysis** as an explicit decision with defined scope, evidence, owner, and validation.
+- Separate issuer, processor, validation, risk, and configuration causes and provide safe next actions.
+- State what is verified, what is assumed, and what requires specialist or human approval.
+
+## Required Reading
+
+Read the canonical Payments principle hub, the closest enforceable standard, the applicable checklist, and exact target-repository evidence.
 ## References
 
 - [Payments principles](../../../principles/payments/README.md)

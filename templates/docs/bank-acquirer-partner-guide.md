@@ -5,6 +5,8 @@ status: active
 owner: APT
 last_updated: 2026-06-27
 source: APT source templates
+domain: "docs"
+source_paths: ["apt-principles-agents/templates/docs/bank-acquirer-partner-guide.md"]
 ---
 
 # Bank Acquirer Partner Guide

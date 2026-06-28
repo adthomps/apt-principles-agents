@@ -6,6 +6,9 @@ status: active
 owner: APT
 last_updated: 2026-06-27
 source: consolidated APT guidance
+title: "Legacy API Inventory"
+domain: "modernization"
+source_paths: ["apt-principles-agents/skills/modernization/legacy-api-inventory/SKILL.md"]
 ---
 
 # Legacy API Inventory
@@ -41,6 +44,15 @@ A concise recommendation, evidence map, required changes, risks, validation plan
 
 The output is practical, source-backed, audience-aware, testable, reversible where possible, and does not state assumptions as facts.
 
+## Domain Checklist
+
+- Treat **Legacy Api Inventory** as an explicit decision with defined scope, evidence, owner, and validation.
+- Required evidence: legacy inventory, mappings, parity, tests, dual run, rollback, deprecation.
+- State what is verified, what is assumed, and what requires specialist or human approval.
+
+## Required Reading
+
+Read the canonical Modernization principle hub, the closest enforceable standard, the applicable checklist, and exact target-repository evidence.
 ## References
 
 - [Modernization principles](../../../principles/modernization/README.md)

@@ -5,6 +5,8 @@ status: active
 owner: APT
 last_updated: 2026-06-27
 source: APT game-development enhancement
+domain: "documentation"
+source_paths: ["apt-principles-agents/docs/game-development-glossary.md"]
 ---
 
 # Game Development Glossary

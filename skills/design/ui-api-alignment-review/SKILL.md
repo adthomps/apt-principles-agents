@@ -6,6 +6,9 @@ status: active
 owner: APT
 last_updated: 2026-06-27
 source: consolidated APT guidance
+title: "UI API Alignment Review"
+domain: "design"
+source_paths: ["apt-principles-agents/skills/design/ui-api-alignment-review/SKILL.md"]
 ---
 
 # UI API Alignment Review
@@ -41,6 +44,15 @@ A concise recommendation, evidence map, required changes, risks, validation plan
 
 The output is practical, source-backed, audience-aware, testable, reversible where possible, and does not state assumptions as facts.
 
+## Domain Checklist
+
+- Treat **Ui Api Alignment Review** as an explicit decision with defined scope, evidence, owner, and validation.
+- Required evidence: intent, audience, journey, roles, states, accessibility, UI/API alignment.
+- State what is verified, what is assumed, and what requires specialist or human approval.
+
+## Required Reading
+
+Read the canonical Design principle hub, the closest enforceable standard, the applicable checklist, and exact target-repository evidence.
 ## References
 
 - [Design principles](../../../principles/design/README.md)

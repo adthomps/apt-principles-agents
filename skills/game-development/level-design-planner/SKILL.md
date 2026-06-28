@@ -6,6 +6,9 @@ status: active
 owner: APT
 last_updated: 2026-06-27
 source: APT game-development enhancement
+title: "Level Design Planner"
+domain: "game-development"
+source_paths: ["apt-principles-agents/skills/game-development/level-design-planner/SKILL.md"]
 ---
 
 # Level Design Planner

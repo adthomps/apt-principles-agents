@@ -6,6 +6,9 @@ status: active
 owner: APT
 last_updated: 2026-06-27
 source: APT game-development enhancement
+title: "Pixel Art Pipeline"
+domain: "game-development"
+source_paths: ["apt-principles-agents/skills/game-development/pixel-art-pipeline/SKILL.md"]
 ---
 
 # Pixel Art Pipeline

@@ -1,0 +1,25 @@
+name: cloudflare
+description: Cloudflare Workers, Hono, Pages, bindings, deployment, and modernization.
+principles:
+  - principles/architecture/cloudflare-hono-architecture.md
+standards:
+  - standards/installable-summaries/cloudflare-standards.md
+checklists:
+  - checklists/architecture-review-checklist.md
+  - checklists/security-review-checklist.md
+context:
+  - context-packs/apt-cloudflare-pack.md
+  - context/cloudflare/
+skills:
+  - skills/architecture/cloudflare-hono-architecture/
+  - platforms/codex/source/skills/cloudflare-react-hono/
+  - platforms/codex/source/skills/cloudflare-modernization/
+agents:
+  - agents/engineering/apt-cloudflare-hono-engineer.md
+  - platforms/claude/source/agents/cloudflare-architect.md
+  - platforms/claude/source/agents/cloudflare-modernization-architect.md
+templates:
+prompts:
+platforms:
+  - platforms/github-copilot/distribution/instructions/cloudflare.instructions.md
+  - platforms/github-copilot/distribution/prompts/cloudflare-modernization.prompt.md

@@ -6,6 +6,9 @@ status: active
 owner: APT
 last_updated: 2026-06-27
 source: consolidated APT guidance
+title: "Partner Acquirer Onboarding Review"
+domain: "ecommerce"
+source_paths: ["apt-principles-agents/skills/ecommerce/partner-acquirer-onboarding-review/SKILL.md"]
 ---
 
 # Partner Acquirer Onboarding Review
@@ -41,6 +44,15 @@ A concise recommendation, evidence map, required changes, risks, validation plan
 
 The output is practical, source-backed, audience-aware, testable, reversible where possible, and does not state assumptions as facts.
 
+## Domain Checklist
+
+- Treat **Partner Acquirer Onboarding Review** as an explicit decision with defined scope, evidence, owner, and validation.
+- Cover eligibility, identity, configuration, permissions, training, readiness, and support handoff.
+- State what is verified, what is assumed, and what requires specialist or human approval.
+
+## Required Reading
+
+Read the canonical Ecommerce principle hub, the closest enforceable standard, the applicable checklist, and exact target-repository evidence.
 ## References
 
 - [Ecommerce principles](../../../principles/ecommerce/README.md)

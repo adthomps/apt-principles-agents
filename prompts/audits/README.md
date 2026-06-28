@@ -5,6 +5,8 @@ status: active
 owner: APT
 last_updated: 2026-06-27
 source: APT consolidation
+domain: "audits"
+source_paths: ["apt-principles-agents/prompts/audits/README.md"]
 ---
 
 # Audits Prompts

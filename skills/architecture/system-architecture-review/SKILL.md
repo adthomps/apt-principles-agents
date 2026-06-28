@@ -6,6 +6,9 @@ status: active
 owner: APT
 last_updated: 2026-06-27
 source: consolidated APT guidance
+title: "System Architecture Review"
+domain: "architecture"
+source_paths: ["apt-principles-agents/skills/architecture/system-architecture-review/SKILL.md"]
 ---
 
 # System Architecture Review
@@ -41,6 +44,15 @@ A concise recommendation, evidence map, required changes, risks, validation plan
 
 The output is practical, source-backed, audience-aware, testable, reversible where possible, and does not state assumptions as facts.
 
+## Domain Checklist
+
+- Treat **System Architecture Review** as an explicit decision with defined scope, evidence, owner, and validation.
+- Define boundaries, ownership, contracts, failure modes, deployment, observability, and reversibility.
+- State what is verified, what is assumed, and what requires specialist or human approval.
+
+## Required Reading
+
+Read the canonical Architecture principle hub, the closest enforceable standard, the applicable checklist, and exact target-repository evidence.
 ## References
 
 - [Architecture principles](../../../principles/architecture/README.md)

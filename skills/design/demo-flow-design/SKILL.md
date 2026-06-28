@@ -6,6 +6,9 @@ status: active
 owner: APT
 last_updated: 2026-06-27
 source: consolidated APT guidance
+title: "Demo Flow Design"
+domain: "design"
+source_paths: ["apt-principles-agents/skills/design/demo-flow-design/SKILL.md"]
 ---
 
 # Demo Flow Design
@@ -41,6 +44,15 @@ A concise recommendation, evidence map, required changes, risks, validation plan
 
 The output is practical, source-backed, audience-aware, testable, reversible where possible, and does not state assumptions as facts.
 
+## Domain Checklist
+
+- Treat **Demo Flow Design** as an explicit decision with defined scope, evidence, owner, and validation.
+- Demonstrate verified success, recoverable failure, permissions, support identifiers, and operational follow-through.
+- State what is verified, what is assumed, and what requires specialist or human approval.
+
+## Required Reading
+
+Read the canonical Design principle hub, the closest enforceable standard, the applicable checklist, and exact target-repository evidence.
 ## References
 
 - [Design principles](../../../principles/design/README.md)

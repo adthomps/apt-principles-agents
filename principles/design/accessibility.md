@@ -5,6 +5,8 @@ status: active
 owner: APT
 last_updated: 2026-06-27
 source: apt-principles and apt-agent-standards
+domain: "design"
+source_paths: ["apt-principles-agents/principles/design/accessibility.md"]
 ---
 
 # Accessibility
@@ -37,6 +39,13 @@ Review for screen-first design, missing states, inaccessible interactions, role 
 4. How will engineering, security, documentation, and support verify readiness?
 5. What remains uncertain and who must approve it?
 
+## Topic-Specific Guidance
+
+- Treat **Accessibility** as an explicit decision with defined scope, evidence, owner, and validation.
+- Test keyboard, focus, semantics, contrast, motion, errors, zoom, screen readers, and recovery.
+- State what is verified, what is assumed, and what requires specialist or human approval.
+
+See the [Design canonical hub](README.md) and linked standards/checklists before making final claims.
 ## Related
 
 - [APT Principles](../README.md)

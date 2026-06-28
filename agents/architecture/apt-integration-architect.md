@@ -5,6 +5,8 @@ status: active
 owner: APT
 last_updated: 2026-06-27
 source: apt-agent-standards roles and APT doctrine
+domain: "architecture"
+source_paths: ["apt-principles-agents/agents/architecture/apt-integration-architect.md"]
 ---
 
 # Apt Integration Architect

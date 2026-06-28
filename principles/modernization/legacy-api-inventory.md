@@ -5,6 +5,8 @@ status: active
 owner: APT
 last_updated: 2026-06-27
 source: apt-principles and apt-agent-standards
+domain: "modernization"
+source_paths: ["apt-principles-agents/principles/modernization/legacy-api-inventory.md"]
 ---
 
 # Legacy API Inventory
@@ -37,6 +39,13 @@ Review for forced big-bang migration, silent parity loss, incorrect error transl
 4. How will engineering, security, documentation, and support verify readiness?
 5. What remains uncertain and who must approve it?
 
+## Topic-Specific Guidance
+
+- Treat **Legacy Api Inventory** as an explicit decision with defined scope, evidence, owner, and validation.
+- Required evidence: legacy inventory, mappings, parity, tests, dual run, rollback, deprecation.
+- State what is verified, what is assumed, and what requires specialist or human approval.
+
+See the [Modernization canonical hub](README.md) and linked standards/checklists before making final claims.
 ## Related
 
 - [APT Principles](../README.md)

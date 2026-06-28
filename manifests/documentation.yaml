@@ -1,11 +1,18 @@
 name: documentation
-description: Audience-layered documentation, implementation blueprints, examples, support, diagrams, and demos.
+description: Audience-layered documentation, Product Hubs, knowledge, support, and examples.
 principles:
   - principles/documentation/
-  - principles/service-readiness/
+  - principles/execution/knowledge-and-learning.md
+standards:
+  - standards/documentation/
+checklists:
+  - checklists/documentation-checklist.md
+  - checklists/knowledge-system-checklist.md
+context:
+  - context-packs/apt-docs-pack.md
+  - context/documentation/
 skills:
   - skills/documentation/
-  - skills/service-readiness/
 agents:
   - agents/docs/
   - agents/customer/
@@ -14,7 +21,6 @@ templates:
   - templates/docs/
   - templates/support/
 prompts:
-  - prompts/reviews/docs-review.md
+  - prompts/product-hubs/
   - prompts/troubleshooting/customer-confusion.md
 platforms:
-  - platforms/

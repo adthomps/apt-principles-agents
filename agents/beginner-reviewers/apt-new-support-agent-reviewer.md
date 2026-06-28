@@ -5,6 +5,8 @@ status: active
 owner: APT
 last_updated: 2026-06-27
 source: apt-agent-standards roles and APT doctrine
+domain: "beginner-reviewers"
+source_paths: ["apt-principles-agents/agents/beginner-reviewers/apt-new-support-agent-reviewer.md"]
 ---
 
 # Apt New Support Agent Reviewer

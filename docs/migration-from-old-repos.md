@@ -5,6 +5,8 @@ status: active
 owner: APT
 last_updated: 2026-06-27
 source: APT consolidation
+domain: "documentation"
+source_paths: ["apt-agent-standards/.gitattributes","apt-agent-standards/agent-repo.manifest.json","apt-agent-standards/AGENTS.md","apt-agent-standards/package.json","apt-agent-standards/README.md","apt-principles/.gitattributes","apt-principles/.gitignore","apt-principles/.graphifyignore","apt-principles/AGENTS.md","apt-principles/package.json","apt-principles/README.md"]
 ---
 
 # Migration From Old Repositories

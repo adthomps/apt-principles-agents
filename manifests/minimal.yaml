@@ -1,0 +1,13 @@
+name: minimal
+description: Smallest supported APT installation.
+extends:
+  - core
+principles:
+standards:
+checklists:
+context:
+skills:
+agents:
+templates:
+prompts:
+platforms:

@@ -5,6 +5,8 @@ status: active
 owner: APT
 last_updated: 2026-06-27
 source: apt-principles and apt-agent-standards
+domain: "security-risk"
+source_paths: ["apt-principles-agents/principles/security-risk/compliance-awareness.md"]
 ---
 
 # Compliance Awareness
@@ -37,6 +39,13 @@ Review for implicit authorization, excessive data collection, sensitive logs, un
 4. How will engineering, security, documentation, and support verify readiness?
 5. What remains uncertain and who must approve it?
 
+## Topic-Specific Guidance
+
+- Treat **Compliance Awareness** as an explicit decision with defined scope, evidence, owner, and validation.
+- Name the obligation as an input requiring qualified review; never claim compliance from a checklist alone.
+- State what is verified, what is assumed, and what requires specialist or human approval.
+
+See the [Security Risk canonical hub](README.md) and linked standards/checklists before making final claims.
 ## Related
 
 - [APT Principles](../README.md)

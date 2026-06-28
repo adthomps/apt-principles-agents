@@ -5,6 +5,8 @@ status: active
 owner: APT
 last_updated: 2026-06-27
 source: apt-principles and apt-agent-standards
+domain: "security-risk"
+source_paths: ["apt-principles-agents/principles/security-risk/permission-design.md"]
 ---
 
 # Permission Design
@@ -37,6 +39,13 @@ Review for implicit authorization, excessive data collection, sensitive logs, un
 4. How will engineering, security, documentation, and support verify readiness?
 5. What remains uncertain and who must approve it?
 
+## Topic-Specific Guidance
+
+- Treat **Permission Design** as an explicit decision with defined scope, evidence, owner, and validation.
+- Model permissions by intent, resource, action, role, denial behavior, and escalation path.
+- State what is verified, what is assumed, and what requires specialist or human approval.
+
+See the [Security Risk canonical hub](README.md) and linked standards/checklists before making final claims.
 ## Related
 
 - [APT Principles](../README.md)

@@ -5,6 +5,8 @@ status: active
 owner: APT
 last_updated: 2026-06-27
 source: APT consolidation
+domain: "agent-reviews"
+source_paths: ["apt-principles-agents/templates/agent-reviews/README.md"]
 ---
 
 # Agent Reviews Templates

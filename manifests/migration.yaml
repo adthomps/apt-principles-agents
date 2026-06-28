@@ -1,0 +1,19 @@
+name: migration
+description: Behavior-preserving repository and product migration.
+principles:
+  - principles/modernization/
+  - principles/execution/
+standards:
+  - standards/installable-summaries/migration-standards.md
+checklists:
+  - checklists/repo-alignment-checklist.md
+context:
+skills:
+  - skills/modernization/
+agents:
+  - agents/architecture/apt-modernization-architect.md
+templates:
+  - templates/migration/
+prompts:
+  - prompts/migration/
+platforms:

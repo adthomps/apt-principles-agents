@@ -5,6 +5,8 @@ status: active
 owner: APT
 last_updated: 2026-06-27
 source: APT prompt consolidation
+domain: "swarm-reviews"
+source_paths: ["apt-principles-agents/prompts/swarm-reviews/micro-group-review.md"]
 ---
 
 # Micro Group Review

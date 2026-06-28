@@ -5,6 +5,8 @@ status: active
 owner: APT
 last_updated: 2026-06-27
 source: APT consolidated examples
+domain: "beginner-user-review"
+source_paths: ["apt-principles-agents/examples/beginner-user-review/README.md"]
 ---
 
 # Beginner User Review

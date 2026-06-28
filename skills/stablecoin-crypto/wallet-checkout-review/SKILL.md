@@ -6,6 +6,9 @@ status: active
 owner: APT
 last_updated: 2026-06-27
 source: consolidated APT guidance
+title: "Wallet Checkout Review"
+domain: "stablecoin-crypto"
+source_paths: ["apt-principles-agents/skills/stablecoin-crypto/wallet-checkout-review/SKILL.md"]
 ---
 
 # Wallet Checkout Review
@@ -41,6 +44,15 @@ A concise recommendation, evidence map, required changes, risks, validation plan
 
 The output is practical, source-backed, audience-aware, testable, reversible where possible, and does not state assumptions as facts.
 
+## Domain Checklist
+
+- Treat **Wallet Checkout Review** as an explicit decision with defined scope, evidence, owner, and validation.
+- Map customer intent through validation, payment, confirmation, recovery, accessibility, and support.
+- State what is verified, what is assumed, and what requires specialist or human approval.
+
+## Required Reading
+
+Read the canonical Stablecoin Crypto principle hub, the closest enforceable standard, the applicable checklist, and exact target-repository evidence.
 ## References
 
 - [Stablecoin Crypto principles](../../../principles/stablecoin-crypto/README.md)

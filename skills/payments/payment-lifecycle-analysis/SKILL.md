@@ -6,6 +6,9 @@ status: active
 owner: APT
 last_updated: 2026-06-27
 source: consolidated APT guidance
+title: "Payment Lifecycle Analysis"
+domain: "payments"
+source_paths: ["apt-principles-agents/skills/payments/payment-lifecycle-analysis/SKILL.md"]
 ---
 
 # Payment Lifecycle Analysis
@@ -41,6 +44,15 @@ A concise recommendation, evidence map, required changes, risks, validation plan
 
 The output is practical, source-backed, audience-aware, testable, reversible where possible, and does not state assumptions as facts.
 
+## Domain Checklist
+
+- Treat **Payment Lifecycle Analysis** as an explicit decision with defined scope, evidence, owner, and validation.
+- Trace authorization, capture, settlement, funding, reconciliation, reversal, dispute, and support evidence.
+- State what is verified, what is assumed, and what requires specialist or human approval.
+
+## Required Reading
+
+Read the canonical Payments principle hub, the closest enforceable standard, the applicable checklist, and exact target-repository evidence.
 ## References
 
 - [Payments principles](../../../principles/payments/README.md)

@@ -1,0 +1,16 @@
+name: training
+description: Beginner clarity, learning plans, examples, and progressive enablement.
+extends:
+  - documentation
+principles:
+  - principles/thinking/beginner-clarity.md
+standards:
+checklists:
+context:
+skills:
+  - skills/thinking/beginner-clarity-review/
+agents:
+  - agents/beginner-reviewers/
+templates:
+prompts:
+platforms:

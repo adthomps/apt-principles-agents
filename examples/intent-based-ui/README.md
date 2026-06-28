@@ -5,6 +5,8 @@ status: active
 owner: APT
 last_updated: 2026-06-27
 source: APT consolidated examples
+domain: "intent-based-ui"
+source_paths: ["apt-principles-agents/examples/intent-based-ui/README.md"]
 ---
 
 # Intent Based UI

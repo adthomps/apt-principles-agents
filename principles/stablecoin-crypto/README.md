@@ -5,6 +5,8 @@ status: active
 owner: APT
 last_updated: 2026-06-27
 source: APT consolidation
+domain: "stablecoin-crypto"
+source_paths: ["apt-principles-agents/principles/stablecoin-crypto/README.md"]
 ---
 
 # Stablecoin Crypto Principles

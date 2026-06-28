@@ -5,8 +5,20 @@
   "type": "module",
   "scripts": {
     "validate": "node scripts/validate-repository.mjs",
+    "validate:metadata": "node scripts/normalize-metadata.mjs",
+    "validate:parity": "node scripts/apt-assets.mjs check-parity",
+    "audit:workspace": "node scripts/apt-assets.mjs audit-workspace --workspace-root ..",
+    "detect": "node scripts/apt-assets.mjs detect",
+    "install": "node scripts/apt-assets.mjs install",
+    "scan": "node scripts/apt-assets.mjs scan",
+    "sync": "node scripts/apt-assets.mjs sync",
+    "repair": "node scripts/apt-assets.mjs repair",
+    "validate:ai": "node scripts/validate-ai-readiness.mjs",
+    "validate:project-profile": "node scripts/validate-project-profile.mjs --repo-root .",
+    "scaffold:audit-report": "node scripts/scaffold-apt-audit-report.mjs",
+    "sweep:project-profiles": "node scripts/sweep-project-profiles.mjs",
     "test": "node scripts/test-installers.mjs",
-    "check": "npm run validate && npm run test"
+    "check": "npm run validate && npm run validate:metadata && npm run validate:parity && npm run test"
   },
   "engines": {
     "node": ">=18"

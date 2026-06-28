@@ -6,6 +6,9 @@ status: active
 owner: APT
 last_updated: 2026-06-27
 source: consolidated APT guidance
+title: "Customer Journey Mapping"
+domain: "design"
+source_paths: ["apt-principles-agents/skills/design/customer-journey-mapping/SKILL.md"]
 ---
 
 # Customer Journey Mapping
@@ -41,6 +44,15 @@ A concise recommendation, evidence map, required changes, risks, validation plan
 
 The output is practical, source-backed, audience-aware, testable, reversible where possible, and does not state assumptions as facts.
 
+## Domain Checklist
+
+- Treat **Customer Journey Mapping** as an explicit decision with defined scope, evidence, owner, and validation.
+- Show actor intent, touchpoints, states, decisions, handoffs, failure recovery, and measurable outcome.
+- State what is verified, what is assumed, and what requires specialist or human approval.
+
+## Required Reading
+
+Read the canonical Design principle hub, the closest enforceable standard, the applicable checklist, and exact target-repository evidence.
 ## References
 
 - [Design principles](../../../principles/design/README.md)

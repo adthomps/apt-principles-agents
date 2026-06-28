@@ -5,6 +5,8 @@ status: active
 owner: APT
 last_updated: 2026-06-27
 source: APT prompt consolidation
+domain: "migration"
+source_paths: ["apt-principles-agents/prompts/migration/deprecation-plan.md"]
 ---
 
 # Deprecation Plan

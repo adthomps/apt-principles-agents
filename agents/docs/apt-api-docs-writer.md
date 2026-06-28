@@ -5,6 +5,8 @@ status: active
 owner: APT
 last_updated: 2026-06-27
 source: apt-agent-standards roles and APT doctrine
+domain: "docs"
+source_paths: ["apt-principles-agents/agents/docs/apt-api-docs-writer.md"]
 ---
 
 # Apt API Docs Writer

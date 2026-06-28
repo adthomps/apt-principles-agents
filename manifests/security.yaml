@@ -1,0 +1,21 @@
+name: security
+description: Security, privacy, permissions, data handling, AI safety, and protected decisions.
+principles:
+  - principles/security-risk/
+standards:
+  - standards/ai/security-harness-standard.md
+checklists:
+  - checklists/security-review-checklist.md
+context:
+  - context-packs/apt-security-pack.md
+  - context/security/
+skills:
+  - skills/security-risk/
+agents:
+  - agents/risk/
+  - agents/harness/apt-security-reviewer.md
+templates:
+  - templates/agent-reviews/security-risk-review.md
+prompts:
+  - prompts/reviews/security-risk-review.md
+platforms:

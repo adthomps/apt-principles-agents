@@ -5,6 +5,8 @@ status: active
 owner: APT
 last_updated: 2026-06-27
 source: APT game-development phase-one review
+domain: "documentation"
+source_paths: ["apt-principles-agents/docs/game-development-phase-1-readiness.md"]
 ---
 
 # Game Development Phase-One Readiness Review

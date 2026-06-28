@@ -1,0 +1,11 @@
+name: custom
+description: Explicitly empty manifest for project-owned composition.
+principles:
+standards:
+checklists:
+context:
+skills:
+agents:
+templates:
+prompts:
+platforms:

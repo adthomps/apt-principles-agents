@@ -5,6 +5,8 @@ status: active
 owner: APT
 last_updated: 2026-06-27
 source: apt-agent-standards roles and APT doctrine
+domain: "ecommerce"
+source_paths: ["apt-principles-agents/agents/ecommerce/apt-partner-acquirer-reviewer.md"]
 ---
 
 # Apt Partner Acquirer Reviewer

@@ -1,0 +1,25 @@
+name: governance
+description: Repository adoption, maturity, scorecards, review gates, and source-of-truth governance.
+principles:
+  - principles/framework.md
+standards:
+  - governance/
+  - references/
+checklists:
+  - checklists/repo-alignment-checklist.md
+  - checklists/project-adoption-checklist.md
+context:
+  - context-packs/apt-core-pack.md
+skills:
+  - platforms/codex/source/skills/apt-readiness-audit/
+  - platforms/codex/source/skills/repo-standardization/
+agents:
+  - agents/harness/apt-verifier.md
+  - agents/harness/apt-repo-scanner.md
+templates:
+  - templates/project-adoption-template.md
+  - templates/apt-audit-report-template.md
+prompts:
+  - prompts/repo-alignment-review.md
+  - prompts/apply-apt-principles.md
+platforms:

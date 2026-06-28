@@ -1,14 +1,28 @@
 name: core
-description: Four-pillar APT principles, core thinking/design/architecture/execution skills, agents, templates, prompts, and all adapters.
+description: APT framework, four pillars, baseline standards, checks, skills, agents, and adapters.
 principles:
+  - principles/framework.md
   - principles/thinking/
   - principles/design/
   - principles/architecture/
   - principles/execution/
+standards:
+  - standards/README.md
+  - standards/coding/
+  - standards/documentation/
+  - standards/testing/
+checklists:
+  - checklists/thinking-review-checklist.md
+  - checklists/design-review-checklist.md
+  - checklists/architecture-review-checklist.md
+  - checklists/execution-readiness-checklist.md
+context:
+  - context-packs/apt-core-pack.md
 skills:
   - skills/thinking/
   - skills/design/
   - skills/architecture/
+  - skills/engineering/
 agents:
   - agents/core/
 templates:
@@ -18,4 +32,7 @@ prompts:
   - prompts/planning/
   - prompts/reviews/
 platforms:
-  - platforms/
+  - platforms/codex/README.md
+  - platforms/claude/README.md
+  - platforms/github-copilot/README.md
+  - platforms/gemini/README.md

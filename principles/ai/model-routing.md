@@ -5,6 +5,8 @@ status: active
 owner: APT
 last_updated: 2026-06-27
 source: apt-principles and apt-agent-standards
+domain: "ai"
+source_paths: ["apt-principles-agents/principles/ai/model-routing.md"]
 ---
 
 # Model Routing
@@ -37,6 +39,13 @@ Review for unsupported claims, overpowered tools, weak-model routing for high-st
 4. How will engineering, security, documentation, and support verify readiness?
 5. What remains uncertain and who must approve it?
 
+## Topic-Specific Guidance
+
+- Treat **Model Routing** as an explicit decision with defined scope, evidence, owner, and validation.
+- Route by capability, context, sensitivity, cost, evaluation evidence, fallback, and human approval.
+- State what is verified, what is assumed, and what requires specialist or human approval.
+
+See the [Ai canonical hub](README.md) and linked standards/checklists before making final claims.
 ## Related
 
 - [APT Principles](../README.md)

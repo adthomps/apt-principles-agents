@@ -6,6 +6,9 @@ status: active
 owner: APT
 last_updated: 2026-06-27
 source: APT game-development enhancement
+title: "Player Journey Mapping"
+domain: "game-development"
+source_paths: ["apt-principles-agents/skills/game-development/player-journey-mapping/SKILL.md"]
 ---
 
 # Player Journey Mapping

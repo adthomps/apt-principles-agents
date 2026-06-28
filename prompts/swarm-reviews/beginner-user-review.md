@@ -5,6 +5,8 @@ status: active
 owner: APT
 last_updated: 2026-06-27
 source: APT prompt consolidation
+domain: "swarm-reviews"
+source_paths: ["apt-principles-agents/prompts/swarm-reviews/beginner-user-review.md"]
 ---
 
 # Beginner User Review

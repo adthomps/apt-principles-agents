@@ -5,6 +5,8 @@ status: active
 owner: APT
 last_updated: 2026-06-27
 source: apt-principles and apt-agent-standards
+domain: "service-readiness"
+source_paths: ["apt-principles-agents/principles/service-readiness/launch-readiness.md"]
 ---
 
 # Launch Readiness
@@ -37,6 +39,13 @@ Review for launch without ownership, alerts without action, missing customer-saf
 4. How will engineering, security, documentation, and support verify readiness?
 5. What remains uncertain and who must approve it?
 
+## Topic-Specific Guidance
+
+- Treat **Launch Readiness** as an explicit decision with defined scope, evidence, owner, and validation.
+- Require named owners, evidence, operational checks, support handoff, rollback, communications, and approval.
+- State what is verified, what is assumed, and what requires specialist or human approval.
+
+See the [Service Readiness canonical hub](README.md) and linked standards/checklists before making final claims.
 ## Related
 
 - [APT Principles](../README.md)

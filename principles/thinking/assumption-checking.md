@@ -5,6 +5,8 @@ status: active
 owner: APT
 last_updated: 2026-06-27
 source: apt-principles and apt-agent-standards
+domain: "thinking"
+source_paths: ["apt-principles-agents/principles/thinking/assumption-checking.md"]
 ---
 
 # Assumption Checking
@@ -37,6 +39,13 @@ Review for solution-first framing, false certainty, hidden constraints, and deci
 4. How will engineering, security, documentation, and support verify readiness?
 5. What remains uncertain and who must approve it?
 
+## Topic-Specific Guidance
+
+- Treat **Assumption Checking** as an explicit decision with defined scope, evidence, owner, and validation.
+- Record evidence, confidence, impact if wrong, validation method, owner, and review date.
+- State what is verified, what is assumed, and what requires specialist or human approval.
+
+See the [Thinking canonical hub](README.md) and linked standards/checklists before making final claims.
 ## Related
 
 - [APT Principles](../README.md)

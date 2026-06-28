@@ -1,0 +1,23 @@
+name: api-review
+description: API contracts, auth, errors, webhooks, idempotency, observability, and developer experience.
+principles:
+  - principles/api/
+  - principles/architecture/api-architecture.md
+standards:
+  - standards/api/
+checklists:
+  - checklists/api-standards-checklist.md
+context:
+  - context-packs/apt-api-pack.md
+skills:
+  - skills/api/
+  - platforms/codex/source/skills/api-review/
+agents:
+  - agents/api/
+  - agents/architecture/apt-api-architect.md
+templates:
+  - templates/api/
+prompts:
+  - prompts/audits/api-audit.md
+  - prompts/reviews/api-design-review.md
+platforms:

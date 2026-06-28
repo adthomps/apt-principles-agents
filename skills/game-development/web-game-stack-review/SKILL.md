@@ -6,6 +6,9 @@ status: active
 owner: APT
 last_updated: 2026-06-27
 source: APT game-development enhancement
+title: "Web Game Stack Review"
+domain: "game-development"
+source_paths: ["apt-principles-agents/skills/game-development/web-game-stack-review/SKILL.md"]
 ---
 
 # Web Game Stack Review

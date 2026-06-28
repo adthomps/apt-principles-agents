@@ -6,6 +6,9 @@ status: active
 owner: APT
 last_updated: 2026-06-27
 source: APT game-development enhancement
+title: "Game Engine Selection"
+domain: "game-development"
+source_paths: ["apt-principles-agents/skills/game-development/game-engine-selection/SKILL.md"]
 ---
 
 # Game Engine Selection

@@ -1,0 +1,16 @@
+name: modernization
+description: API bridges, legacy parity, dual-run migration, and deprecation.
+extends:
+  - migration
+  - api-review
+principles:
+standards:
+checklists:
+context:
+skills:
+  - platforms/codex/source/skills/cloudflare-modernization/
+agents:
+templates:
+prompts:
+  - prompts/modernization/
+platforms:

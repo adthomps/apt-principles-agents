@@ -1,16 +1,75 @@
 #!/usr/bin/env node
 import { execFileSync, spawnSync } from "node:child_process";
-import { existsSync, mkdirSync, rmSync, writeFileSync } from "node:fs";
+import { existsSync, mkdirSync, readFileSync, rmSync, writeFileSync } from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
-const root=path.resolve(path.dirname(fileURLToPath(import.meta.url)),"..");const temp=path.join(root,".tmp","installer-test");rmSync(temp,{recursive:true,force:true});mkdirSync(temp,{recursive:true});
-for(const manifest of ["core","payments","api-modernization","documentation","product-hub","game-development","full"])execFileSync("powershell",["-NoProfile","-ExecutionPolicy","Bypass","-File",path.join(root,"installers","install-skills.ps1"),"-Target",temp,"-Manifest",manifest,"-DryRun"],{stdio:"ignore"});
-execFileSync("powershell",["-NoProfile","-ExecutionPolicy","Bypass","-File",path.join(root,"installers","install-skills.ps1"),"-Target",temp,"-Manifest","core"],{stdio:"ignore"});
-if(!existsSync(path.join(temp,".apt","principles","thinking","README.md")))throw new Error("PowerShell asset install failed");
-execFileSync("powershell",["-NoProfile","-ExecutionPolicy","Bypass","-File",path.join(root,"installers","install-skills.ps1"),"-Target",temp,"-Manifest","game-development"],{stdio:"ignore"});
-for(const relative of [path.join("principles","game-development","README.md"),path.join("skills","game-development","prototype-planner","SKILL.md"),path.join("agents","game-development","apt-game-scope-guardian.md"),path.join("templates","game-development","prototype-plan.md"),path.join("prompts","game-development","create-prototype-plan.md"),path.join("examples","game-development","browser-mini-game","README.md")])if(!existsSync(path.join(temp,".apt",relative)))throw new Error("Game development install missing "+relative);
-writeFileSync(path.join(temp,"AGENTS.md"),"local\n");execFileSync("powershell",["-NoProfile","-ExecutionPolicy","Bypass","-File",path.join(root,"installers","install-platform-adapters.ps1"),"-Target",temp,"-DryRun"],{stdio:"ignore"});
-execFileSync("powershell",["-NoProfile","-ExecutionPolicy","Bypass","-File",path.join(root,"installers","install-platform-adapters.ps1"),"-Target",temp,"-Force"],{stdio:"ignore"});
-if(!existsSync(path.join(temp,".apt-backups")))throw new Error("PowerShell backup behavior failed");
-const bash=spawnSync("bash",["--version"],{stdio:"ignore"});if(bash.status===0){execFileSync("bash",["-n",path.join(root,"installers","install-skills.sh")]);execFileSync("bash",["-n",path.join(root,"installers","install-platform-adapters.sh")]);}
-rmSync(path.join(root,".tmp"),{recursive:true,force:true});console.log("Installer tests: PASS"+(bash.status===0?" (PowerShell + Bash syntax)":" (PowerShell; Bash unavailable)"));
+
+const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
+const tempRoot = path.join(root, ".tmp", "installer-tests");
+const target = path.join(tempRoot, "target");
+const legacyTarget = path.join(tempRoot, "legacy-target");
+const cli = path.join(root, "scripts", "apt-assets.mjs");
+
+function run(command, options = {}) {
+  return execFileSync("node", [cli, ...command], { cwd: root, encoding: "utf8", ...options });
+}
+
+rmSync(tempRoot, { recursive: true, force: true });
+mkdirSync(target, { recursive: true });
+mkdirSync(legacyTarget, { recursive: true });
+
+const parity = JSON.parse(run(["check-parity"]));
+if (parity.status !== "passed") throw new Error(`Manifest parity failed: ${parity.issues.join(", ")}`);
+
+const detected = JSON.parse(run(["detect", "--target", target]));
+if (!detected.manifests.includes("core")) throw new Error("Detection did not include core");
+
+run(["install", "--target", target, "--manifests", "core", "--platforms", "none", "--dry-run"]);
+run(["install", "--target", target, "--manifests", "core", "--platforms", "none"]);
+const recordPath = path.join(target, ".apt", "installation.json");
+if (!existsSync(recordPath)) throw new Error("Installation record was not created");
+const record = JSON.parse(readFileSync(recordPath, "utf8"));
+if (!record.schemaVersion || !record.source?.commit || !record.managedFiles?.length) throw new Error("Installation record is incomplete");
+
+const managed = record.managedFiles[0];
+const managedPath = path.join(target, managed.target);
+writeFileSync(managedPath, `${readFileSync(managedPath, "utf8")}\nlocal drift\n`, "utf8");
+let scan = JSON.parse(run(["scan", "--target", target]));
+if (!scan.files.some((item) => item.status === "drifted")) throw new Error("Scan did not detect drift");
+
+const safeSync = JSON.parse(run(["sync", "--target", target, "--apply"]));
+if (!safeSync.actions.some((item) => item.action === "skipped-local-drift")) throw new Error("Sync did not preserve local drift");
+run(["repair", "--target", target, "--apply", "--force"]);
+scan = JSON.parse(run(["scan", "--target", target]));
+if (scan.status !== "current") throw new Error("Forced repair did not restore current state");
+if (!existsSync(path.join(target, ".apt-backups"))) throw new Error("Forced repair did not create a backup");
+
+const uninstallPreview = JSON.parse(run(["uninstall", "--target", target]));
+if (!uninstallPreview.actions.some((item) => item.action === "would-remove")) throw new Error("Uninstall preview is incomplete");
+
+writeFileSync(path.join(legacyTarget, ".agent-standards.json"), `${JSON.stringify({
+  source: "legacy",
+  profiles: ["apt-core", "documentation", "api-review"],
+  managedFiles: [],
+}, null, 2)}\n`, "utf8");
+run(["migrate-legacy", "--target", legacyTarget, "--apply", "--platforms", "none"]);
+if (existsSync(path.join(legacyTarget, ".agent-standards.json"))) throw new Error("Legacy manifest was not removed");
+if (!existsSync(path.join(legacyTarget, ".apt", "installation.json"))) throw new Error("Legacy migration did not create the new record");
+
+execFileSync("powershell", [
+  "-NoProfile",
+  "-ExecutionPolicy", "Bypass",
+  "-File", path.join(root, "installers", "install-skills.ps1"),
+  "-Target", target,
+  "-Manifest", "core",
+  "-DryRun",
+], { stdio: "ignore" });
+
+const bash = spawnSync("bash", ["--version"], { stdio: "ignore" });
+if (bash.status === 0) {
+  execFileSync("bash", ["-n", path.join(root, "installers", "install-skills.sh")]);
+  execFileSync("bash", [path.join(root, "installers", "install-skills.sh"), "--target", target, "--manifest", "core", "--dry-run"], { stdio: "ignore" });
+}
+
+rmSync(tempRoot, { recursive: true, force: true });
+console.log(`Installer lifecycle tests: PASS (${bash.status === 0 ? "PowerShell + Bash" : "PowerShell; Bash unavailable"})`);
