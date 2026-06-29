@@ -12,7 +12,7 @@ source_paths: ["apt-agent-standards/github-copilot/prompts/knowledge-graph-revie
 
 Use this prompt when reviewing whether a repo should participate in a Graphify or knowledge-graph workflow.
 
-Read the repo `README.md`, `AGENTS.md`, `.apt/installation.json`, and `docs/project-context.md` when present. If available, also read `apt-core/knowledge-graph-standards.md` and the APT Graphify runbook in `../apt-principles-agents/reports/GRAPHIFY_RUNBOOK.md`.
+Read the repo `README.md`, `AGENTS.md`, `.apt/installation.json`, and `docs/project-context.md` when present. If available, also read `.apt/standards/installable-summaries/knowledge-graph-standards.md`.
 
 Assess:
 

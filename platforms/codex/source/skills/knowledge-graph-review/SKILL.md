@@ -18,7 +18,7 @@ Use this skill to decide whether a repo should participate in a Graphify/knowled
 
 1. Read the target repo `README.md`.
 2. Read `AGENTS.md`, `.apt/installation.json`, and `docs/project-context.md` when present.
-3. Read `apt-core/knowledge-graph-standards.md` when installed.
+3. Read `.apt/standards/installable-summaries/knowledge-graph-standards.md` when installed.
 4. For APT-wide Graphify workflows, read `../apt-principles-agents/reports/GRAPHIFY_RUNBOOK.md` when available.
 
 ## Review Checklist

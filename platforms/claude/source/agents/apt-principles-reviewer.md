@@ -24,7 +24,7 @@ Use this agent to review code, documentation, plans, and diffs for APT Core alig
 
 - `docs/project-context.md` when present.
 - `AGENTS.md`.
-- Relevant `apt-core/*.md` files.
+- Relevant `.apt/standards/installable-summaries/*.md` files.
 - The files or diff under review.
 
 ## Output Format

@@ -41,6 +41,7 @@ const active = files(root).filter((file) => !relative(file).startsWith("docs/arc
 for (const file of active) if (statSync(file).size === 0) errors.push(`Empty file ${relative(file)}`);
 
 const metadataFields = ["kind", "domain", "status", "owner", "last_updated", "source_paths"];
+const allowedStatuses = new Set(["active", "draft", "stable", "emerging", "future-looking", "deprecated"]);
 for (const file of active.filter((item) => item.endsWith(".md"))) {
   const text = readFileSync(file, "utf8");
   const data = frontmatter(text);
@@ -50,6 +51,10 @@ for (const file of active.filter((item) => item.endsWith(".md"))) {
   }
   if (!data.title && !data.name) errors.push(`Missing title/name metadata: ${relative(file)}`);
   for (const field of metadataFields) if (!data[field]) errors.push(`Missing ${field} metadata: ${relative(file)}`);
+  const status = data.status?.replaceAll(/["']/g, "");
+  const domain = data.domain?.replaceAll(/["']/g, "");
+  if (status && !allowedStatuses.has(status)) errors.push(`Invalid active status ${status}: ${relative(file)}`);
+  if (["README", "repository", "general"].includes(domain)) errors.push(`Non-specific active domain ${domain}: ${relative(file)}`);
 }
 
 const skillHeadings = ["# ", "## Purpose", "## When to Use", "## Inputs", "## Process", "## Outputs", "## Quality Bar", "## References"];
@@ -153,6 +158,29 @@ const hubBase = path.join(root, "product-hubs", "examples", "generic-payment-pro
 for (const file of ["README.md", "overview.md", "audience-map.md", "business-guide.md", "bank-acquirer-partner-guide.md", "developer-integrator-guide.md", "api-guide.md", "api-examples.md", "ai-usage-examples.md", "implementation-blueprint.md", "migration-guide.md", "operations-guide.md", "troubleshooting-guide.md", "launch-readiness-checklist.md", "diagrams/payment-flow.mmd", "demos/demo-plan.md"]) {
   if (!existsSync(path.join(hubBase, file))) errors.push(`Product Hub missing ${file}`);
 }
+for (const file of files(hubBase).filter((item) => item.endsWith(".md"))) {
+  const text = readFileSync(file, "utf8");
+  if (/State who uses this artifact|Product capability and exclusions|Describe how the work will/i.test(text)) errors.push(`Product Hub contains scaffold placeholder: ${relative(file)}`);
+  if ((text.match(/\b[\w'-]+\b/g) || []).length < 60) errors.push(`Product Hub artifact is too shallow: ${relative(file)}`);
+}
+const catalogExpectations = [
+  ["AGENT-CATALOG.md", files(path.join(root, "agents")).filter((item) => item.endsWith(".md") && !item.endsWith("README.md")).length],
+  ["SKILL-CATALOG.md", files(path.join(root, "skills")).filter((item) => item.endsWith("SKILL.md")).length],
+  ["PROMPT-CATALOG.md", files(path.join(root, "prompts")).filter((item) => item.endsWith(".md") && !item.endsWith("README.md")).length],
+  ["TEMPLATE-CATALOG.md", files(path.join(root, "templates")).filter((item) => [".md", ".json"].includes(path.extname(item)) && !item.endsWith("README.md")).length],
+  ["MANIFEST-CATALOG.md", files(path.join(root, "manifests")).filter((item) => item.endsWith(".yaml")).length],
+];
+for (const [catalog, expected] of catalogExpectations) {
+  const text = readFileSync(path.join(root, "docs", "distribution", catalog), "utf8");
+  const rows = (text.match(/^\| \[/gm) || []).length;
+  if (rows !== expected) errors.push(`${catalog} is stale: expected ${expected} entries, found ${rows}`);
+}
+
+const bannedActiveTerms = [/apt-core\//, /profiles\//, /agent-repo\.manifest/, /install-agent-standards/, /sync-agent-standards/, /\.agent-repo/];
+for (const file of active.filter((item) => item.endsWith(".md") && !relative(item).startsWith("docs/migration"))) {
+  const body = readFileSync(file, "utf8").replace(/^---[\s\S]*?---\r?\n?/, "");
+  for (const term of bannedActiveTerms) if (term.test(body)) errors.push(`Retired interface appears in active guidance (${term}): ${relative(file)}`);
+}
 
 const gamePrinciples = ["README.md", "beginner-game-development.md", "game-loop-design.md", "game-mechanics.md", "scope-control.md", "prototype-first-development.md", "player-experience.md", "level-and-scene-design.md", "game-architecture.md", "game-state-and-save-data.md", "input-and-controls.md", "game-ui-and-hud.md", "audio-and-feedback.md", "game-testing.md", "game-documentation.md", "ai-assisted-game-development.md"];
 const gameSkills = ["game-idea-framing", "game-scope-review", "game-loop-designer", "mechanics-designer", "prototype-planner", "level-design-planner", "scene-flow-planner", "player-journey-mapping", "game-ui-hud-review", "input-control-design", "game-state-design", "save-system-design", "game-architecture-review", "game-engine-selection", "web-game-stack-review", "godot-beginner-review", "unity-beginner-review", "phaser-beginner-review", "threejs-beginner-review", "pixel-art-pipeline", "audio-feedback-review", "game-test-plan", "playtest-feedback-review", "game-dev-learning-plan", "ai-assisted-game-prototyping"];
@@ -176,11 +204,6 @@ for (const file of requiredGameFiles) if (!existsSync(path.join(root, file))) er
 
 const linkSkipPrefixes = [
   "docs/archive/",
-  "platforms/claude/source/",
-  "platforms/codex/source/",
-  "platforms/github-copilot/distribution/",
-  "platforms/github-copilot/source/",
-  "platforms/shared-source/",
 ];
 for (const file of active.filter((item) => item.endsWith(".md") && !linkSkipPrefixes.some((prefix) => relative(item).startsWith(prefix)))) {
   const text = readFileSync(file, "utf8");

@@ -19,7 +19,7 @@ carries the equivalent operating instructions.
 
 ## Instructions
 
-1. Read `apt-core/` guidance, `docs/project-context.md`, and the scoped files or diff.
+1. Read `.apt/standards/installable-summaries/` guidance, `docs/project-context.md`, and the scoped files or diff.
 2. Check whether the work preserves behavior, keeps scope clear, and documents material decisions.
 3. Prefer concrete findings over style-only comments.
 4. Flag missing tests, stale docs, unsafe assumptions, and unreviewable changes.

@@ -22,7 +22,7 @@ Use for Lovable-to-Cloudflare conversion, Pages/Workers adoption, or generated a
 Do not use when the app has no Cloudflare deployment target.
 
 ## Required Reading
-Read frontend entry points, API/auth/data code, deployment config, `apt-core/cloudflare-standards.md`, and `docs/project-context.md`.
+Read frontend entry points, API/auth/data code, deployment config, `.apt/standards/installable-summaries/cloudflare-standards.md`, and `docs/project-context.md`.
 
 ## Process
 Identify frontend, API, auth, and data patterns. Convert toward React, Vite, Hono, Cloudflare Pages, and Workers. Prefer `/api` routes for dynamic behavior. Recommend D1, KV, and R2 only when appropriate. Avoid premature complexity and document migration risks.

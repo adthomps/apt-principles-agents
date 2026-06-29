@@ -8,6 +8,7 @@ const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const tempRoot = path.join(root, ".tmp", "installer-tests");
 const target = path.join(tempRoot, "target");
 const legacyTarget = path.join(tempRoot, "legacy-target");
+const malformedTarget = path.join(tempRoot, "malformed-target");
 const cli = path.join(root, "scripts", "apt-assets.mjs");
 
 function run(command, options = {}) {
@@ -17,6 +18,7 @@ function run(command, options = {}) {
 rmSync(tempRoot, { recursive: true, force: true });
 mkdirSync(target, { recursive: true });
 mkdirSync(legacyTarget, { recursive: true });
+mkdirSync(path.join(malformedTarget, ".apt"), { recursive: true });
 
 const parity = JSON.parse(run(["check-parity"]));
 if (parity.status !== "passed") throw new Error(`Manifest parity failed: ${parity.issues.join(", ")}`);
@@ -25,6 +27,8 @@ const detected = JSON.parse(run(["detect", "--target", target]));
 if (!detected.manifests.includes("core")) throw new Error("Detection did not include core");
 
 run(["install", "--target", target, "--manifests", "core", "--platforms", "none", "--dry-run"]);
+const unsafe = spawnSync("node", [cli, "install", "--target", target, "--manifests", "../outside", "--dry-run"], { cwd: root });
+if (unsafe.status === 0) throw new Error("Unsafe manifest name was accepted");
 run(["install", "--target", target, "--manifests", "core", "--platforms", "none"]);
 const recordPath = path.join(target, ".apt", "installation.json");
 if (!existsSync(recordPath)) throw new Error("Installation record was not created");
@@ -46,6 +50,8 @@ if (!existsSync(path.join(target, ".apt-backups"))) throw new Error("Forced repa
 
 const uninstallPreview = JSON.parse(run(["uninstall", "--target", target]));
 if (!uninstallPreview.actions.some((item) => item.action === "would-remove")) throw new Error("Uninstall preview is incomplete");
+run(["uninstall", "--target", target, "--apply"]);
+if (existsSync(recordPath)) throw new Error("Applied uninstall retained the installation record");
 
 writeFileSync(path.join(legacyTarget, ".agent-standards.json"), `${JSON.stringify({
   source: "legacy",
@@ -56,14 +62,23 @@ run(["migrate-legacy", "--target", legacyTarget, "--apply", "--platforms", "none
 if (existsSync(path.join(legacyTarget, ".agent-standards.json"))) throw new Error("Legacy manifest was not removed");
 if (!existsSync(path.join(legacyTarget, ".apt", "installation.json"))) throw new Error("Legacy migration did not create the new record");
 
-execFileSync("powershell", [
-  "-NoProfile",
-  "-ExecutionPolicy", "Bypass",
-  "-File", path.join(root, "installers", "install-skills.ps1"),
-  "-Target", target,
-  "-Manifest", "core",
-  "-DryRun",
-], { stdio: "ignore" });
+writeFileSync(path.join(malformedTarget, ".apt", "installation.json"), "{\"schemaVersion\":1}\n");
+const malformed = spawnSync("node", [cli, "scan", "--target", malformedTarget], { cwd: root });
+if (malformed.status === 0) throw new Error("Malformed installation record was accepted");
+
+const powershell = process.platform === "win32"
+  ? (spawnSync("pwsh", ["-NoProfile", "-Command", "$PSVersionTable.PSVersion.ToString()"], { stdio: "ignore" }).status === 0 ? "pwsh" : "powershell")
+  : null;
+if (powershell) {
+  execFileSync(powershell, [
+    "-NoProfile",
+    "-ExecutionPolicy", "Bypass",
+    "-File", path.join(root, "installers", "install-skills.ps1"),
+    "-Target", target,
+    "-Manifest", "core",
+    "-DryRun",
+  ], { stdio: "ignore" });
+}
 
 const bash = spawnSync("bash", ["--version"], { stdio: "ignore" });
 if (bash.status === 0) {
@@ -72,4 +87,4 @@ if (bash.status === 0) {
 }
 
 rmSync(tempRoot, { recursive: true, force: true });
-console.log(`Installer lifecycle tests: PASS (${bash.status === 0 ? "PowerShell + Bash" : "PowerShell; Bash unavailable"})`);
+console.log(`Installer lifecycle tests: PASS (${[powershell && "PowerShell", bash.status === 0 && "Bash"].filter(Boolean).join(" + ") || "Node lifecycle"})`);

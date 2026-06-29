@@ -440,9 +440,9 @@
     },
     {
       "source": "apt-agent-standards/docs/ACTIONS.md",
-      "classification": "migrated",
-      "destination": "docs/distribution/ACTIONS.md",
-      "rationale": "Preserved as active source-backed guidance."
+      "classification": "historical",
+      "destination": "docs/archive/legacy-agent-distribution/imported-ACTIONS.md",
+      "rationale": "Preserved as superseded distribution history; replaced by the unified .apt lifecycle and current operations runbooks."
     },
     {
       "source": "apt-agent-standards/docs/AGENT-CATALOG.md",
@@ -452,21 +452,21 @@
     },
     {
       "source": "apt-agent-standards/docs/AI-TOOL-LAYOUT.md",
-      "classification": "migrated",
-      "destination": "docs/distribution/AI-TOOL-LAYOUT.md",
-      "rationale": "Preserved as active source-backed guidance."
+      "classification": "historical",
+      "destination": "docs/archive/legacy-agent-distribution/imported-AI-TOOL-LAYOUT.md",
+      "rationale": "Preserved as superseded distribution history; replaced by the unified .apt lifecycle and current operations runbooks."
     },
     {
       "source": "apt-agent-standards/docs/CURRENT-STATE-ASSESSMENT.md",
-      "classification": "migrated",
-      "destination": "docs/distribution/CURRENT-STATE-ASSESSMENT.md",
-      "rationale": "Preserved as active source-backed guidance."
+      "classification": "historical",
+      "destination": "docs/archive/legacy-agent-distribution/imported-CURRENT-STATE-ASSESSMENT.md",
+      "rationale": "Preserved as superseded distribution history; replaced by the unified .apt lifecycle and current operations runbooks."
     },
     {
       "source": "apt-agent-standards/docs/EXAMPLE-APT-ANET-ACCEPT-SUITE-TOOLBOX.md",
-      "classification": "migrated",
-      "destination": "docs/distribution/EXAMPLE-APT-ANET-ACCEPT-SUITE-TOOLBOX.md",
-      "rationale": "Preserved as active source-backed guidance."
+      "classification": "historical",
+      "destination": "docs/archive/legacy-agent-distribution/imported-EXAMPLE-APT-ANET-ACCEPT-SUITE-TOOLBOX.md",
+      "rationale": "Preserved as superseded distribution history; replaced by the unified .apt lifecycle and current operations runbooks."
     },
     {
       "source": "apt-agent-standards/docs/GOVERNANCE-ARCHITECTURE.md",
@@ -476,33 +476,33 @@
     },
     {
       "source": "apt-agent-standards/docs/HARNESS-ARCHITECTURE.md",
-      "classification": "migrated",
-      "destination": "docs/distribution/HARNESS-ARCHITECTURE.md",
-      "rationale": "Preserved as active source-backed guidance."
+      "classification": "historical",
+      "destination": "docs/archive/legacy-agent-distribution/imported-HARNESS-ARCHITECTURE.md",
+      "rationale": "Preserved as superseded distribution history; replaced by the unified .apt lifecycle and current operations runbooks."
     },
     {
       "source": "apt-agent-standards/docs/MIGRATION-ROADMAP.md",
-      "classification": "migrated",
-      "destination": "docs/distribution/MIGRATION-ROADMAP.md",
-      "rationale": "Preserved as active source-backed guidance."
+      "classification": "historical",
+      "destination": "docs/archive/legacy-agent-distribution/imported-MIGRATION-ROADMAP.md",
+      "rationale": "Preserved as superseded distribution history; replaced by the unified .apt lifecycle and current operations runbooks."
     },
     {
       "source": "apt-agent-standards/docs/OPERATING.md",
-      "classification": "migrated",
-      "destination": "docs/distribution/OPERATING.md",
-      "rationale": "Preserved as active source-backed guidance."
+      "classification": "historical",
+      "destination": "docs/archive/legacy-agent-distribution/imported-OPERATING.md",
+      "rationale": "Preserved as superseded distribution history; replaced by the unified .apt lifecycle and current operations runbooks."
     },
     {
       "source": "apt-agent-standards/docs/POST-OPERATION-CHECKS.md",
-      "classification": "migrated",
-      "destination": "docs/distribution/POST-OPERATION-CHECKS.md",
-      "rationale": "Preserved as active source-backed guidance."
+      "classification": "historical",
+      "destination": "docs/archive/legacy-agent-distribution/imported-POST-OPERATION-CHECKS.md",
+      "rationale": "Preserved as superseded distribution history; replaced by the unified .apt lifecycle and current operations runbooks."
     },
     {
       "source": "apt-agent-standards/docs/PROFILE-REFERENCE.md",
-      "classification": "migrated",
-      "destination": "docs/distribution/PROFILE-REFERENCE.md",
-      "rationale": "Preserved as active source-backed guidance."
+      "classification": "historical",
+      "destination": "docs/archive/legacy-agent-distribution/imported-PROFILE-REFERENCE.md",
+      "rationale": "Preserved as superseded distribution history; replaced by the unified .apt lifecycle and current operations runbooks."
     },
     {
       "source": "apt-agent-standards/docs/PROMPT-CATALOG.md",
@@ -512,21 +512,21 @@
     },
     {
       "source": "apt-agent-standards/docs/PROPOSED-FILE-CHANGES.md",
-      "classification": "migrated",
-      "destination": "docs/distribution/PROPOSED-FILE-CHANGES.md",
-      "rationale": "Preserved as active source-backed guidance."
+      "classification": "historical",
+      "destination": "docs/archive/legacy-agent-distribution/imported-PROPOSED-FILE-CHANGES.md",
+      "rationale": "Preserved as superseded distribution history; replaced by the unified .apt lifecycle and current operations runbooks."
     },
     {
       "source": "apt-agent-standards/docs/RISK-ASSESSMENT.md",
-      "classification": "migrated",
-      "destination": "docs/distribution/RISK-ASSESSMENT.md",
-      "rationale": "Preserved as active source-backed guidance."
+      "classification": "historical",
+      "destination": "docs/archive/legacy-agent-distribution/imported-RISK-ASSESSMENT.md",
+      "rationale": "Preserved as superseded distribution history; replaced by the unified .apt lifecycle and current operations runbooks."
     },
     {
       "source": "apt-agent-standards/docs/SETUP.md",
-      "classification": "migrated",
-      "destination": "docs/distribution/SETUP.md",
-      "rationale": "Preserved as active source-backed guidance."
+      "classification": "historical",
+      "destination": "docs/archive/legacy-agent-distribution/imported-SETUP.md",
+      "rationale": "Preserved as superseded distribution history; replaced by the unified .apt lifecycle and current operations runbooks."
     },
     {
       "source": "apt-agent-standards/docs/SHADCN-UI-STANDARD.md",
@@ -542,15 +542,15 @@
     },
     {
       "source": "apt-agent-standards/docs/USING-INSTALLED-STANDARDS.md",
-      "classification": "migrated",
-      "destination": "docs/distribution/USING-INSTALLED-STANDARDS.md",
-      "rationale": "Preserved as active source-backed guidance."
+      "classification": "historical",
+      "destination": "docs/archive/legacy-agent-distribution/imported-USING-INSTALLED-STANDARDS.md",
+      "rationale": "Preserved as superseded distribution history; replaced by the unified .apt lifecycle and current operations runbooks."
     },
     {
       "source": "apt-agent-standards/docs/WORKSPACE-ROLLOUT.md",
-      "classification": "migrated",
-      "destination": "docs/distribution/WORKSPACE-ROLLOUT.md",
-      "rationale": "Preserved as active source-backed guidance."
+      "classification": "historical",
+      "destination": "docs/archive/legacy-agent-distribution/imported-WORKSPACE-ROLLOUT.md",
+      "rationale": "Preserved as superseded distribution history; replaced by the unified .apt lifecycle and current operations runbooks."
     },
     {
       "source": "apt-agent-standards/github-copilot/instructions/api.instructions.md",
@@ -1058,9 +1058,9 @@
     },
     {
       "source": "apt-agent-standards/templates/agent-standards.manifest.template.json",
-      "classification": "migrated",
-      "destination": "templates/distribution/agent-standards.manifest.template.json",
-      "rationale": "Preserved as active source-backed guidance."
+      "classification": "merged",
+      "destination": "templates/distribution/installation.template.json",
+      "rationale": "Replaced by the canonical .apt/installation.json v1 template."
     },
     {
       "source": "apt-principles/.gitattributes",

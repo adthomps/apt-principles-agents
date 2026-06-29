@@ -5,16 +5,34 @@ on:
   pull_request:
 
 jobs:
-  validate:
+  linux:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: 22
       - run: npm run check
-      - name: Exercise Bash wrappers
+      - name: Exercise Bash lifecycle
         run: |
           target="$(mktemp -d)"
+          bash -n installers/install-skills.sh
+          bash -n installers/install-platform-adapters.sh
           bash installers/install-skills.sh --target "$target" --manifest core --dry-run
           bash installers/install-platform-adapters.sh --target "$target" --manifest core --dry-run
+
+  windows:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - run: npm run check
+      - name: Exercise PowerShell lifecycle
+        shell: pwsh
+        run: |
+          $target = Join-Path $env:RUNNER_TEMP "apt-wrapper-test"
+          New-Item -ItemType Directory -Force -Path $target | Out-Null
+          ./installers/install-skills.ps1 -Target $target -Manifest core -DryRun
+          ./installers/install-platform-adapters.ps1 -Target $target -Manifest core -DryRun

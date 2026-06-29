@@ -22,7 +22,7 @@ Use for diffs, implementation plans, generated docs, or repository changes that 
 Do not use as a substitute for domain-specific API, UX, Cloudflare, or migration review when those profiles apply.
 
 ## Required Reading
-Read `apt-core/APT.md`, `apt-core/principles.md`, and `docs/project-context.md` when present.
+Read `.apt/standards/installable-summaries/APT.md`, `.apt/standards/installable-summaries/principles.md`, and `docs/project-context.md` when present.
 
 ## Process
 Inspect the changed files, identify preserved or changed behavior, check assumptions, and verify that validation evidence is named.

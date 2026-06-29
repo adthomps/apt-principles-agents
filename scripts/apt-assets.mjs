@@ -17,6 +17,7 @@ import { fileURLToPath } from "node:url";
 const sourceRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const packageJson = JSON.parse(readFileSync(path.join(sourceRoot, "package.json"), "utf8"));
 const sections = ["principles", "standards", "checklists", "context", "skills", "agents", "templates", "prompts", "platforms"];
+const manifestKeys = new Set(["name", "description", "extends", ...sections]);
 const args = parseArgs(process.argv.slice(2));
 const command = args._[0] || "help";
 
@@ -29,7 +30,7 @@ function parseArgs(values) {
       continue;
     }
     const key = value.slice(2);
-    if (["dry-run", "force", "apply", "json", "summary"].includes(key)) result[key] = true;
+    if (["dry-run", "force", "apply", "json", "summary", "check"].includes(key)) result[key] = true;
     else result[key] = values[++index];
   }
   return result;
@@ -52,7 +53,7 @@ function ensureParent(file) {
 }
 
 function timestamp() {
-  return new Date().toISOString().replaceAll(/[-:.TZ]/g, "").slice(0, 14);
+  return new Date().toISOString().replaceAll(/[-:.TZ]/g, "");
 }
 
 function gitCommit() {
@@ -64,6 +65,7 @@ function gitCommit() {
 }
 
 function parseManifest(name) {
+  if (!/^[a-z0-9][a-z0-9-]*$/.test(name)) throw new Error(`Invalid manifest name: ${name}`);
   const file = path.join(sourceRoot, "manifests", `${name}.yaml`);
   if (!exists(file)) throw new Error(`Unknown manifest: ${name}`);
   const result = { name, extends: [] };
@@ -72,6 +74,7 @@ function parseManifest(name) {
   for (const raw of readFileSync(file, "utf8").split(/\r?\n/)) {
     const scalar = raw.match(/^([a-z-]+):\s+(.+)$/);
     if (scalar) {
+      if (!manifestKeys.has(scalar[1])) throw new Error(`Unknown manifest field ${scalar[1]}: ${name}`);
       result[scalar[1]] = scalar[2].trim();
       current = null;
       continue;
@@ -79,22 +82,33 @@ function parseManifest(name) {
     const heading = raw.match(/^([a-z-]+):\s*$/);
     if (heading) {
       current = heading[1];
+      if (!manifestKeys.has(current)) throw new Error(`Unknown manifest section ${current}: ${name}`);
       if (!Array.isArray(result[current])) result[current] = [];
       continue;
     }
     const item = raw.match(/^\s+-\s+(.+)$/);
-    if (item && current) result[current].push(item[1].trim());
+    if (item && current) {
+      const value = item[1].trim();
+      if (result[current].includes(value)) throw new Error(`Duplicate manifest entry ${value}: ${name}`);
+      result[current].push(value);
+    }
   }
+  if (result.name !== name) throw new Error(`Manifest name must match filename: ${name}`);
+  if (!result.description) throw new Error(`Manifest description is required: ${name}`);
   return result;
 }
 
 function resolveManifests(names) {
   const ordered = [];
   const seen = new Set();
+  const visiting = new Set();
   function visit(name) {
     if (seen.has(name)) return;
+    if (visiting.has(name)) throw new Error(`Manifest extension cycle: ${[...visiting, name].join(" -> ")}`);
+    visiting.add(name);
     const manifest = parseManifest(name);
     for (const parent of manifest.extends || []) visit(parent);
+    visiting.delete(name);
     seen.add(name);
     ordered.push(manifest);
   }
@@ -103,7 +117,11 @@ function resolveManifests(names) {
 }
 
 function expandPath(relative) {
-  const absolute = path.join(sourceRoot, relative);
+  if (!relative || path.isAbsolute(relative) || normalize(relative).split("/").includes("..")) {
+    throw new Error(`Unsafe manifest path: ${relative}`);
+  }
+  const absolute = path.resolve(sourceRoot, relative);
+  if (absolute !== sourceRoot && !absolute.startsWith(`${sourceRoot}${path.sep}`)) throw new Error(`Manifest path escapes repository: ${relative}`);
   if (!exists(absolute)) throw new Error(`Manifest path missing: ${relative}`);
   if (!statSync(absolute).isDirectory()) return [relative];
   function walk(directory) {
@@ -180,7 +198,25 @@ function mappingsFor(manifests, platforms) {
 
 function readRecord(target) {
   const file = path.join(target, ".apt", "installation.json");
-  return exists(file) ? JSON.parse(readFileSync(file, "utf8")) : null;
+  if (!exists(file)) return null;
+  const record = JSON.parse(readFileSync(file, "utf8"));
+  validateRecord(record);
+  return record;
+}
+
+function validateRecord(record) {
+  if (!record || record.schemaVersion !== 1) throw new Error("Unsupported .apt/installation.json schemaVersion");
+  if (record.source?.repository !== "apt-principles-agents" || !record.source.version || !record.source.commit) throw new Error("Installation source metadata is incomplete");
+  if (!Array.isArray(record.manifests) || !Array.isArray(record.platforms) || !Array.isArray(record.managedFiles)) throw new Error("Installation arrays are incomplete");
+  if (!record.localContext || !record.lastOperation?.type || !record.lastOperation?.at) throw new Error("Installation ownership or operation metadata is incomplete");
+  const targets = new Set();
+  for (const item of record.managedFiles) {
+    if (!item.source || !item.target || !item.kind || !/^[a-f0-9]{64}$/.test(item.sha256 || "")) throw new Error("Installation managed-file entry is invalid");
+    if (path.isAbsolute(item.source) || path.isAbsolute(item.target) || normalize(item.source).split("/").includes("..") || normalize(item.target).split("/").includes("..")) throw new Error("Installation managed-file path is unsafe");
+    if (targets.has(item.target)) throw new Error(`Duplicate managed target: ${item.target}`);
+    targets.add(item.target);
+  }
+  return record;
 }
 
 function writeRecord(target, record) {
@@ -265,9 +301,11 @@ function scanTarget(target) {
     const targetHash = sha256(destination);
     return { ...item, status: sourceHash === targetHash ? "current" : "drifted", sourceHash, targetHash };
   });
+  const provenanceCurrent = record.source.version === packageJson.version && record.source.commit === gitCommit();
   return {
     target,
-    status: files.every((item) => item.status === "current") ? "current" : "drifted",
+    status: files.every((item) => item.status === "current") && provenanceCurrent ? "current" : "drifted",
+    provenanceCurrent,
     counts: files.reduce((result, item) => ({ ...result, [item.status]: (result[item.status] || 0) + 1 }), {}),
     files,
   };
@@ -306,6 +344,7 @@ function syncOrRepair(type) {
   if (apply) {
     record.managedFiles = scan.files.map(({ status, sourceHash, targetHash, ...item }) => item);
     record.lastOperation = { type, at: new Date().toISOString() };
+    record.source = { repository: "apt-principles-agents", version: packageJson.version, commit: gitCommit() };
     writeRecord(target, record);
   }
   return { target, type, apply, force, actions };
@@ -370,15 +409,19 @@ function detect() {
 
 function auditWorkspace() {
   const workspaceRoot = path.resolve(args["workspace-root"] || args.target || path.join(sourceRoot, ".."));
-  const repositories = readdirSync(workspaceRoot, { withFileTypes: true })
-    .filter((entry) => entry.isDirectory() && exists(path.join(workspaceRoot, entry.name, ".git")))
-    .map((entry) => {
-      const target = path.join(workspaceRoot, entry.name);
+  const registryPath = path.join(sourceRoot, "references", "workspace-consumers.json");
+  const registry = JSON.parse(readFileSync(registryPath, "utf8"));
+  const repositories = registry.consumers.map((consumer) => {
+      const target = path.join(workspaceRoot, consumer.repository);
       const legacy = exists(path.join(target, ".agent-standards.json"));
-      const scan = scanTarget(target);
-      return { repository: entry.name, legacyManifest: legacy, installation: scan.status, counts: scan.counts || {} };
+      const scan = exists(target) ? scanTarget(target) : { status: "missing-repository", counts: {} };
+      const record = exists(target) ? readRecord(target) : null;
+      const manifestsMatch = record ? consumer.manifests.every((item) => record.manifests.includes(item)) : false;
+      const platformsMatch = record ? consumer.platforms.every((item) => record.platforms.includes(item)) : false;
+      return { repository: consumer.repository, legacyManifest: legacy, installation: scan.status, manifestsMatch, platformsMatch, counts: scan.counts || {} };
     });
-  return { workspaceRoot, repositories };
+  const status = repositories.every((item) => !item.legacyManifest && item.installation === "current" && item.manifestsMatch && item.platformsMatch) ? "passed" : "failed";
+  return { workspaceRoot, status, repositories };
 }
 
 function migrateLegacy() {
@@ -444,7 +487,7 @@ function output(value) {
     return;
   }
   console.log(JSON.stringify(value, null, 2));
-  if (value.status === "failed" || value.issues?.length) process.exitCode = 1;
+  if (value.status === "failed" || value.issues?.length || (args.check && value.status !== "current" && value.status !== "passed")) process.exitCode = 1;
 }
 
 try {

@@ -22,7 +22,7 @@ Use when the repo includes Lovable references, generated UI assumptions, unusual
 Do not use for normal greenfield app work or cosmetic refactors.
 
 ## Required Reading
-Read `docs/project-context.md`, package scripts, app routes, component structure, generated config, and `apt-core/migration-standards.md`.
+Read `docs/project-context.md`, package scripts, app routes, component structure, generated config, and `.apt/standards/installable-summaries/migration-standards.md`.
 
 ## Process
 Inspect current project structure. Identify Lovable-generated assumptions. Map current state to APT standards. Recommend folder restructuring only where it improves maintainability. Create a migration plan before editing. Preserve working behavior and avoid unnecessary rewrites.

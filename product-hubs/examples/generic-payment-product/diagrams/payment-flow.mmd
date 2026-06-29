@@ -1,8 +1,16 @@
-flowchart LR
-  A["Customer intent"] --> B["Checkout or API"]
-  B --> C["Validate and authorize"]
-  C --> D["Capture or complete"]
-  D --> E["Settlement and funding"]
-  E --> F["Reconciliation and support"]
-  C --> G["Decline or review"]
-  G --> H["Customer-safe recovery"]
+stateDiagram-v2
+  [*] --> created
+  created --> authorized: processor approval
+  created --> declined: safe decline
+  authorized --> captured: permissioned capture
+  authorized --> voided: cancel before settlement
+  captured --> submitted_for_settlement
+  submitted_for_settlement --> settled: settlement evidence
+  captured --> refunded: approved refund
+  settled --> refunded: approved post-settlement refund
+  created --> failed: non-recoverable error
+  declined --> [*]
+  voided --> [*]
+  settled --> [*]
+  refunded --> [*]
+  failed --> [*]
