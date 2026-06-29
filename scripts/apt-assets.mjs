@@ -316,19 +316,40 @@ function syncOrRepair(type) {
   if (!target || !exists(target)) throw new Error("--target must be an existing repository path");
   const record = readRecord(target);
   if (!record) throw new Error("No .apt/installation.json found");
-  const scan = scanTarget(target);
+  const desiredMappings = mappingsFor(resolveManifests(record.manifests), record.platforms);
+  const desiredTargets = new Set(desiredMappings.map((item) => item.target));
+  const previous = new Map(record.managedFiles.map((item) => [item.target, item]));
   const apply = Boolean(args.apply);
   const force = Boolean(args.force);
   const backupRoot = path.join(target, ".apt-backups", timestamp());
   const actions = [];
-  for (const item of scan.files) {
-    if (item.status === "current") continue;
-    if (item.status === "missing-source") {
-      actions.push({ action: "blocked-missing-source", target: item.target });
+  const retained = [];
+  for (const item of record.managedFiles.filter((entry) => !desiredTargets.has(entry.target))) {
+    const destination = path.join(target, item.target);
+    const drifted = exists(destination) && sha256(destination) !== item.sha256;
+    if (drifted && !force) {
+      actions.push({ action: "skipped-retired-local-drift", target: item.target });
+      retained.push(item);
       continue;
     }
+    actions.push({ action: apply ? "removed-retired" : "would-remove-retired", target: item.target });
+    if (apply && exists(destination)) {
+      if (drifted) backup(target, item.target, backupRoot);
+      rmSync(destination, { force: true });
+    }
+  }
+  const nextManaged = [];
+  for (const mapping of desiredMappings) {
+    const source = path.join(sourceRoot, mapping.source);
+    const destination = path.join(target, mapping.target);
+    const old = previous.get(mapping.target);
+    const sourceHash = sha256(source);
+    const item = { ...mapping, sha256: old?.sha256 || sourceHash };
+    item.status = !exists(destination) ? "missing-target" : sha256(destination) === sourceHash ? "current" : "drifted";
+    if (item.status === "current") continue;
     if (item.status === "drifted" && !force) {
       actions.push({ action: "skipped-local-drift", target: item.target });
+      nextManaged.push(old || item);
       continue;
     }
     actions.push({ action: apply ? "updated" : "would-update", target: item.target });
@@ -340,9 +361,14 @@ function syncOrRepair(type) {
       copyFileSync(source, destination);
       item.sha256 = sha256(source);
     }
+    nextManaged.push(item);
+  }
+  for (const mapping of desiredMappings) {
+    if (nextManaged.some((item) => item.target === mapping.target)) continue;
+    nextManaged.push({ ...mapping, sha256: sha256(path.join(sourceRoot, mapping.source)) });
   }
   if (apply) {
-    record.managedFiles = scan.files.map(({ status, sourceHash, targetHash, ...item }) => item);
+    record.managedFiles = [...retained, ...nextManaged].map(({ status, ...item }) => item).sort((a, b) => a.target.localeCompare(b.target));
     record.lastOperation = { type, at: new Date().toISOString() };
     record.source = { repository: "apt-principles-agents", version: packageJson.version, commit: gitCommit() };
     writeRecord(target, record);
