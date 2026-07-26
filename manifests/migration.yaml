@@ -16,4 +16,5 @@ templates:
   - templates/migration/
 prompts:
   - prompts/migration/
+knowledge:
 platforms:

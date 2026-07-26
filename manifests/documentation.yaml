@@ -23,4 +23,6 @@ templates:
 prompts:
   - prompts/product-hubs/
   - prompts/troubleshooting/customer-confusion.md
+knowledge:
+  - knowledge/okf/
 platforms:

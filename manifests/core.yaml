@@ -31,6 +31,7 @@ templates:
 prompts:
   - prompts/planning/
   - prompts/reviews/
+knowledge:
 platforms:
   - platforms/codex/README.md
   - platforms/claude/README.md

@@ -8,6 +8,7 @@ const outputRoot = path.join(root, "docs", "distribution");
 
 function walk(directory) {
   return readdirSync(directory, { withFileTypes: true }).flatMap((entry) => {
+    if (entry.name === ".git" || entry.name === "node_modules" || entry.name === ".tmp" || entry.name === ".wrangler") return [];
     const child = path.join(directory, entry.name);
     return entry.isDirectory() ? walk(child) : [child];
   });
@@ -58,5 +59,6 @@ writeCatalog("AGENT-CATALOG.md", "Agent Catalog", "agents", walk(path.join(root,
 writeCatalog("SKILL-CATALOG.md", "Skill Catalog", "skills", walk(path.join(root, "skills")).filter((file) => file.endsWith("SKILL.md")));
 writeCatalog("PROMPT-CATALOG.md", "Prompt Catalog", "prompts", walk(path.join(root, "prompts")).filter((file) => file.endsWith(".md") && !file.endsWith("README.md")));
 writeCatalog("TEMPLATE-CATALOG.md", "Template Catalog", "templates", walk(path.join(root, "templates")).filter((file) => [".md", ".json"].includes(path.extname(file)) && !file.endsWith("README.md")));
+writeCatalog("OKF-CATALOG.md", "OKF Catalog", "knowledge/okf", walk(path.join(root, "knowledge", "okf")).filter((file) => file.endsWith(".md") && !file.endsWith("index.md") && !file.endsWith("log.md")));
 writeCatalog("MANIFEST-CATALOG.md", "Manifest Catalog", "manifests", walk(path.join(root, "manifests")).filter((file) => file.endsWith(".yaml")));
-console.log("Generated agent, skill, prompt, template, and manifest catalogs.");
+console.log("Generated agent, skill, prompt, template, OKF, and manifest catalogs.");

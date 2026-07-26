@@ -16,4 +16,5 @@ templates:
   - templates/game-development/
 prompts:
   - prompts/game-development/
+knowledge:
 platforms:

@@ -18,4 +18,5 @@ agents:
 templates:
 prompts:
   - prompts/reviews/ui-api-alignment-review.md
+knowledge:
 platforms:

@@ -18,4 +18,5 @@ templates:
   - templates/agent-reviews/security-risk-review.md
 prompts:
   - prompts/reviews/security-risk-review.md
+knowledge:
 platforms:

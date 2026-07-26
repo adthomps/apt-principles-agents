@@ -13,4 +13,5 @@ agents:
 templates:
 prompts:
   - platforms/github-copilot/distribution/prompts/knowledge-graph-review.prompt.md
+knowledge:
 platforms:

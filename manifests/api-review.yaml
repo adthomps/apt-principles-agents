@@ -20,4 +20,5 @@ templates:
 prompts:
   - prompts/audits/api-audit.md
   - prompts/reviews/api-design-review.md
+knowledge:
 platforms:

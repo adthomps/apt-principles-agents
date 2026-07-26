@@ -20,6 +20,7 @@ agents:
   - platforms/claude/source/agents/cloudflare-modernization-architect.md
 templates:
 prompts:
+knowledge:
 platforms:
   - platforms/github-copilot/distribution/instructions/cloudflare.instructions.md
   - platforms/github-copilot/distribution/prompts/cloudflare-modernization.prompt.md

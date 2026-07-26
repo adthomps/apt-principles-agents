@@ -15,4 +15,5 @@ agents:
   - platforms/claude/source/agents/lovable-to-cloudflare-architect.md
 templates:
 prompts:
+knowledge:
 platforms:

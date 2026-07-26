@@ -22,4 +22,5 @@ templates:
 prompts:
   - prompts/repo-alignment-review.md
   - prompts/apply-apt-principles.md
+knowledge:
 platforms:

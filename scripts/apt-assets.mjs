@@ -16,7 +16,7 @@ import { fileURLToPath } from "node:url";
 
 const sourceRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const packageJson = JSON.parse(readFileSync(path.join(sourceRoot, "package.json"), "utf8"));
-const sections = ["principles", "standards", "checklists", "context", "skills", "agents", "templates", "prompts", "platforms"];
+const sections = ["principles", "standards", "checklists", "context", "skills", "agents", "templates", "prompts", "knowledge", "platforms"];
 const manifestKeys = new Set(["name", "description", "extends", ...sections]);
 const args = parseArgs(process.argv.slice(2));
 const command = args._[0] || "help";

@@ -13,6 +13,7 @@ extends:
   - ai-development
   - product-hub
   - game-development
+  - okf
 principles:
 standards:
 checklists:
@@ -21,4 +22,5 @@ skills:
 agents:
 templates:
 prompts:
+knowledge:
 platforms:

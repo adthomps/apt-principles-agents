@@ -18,7 +18,7 @@ for (const item of ledger) {
 
 function walk(directory) {
   return readdirSync(directory, { withFileTypes: true }).flatMap((entry) => {
-    if (entry.name === ".git" || entry.name === "node_modules") return [];
+    if (entry.name === ".git" || entry.name === "node_modules" || entry.name === ".tmp" || entry.name === ".wrangler") return [];
     const full = path.join(directory, entry.name);
     return entry.isDirectory() ? walk(full) : [full];
   });
@@ -42,6 +42,7 @@ function inferKind(relative) {
     platforms: "platform-adapter",
     manifests: "manifest-guide",
     installers: "installer-guide",
+    knowledge: "knowledge",
     routing: "routing",
     docs: "guide",
   };
@@ -55,6 +56,7 @@ function inferDomain(relative) {
     return parts[1]?.replace(/\.md$/, "") || top;
   }
   if (top === "platforms") return "platforms";
+  if (top === "knowledge") return "knowledge";
   if (top === "routing" || top === "context" || top === "context-packs") return "ai";
   if (top === "governance" || top === "references" || top === "manifests" || top === "installers") return "governance";
   if (top === "docs") return parts[1] === "migration" ? "governance" : "documentation";

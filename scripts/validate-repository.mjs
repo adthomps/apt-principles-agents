@@ -10,7 +10,7 @@ const warnings = [];
 function files(directory) {
   if (!existsSync(directory)) return [];
   return readdirSync(directory, { withFileTypes: true }).flatMap((entry) => {
-    if (entry.name === ".git" || entry.name === "node_modules") return [];
+    if (entry.name === ".git" || entry.name === "node_modules" || entry.name === ".tmp" || entry.name === ".wrangler") return [];
     const child = path.join(directory, entry.name);
     return entry.isDirectory() ? files(child) : [child];
   });
@@ -33,7 +33,7 @@ function frontmatter(text) {
 
 const requiredRoot = ["README.md", "AGENTS.md", "CODEX.md", "CLAUDE.md", "GEMINI.md", "CONTRIBUTING.md"];
 for (const file of requiredRoot) if (!existsSync(path.join(root, file))) errors.push(`Missing ${file}`);
-for (const directory of ["principles", "standards", "checklists", "governance", "references", "context-packs", "skills", "agents", "prompts", "templates", "examples", "platforms", "manifests", "installers", "routing"]) {
+for (const directory of ["principles", "standards", "checklists", "governance", "references", "context-packs", "skills", "agents", "prompts", "templates", "examples", "platforms", "manifests", "installers", "routing", "knowledge"]) {
   if (!existsSync(path.join(root, directory))) errors.push(`Missing first-class directory ${directory}/`);
 }
 
@@ -55,6 +55,39 @@ for (const file of active.filter((item) => item.endsWith(".md"))) {
   const domain = data.domain?.replaceAll(/["']/g, "");
   if (status && !allowedStatuses.has(status)) errors.push(`Invalid active status ${status}: ${relative(file)}`);
   if (["README", "repository", "general"].includes(domain)) errors.push(`Non-specific active domain ${domain}: ${relative(file)}`);
+}
+
+const okfRoot = path.join(root, "knowledge", "okf");
+const okfConceptTypes = new Set(["Principle", "Skill", "Workflow", "Decision"]);
+const okfAuthorities = new Set(["canonical", "derived", "informational"]);
+if (existsSync(okfRoot)) {
+  const rootIndex = path.join(okfRoot, "index.md");
+  if (!existsSync(rootIndex)) {
+    errors.push("OKF bundle missing knowledge/okf/index.md");
+  } else {
+    const data = frontmatter(readFileSync(rootIndex, "utf8"));
+    if (data?.okf_version?.replaceAll(/["']/g, "") !== "0.2") errors.push("OKF root index must declare okf_version 0.2");
+  }
+  for (const file of files(okfRoot).filter((item) => item.endsWith(".md"))) {
+    const rel = relative(file);
+    const basename = path.basename(file);
+    if (basename === "index.md" || basename === "log.md") continue;
+    const data = frontmatter(readFileSync(file, "utf8"));
+    if (!data) {
+      errors.push(`OKF concept missing frontmatter: ${rel}`);
+      continue;
+    }
+    const type = data.type?.replaceAll(/["']/g, "");
+    const authority = data.authority?.replaceAll(/["']/g, "");
+    if (!type) errors.push(`OKF concept missing type: ${rel}`);
+    else if (!okfConceptTypes.has(type)) errors.push(`Unexpected OKF concept type ${type}: ${rel}`);
+    for (const field of ["title", "description", "status", "owner", "last_updated", "source_paths", "sources", "authority"]) {
+      if (!data[field]) errors.push(`OKF concept missing ${field}: ${rel}`);
+    }
+    if (!data.verified && !data.generated) errors.push(`OKF concept must include verified or generated metadata: ${rel}`);
+    if (authority && !okfAuthorities.has(authority)) errors.push(`Unexpected OKF authority ${authority}: ${rel}`);
+    if (data.generated && authority === "canonical") errors.push(`Generated OKF concept cannot be canonical authority: ${rel}`);
+  }
 }
 
 const skillHeadings = ["# ", "## Purpose", "## When to Use", "## Inputs", "## Process", "## Outputs", "## Quality Bar", "## References"];
@@ -117,7 +150,7 @@ for (const duplicates of principleBodies.values()) {
   if (duplicates.length > 1) errors.push(`Boilerplate-identical principle bodies: ${duplicates.join(", ")}`);
 }
 
-const manifestSections = ["principles", "standards", "checklists", "context", "skills", "agents", "templates", "prompts", "platforms"];
+const manifestSections = ["principles", "standards", "checklists", "context", "skills", "agents", "templates", "prompts", "knowledge", "platforms"];
 for (const file of files(path.join(root, "manifests")).filter((item) => item.endsWith(".yaml"))) {
   const text = readFileSync(file, "utf8");
   for (const section of manifestSections) if (!text.includes(`${section}:`)) errors.push(`Manifest missing ${section}: ${relative(file)}`);
@@ -168,6 +201,7 @@ const catalogExpectations = [
   ["SKILL-CATALOG.md", files(path.join(root, "skills")).filter((item) => item.endsWith("SKILL.md")).length],
   ["PROMPT-CATALOG.md", files(path.join(root, "prompts")).filter((item) => item.endsWith(".md") && !item.endsWith("README.md")).length],
   ["TEMPLATE-CATALOG.md", files(path.join(root, "templates")).filter((item) => [".md", ".json"].includes(path.extname(item)) && !item.endsWith("README.md")).length],
+  ["OKF-CATALOG.md", files(path.join(root, "knowledge", "okf")).filter((item) => item.endsWith(".md") && !item.endsWith("index.md") && !item.endsWith("log.md")).length],
   ["MANIFEST-CATALOG.md", files(path.join(root, "manifests")).filter((item) => item.endsWith(".yaml")).length],
 ];
 for (const [catalog, expected] of catalogExpectations) {

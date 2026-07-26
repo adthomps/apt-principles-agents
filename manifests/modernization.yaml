@@ -13,4 +13,5 @@ agents:
 templates:
 prompts:
   - prompts/modernization/
+knowledge:
 platforms:

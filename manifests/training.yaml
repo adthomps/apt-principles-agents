@@ -13,4 +13,5 @@ agents:
   - agents/beginner-reviewers/
 templates:
 prompts:
+knowledge:
 platforms:

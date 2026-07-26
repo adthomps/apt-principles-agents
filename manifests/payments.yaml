@@ -22,4 +22,5 @@ templates:
 prompts:
   - prompts/reviews/payment-review.md
   - prompts/troubleshooting/payment-decline.md
+knowledge:
 platforms:

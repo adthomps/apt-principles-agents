@@ -1,0 +1,16 @@
+name: okf
+description: Open Knowledge Format bundle for portable APT concepts and downstream agent context.
+principles:
+  - principles/execution/knowledge-and-learning.md
+standards:
+  - standards/documentation/documentation-standards.md
+checklists:
+  - checklists/knowledge-system-checklist.md
+context:
+skills:
+agents:
+templates:
+prompts:
+knowledge:
+  - knowledge/okf/
+platforms:

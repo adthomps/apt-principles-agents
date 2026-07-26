@@ -18,4 +18,5 @@ templates:
 prompts:
   - prompts/swarm-reviews/
   - prompts/agent-harness-review-prompt.md
+knowledge:
 platforms:
