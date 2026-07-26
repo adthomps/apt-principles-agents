@@ -324,6 +324,7 @@ function syncOrRepair(type) {
   const backupRoot = path.join(target, ".apt-backups", timestamp());
   const actions = [];
   const retained = [];
+  const skippedDesiredTargets = new Set();
   for (const item of record.managedFiles.filter((entry) => !desiredTargets.has(entry.target))) {
     const destination = path.join(target, item.target);
     const drifted = exists(destination) && sha256(destination) !== item.sha256;
@@ -349,7 +350,8 @@ function syncOrRepair(type) {
     if (item.status === "current") continue;
     if (item.status === "drifted" && !force) {
       actions.push({ action: "skipped-local-drift", target: item.target });
-      nextManaged.push(old || item);
+      skippedDesiredTargets.add(item.target);
+      if (old) nextManaged.push(old);
       continue;
     }
     actions.push({ action: apply ? "updated" : "would-update", target: item.target });
@@ -365,6 +367,7 @@ function syncOrRepair(type) {
   }
   for (const mapping of desiredMappings) {
     if (nextManaged.some((item) => item.target === mapping.target)) continue;
+    if (skippedDesiredTargets.has(mapping.target)) continue;
     nextManaged.push({ ...mapping, sha256: sha256(path.join(sourceRoot, mapping.source)) });
   }
   if (apply) {

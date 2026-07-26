@@ -1,0 +1,34 @@
+name: dream-to-reality
+description: Idea-to-project Working Backwards, generated assets, implementation prompts, validation, and release readiness.
+extends:
+  - core
+  - documentation
+  - governance
+  - cloudflare
+  - ux-review
+  - ai-development
+  - product-hub
+principles:
+standards:
+checklists:
+  - checklists/working-backwards-package-readiness-checklist.md
+  - checklists/quality-testing-checklist.md
+  - checklists/release-readiness-checklist.md
+context:
+  - context-packs/apt-dream-to-reality-pack.md
+  - context/working-backwards/
+skills:
+agents:
+templates:
+  - templates/brd/
+  - templates/prd/
+  - templates/srd/
+  - templates/launch-readiness/
+  - templates/docs/implementation-blueprint.md
+prompts:
+  - prompts/apt-one-shot-build-prompt.md
+  - prompts/project-adoption-prompt.md
+  - prompts/release-review-prompt.md
+  - prompts/testing-review-prompt.md
+knowledge:
+platforms:
