@@ -437,17 +437,66 @@ function auditWorkspace() {
   const workspaceRoot = path.resolve(args["workspace-root"] || args.target || path.join(sourceRoot, ".."));
   const registryPath = path.join(sourceRoot, "references", "workspace-consumers.json");
   const registry = JSON.parse(readFileSync(registryPath, "utf8"));
+  const canonicalRepository = path.basename(sourceRoot);
+  const registeredNames = new Set(registry.consumers.map((consumer) => consumer.repository));
+  const activeRepositories = readdirSync(workspaceRoot, { withFileTypes: true })
+    .filter((entry) => entry.isDirectory())
+    .map((entry) => entry.name)
+    .filter((name) => name !== canonicalRepository)
+    .filter((name) => exists(path.join(workspaceRoot, name, ".git")) && exists(path.join(workspaceRoot, name, "README.md")))
+    .sort((a, b) => a.localeCompare(b));
+  const activeNames = new Set(activeRepositories);
+  const activeInstalled = activeRepositories.filter((repository) => exists(path.join(workspaceRoot, repository, ".apt", "installation.json")));
+  const installedUnregistered = activeInstalled.filter((repository) => !registeredNames.has(repository));
+  const activeUninstalled = activeRepositories.filter((repository) => !registeredNames.has(repository) && !exists(path.join(workspaceRoot, repository, ".apt", "installation.json")));
+  const missingRegistered = registry.consumers
+    .filter((consumer) => !exists(path.join(workspaceRoot, consumer.repository)))
+    .map((consumer) => consumer.repository);
   const repositories = registry.consumers.map((consumer) => {
       const target = path.join(workspaceRoot, consumer.repository);
-      const legacy = exists(path.join(target, ".agent-standards.json"));
-      const scan = exists(target) ? scanTarget(target) : { status: "missing-repository", counts: {} };
-      const record = exists(target) ? readRecord(target) : null;
+      const targetExists = exists(target);
+      const active = activeNames.has(consumer.repository);
+      const legacy = targetExists && exists(path.join(target, ".agent-standards.json"));
+      const scan = targetExists ? scanTarget(target) : { status: "missing-repository", counts: {}, provenanceCurrent: false };
+      const record = targetExists ? readRecord(target) : null;
       const manifestsMatch = record ? consumer.manifests.every((item) => record.manifests.includes(item)) : false;
       const platformsMatch = record ? consumer.platforms.every((item) => record.platforms.includes(item)) : false;
-      return { repository: consumer.repository, legacyManifest: legacy, installation: scan.status, manifestsMatch, platformsMatch, counts: scan.counts || {} };
+      const missingProjectContext = targetExists && !exists(path.join(target, "docs", "project-context.md"));
+      const missingAgents = targetExists && !exists(path.join(target, "AGENTS.md"));
+      return {
+        repository: consumer.repository,
+        registered: true,
+        active,
+        legacyManifest: legacy,
+        installation: scan.status,
+        provenanceCurrent: Boolean(scan.provenanceCurrent),
+        manifestsMatch,
+        platformsMatch,
+        missingProjectContext,
+        missingAgents,
+        counts: scan.counts || {},
+      };
     });
-  const status = repositories.every((item) => !item.legacyManifest && item.installation === "current" && item.manifestsMatch && item.platformsMatch) ? "passed" : "failed";
-  return { workspaceRoot, status, repositories };
+  const status = repositories.every((item) => (
+    item.active
+    && !item.legacyManifest
+    && item.installation === "current"
+    && item.provenanceCurrent
+    && item.manifestsMatch
+    && item.platformsMatch
+    && !item.missingProjectContext
+    && !item.missingAgents
+  )) && missingRegistered.length === 0 && installedUnregistered.length === 0 && activeUninstalled.length === 0 ? "passed" : "failed";
+  return {
+    workspaceRoot,
+    status,
+    registeredConsumers: registry.consumers.map((consumer) => consumer.repository),
+    missingRegistered,
+    installedUnregistered,
+    activeUninstalled,
+    activeRepositories,
+    repositories,
+  };
 }
 
 function migrateLegacy() {
