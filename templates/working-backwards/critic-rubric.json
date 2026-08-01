@@ -1,0 +1,129 @@
+{
+  "version": "1.0.0",
+  "stages": {
+    "press-release": {
+      "dimensions": [
+        {
+          "id": "customer-definition",
+          "name": "Customer Definition",
+          "pass_criteria": "A specific named persona, role, segment, or job title is identified.",
+          "fail_criteria": "Customer is vague, such as users, teams, enterprises, people, or customers without further specificity."
+        },
+        {
+          "id": "problem-evidence",
+          "name": "Problem Evidence",
+          "pass_criteria": "The problem is specific and evidenced with a concrete pain, current workaround, frequency, cost, or quote.",
+          "fail_criteria": "The problem is generic and lacks evidence that this is a real, acute pain."
+        },
+        {
+          "id": "customer-benefit",
+          "name": "Customer Benefit",
+          "pass_criteria": "The customer can tell exactly what changes for them, and the headline and solution paragraph agree.",
+          "fail_criteria": "The benefit is vague or disconnected from the stated problem."
+        },
+        {
+          "id": "spokesperson-quote",
+          "name": "Spokesperson Quote",
+          "pass_criteria": "The quote explains the insight, mission, or opportunity in language a real person could say.",
+          "fail_criteria": "The quote is generic launch or marketing language."
+        },
+        {
+          "id": "customer-quote",
+          "name": "Customer Quote",
+          "pass_criteria": "The quote is specific and believable, with placeholders clearly marked when not yet validated.",
+          "fail_criteria": "The quote invents unsupported metrics or uses generic praise."
+        }
+      ]
+    },
+    "external-faq": {
+      "dimensions": [
+        {
+          "id": "question-quality",
+          "name": "Question Quality",
+          "pass_criteria": "Every question represents a genuine challenge a skeptical customer would raise.",
+          "fail_criteria": "Questions are softballs or leading questions that assume a positive answer."
+        },
+        {
+          "id": "answer-completeness",
+          "name": "Answer Completeness",
+          "pass_criteria": "Every question has a substantive answer or is explicitly marked open with a named owner.",
+          "fail_criteria": "Questions are unanswered, marked TBD, or open without an owner."
+        },
+        {
+          "id": "evasion",
+          "name": "No Evasive Answers",
+          "pass_criteria": "Each answer directly resolves the question or names uncertainty.",
+          "fail_criteria": "Answers deflect, restate the question, or use vague future promises."
+        },
+        {
+          "id": "coverage",
+          "name": "Coverage of Critical Concerns",
+          "pass_criteria": "The FAQ covers data/privacy, workflow change, cost/value, failure modes, and alternatives.",
+          "fail_criteria": "A critical adoption concern is missing."
+        }
+      ]
+    },
+    "internal-faq": {
+      "dimensions": [
+        {
+          "id": "coverage",
+          "name": "Stakeholder Coverage",
+          "pass_criteria": "The FAQ includes hard questions from engineering, business/leadership, and legal/compliance where applicable.",
+          "fail_criteria": "One or more stakeholder perspectives are absent or only represented by softball questions."
+        },
+        {
+          "id": "answer-completeness",
+          "name": "Answer Completeness",
+          "pass_criteria": "Every question has a substantive answer or is explicitly marked open with a named owner.",
+          "fail_criteria": "Questions are unanswered, marked TBD, or open without an owner."
+        },
+        {
+          "id": "blocker-flagging",
+          "name": "Blocker Identification",
+          "pass_criteria": "Any open item that would prevent safe build handoff is flagged as a blocker.",
+          "fail_criteria": "Build-blocking issues are buried as normal open items or omitted."
+        },
+        {
+          "id": "evasion",
+          "name": "No Evasive Answers",
+          "pass_criteria": "Hard questions receive direct answers, explicit open items, or explicit blockers.",
+          "fail_criteria": "Hard questions receive vague, aspirational, or deflecting answers."
+        }
+      ]
+    },
+    "requirements": {
+      "dimensions": [
+        {
+          "id": "traceability",
+          "name": "Requirement Traceability",
+          "pass_criteria": "Every requirement traces to the press release, external FAQ, internal FAQ, or named open item.",
+          "fail_criteria": "Requirements appear without source artifact IDs or source rationale."
+        },
+        {
+          "id": "testable-acceptance-criteria",
+          "name": "Testable Acceptance Criteria",
+          "pass_criteria": "Acceptance criteria use observable given/when/then behavior.",
+          "fail_criteria": "Acceptance criteria are vague, subjective, or cannot be tested."
+        },
+        {
+          "id": "edge-case-coverage",
+          "name": "Edge Case Coverage",
+          "pass_criteria": "Key failure modes, boundary cases, and recovery paths are named.",
+          "fail_criteria": "Only the happy path is described."
+        },
+        {
+          "id": "non-functional-requirements",
+          "name": "Non-Functional Requirements",
+          "pass_criteria": "Performance, security/privacy, reliability, observability, accessibility, and scale/cost are covered or explicitly open.",
+          "fail_criteria": "Non-functional requirements are missing without open items."
+        },
+        {
+          "id": "open-item-propagation",
+          "name": "Open Item Propagation",
+          "pass_criteria": "Open items and blockers from prior stages are preserved with owner and impact.",
+          "fail_criteria": "Open items disappear, are softened, or are worked around silently."
+        }
+      ]
+    }
+  }
+}

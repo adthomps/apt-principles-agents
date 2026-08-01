@@ -93,3 +93,9 @@ Generated from active repository artifacts by `scripts/generate-catalogs.mjs`. D
 | [Escalation Path](../../templates/support/escalation-path.md) | `templates/support/escalation-path.md` | And Decision - Owner: - Date: - Status: - Intended outcome: - Audiences: - Decision or deliverable: |
 | [KB Article](../../templates/support/kb-article.md) | `templates/support/kb-article.md` | And Decision - Owner: - Date: - Status: - Intended outcome: - Audiences: - Decision or deliverable: |
 | [Support Runbook](../../templates/support/support-runbook.md) | `templates/support/support-runbook.md` | And Decision - Owner: - Date: - Status: - Intended outcome: - Audiences: - Decision or deliverable: |
+| [ai-task-contract.json](../../templates/working-backwards/ai-task-contract.json) | `templates/working-backwards/ai-task-contract.json` | Active APT artifact. |
+| [critic-rubric.json](../../templates/working-backwards/critic-rubric.json) | `templates/working-backwards/critic-rubric.json` | Active APT artifact. |
+| [[External | Internal] FAQ: [Product Or Feature Name]](../../templates/working-backwards/faq.md) | `templates/working-backwards/faq.md` | **Session:** [session-id] |
+| [[Product Name]: [Specific Customer Benefit]](../../templates/working-backwards/press-release.md) | `templates/working-backwards/press-release.md` | **[Subheading: named customer/persona and what they can now do]** |
+| [Requirements: [Product Or Feature Name]](../../templates/working-backwards/requirements.md) | `templates/working-backwards/requirements.md` | - Press release: |
+| [session.json](../../templates/working-backwards/session.json) | `templates/working-backwards/session.json` | Active APT artifact. |

@@ -10,6 +10,7 @@ extends:
   - product-hub
 principles:
 standards:
+  - standards/ai/provider-neutral-ai-task-contract.md
 checklists:
   - checklists/working-backwards-package-readiness-checklist.md
   - checklists/quality-testing-checklist.md
@@ -20,6 +21,7 @@ context:
 skills:
 agents:
 templates:
+  - templates/working-backwards/
   - templates/brd/
   - templates/prd/
   - templates/srd/

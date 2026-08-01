@@ -36,6 +36,7 @@ The pack keeps idea generation creative while preventing agents from skipping th
 - [Operations & Support](../principles/execution/operations-and-support.md)
 - [Knowledge & Learning](../principles/execution/knowledge-and-learning.md)
 - [Working Backwards Context](../context/working-backwards/README.md)
+- [Provider-Neutral AI Task Contract](../standards/ai/provider-neutral-ai-task-contract.md)
 - [APT Agent Pack](apt-agent-pack.md)
 - [APT UI Pack](apt-ui-pack.md)
 - [APT Cloudflare Pack](apt-cloudflare-pack.md)
@@ -64,6 +65,7 @@ The pack keeps idea generation creative while preventing agents from skipping th
 
 - Generated assets are evidence, not decoration. They must explain or validate the project, user workflow, implementation plan, release, or support path.
 - Every generated asset should name its source artifact, intended audience, approval status, and where it is used.
+- AI generation should request provider-neutral task capabilities before selecting a hosted provider or local tool.
 - Implementation prompts are build artifacts. They must include scope, non-goals, required files to inspect, expected file changes, validation commands, stop conditions, and human approval points.
 - Demo/mock assets should be produced early enough to test comprehension before implementation hardens the wrong flow.
 - Media, diagrams, screenshots, and examples should be regenerated from source instructions or scripts when available instead of edited as unmanaged final outputs.
@@ -89,8 +91,8 @@ A complete Dream-to-Reality handoff includes:
 - PRD, BRD, SRD, or equivalent requirements where relevant
 - product hub or audience-layered docs when the project needs external explanation
 - implementation blueprint and AI build prompt
+- provider-neutral AI task contract and selected provider evidence when AI generated the artifact
 - backlog slices with validation and stop conditions
 - design, API, security, and Cloudflare review notes where relevant
 - preview/build/test/deploy evidence
 - release, operations, support, telemetry, and learning notes
-
