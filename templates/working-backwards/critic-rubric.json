@@ -6,32 +6,32 @@
         {
           "id": "customer-definition",
           "name": "Customer Definition",
-          "pass_criteria": "A specific named persona, role, segment, or job title is identified.",
-          "fail_criteria": "Customer is vague, such as users, teams, enterprises, people, or customers without further specificity."
+          "pass_criteria": "A specific named persona, role, segment, or job title is identified. The reader knows exactly who has this problem.",
+          "fail_criteria": "Customer is vague, such as users, teams, enterprises, people, or customers without further specificity. A new team member could not describe the customer after reading this."
         },
         {
           "id": "problem-evidence",
           "name": "Problem Evidence",
-          "pass_criteria": "The problem is specific and evidenced with a concrete pain, current workaround, frequency, cost, or quote.",
-          "fail_criteria": "The problem is generic and lacks evidence that this is a real, acute pain."
+          "pass_criteria": "The problem is specific and evidenced with a concrete pain, current workaround, frequency, cost, or quote. The reader understands why this matters now.",
+          "fail_criteria": "The problem is generic, such as frustrating, slow, or no good solution, without specifics. No evidence shows that this is a real, acute pain."
         },
         {
           "id": "customer-benefit",
           "name": "Customer Benefit",
-          "pass_criteria": "The customer can tell exactly what changes for them, and the headline and solution paragraph agree.",
-          "fail_criteria": "The benefit is vague or disconnected from the stated problem."
+          "pass_criteria": "The customer knows exactly what they get. The benefit is concrete, specific, directly tied to the problem, and the headline and solution paragraph agree.",
+          "fail_criteria": "The benefit is vague, such as easier, faster, or better, without saying what specifically changes for the customer."
         },
         {
           "id": "spokesperson-quote",
           "name": "Spokesperson Quote",
           "pass_criteria": "The quote explains the insight, mission, or opportunity in language a real person could say.",
-          "fail_criteria": "The quote is generic launch or marketing language."
+          "fail_criteria": "The quote is generic launch or marketing language and could be copied onto any product announcement."
         },
         {
           "id": "customer-quote",
           "name": "Customer Quote",
-          "pass_criteria": "The quote is specific and believable, with placeholders clearly marked when not yet validated.",
-          "fail_criteria": "The quote invents unsupported metrics or uses generic praise."
+          "pass_criteria": "The quote is specific and believable. It describes a real outcome or reaction in the customer's voice, with placeholders clearly marked when not yet validated.",
+          "fail_criteria": "The quote invents unsupported metrics or outcomes without marking them as placeholders, or it uses generic praise."
         }
       ]
     },
@@ -40,26 +40,26 @@
         {
           "id": "question-quality",
           "name": "Question Quality",
-          "pass_criteria": "Every question represents a genuine challenge a skeptical customer would raise.",
-          "fail_criteria": "Questions are softballs or leading questions that assume a positive answer."
+          "pass_criteria": "Every question represents a genuine challenge a skeptical customer would raise about risk, cost, workflow change, data, competition, or failure modes.",
+          "fail_criteria": "Questions are softballs, leading questions that assume a positive answer, or questions a marketing team would write."
         },
         {
           "id": "answer-completeness",
           "name": "Answer Completeness",
           "pass_criteria": "Every question has a substantive answer or is explicitly marked open with a named owner.",
-          "fail_criteria": "Questions are unanswered, marked TBD, or open without an owner."
+          "fail_criteria": "Questions are unanswered, marked TBD, or marked open without a named owner."
         },
         {
           "id": "evasion",
           "name": "No Evasive Answers",
-          "pass_criteria": "Each answer directly resolves the question or names uncertainty.",
-          "fail_criteria": "Answers deflect, restate the question, or use vague future promises."
+          "pass_criteria": "Each answer directly resolves the question asked, or names uncertainty with an open item.",
+          "fail_criteria": "Answers deflect, restate the question, use vague future promises, or use marketing language to avoid a hard truth."
         },
         {
           "id": "coverage",
           "name": "Coverage of Critical Concerns",
-          "pass_criteria": "The FAQ covers data/privacy, workflow change, cost/value, failure modes, and alternatives.",
-          "fail_criteria": "A critical adoption concern is missing."
+          "pass_criteria": "The FAQ covers the customer concerns most likely to block adoption: data/privacy, workflow change, cost/value, failure modes, trust/support, and alternatives.",
+          "fail_criteria": "A critical adoption concern is missing, and the omission would leave a reasonable customer concern unanswered."
         }
       ]
     },
@@ -68,8 +68,8 @@
         {
           "id": "coverage",
           "name": "Stakeholder Coverage",
-          "pass_criteria": "The FAQ includes hard questions from engineering, business/leadership, and legal/compliance where applicable.",
-          "fail_criteria": "One or more stakeholder perspectives are absent or only represented by softball questions."
+          "pass_criteria": "The FAQ includes hard questions from at least three stakeholder perspectives: engineering, business/leadership, and legal/compliance where applicable.",
+          "fail_criteria": "One or more stakeholder perspectives are absent or represented only by softball questions. Engineering questions that cover only the happy path are insufficient."
         },
         {
           "id": "answer-completeness",
@@ -80,14 +80,14 @@
         {
           "id": "blocker-flagging",
           "name": "Blocker Identification",
-          "pass_criteria": "Any open item that would prevent safe build handoff is flagged as a blocker.",
-          "fail_criteria": "Build-blocking issues are buried as normal open items or omitted."
+          "pass_criteria": "Any open item that would prevent safe build handoff, such as legal risk, missing capability, unresolved dependency, or compliance requirement, is flagged as a blocker.",
+          "fail_criteria": "Build-blocking issues are buried as normal open items, omitted, or left for engineering to infer."
         },
         {
           "id": "evasion",
           "name": "No Evasive Answers",
           "pass_criteria": "Hard questions receive direct answers, explicit open items, or explicit blockers.",
-          "fail_criteria": "Hard questions receive vague, aspirational, or deflecting answers."
+          "fail_criteria": "Hard questions receive vague, aspirational, or deflecting answers instead of honest responses or open/blocker flags."
         }
       ]
     },

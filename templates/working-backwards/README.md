@@ -29,8 +29,14 @@ Each stage should preserve open items with an owner. Blockers must remain visibl
 - [FAQ](faq.md)
 - [Requirements](requirements.md)
 - [Critic Rubric](critic-rubric.json)
+- [Agent Role Contracts](agent-role-contracts.md)
+- [Stage Gate Status](stage-gate-status.md)
 - [AI Task Contract](ai-task-contract.json)
 
 ## Use In Target Repos
 
-Target repos can copy these templates into their local planning area, `.apt/` package, or product workspace. Claude Code-specific commands, slash commands, and session mechanics belong in platform adapters or internal planning repos; these templates are provider-neutral.
+Target repos can copy these templates into their local planning area, `.apt/` package, or product workspace. Claude Code-specific commands, slash commands, GitHub commits, and session mechanics belong in platform adapters, internal planning repos, or product implementations; these templates are provider-neutral.
+
+## Role Boundary
+
+Working Backwards implementations should keep authoring and review separate. Writer roles draft or revise artifacts. Critic roles evaluate against versioned rubrics and do not edit artifacts directly. Orchestrators preserve stage state, source lineage, open items, blockers, and approval history.
