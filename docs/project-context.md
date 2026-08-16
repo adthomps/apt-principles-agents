@@ -1,8 +1,11 @@
 ---
 title: apt-principles-agents Project Context
+version: v2
 kind: project-context
 domain: governance
 status: active
+audience: developer
+visibility: internal
 owner: APT
 last_updated: 2026-08-16
 source: generated

@@ -157,9 +157,12 @@ export function renderProjectContext(profile) {
 
   return `---
 title: ${profile.project} Project Context
+version: v2
 kind: project-context
 domain: governance
 status: active
+audience: developer
+visibility: internal
 owner: ${profile.ownership.owner}
 last_updated: ${profile.last_verified}
 source: generated
