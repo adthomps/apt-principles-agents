@@ -4,7 +4,7 @@ kind: "template"
 domain: "thinking"
 status: "draft"
 owner: "APT"
-last_updated: "2026-08-02"
+last_updated: "2026-08-16"
 source_paths: ["apt-principles-agents/templates/working-backwards/agent-role-contracts.md", "apt-product-team/.claude/agents/press-release-writer.md", "apt-product-team/.claude/agents/faq-writer.md", "apt-product-team/.claude/agents/critic.md"]
 ---
 
@@ -116,10 +116,12 @@ Responsibilities:
 
 Must not:
 
-- Edit the artifact directly.
-- Be lenient because a draft is close.
+- Edit the artifact directly. Allowed outputs are the structured verdict and session critic fields (for example `critic-review.md` and `session.json` in a product repo). Press release, FAQ, requirements, handoff, and readiness files stay writer-owned.
+- Be the same session that drafted the artifacts. Independence means a fresh review session. The same model in a new chat is acceptable; the drafting chat issuing `PASS` is not.
+- Be lenient because a draft is close, because a writer left a self-check, or because a hook or linter succeeded.
 - Be harsh without actionable, source-specific feedback.
 - Re-evaluate dimensions that already passed unless source context changed.
+- Treat platform automation as the critic. Editor hooks, CI, and slash commands may **guard** (block writer edits during critic mode, remind if the verdict is still pending). They must **never** write `PASS`.
 
 ## Structured Verdict
 
@@ -142,4 +144,12 @@ FEEDBACK:
 
 ## Adapter Boundary
 
-Provider or platform adapters may define slash commands, GitHub commits, local folder paths, model allowlists, or UI workflows. They must still preserve the canonical role boundaries, stage gate, source lineage, open/blocker semantics, and reviewable artifact history.
+Provider or platform adapters may define slash commands, GitHub commits, local folder paths, model allowlists, editor skills, or UI workflows. They must still preserve the canonical role boundaries, stage gate, source lineage, open/blocker semantics, and reviewable artifact history.
+
+Cursor and similar editors: a product repo may ship a **critic skill** (load rubric + role contract, write only the verdict files) and an **edit-guard hook** (deny writer-artifact edits while critic mode is on). Keep those adapters in the product repo. Do not copy `critic-rubric.json` into application source. Do not add a second critic rubric per product.
+
+Improvement backlog for this repo (do not treat as done until implemented here):
+
+- Versioned rubric notes for engineering-handoff / readiness stages (today `critic-rubric.json` stops at requirements).
+- A provider-neutral critic skill stub under `platforms/` that products can copy, instead of each repo inventing lock-file mechanics.
+- Explicit “fresh session” language in Claude/Codex agent files that still map to `.claude/agents/critic.md`.

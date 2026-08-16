@@ -4,7 +4,7 @@ description: Use when work must prove the service can launch, operate, degrade s
 kind: skill
 status: active
 owner: APT
-last_updated: 2026-06-27
+last_updated: 2026-08-16
 source: consolidated APT guidance
 title: "Escalation Path Review"
 domain: "service-readiness"
@@ -29,12 +29,12 @@ Use for planning, design, implementation review, migration, troubleshooting, or 
 
 ## Process
 
-1. Restate the intended outcome and affected audiences.
-2. Inventory exact current behavior and source-backed constraints.
-3. Apply the relevant APT principles and identify missing evidence.
-4. Compare viable options, including compatibility and operational effects.
-5. Produce the required artifacts: readiness checklist, SLOs and telemetry, runbook, known issues, escalation paths, knowledge articles, release communications, and rollback.
-6. Review launch without ownership, alerts without action, missing customer-safe explanations, unclear escalation, and undocumented operational dependencies; separate blockers, recommendations, and open questions.
+1. Inventory services, audiences, failure modes, dependencies, operating hours, telemetry, support channels, current owners, and protected decisions.
+2. Define severity using measurable impact, urgency, duration, data or money risk, affected customers, and workaround availability rather than team-specific intuition.
+3. Map each severity and failure class to a primary owner, backup, specialist, incident authority, acknowledgement target, update cadence, customer-communication owner, and rollback authority.
+4. Define the handoff packet: timeline, symptoms, scope, customer impact, evidence, actions attempted, current state, risks, communication status, and next decision.
+5. Run tabletop tests for business hours, out of hours, failed acknowledgement, cross-team dependency, security/payment/privacy involvement, rollback, and unresolved customer impact.
+6. Record gaps, owners, due dates, drill evidence, residual risk, launch blockers, closure criteria, post-incident learning, and approval status.
 
 ## Outputs
 
@@ -48,6 +48,8 @@ The output is practical, source-backed, audience-aware, testable, reversible whe
 
 - Treat **Escalation Path Review** as an explicit decision with defined scope, evidence, owner, and validation.
 - Required evidence: owner, telemetry, runbook, knowledge, escalation, communication, rollback.
+- Verify that every alert or support signal reaches someone empowered to act, with a backup and a tested failed-acknowledgement path.
+- Require customer-safe communication, rollback authority, and closure/learning ownership in addition to technical paging details.
 - State what is verified, what is assumed, and what requires specialist or human approval.
 
 ## Required Reading

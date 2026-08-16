@@ -1,16 +1,16 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-06-28",
+  "generatedAt": "2026-08-16",
   "sourceFileCount": 505,
   "counts": {
-    "merged": 62,
-    "migrated": 330,
-    "historical": 1,
+    "merged": 69,
+    "migrated": 309,
+    "historical": 15,
     "retired": 2,
     "external": 91,
     "historical_generated": 19
   },
-  "sha256": "ae0a8f6eeb1f068fb6dadf34e86692c6479f0f19bd5f6501414de1e7fcbe04e3",
+  "sha256": "d401714fc3576e720cfe15efa652e9ffdb301bd46040c7f0241ea6dab91b5afa",
   "files": [
     {
       "source": "apt-agent-standards/.gitattributes",
@@ -459,7 +459,7 @@
     {
       "source": "apt-agent-standards/docs/CURRENT-STATE-ASSESSMENT.md",
       "classification": "historical",
-      "destination": "docs/archive/legacy-agent-distribution/imported-CURRENT-STATE-ASSESSMENT.md",
+      "destination": "docs/archive/legacy-agent-distribution/CURRENT-STATE-ASSESSMENT.md",
       "rationale": "Preserved as superseded distribution history; replaced by the unified .apt lifecycle and current operations runbooks."
     },
     {
@@ -483,7 +483,7 @@
     {
       "source": "apt-agent-standards/docs/MIGRATION-ROADMAP.md",
       "classification": "historical",
-      "destination": "docs/archive/legacy-agent-distribution/imported-MIGRATION-ROADMAP.md",
+      "destination": "docs/archive/legacy-agent-distribution/MIGRATION-ROADMAP.md",
       "rationale": "Preserved as superseded distribution history; replaced by the unified .apt lifecycle and current operations runbooks."
     },
     {
@@ -513,13 +513,13 @@
     {
       "source": "apt-agent-standards/docs/PROPOSED-FILE-CHANGES.md",
       "classification": "historical",
-      "destination": "docs/archive/legacy-agent-distribution/imported-PROPOSED-FILE-CHANGES.md",
+      "destination": "docs/archive/legacy-agent-distribution/PROPOSED-FILE-CHANGES.md",
       "rationale": "Preserved as superseded distribution history; replaced by the unified .apt lifecycle and current operations runbooks."
     },
     {
       "source": "apt-agent-standards/docs/RISK-ASSESSMENT.md",
       "classification": "historical",
-      "destination": "docs/archive/legacy-agent-distribution/imported-RISK-ASSESSMENT.md",
+      "destination": "docs/archive/legacy-agent-distribution/RISK-ASSESSMENT.md",
       "rationale": "Preserved as superseded distribution history; replaced by the unified .apt lifecycle and current operations runbooks."
     },
     {
@@ -992,39 +992,39 @@
     },
     {
       "source": "apt-agent-standards/showcases/agents/instruction-structure.md",
-      "classification": "migrated",
-      "destination": "examples/distribution-showcases/agents/instruction-structure.md",
-      "rationale": "Preserved as active source-backed guidance."
+      "classification": "merged",
+      "destination": "examples/showcases/agent-instruction-structure.md",
+      "rationale": "Unique platform-coverage, findings-first output, package/source-read, local-override, installed-path, and provenance guidance was absorbed into the canonical showcase; the retired AI tool-layout reference was mapped to current platform-adapter guidance, and the superseded source-backed copy is retained under docs/archive/consolidation/distribution-showcases/agents/instruction-structure.md."
     },
     {
       "source": "apt-agent-standards/showcases/api/route-design.md",
-      "classification": "migrated",
-      "destination": "examples/distribution-showcases/api/route-design.md",
-      "rationale": "Preserved as active source-backed guidance."
+      "classification": "merged",
+      "destination": "examples/showcases/api-route-design.md",
+      "rationale": "Unique webhook, SDK, retry, route-shape, installed-path, and provenance guidance was absorbed into the canonical showcase; the superseded source-backed copy is retained under docs/archive/consolidation/distribution-showcases/api/route-design.md."
     },
     {
       "source": "apt-agent-standards/showcases/cloudflare/worker-hono-structure.md",
-      "classification": "migrated",
-      "destination": "examples/distribution-showcases/cloudflare/worker-hono-structure.md",
-      "rationale": "Preserved as active source-backed guidance."
+      "classification": "merged",
+      "destination": "examples/showcases/cloudflare-worker-hono-structure.md",
+      "rationale": "Unique Pages Functions, React/Vite, modernization, wrangler/project-context evidence, need-driven platform-service, installed-path, and provenance guidance was absorbed into the canonical showcase; the superseded source-backed copy is retained under docs/archive/consolidation/distribution-showcases/cloudflare/worker-hono-structure.md."
     },
     {
       "source": "apt-agent-standards/showcases/docs/documentation-structure.md",
-      "classification": "migrated",
-      "destination": "examples/distribution-showcases/docs/documentation-structure.md",
-      "rationale": "Preserved as active source-backed guidance."
+      "classification": "merged",
+      "destination": "examples/showcases/documentation-structure.md",
+      "rationale": "Unique current-versus-planned, README-map, package-command accuracy, setup/operations/context ownership, maintenance-trigger, installed-path, and provenance guidance was absorbed into the canonical showcase; the superseded source-backed copy is retained under docs/archive/consolidation/distribution-showcases/docs/documentation-structure.md."
     },
     {
       "source": "apt-agent-standards/showcases/security/security-review-expectations.md",
-      "classification": "migrated",
-      "destination": "examples/distribution-showcases/security/security-review-expectations.md",
-      "rationale": "Preserved as active source-backed guidance."
+      "classification": "merged",
+      "destination": "examples/showcases/security-review-expectations.md",
+      "rationale": "Unique health-data, MCP-permission, deployment-credential, external-integration, operational-evidence, validation-command, escalation, installed-path, and provenance guidance was absorbed into the canonical showcase; the superseded source-backed copy is retained under docs/archive/consolidation/distribution-showcases/security/security-review-expectations.md."
     },
     {
       "source": "apt-agent-standards/showcases/ui/intent-based-navigation.md",
-      "classification": "migrated",
-      "destination": "examples/distribution-showcases/ui/intent-based-navigation.md",
-      "rationale": "Preserved as active source-backed guidance."
+      "classification": "merged",
+      "destination": "examples/showcases/intent-based-ui-navigation.md",
+      "rationale": "Unique operational-workflow, expert-tool, intent-label, repeated-action, complete-state, installed-path, and provenance guidance was absorbed into the canonical showcase; the superseded source-backed copy is retained under docs/archive/consolidation/distribution-showcases/ui/intent-based-navigation.md."
     },
     {
       "source": "apt-agent-standards/skills/token-efficiency/SKILL.md",

@@ -4,7 +4,7 @@ description: Use when work must model the complete transaction lifecycle and exp
 kind: skill
 status: active
 owner: APT
-last_updated: 2026-06-27
+last_updated: 2026-08-16
 source: consolidated APT guidance
 title: "Transaction Intelligence Analysis"
 domain: "payments"
@@ -15,7 +15,7 @@ source_paths: ["apt-principles-agents/skills/payments/transaction-intelligence-a
 
 ## Purpose
 
-Produce a reviewable transaction intelligence analysis outcome that is grounded in repository evidence and explicit about uncertainty.
+Evaluate whether transaction-derived metrics, rules, models, and recommendations are decision-relevant, traceable, time-correct, appropriately governed, and operationally supportable.
 
 ## When to Use
 
@@ -29,16 +29,16 @@ Use for planning, design, implementation review, migration, troubleshooting, or 
 
 ## Process
 
-1. Restate the intended outcome and affected audiences.
-2. Inventory exact current behavior and source-backed constraints.
-3. Apply the relevant APT principles and identify missing evidence.
-4. Compare viable options, including compatibility and operational effects.
-5. Produce the required artifacts: lifecycle states, amount and currency rules, idempotency, provider mapping, token boundaries, settlement/funding flow, reconciliation, disputes, and support identifiers.
-6. Review invented provider behavior, double processing, confused authorization and settlement, sensitive-data exposure, incomplete reversals, and weak reconciliation; separate blockers, recommendations, and open questions.
+1. Define the supported decision, audience, action, expected value, error costs, and required review or appeal path.
+2. Trace transaction events and fields through normalization, enrichment, feature calculation, rules/models, aggregation, and presentation.
+3. Test lifecycle semantics, point-in-time correctness, retries, reversals, refunds, disputes, currencies, missing data, late data, and provider differences.
+4. Separate observed facts, provider signals, deterministic features, statistical estimates, and recommendations in outputs and explanations.
+5. Evaluate completeness, freshness, drift, calibration or rule precision, false positives/negatives, segment performance, privacy, retention, access, and operational cost.
+6. Produce a decision-readiness verdict with unsupported claims, material gaps, monitoring thresholds, review controls, owners, and retirement conditions.
 
 ## Outputs
 
-A concise recommendation, evidence map, required changes, risks, validation plan, support/documentation impact, and approval status.
+A use-case contract, event/feature lineage, metric dictionary, quality and segment evaluation, explanation/control review, monitoring plan, and decision-readiness verdict.
 
 ## Quality Bar
 
@@ -46,9 +46,12 @@ The output is practical, source-backed, audience-aware, testable, reversible whe
 
 ## Domain Checklist
 
-- Treat **Transaction Intelligence Analysis** as an explicit decision with defined scope, evidence, owner, and validation.
-- Required evidence: transaction states, money movement, tokens, provider mapping, risk, funding, reconciliation.
-- State what is verified, what is assumed, and what requires specialist or human approval.
+- Tie every metric, rule, score, or recommendation to a named decision, audience, action, benefit, and error cost.
+- Verify lifecycle-aware counting for retries, partials, reversals, refunds, disputes, settlement, and multi-currency activity.
+- Preserve point-in-time lineage from source event through features and output; detect leakage and stale enrichment.
+- Distinguish facts, provider labels, deterministic derivations, estimates, and recommendations in both data and UI.
+- Measure freshness, completeness, drift, false positives/negatives, and performance across relevant segments.
+- Require proportional explanation, human review, override/appeal, access, retention, monitoring, and retirement controls.
 
 ## Required Reading
 

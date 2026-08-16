@@ -3,7 +3,7 @@ title: Platform Adapters
 kind: index
 status: active
 owner: APT
-last_updated: 2026-06-27
+last_updated: 2026-08-16
 source: APT consolidation
 domain: "platforms"
 source_paths: ["apt-principles-agents/platforms/README.md"]
@@ -18,4 +18,5 @@ Tool-native discovery and installation guidance. `AGENTS.md` remains authoritati
 - [Claude](claude/README.md)
 - [Gemini](gemini/README.md)
 - [Vscode](vscode/README.md)
+- [Cursor](cursor/README.md)
 - [Local LLM](local-llm/README.md)

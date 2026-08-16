@@ -1,14 +1,17 @@
 ---
-title: "Security Review Expectations"
-kind: "example"
-domain: "distribution-showcases"
-status: "active"
-owner: "APT"
-last_updated: "2026-06-28"
+title: Archived Security Review Expectations Distribution Showcase
+kind: archived-example
+domain: distribution-showcases
+status: archived
+owner: APT
+last_updated: 2026-08-16
 source_paths: ["apt-agent-standards/showcases/security/security-review-expectations.md"]
+absorbed_into: "examples/showcases/security-review-expectations.md"
 ---
 
 # Security Review Expectations
+
+> Archived on 2026-08-16 after its unique guidance and source provenance were absorbed into `examples/showcases/security-review-expectations.md`. This file is historical evidence, not active guidance.
 
 ## Principle
 

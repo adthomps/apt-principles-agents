@@ -1,19 +1,19 @@
 ---
 title: Documentation Structure Showcase
-version: v1
-last_updated: 2026-06-22
+version: v2
+last_updated: 2026-08-16
 owner: APT
-status: draft
+status: active
 kind: "example"
 domain: "showcases"
-source_paths: ["apt-principles/examples/showcases/documentation-structure.md"]
+source_paths: ["apt-principles/examples/showcases/documentation-structure.md", "apt-agent-standards/showcases/docs/documentation-structure.md"]
 ---
 
 # Documentation Structure
 
 ## Context
 
-Use this showcase for documentation sites, repo docs, public APT pages, templates, examples, and local adoption folders where readers need to know what is canonical, what is local, and what is only illustrative.
+Use this showcase for README maps, setup guides, architecture docs, project context, operating runbooks, documentation sites, public APT pages, templates, examples, and local adoption folders where readers need to know what is canonical, current, planned, generated, local, or illustrative.
 
 ## Principle
 
@@ -24,6 +24,7 @@ APT knowledge-system work keeps one source of truth per topic and turns decision
 - A repo needs local APT adoption docs under `docs/apt/`.
 - A public site imports or presents APT principles.
 - A team is consolidating duplicated docs, prompts, or checklists.
+- Contributors cannot quickly determine the current package manager, commands, runtime, deployment target, or operating workflow.
 
 ## Avoid When
 
@@ -60,17 +61,35 @@ docs/apt/
   decisions/
   reports/
   references/
+
+README.md                 # map and first-run entry point
+docs/SETUP.md             # current package manager and setup commands
+docs/OPERATING.md         # recurring operator workflows
+docs/project-context.md   # target-owned local context and exceptions
 ```
 
-The structure separates adoption, decisions, evidence, and local reference copies.
+The structure separates navigation, setup, operations, local context, adoption, decisions, evidence, and local reference copies.
 
 ## Solution
 
-Name the canonical source, define the local purpose, link related checklists and prompts, and keep project-specific decisions in decision records. Public pages should preserve source paths so presentation aliases do not become doctrine names.
+Name the canonical source, define the local purpose and status, link related checklists and prompts, and keep project-specific decisions in decision records. Public and generated pages should preserve source paths and generated notices so presentation aliases or copied outputs do not become doctrine names.
 
 ## Implementation Notes
 
-Use frontmatter where the repo contract expects it. Run link and validation checks before publishing. If a compressed context pack was used, cite exact source reads before final docs edits.
+Keep the README as a map and first-run entry point rather than duplicating the full manual. Use frontmatter where the repo contract expects it. Run link and validation checks before publishing. If a compressed context pack was used, cite exact source reads before final docs edits.
+
+Update setup and operating documentation whenever package-manager commands, validation, installation, synchronization, detection, recovery, deployment, or recurring operator behavior changes. Document planned behavior as planned; do not phrase roadmap intent as current capability.
+
+## Installed Distribution Assets
+
+When the `documentation` manifest is installed into a target repository, use these local projections as review entry points:
+
+- `.apt/context/documentation/README.md`
+- `.apt/context-packs/apt-docs-pack.md`
+- `.apt/checklists/documentation-checklist.md`
+- `.apt/checklists/knowledge-system-checklist.md`
+
+Installed documentation assets provide reusable structure. The target repository remains authoritative for its actual commands, architecture, runtime, integrations, deployment, operating procedures, and exceptions.
 
 ## Related Packs
 

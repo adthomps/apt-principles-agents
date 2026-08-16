@@ -44,6 +44,7 @@ Generated from active repository artifacts by `scripts/generate-catalogs.mjs`. D
 | [Business Guide](../../templates/docs/business-guide.md) | `templates/docs/business-guide.md` | And Decision - Owner: - Date: - Status: - Intended outcome: - Audiences: - Decision or deliverable: |
 | [Demo Plan](../../templates/docs/demo-plan.md) | `templates/docs/demo-plan.md` | And Decision - Owner: - Date: - Status: - Intended outcome: - Audiences: - Decision or deliverable: |
 | [Developer Integrator Guide](../../templates/docs/developer-integrator-guide.md) | `templates/docs/developer-integrator-guide.md` | And Decision - Owner: - Date: - Status: - Intended outcome: - Audiences: - Decision or deliverable: |
+| [Flagship Case Study Template](../../templates/docs/flagship-case-study.md) | `templates/docs/flagship-case-study.md` | [Problem, decision, and verified outcome in one sentence.] |
 | [Implementation Blueprint](../../templates/docs/implementation-blueprint.md) | `templates/docs/implementation-blueprint.md` | And Decision - Owner: - Date: - Status: - Intended outcome: - Audiences: - Decision or deliverable: |
 | [Troubleshooting Guide](../../templates/docs/troubleshooting-guide.md) | `templates/docs/troubleshooting-guide.md` | And Decision - Owner: - Date: - Status: - Intended outcome: - Audiences: - Decision or deliverable: |
 | [{{TITLE}}](../../templates/example-template.md) | `templates/example-template.md` | Describe the real situation this example represents. Include the project type, user or operator, system boundary, and why the example matters. |

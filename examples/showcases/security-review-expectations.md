@@ -1,19 +1,19 @@
 ---
 title: Security Review Expectations Showcase
-version: v1
-last_updated: 2026-06-22
+version: v2
+last_updated: 2026-08-16
 owner: APT
-status: draft
+status: active
 kind: "example"
 domain: "showcases"
-source_paths: ["apt-principles/examples/showcases/security-review-expectations.md"]
+source_paths: ["apt-principles/examples/showcases/security-review-expectations.md", "apt-agent-standards/showcases/security/security-review-expectations.md"]
 ---
 
 # Security Review Expectations
 
 ## Context
 
-Use this showcase for authentication, authorization, payment-adjacent work, sensitive data, secrets, abuse controls, production readiness, and AI agents that can affect privileged systems.
+Use this showcase for authentication, authorization, payment-adjacent work, health or other sensitive data, secrets, webhooks, MCP permissions, deployment credentials, external integrations, abuse controls, production readiness, and AI agents that can affect privileged systems.
 
 ## Principle
 
@@ -22,6 +22,7 @@ APT security is built in. Security review requires exact source evidence, trust-
 ## Use When
 
 - A change touches identity, sessions, permissions, secrets, payments, webhooks, or user data.
+- A change introduces MCP/tool permissions, deployment credentials, health data, or an external trust boundary.
 - A repo wants to claim APT security alignment.
 - Context compression was used during discovery and final review boundaries need to be restated.
 
@@ -53,18 +54,30 @@ The statement relies on summary instead of source evidence and names no failure 
 ## Better Example
 
 ```text
-Reviewed src/auth/session.ts, src/routes/payments.ts, wrangler bindings, and security checklist. Authorization is enforced before mutation. Missing replay test remains a high-priority follow-up.
+Reviewed src/auth/session.ts, src/routes/payments.ts, webhook verification, environment bindings, relevant logs, deployment docs, and the security checklist. Authorization is enforced before mutation. Missing replay test remains a high-priority follow-up. Validation: npm run test:security.
 ```
 
-The statement names evidence, scope, finding, and residual risk.
+The statement names evidence, scope, finding, validation command, and residual risk.
 
 ## Solution
 
-Security review should identify assets, actors, trust boundaries, controls, failure modes, tests, monitoring, rollback, and approval requirements. It must cite exact files and distinguish verified facts from assumptions.
+Security review should identify assets, actors, trust boundaries, controls, failure modes, tests, monitoring, rollback, and approval requirements. It must cite exact files, record relevant validation commands, and distinguish verified facts from assumptions.
 
 ## Implementation Notes
 
-Use compression only to find likely files. Before final recommendations, read the relevant source, config, tests, and runbook. Record unavailable evidence as risk.
+Use compression only to find likely files. Before final recommendations, read the relevant middleware, route handlers, webhook verification, configuration, environment bindings, tests, logs, deployment docs, and runbooks. Record unavailable evidence as risk.
+
+Mark findings that require accountable-owner review, production credential knowledge, privacy or compliance interpretation, or access that the reviewer does not possess. Do not convert those uncertainties into readiness claims.
+
+## Installed Distribution Assets
+
+When the `security` manifest is installed into a target repository, use these local projections as review entry points:
+
+- `.apt/context/security/README.md`
+- `.apt/checklists/security-review-checklist.md`
+- `.apt/standards/ai/security-harness-standard.md`
+
+Installed assets provide review structure; exact target source, configuration, credentials policy, threat model, operational evidence, and recorded exceptions remain authoritative.
 
 ## Related Packs
 

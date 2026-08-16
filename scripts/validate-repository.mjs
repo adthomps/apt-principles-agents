@@ -10,7 +10,7 @@ const warnings = [];
 function files(directory) {
   if (!existsSync(directory)) return [];
   return readdirSync(directory, { withFileTypes: true }).flatMap((entry) => {
-    if (entry.name === ".git" || entry.name === "node_modules" || entry.name === ".tmp" || entry.name === ".wrangler") return [];
+    if (entry.name === ".git" || entry.name === "node_modules" || entry.name === ".tmp" || entry.name === ".wrangler" || entry.name === "graphify-out") return [];
     const child = path.join(directory, entry.name);
     return entry.isDirectory() ? files(child) : [child];
   });

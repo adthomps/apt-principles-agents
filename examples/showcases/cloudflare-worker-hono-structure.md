@@ -1,19 +1,19 @@
 ---
 title: Cloudflare Worker Hono Structure Showcase
-version: v1
-last_updated: 2026-06-22
+version: v2
+last_updated: 2026-08-16
 owner: APT
-status: draft
+status: active
 kind: "example"
 domain: "showcases"
-source_paths: ["apt-principles/examples/showcases/cloudflare-worker-hono-structure.md"]
+source_paths: ["apt-principles/examples/showcases/cloudflare-worker-hono-structure.md", "apt-agent-standards/showcases/cloudflare/worker-hono-structure.md"]
 ---
 
 # Cloudflare Worker + Hono Structure
 
 ## Context
 
-Use this showcase for Cloudflare Worker APIs, Hono route apps, edge services, and deployment structures where runtime boundaries, bindings, and route ownership must stay visible.
+Use this showcase for Cloudflare Workers, Pages Functions, Hono APIs, React/Vite applications with an edge backend, modernization reviews, and other edge services where runtime boundaries, bindings, and route ownership must stay visible.
 
 ## Principle
 
@@ -22,8 +22,10 @@ APT architecture asks systems to expose responsibility boundaries. Cloudflare an
 ## Use When
 
 - A Worker or Hono API is moving beyond a prototype.
+- A Pages Functions or React/Vite project is adding edge-runtime behavior.
 - Routes handle user data, auth, payment-adjacent flows, or integrations.
 - A repo needs a structure that supports validation and operations.
+- A modernization review must separate platform adoption from product need.
 
 ## Avoid When
 
@@ -58,23 +60,40 @@ The structure hides responsibilities and makes route-level review expensive.
 
 ```text
 src/
-  app.ts
+  index.ts        # Worker entry and app wiring
+  app.ts          # Hono app composition
   routes/
   middleware/
   schemas/
   services/
   observability/
+wrangler.toml     # bindings and environments
+docs/
+  project-context.md  # runtime and deployment assumptions
 ```
 
 The structure gives reviewers predictable places to inspect behavior.
 
 ## Solution
 
-Keep app setup separate from route modules, validation schemas, middleware, service adapters, and observability helpers. Document bindings and environment assumptions where operators can find them.
+Keep Worker entry and app setup separate from route modules, validation schemas, middleware, domain/service adapters, response shaping, and observability helpers. Document bindings, environments, and deployment assumptions where operators and reviewers can find them.
 
 ## Implementation Notes
 
-Use this as a pattern, not a required folder list. Read actual route files, `wrangler` config, tests, and runbooks before making final changes or deployment recommendations.
+Use this as a pattern, not a required folder list. Review `wrangler.toml` or `wrangler.jsonc`, package scripts, environment bindings, route handlers, secret assumptions, tests, project context, and deployment runbooks together before making final changes or deployment recommendations.
+
+Add D1, KV, R2, Queues, Durable Objects, or other platform services only when a documented product or operational need justifies them. Platform availability is not itself an architecture requirement.
+
+## Installed Distribution Assets
+
+When the `cloudflare` manifest is installed into a target repository, use these local projections as review entry points:
+
+- `.apt/context/cloudflare/README.md`
+- `.apt/standards/installable-summaries/cloudflare-standards.md`
+- `.apt/checklists/architecture-review-checklist.md`
+- `.apt/checklists/security-review-checklist.md`
+
+Add the `api-review` manifest when the Worker exposes an API contract. Installed assets do not replace the target repository's `wrangler` configuration, package scripts, runtime evidence, deployment decisions, or exceptions.
 
 ## Related Packs
 

@@ -3,7 +3,7 @@ title: Repo Audit
 kind: prompt
 status: active
 owner: APT
-last_updated: 2026-06-27
+last_updated: 2026-08-16
 source: APT prompt consolidation
 domain: "audits"
 source_paths: ["apt-principles-agents/prompts/audits/repo-audit.md"]
@@ -29,3 +29,10 @@ You are performing an APT repo audit.
 Expected evidence: implementation plan, acceptance criteria, validation matrix, release record, runbook, support handoff, and captured learning.
 
 Do not invent product behavior. For payment, security, compliance, legal, or production-launch decisions, identify the required expert or human approval.
+
+## Task-Specific Requirements
+
+- Identify canonical, generated, adapter, vendored, archived, build, and project-owned boundaries before recommending moves or deletion.
+- Verify the current package manager, setup, run, build, test, validation, distribution, and deployment commands from repository evidence.
+- Review ownership, architecture boundaries, dependency direction, CI coverage, security-sensitive configuration, documentation freshness, and recovery behavior.
+- Return exact evidence paths, stale or conflicting claims, safe cleanup candidates, blocked deletions, and the smallest coherent improvement sequence.

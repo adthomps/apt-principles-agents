@@ -1,10 +1,10 @@
 ---
 name: avs-cvv-analysis
-description: Use when work must model the complete transaction lifecycle and explicitly address money movement, tokenization, risk, reconciliation, funding, support, and provider differences.
+description: Use when analyzing AVS and card-security-code signals, provider mappings, fraud-policy treatment, data-handling limits, customer impact, and false-positive risk.
 kind: skill
 status: active
 owner: APT
-last_updated: 2026-06-27
+last_updated: 2026-08-16
 source: consolidated APT guidance
 title: "AVS CVV Analysis"
 domain: "payments"
@@ -15,11 +15,11 @@ source_paths: ["apt-principles-agents/skills/payments/avs-cvv-analysis/SKILL.md"
 
 ## Purpose
 
-Produce a reviewable avs cvv analysis outcome that is grounded in repository evidence and explicit about uncertainty.
+Analyze AVS and card-security-code results as contextual risk signals—not universal proof of identity, authorization, or fraud—and define safe, evidence-backed policy treatment.
 
 ## When to Use
 
-Use for planning, design, implementation review, migration, troubleshooting, or documentation where the task must model the complete transaction lifecycle and explicitly address money movement, tokenization, risk, reconciliation, funding, support, and provider differences.
+Use when mapping provider result codes, tuning fraud decisions, reviewing checkout behavior, investigating declines, migrating processors, or documenting how address and security-code results influence decisions.
 
 ## Inputs
 
@@ -29,16 +29,16 @@ Use for planning, design, implementation review, migration, troubleshooting, or 
 
 ## Process
 
-1. Restate the intended outcome and affected audiences.
-2. Inventory exact current behavior and source-backed constraints.
-3. Apply the relevant APT principles and identify missing evidence.
-4. Compare viable options, including compatibility and operational effects.
-5. Produce the required artifacts: lifecycle states, amount and currency rules, idempotency, provider mapping, token boundaries, settlement/funding flow, reconciliation, disputes, and support identifiers.
-6. Review invented provider behavior, double processing, confused authorization and settlement, sensitive-data exposure, incomplete reversals, and weak reconciliation; separate blockers, recommendations, and open questions.
+1. Identify provider/acquirer/network, channel, geography, transaction type, code set/version, merchant configuration, and authoritative mapping sources.
+2. Map raw AVS and security-code results without collapsing unavailable, unsupported, not processed, partial match, mismatch, and provider error states.
+3. Trace how each signal combines with authorization response, authentication, device/account history, amount, velocity, and other risk evidence.
+4. Evaluate approve, decline, review, step-up, retry, and customer-message policies using conversion, fraud, chargeback, and false-positive evidence by segment.
+5. Verify that security-code values are never retained after authorization and that logs, analytics, support tools, and examples expose only permitted results.
+6. Produce mapping conflicts, unsupported assumptions, policy recommendations, monitoring thresholds, customer/support impacts, and accountable approvals.
 
 ## Outputs
 
-A concise recommendation, evidence map, required changes, risks, validation plan, support/documentation impact, and approval status.
+A raw-to-normalized code map, policy decision table, segment performance analysis, data-handling review, customer/support guidance, monitoring plan, and approval record.
 
 ## Quality Bar
 
@@ -46,9 +46,12 @@ The output is practical, source-backed, audience-aware, testable, reversible whe
 
 ## Domain Checklist
 
-- Treat **Avs Cvv Analysis** as an explicit decision with defined scope, evidence, owner, and validation.
-- Required evidence: transaction states, money movement, tokens, provider mapping, risk, funding, reconciliation.
-- State what is verified, what is assumed, and what requires specialist or human approval.
+- Preserve raw provider results and distinguish match, partial, mismatch, unavailable, unsupported, not processed, and error states.
+- Treat AVS and security-code outcomes as contextual signals, not standalone identity, fraud, or authorization verdicts.
+- Validate mappings against the exact current provider/acquirer/network documentation and enabled merchant configuration.
+- Measure conversion, fraud, chargeback, review, and false-positive effects by geography, channel, issuer, and customer segment.
+- Never store the security-code value after authorization; redact sensitive values from logs, analytics, support tools, and fixtures.
+- Give policy changes owners, thresholds, monitoring, rollback, customer messaging, support guidance, and risk approval.
 
 ## Required Reading
 

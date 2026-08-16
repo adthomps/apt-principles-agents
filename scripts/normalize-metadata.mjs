@@ -18,7 +18,7 @@ for (const item of ledger) {
 
 function walk(directory) {
   return readdirSync(directory, { withFileTypes: true }).flatMap((entry) => {
-    if (entry.name === ".git" || entry.name === "node_modules" || entry.name === ".tmp" || entry.name === ".wrangler") return [];
+    if (entry.name === ".git" || entry.name === "node_modules" || entry.name === ".tmp" || entry.name === ".wrangler" || entry.name === "graphify-out") return [];
     const full = path.join(directory, entry.name);
     return entry.isDirectory() ? walk(full) : [full];
   });

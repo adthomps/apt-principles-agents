@@ -3,7 +3,7 @@ title: Working Backwards Product Team Application
 kind: operating-guidance
 status: draft
 owner: APT
-last_updated: 2026-08-02
+last_updated: 2026-08-16
 domain: thinking
 source_paths: ["apt-principles-agents/docs/working-backwards-product-team-application.md", "apt-product-team/README.md", "apt-product-team/prd-pm-ai-team.md", "apt-product-team/.claude/agents/critic.md", "apt-product-team/.claude/agents/press-release-writer.md", "apt-product-team/.claude/agents/faq-writer.md", "apt-product-team/.claude/skills/working-backwards/SKILL.md", "apt-product-team/.claude/skills/working-backwards-methodology/SKILL.md"]
 ---
@@ -45,6 +45,7 @@ Do not promote these as canonical doctrine:
 | `.claude/agents/press-release-writer.md` | `templates/working-backwards/agent-role-contracts.md` and product-planning skills |
 | `.claude/agents/faq-writer.md` | `templates/working-backwards/agent-role-contracts.md` and FAQ template guidance |
 | `.claude/agents/critic.md` | `templates/working-backwards/agent-role-contracts.md` and `templates/working-backwards/critic-rubric.json` |
+| Cursor `.cursor/skills/*critic*` / edit-guard hooks | Product-repo adapter only. Doctrine stays here. Hooks guard; they do not `PASS`. See `platforms/cursor/README.md`. |
 | `.claude/rubrics/*.json` | `templates/working-backwards/critic-rubric.json` or versioned rubric library |
 | `.claude/skills/working-backwards/SKILL.md` | provider-neutral orchestration guidance; productized implementation in `../apt-dream-to-reality` |
 | `.claude/skills/wb-status/SKILL.md` | `templates/working-backwards/stage-gate-status.md` |
@@ -71,8 +72,13 @@ Do not promote these as canonical doctrine:
    - `[BLOCKER - owner: name]` items prevent build handoff until resolved or explicitly accepted by an accountable decision.
 
 5. Keep adapters optional.
-   - GitHub commits, slash commands, local session folders, and model/provider choices belong in platform adapters or product repos.
+   - GitHub commits, slash commands, local session folders, Cursor skills/hooks, and model/provider choices belong in platform adapters or product repos.
    - The canonical rule is durable state, source lineage, and reviewability.
+   - A critic adapter must not collapse writer and critic into one chat, and must not auto-approve.
+
+6. Keep independence real.
+   - `PASS` from the drafting session is invalid even if the rubric dimensions look green.
+   - Writer self-checks in `critic-review.md` are notes, not verdicts.
 
 ## Validation
 

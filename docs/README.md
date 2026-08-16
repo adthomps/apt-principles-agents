@@ -13,6 +13,7 @@ source_paths: ["apt-principles-agents/docs/README.md"]
 
 Operator and contributor guidance for using this repository.
 
+- [Project Context](project-context.md) — generated purpose, architecture, structure, commands, and source boundaries
 - [Getting Started.md](getting-started.md)
 - [Repo Usage.md](repo-usage.md)
 - [Platform Adapters.md](platform-adapters.md)
@@ -24,3 +25,6 @@ Operator and contributor guidance for using this repository.
 - [Design Reference Intake.md](design-reference-intake.md)
 - [Intake Routing Application.md](intake-routing-application.md)
 - [Working Backwards Product Team Application.md](working-backwards-product-team-application.md)
+- [Inventory-Driven Improvement Analysis](refactor/inventory-driven-improvement-analysis.md)
+- [Boilerplate And Specialization Review](refactor/boilerplate-and-specialization-review.md)
+- [Historical Archive](archive/README.md) — provenance, retired interfaces, and completed consolidation evidence

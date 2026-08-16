@@ -1,14 +1,17 @@
 ---
-title: "Documentation Structure"
-kind: "example"
-domain: "distribution-showcases"
-status: "active"
-owner: "APT"
-last_updated: "2026-06-28"
+title: Archived Documentation Structure Distribution Showcase
+kind: archived-example
+domain: distribution-showcases
+status: archived
+owner: APT
+last_updated: 2026-08-16
 source_paths: ["apt-agent-standards/showcases/docs/documentation-structure.md"]
+absorbed_into: "examples/showcases/documentation-structure.md"
 ---
 
 # Documentation Structure
+
+> Archived on 2026-08-16 after its unique guidance and source provenance were absorbed into `examples/showcases/documentation-structure.md`. This file is historical evidence, not active guidance.
 
 ## Principle
 

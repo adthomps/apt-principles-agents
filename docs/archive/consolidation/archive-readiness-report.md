@@ -1,14 +1,14 @@
 ---
-title: Archive readiness report
-kind: report
+title: Archive Readiness Report
+kind: archive-record
 domain: governance
-status: active
+status: stable
 owner: APT maintainers
-last_updated: 2026-06-28
+last_updated: 2026-08-16
 source_paths: ["apt-principles-agents/docs/migration/source-ledger.json", "apt-principles-agents/references/workspace-consumers.json", "apt-principles-agents/scripts/apt-assets.mjs"]
 ---
 
-# Archive readiness report
+# Archive Readiness Report
 
 ## Decision
 

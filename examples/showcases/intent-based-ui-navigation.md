@@ -1,19 +1,19 @@
 ---
 title: Intent-Based UI Navigation Showcase
-version: v1
-last_updated: 2026-06-22
+version: v2
+last_updated: 2026-08-16
 owner: APT
-status: draft
+status: active
 kind: "example"
 domain: "showcases"
-source_paths: ["apt-principles/examples/showcases/intent-based-ui-navigation.md"]
+source_paths: ["apt-principles/examples/showcases/intent-based-ui-navigation.md", "apt-agent-standards/showcases/ui/intent-based-navigation.md"]
 ---
 
 # Intent-Based UI Navigation
 
 ## Context
 
-Use this showcase for React/Vite apps, public sites, documentation browsers, dashboards, and generated prototypes where navigation should help users act by intent rather than browse a vague pile of pages.
+Use this showcase for React/Vite apps, public sites, documentation browsers, dashboards, operational tools, onboarding flows, repeated workflows, multi-step tasks, and generated prototypes where navigation should help users act by intent rather than browse a vague pile of pages.
 
 ## Principle
 
@@ -30,6 +30,7 @@ APT design asks interfaces to communicate purpose, state, and next action clearl
 - The surface is a tiny single-purpose tool with one obvious flow.
 - The team has not yet named the audience or primary tasks.
 - Navigation labels would imply capabilities the product does not have.
+- A precise technical label is required for a well-understood expert-only tool.
 
 ## Problem
 
@@ -57,13 +58,35 @@ Learn Principles | Apply To Repo | Review Checklists | Browse Examples | Use Pro
 
 The labels map to user intent and make the source-of-truth relationship easier to inspect.
 
+For an operational product, the same change might look like this:
+
+```text
+Tables | Records | Sync Jobs | Payloads
+```
+
+becoming:
+
+```text
+Customers | Orders | Reviews | Imports
+```
+
 ## Solution
 
-Start with user intents, map each intent to the canonical artifact type, and make the first screen expose the most common next action. Keep secondary navigation available for source browsing, but do not make folder names the main mental model unless the audience is explicitly maintainers.
+Start with the top user tasks, group related screens by workflow, map each intent to the canonical artifact type, and make the first screen expose the most common next action. Keep repeated actions reachable. Keep secondary navigation available for source browsing, but do not make folder names the main mental model unless the audience is explicitly maintainers.
 
 ## Implementation Notes
 
-For a docs or principles browser, pair each navigation item with the governing source and the required checklist. Validate desktop and mobile states, active route styling, keyboard navigation, empty states, and broken-link behavior.
+For a docs or principles browser, pair each navigation item with the governing source and the required checklist. Validate desktop and mobile states, active route styling, keyboard navigation, empty, loading, error, and success states, and broken-link behavior.
+
+## Installed Distribution Assets
+
+The `ux-review` manifest supplies the current UI review profile, including:
+
+- `.apt/context/ui/README.md`
+- `.apt/context-packs/apt-ui-pack.md`
+- `.apt/checklists/design-review-checklist.md`
+
+The target repository remains authoritative for its actual audiences, routes, workflows, design system, and accessibility requirements.
 
 ## Related Packs
 

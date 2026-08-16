@@ -4,7 +4,7 @@ description: Use when work must inventory legacy behavior before designing a fac
 kind: skill
 status: active
 owner: APT
-last_updated: 2026-06-27
+last_updated: 2026-08-16
 source: consolidated APT guidance
 title: "Legacy API Parity Reviewer"
 domain: "modernization"
@@ -15,7 +15,7 @@ source_paths: ["apt-principles-agents/skills/modernization/legacy-api-parity-rev
 
 ## Purpose
 
-Produce a reviewable legacy api parity reviewer outcome that is grounded in repository evidence and explicit about uncertainty.
+Determine whether a proposed facade or replacement preserves the legacy behaviors that supported consumers actually need, and define explicit treatment for every difference.
 
 ## When to Use
 
@@ -29,16 +29,16 @@ Use for planning, design, implementation review, migration, troubleshooting, or 
 
 ## Process
 
-1. Restate the intended outcome and affected audiences.
-2. Inventory exact current behavior and source-backed constraints.
-3. Apply the relevant APT principles and identify missing evidence.
-4. Compare viable options, including compatibility and operational effects.
-5. Produce the required artifacts: legacy inventory, field/error/auth mappings, parity matrix, contract and replay tests, observability, dual-run metrics, communications, and rollback plan.
-6. Review forced big-bang migration, silent parity loss, incorrect error translation, token incompatibility, and deprecation without customer evidence; separate blockers, recommendations, and open questions.
+1. Freeze the evidence-backed legacy inventory and the proposed public contract for the review window.
+2. Build an operation-by-operation mapping across fields, semantics, state, errors, authentication, authorization, limits, ordering, idempotency, and side effects.
+3. Classify each capability as full, transformed, partial, unsupported, unsafe-to-preserve, deferred, or unknown; identify affected consumers and owners.
+4. Test mappings with contract fixtures, recorded/replayed traffic, negative cases, fault injection, and security checks using sanitized data.
+5. Compare dual-run outcomes and correlated telemetry, including retry amplification, latency, data divergence, and reconciliation exceptions.
+6. Issue a readiness verdict with blockers, accepted exceptions, consumer migrations, rollout thresholds, rollback signals, and facade/compatibility retirement conditions.
 
 ## Outputs
 
-A concise recommendation, evidence map, required changes, risks, validation plan, support/documentation impact, and approval status.
+A parity matrix, translation map, consumer-impact register, test and dual-run evidence, approved exceptions, readiness verdict, and rollout/rollback criteria.
 
 ## Quality Bar
 
@@ -46,9 +46,12 @@ The output is practical, source-backed, audience-aware, testable, reversible whe
 
 ## Domain Checklist
 
-- Treat **Legacy Api Parity Reviewer** as an explicit decision with defined scope, evidence, owner, and validation.
-- Classify every capability as full, partial, unsupported, changed, or deferred with evidence and owner.
-- State what is verified, what is assumed, and what requires specialist or human approval.
+- Assess semantics, errors, side effects, timing, ordering, limits, identity, authorization, and audit behavior—not schema shape alone.
+- Classify every capability as full, transformed, partial, unsupported, unsafe-to-preserve, deferred, or unknown.
+- Bind each difference to affected consumers, evidence, owner, treatment, test, communication, and decision date.
+- Refuse silent coercion and false-success responses; unsupported or lossy behavior must be explicit and observable.
+- Require correlated legacy/new-path evidence and objective thresholds before traffic shifts or deprecation.
+- Separate compatibility required for consumers from legacy defects or unsafe behavior that need governed migration.
 
 ## Required Reading
 

@@ -1,7 +1,7 @@
 ---
 title: Working Backwards Package Readiness Checklist
 version: v1
-last_updated: 2026-06-22
+last_updated: 2026-08-16
 owner: APT
 status: draft
 kind: "checklist"
@@ -30,6 +30,8 @@ The package is ready when the team can trace what to build from customer intent 
 - [ ] Readiness checklist covers quality, security, operations, support, docs, and release gates.
 - [ ] Outcome tracker defines adoption, usage, love/satisfaction, and revenue or business-value signals.
 - [ ] What-to-build and agent handoff artifacts cite approved source artifacts and validation commands.
+- [ ] Independent critic scored the package in a session that did not author it; `PASS` is not a writer self-check or an editor hook.
+- [ ] Critic output is only the verdict files; writer artifacts were not edited by the critic.
 
 ## Failure Conditions
 
@@ -39,6 +41,7 @@ The package is ready when the team can trace what to build from customer intent 
 - Telemetry and outcome tracking are missing without an explicit deferral reason.
 - Release slices are too broad to review or validate independently.
 - Agent handoff asks an implementer to infer source, scope, validation, or stop conditions.
+- Critic `PASS` came from the drafting session, a hook, or CI rather than an independent review against the versioned rubric.
 
 ## Evidence Required
 

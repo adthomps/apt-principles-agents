@@ -1,12 +1,12 @@
 ---
 title: Initial Consolidation Completion Report
 kind: completion-report
-status: active
+status: stable
 owner: APT
-last_updated: 2026-06-27
+last_updated: 2026-08-16
 source: APT consolidation
 domain: "documentation"
-source_paths: ["apt-principles-agents/docs/completion-report.md"]
+source_paths: ["apt-principles-agents/docs/archive/consolidation/completion-report.md"]
 ---
 
 # Initial Consolidation Completion Report
@@ -44,7 +44,7 @@ Preserved source patches and SHA-256 inventories, the former ownership contract 
 
 ## Old Repository Mapping
 
-See [Migration From Old Repositories](migration-from-old-repos.md) for moved, renamed, merged, archived, and retired material.
+See [Migration From Old Repositories](../../migration-from-old-repos.md) for moved, renamed, merged, archived, and retired material.
 
 ## Open Questions
 

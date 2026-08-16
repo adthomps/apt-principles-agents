@@ -4,7 +4,7 @@ description: Use when work must model the complete transaction lifecycle and exp
 kind: skill
 status: active
 owner: APT
-last_updated: 2026-06-27
+last_updated: 2026-08-16
 source: consolidated APT guidance
 title: "Settlement Funding Review"
 domain: "payments"
@@ -15,7 +15,7 @@ source_paths: ["apt-principles-agents/skills/payments/settlement-funding-review/
 
 ## Purpose
 
-Produce a reviewable settlement funding review outcome that is grounded in repository evidence and explicit about uncertainty.
+Verify end-to-end settlement, reconciliation, exception handling, ledger treatment, and funding controls against provider, banking, and internal evidence.
 
 ## When to Use
 
@@ -29,16 +29,16 @@ Use for planning, design, implementation review, migration, troubleshooting, or 
 
 ## Process
 
-1. Restate the intended outcome and affected audiences.
-2. Inventory exact current behavior and source-backed constraints.
-3. Apply the relevant APT principles and identify missing evidence.
-4. Compare viable options, including compatibility and operational effects.
-5. Produce the required artifacts: lifecycle states, amount and currency rules, idempotency, provider mapping, token boundaries, settlement/funding flow, reconciliation, disputes, and support identifiers.
-6. Review invented provider behavior, double processing, confused authorization and settlement, sensitive-data exposure, incomplete reversals, and weak reconciliation; separate blockers, recommendations, and open questions.
+1. Map expected transaction activity through provider batches, settlement reports, fees/reserves/adjustments, ledger postings, bank confirmations, and merchant funding.
+2. Identify authoritative sources, immutable keys, equations, precision, currencies, signs, calendars, time zones, and cutoff rules at each boundary.
+3. Replay normal, duplicate, missing, late, corrected, reversed, disputed, multi-currency, and partial-file scenarios through reconciliation.
+4. Inspect exception classification, materiality, queues, ownership, aging, evidence, controlled correction, and escalation paths.
+5. Verify funding/close gates plus least privilege, dual control, idempotency, audit logs, and recovery for manual actions and reruns.
+6. Report unmatched or unsupported cases, financial exposure, evidence gaps, launch blockers, accepted exceptions, and follow-up owners.
 
 ## Outputs
 
-A concise recommendation, evidence map, required changes, risks, validation plan, support/documentation impact, and approval status.
+A settlement/funding flow, source and key matrix, reconciliation equations, scenario results, exception/control findings, exposure summary, and readiness verdict.
 
 ## Quality Bar
 
@@ -46,9 +46,12 @@ The output is practical, source-backed, audience-aware, testable, reversible whe
 
 ## Domain Checklist
 
-- Treat **Settlement Funding Review** as an explicit decision with defined scope, evidence, owner, and validation.
-- Reconcile processor batches, fees, adjustments, funding dates, exceptions, and ledger ownership.
-- State what is verified, what is assumed, and what requires specialist or human approval.
+- Tie gross transactions to fees, reserves, adjustments, disputes, refunds, net settlement, ledger postings, bank movement, and funding.
+- Verify immutable keys, source authority, currency/precision/sign rules, business dates, time zones, and cutoffs.
+- Test missing, duplicate, late, corrected, partial, and replayed inputs without double posting or double funding.
+- Inspect exception cause, materiality, owner, evidence, aging target, escalation, and controlled correction.
+- Gate funding and close on completeness plus explicit material-exception thresholds.
+- Require least privilege, dual control, idempotency, and auditability for adjustments, write-offs, reruns, and releases.
 
 ## Required Reading
 

@@ -4,7 +4,7 @@ kind: "template"
 domain: "thinking"
 status: "active"
 owner: "APT"
-last_updated: "2026-08-01"
+last_updated: "2026-08-16"
 source_paths: ["apt-principles-agents/templates/working-backwards/README.md", "apt-product-team/templates/session.json.template", "apt-product-team/templates/output-formats/press-release.md.template", "apt-product-team/templates/output-formats/faq.md.template"]
 ---
 
@@ -35,8 +35,8 @@ Each stage should preserve open items with an owner. Blockers must remain visibl
 
 ## Use In Target Repos
 
-Target repos can copy these templates into their local planning area, `.apt/` package, or product workspace. Claude Code-specific commands, slash commands, GitHub commits, and session mechanics belong in platform adapters, internal planning repos, or product implementations; these templates are provider-neutral.
+Target repos can copy these templates into their local planning area, `.apt/` package, or product workspace. Claude Code-specific commands, slash commands, GitHub commits, Cursor skills/hooks, and session mechanics belong in platform adapters, internal planning repos, or product implementations; these templates are provider-neutral. Do not fork `critic-rubric.json` into `apps/` or other runtime source.
 
 ## Role Boundary
 
-Working Backwards implementations should keep authoring and review separate. Writer roles draft or revise artifacts. Critic roles evaluate against versioned rubrics and do not edit artifacts directly. Orchestrators preserve stage state, source lineage, open items, blockers, and approval history.
+Working Backwards implementations should keep authoring and review separate. Writer roles draft or revise artifacts. Critic roles evaluate against versioned rubrics and do not edit artifacts directly. Orchestrators preserve stage state, source lineage, open items, blockers, and approval history. Independent critic review uses a fresh session. Editor hooks may guard edits; they must not issue `PASS`.

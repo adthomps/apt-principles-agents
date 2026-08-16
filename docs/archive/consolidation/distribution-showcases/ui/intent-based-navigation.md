@@ -1,14 +1,17 @@
 ---
-title: "Intent-Based UI Navigation"
-kind: "example"
-domain: "distribution-showcases"
-status: "active"
-owner: "APT"
-last_updated: "2026-06-28"
+title: Archived Intent-Based UI Navigation Distribution Showcase
+kind: archived-example
+domain: distribution-showcases
+status: archived
+owner: APT
+last_updated: 2026-08-16
 source_paths: ["apt-agent-standards/showcases/ui/intent-based-navigation.md"]
+absorbed_into: "examples/showcases/intent-based-ui-navigation.md"
 ---
 
 # Intent-Based UI Navigation
+
+> Archived on 2026-08-16 after its unique guidance and source provenance were absorbed into `examples/showcases/intent-based-ui-navigation.md`. This file is historical evidence, not active guidance.
 
 ## Principle
 

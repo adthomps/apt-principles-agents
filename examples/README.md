@@ -3,7 +3,7 @@ title: APT Examples
 kind: index
 status: active
 owner: APT
-last_updated: 2026-06-27
+last_updated: 2026-08-16
 source: APT consolidation
 domain: "navigation"
 source_paths: ["apt-principles-agents/examples/README.md"]
@@ -11,17 +11,31 @@ source_paths: ["apt-principles-agents/examples/README.md"]
 
 # APT Examples
 
-Practical starter scenarios. Examples illustrate principles; they do not override them or claim provider-specific behavior.
+Examples illustrate decisions, tradeoffs, artifacts, and validation. They do not override doctrine or claim provider behavior that has not been verified.
+
+## Start With A Problem
+
+- Framing and decisions: [Thinking](thinking/)
+- User and interaction clarity: [Intent-Based UI](intent-based-ui/README.md), [Beginner User Review](beginner-user-review/README.md), and [UI Patterns](ui/)
+- Architecture and contracts: [Architecture](architecture/), [Intent-Based API](intent-based-api/README.md), and [API Patterns](api/)
+- Safe delivery: [Quality](quality/), [Security](security/), and [Workflows](workflows/)
+- AI-assisted work: [AI and Agent Examples](ai-agent/)
+- Knowledge reuse: [Knowledge](knowledge/) and [Project Adoption](projects/)
+
+## End-To-End Scenarios
 
 - [Payment API](payment-api/README.md)
 - [Ecommerce Checkout](ecommerce-checkout/README.md)
 - [Transaction Intelligence](transaction-intelligence/README.md)
 - [API Bridge](api-bridge/README.md)
-- [SOAP To Rest](soap-to-rest/README.md)
-- [XML To Rest](xml-to-rest/README.md)
-- [NVP To Rest](nvp-to-rest/README.md)
+- [SOAP To REST](soap-to-rest/README.md)
+- [XML To REST](xml-to-rest/README.md)
+- [NVP To REST](nvp-to-rest/README.md)
 - [Stablecoin Payment](stablecoin-payment/README.md)
-- [Intent Based UI](intent-based-ui/README.md)
-- [Intent Based API](intent-based-api/README.md)
-- [Beginner User Review](beginner-user-review/README.md)
 - [Game Development](game-development/README.md)
+
+## Showcases
+
+- [Full principle showcases](showcases/)
+
+All six parallel showcase pairs have been consolidated into their live canonical examples. Their superseded source-backed copies are retained in the consolidation archive, and `examples/distribution-showcases/` no longer contains active guidance. The consolidation and archive gate are recorded in `docs/refactor/content-lifecycle-and-publication-plan.md`.

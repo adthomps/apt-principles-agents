@@ -1,0 +1,389 @@
+{
+  "inventory_version": 2,
+  "project": "apt-principles-agents",
+  "purpose": "Canonical operating system for Applied Practical Thinking doctrine, standards, reusable agent capabilities, platform adapters, and standards distribution tooling.",
+  "description": "This repository is a documentation and asset toolkit with dependency-free Node.js validation and lifecycle commands. It is not a long-running application: maintainers run validators, generators, audits, installers, and synchronization commands against this repository or downstream project repositories.",
+  "audience": [
+    "APT maintainers",
+    "product and architecture teams",
+    "AI coding agents",
+    "downstream project maintainers",
+    "documentation and governance reviewers"
+  ],
+  "adoption_mode": "sync",
+  "principles_demonstrated": [
+    "thinking",
+    "design",
+    "architecture",
+    "execution",
+    "documentation",
+    "ai-agent-framework",
+    "knowledge-system"
+  ],
+  "repository_type": "documentation-asset-toolkit",
+  "ownership": {
+    "owner": "APT",
+    "profile_maintainer": "APT maintainers"
+  },
+  "architecture": {
+    "summary": "Human-authored canonical doctrine and reusable assets feed manifests, validators, installers, and tool-specific adapter surfaces; generated catalogs and archives remain non-authoritative projections or historical evidence.",
+    "components": [
+      "Principles and standards define canonical judgment and required practice.",
+      "Structured taxonomy and publication contracts define how canonical guidance is classified and which reviewed artifacts may appear on public surfaces.",
+      "Skills, agents, prompts, templates, examples, checklists, context, and routing provide reusable operational capabilities.",
+      "Manifests select installable bundles while installers and scripts validate, distribute, scan, synchronize, and repair managed assets.",
+      "Platform directories adapt canonical assets for Codex, Claude, Gemini, GitHub Copilot, VS Code, and local-model consumers.",
+      "Documentation, references, product hubs, and knowledge assets support adoption, contracts, and retrieval without replacing canonical sources."
+    ],
+    "runtime_model": "On-demand Node.js command-line scripts and PowerShell/Bash wrappers; no resident process, API server, database, or local web server.",
+    "deployment_model": "Assets are installed or synchronized into independent target repositories through manifests and lifecycle commands. The repository itself has no production deployment target."
+  },
+  "runtime": {
+    "summary": "Run means invoking repository checks, catalog and inventory generators, workspace audits, or downstream asset lifecycle commands. There is no application build or server startup path.",
+    "requirements": [
+      {
+        "name": "Node.js",
+        "declared": ">=18 in package.json",
+        "recommended": "Node 20 or newer in operator documentation; CI verifies Node 22",
+        "verified_by": "package.json; docs/operations/setup.md; .github/workflows/ci.yml"
+      },
+      {
+        "name": "PowerShell or Bash",
+        "declared": "Required only for the matching lifecycle wrapper",
+        "recommended": "Use the native shell for the current platform",
+        "verified_by": "installers/README.md; .github/workflows/ci.yml"
+      }
+    ],
+    "package_manager": "npm scripts orchestrate dependency-free Node.js tooling; no application dependency installation is required by the documented checks.",
+    "local_server": "Not applicable; this repository does not expose a local application server.",
+    "build": "Not applicable as an application build. Catalog and inventory generation produce documentation projections.",
+    "deployment": "Not applicable for the repository. Distribution targets are independent downstream repositories."
+  },
+  "commands": [
+    {
+      "name": "Repository completion gate",
+      "category": "validate",
+      "command": "npm run check",
+      "purpose": "Run repository validation, metadata validation, manifest parity, content-specialization checks, project inventory checks, and lifecycle tests.",
+      "mutates": false,
+      "applicability": "applicable"
+    },
+    {
+      "name": "Repository structure validation",
+      "category": "validate",
+      "command": "npm run validate",
+      "purpose": "Validate metadata, required directories, asset contracts, links, catalogs, migration provenance, and retired interfaces.",
+      "mutates": false,
+      "applicability": "applicable"
+    },
+    {
+      "name": "Project profile validation",
+      "category": "validate",
+      "command": "npm run validate:project-profile",
+      "purpose": "Validate the repository's canonical structured project profile.",
+      "mutates": false,
+      "applicability": "applicable"
+    },
+    {
+      "name": "Content specialization validation",
+      "category": "validate",
+      "command": "npm run validate:specialization",
+      "purpose": "Prevent unreviewed growth or substitution in thin shared-core skills, agents, principles, and prompts while preserving independently consumable contracts.",
+      "mutates": false,
+      "applicability": "applicable"
+    },
+    {
+      "name": "Installer and inventory tests",
+      "category": "test",
+      "command": "npm test",
+      "purpose": "Exercise asset lifecycle behavior and project inventory validation, rendering, discovery, and stale-output checks.",
+      "mutates": false,
+      "applicability": "applicable"
+    },
+    {
+      "name": "Generate repository context",
+      "category": "generate",
+      "command": "npm run inventory:generate",
+      "purpose": "Render docs/project-context.md from the canonical version-2 JSON profile.",
+      "mutates": true,
+      "applicability": "applicable"
+    },
+    {
+      "name": "Check repository context",
+      "category": "validate",
+      "command": "npm run inventory:check",
+      "purpose": "Fail when the generated repository context differs from its canonical JSON profile.",
+      "mutates": false,
+      "applicability": "applicable"
+    },
+    {
+      "name": "Generate workspace inventory",
+      "category": "generate",
+      "command": "npm run inventory:workspace",
+      "purpose": "Discover sibling projects and render the workspace inventory using verified, legacy, and pending status labels.",
+      "mutates": true,
+      "applicability": "applicable"
+    },
+    {
+      "name": "Workspace standards audit",
+      "category": "audit",
+      "command": "npm run audit:workspace",
+      "purpose": "Assess sibling repositories for APT installation and readiness signals.",
+      "mutates": false,
+      "applicability": "applicable"
+    },
+    {
+      "name": "Detect target needs",
+      "category": "audit",
+      "command": "node scripts/apt-assets.mjs detect --target ../target-repo",
+      "purpose": "Recommend relevant manifests from target repository evidence.",
+      "mutates": false,
+      "applicability": "applicable"
+    },
+    {
+      "name": "Install assets preview",
+      "category": "distribute",
+      "command": "node scripts/apt-assets.mjs install --target ../target-repo --manifest core --dry-run",
+      "purpose": "Preview a first-time manifest installation without changing the target.",
+      "mutates": false,
+      "applicability": "applicable"
+    },
+    {
+      "name": "Install assets",
+      "category": "distribute",
+      "command": "node scripts/apt-assets.mjs install --target ../target-repo --manifest core --apply",
+      "purpose": "Install selected managed assets and create the target-owned installation record.",
+      "mutates": true,
+      "applicability": "applicable"
+    },
+    {
+      "name": "Scan managed assets",
+      "category": "audit",
+      "command": "node scripts/apt-assets.mjs scan --target ../target-repo",
+      "purpose": "Report missing, changed, and current managed artifacts.",
+      "mutates": false,
+      "applicability": "applicable"
+    },
+    {
+      "name": "Synchronize managed assets",
+      "category": "distribute",
+      "command": "node scripts/apt-assets.mjs sync --target ../target-repo --apply",
+      "purpose": "Update managed assets while preserving locally changed files.",
+      "mutates": true,
+      "applicability": "applicable"
+    },
+    {
+      "name": "Repair managed assets",
+      "category": "maintenance",
+      "command": "node scripts/apt-assets.mjs repair --target ../target-repo --apply --force",
+      "purpose": "Force reviewed repairs with backups after drift has been assessed.",
+      "mutates": true,
+      "applicability": "applicable"
+    },
+    {
+      "name": "Application build",
+      "category": "build",
+      "command": "",
+      "purpose": "Not applicable; this repository is not an application artifact.",
+      "mutates": false,
+      "applicability": "not-applicable"
+    },
+    {
+      "name": "Application server",
+      "category": "run",
+      "command": "",
+      "purpose": "Not applicable; repository operations are on-demand commands.",
+      "mutates": false,
+      "applicability": "not-applicable"
+    },
+    {
+      "name": "Production deployment",
+      "category": "deploy",
+      "command": "",
+      "purpose": "Not applicable; managed assets are distributed to independently owned target repositories.",
+      "mutates": false,
+      "applicability": "not-applicable"
+    }
+  ],
+  "structure": [
+    {
+      "path": "principles/",
+      "purpose": "Durable canonical APT doctrine organized by the four pillars and supported domains.",
+      "authority": "canonical",
+      "maintenance": "authored"
+    },
+    {
+      "path": "standards/",
+      "purpose": "Required practice plus compact installable summaries.",
+      "authority": "canonical",
+      "maintenance": "mixed"
+    },
+    {
+      "path": "skills/",
+      "purpose": "Canonical bounded, reusable agent capabilities.",
+      "authority": "operational",
+      "maintenance": "authored"
+    },
+    {
+      "path": "agents/",
+      "purpose": "Canonical accountable roles and review perspectives.",
+      "authority": "operational",
+      "maintenance": "authored"
+    },
+    {
+      "path": "prompts/ templates/ examples/ checklists/",
+      "purpose": "Reusable model instructions, starter artifacts, demonstrations, and verification gates.",
+      "authority": "supporting",
+      "maintenance": "authored"
+    },
+    {
+      "path": "context/ context-packs/ routing/ knowledge/",
+      "purpose": "Selective context, model and task routing, and portable knowledge projections.",
+      "authority": "operational",
+      "maintenance": "mixed"
+    },
+    {
+      "path": "platforms/",
+      "purpose": "Tool-native adapters and distribution surfaces for supported AI platforms.",
+      "authority": "adapter",
+      "maintenance": "mixed"
+    },
+    {
+      "path": "manifests/ installers/ scripts/",
+      "purpose": "Bundle selection, compatibility wrappers, validation, generation, audit, and asset lifecycle tooling.",
+      "authority": "operational",
+      "maintenance": "authored"
+    },
+    {
+      "path": "references/",
+      "purpose": "Machine-readable contracts, schemas, vocabularies, design tokens, canonical taxonomy, and public publication selection.",
+      "authority": "supporting",
+      "maintenance": "authored"
+    },
+    {
+      "path": "docs/",
+      "purpose": "Repository operations, adoption guidance, architecture diagrams, migration records, and generated distribution catalogs.",
+      "authority": "supporting",
+      "maintenance": "mixed"
+    },
+    {
+      "path": "product-hubs/ governance/",
+      "purpose": "Audience-layered product documentation patterns and repository governance artifacts.",
+      "authority": "supporting",
+      "maintenance": "authored"
+    },
+    {
+      "path": "docs/archive/",
+      "purpose": "Historical provenance, retired tooling, and preserved consolidation evidence.",
+      "authority": "archived",
+      "maintenance": "authored"
+    }
+  ],
+  "integrations": [
+    "GitHub Actions validates Linux and Windows behavior with Node.js 22.",
+    "Target repositories consume selected manifests through Node.js commands or PowerShell/Bash wrappers.",
+    "Codex, Claude, Gemini, GitHub Copilot, VS Code, and local-model adapters consume tool-specific platform surfaces.",
+    "The sibling applied-practical-thinking site reads references/publication-manifest.json and references/apt-taxonomy.json to generate a curated public reference library."
+  ],
+  "source_boundaries": {
+    "canonical": [
+      "principles/ owns doctrine and judgment guidance.",
+      "standards/ owns enforceable practice.",
+      "skills/ and agents/ own provider-neutral operational capabilities and accountable roles.",
+      "Target repositories own their local product context, architecture decisions, commands, integrations, and exceptions."
+    ],
+    "generated": [
+      "docs/distribution/*-CATALOG.md files are generated projections and must be regenerated from authored assets.",
+      "docs/project-context.md is generated from docs/apt/references/project-profile.json.",
+      "Workspace inventory Markdown is generated from child-repository profiles.",
+      "Public APT Markdown, manifest, and taxonomy projections in applied-practical-thinking are generated from explicit canonical contracts.",
+      "graphify-out/ and other analysis outputs are discovery artifacts, not canonical sources."
+    ],
+    "archived": [
+      "docs/archive/ preserves historical provenance and retired interfaces and must not be treated as active guidance."
+    ]
+  },
+  "constraints": [
+    "Do not edit generated catalogs, copied publication assets, build outputs, or graph outputs as source.",
+    "Keep canonical principles separate from procedures, examples, prompts, adapters, and archived history.",
+    "Preview target-repository lifecycle changes before applying them; forced repair requires reviewed drift and backups.",
+    "Do not infer target product behavior or exceptions from this reusable standards repository.",
+    "Public publication defaults to internal and requires affirmative selection through references/publication-manifest.json.",
+    "Run npm run check before claiming repository changes are complete."
+  ],
+  "evidence": [
+    {
+      "path": "README.md",
+      "supports": "Repository purpose, audience entry points, domains, and distribution overview."
+    },
+    {
+      "path": "AGENTS.md",
+      "supports": "Repository operating constraints and completion gate."
+    },
+    {
+      "path": "package.json",
+      "supports": "Node engine declaration and command interface."
+    },
+    {
+      "path": ".github/workflows/ci.yml",
+      "supports": "Linux and Windows CI behavior with Node.js 22 and shell-wrapper exercises."
+    },
+    {
+      "path": "docs/operations/setup.md",
+      "supports": "Node recommendation, installation model, target record, platform selection, and backup behavior."
+    },
+    {
+      "path": "docs/operations/operating.md",
+      "supports": "Detect, preview, apply, verify, synchronization, repair, and uninstall operations."
+    },
+    {
+      "path": "docs/refactor/current-state-inventory.md",
+      "supports": "Top-level responsibility, authority, validation, overlap, and generated-versus-authored assessment."
+    },
+    {
+      "path": "docs/refactor/target-architecture.md",
+      "supports": "Current directory responsibilities and decision to retain the documentation-and-asset toolkit shape."
+    },
+    {
+      "path": "references/apt-taxonomy.json",
+      "supports": "Canonical mapping between four pillars, lifecycle practices, and cross-cutting overlays."
+    },
+    {
+      "path": "references/publication-manifest.json",
+      "supports": "Explicit collections, audiences, statuses, and paths approved for public publication."
+    },
+    {
+      "path": "docs/public-showcase-contract.md",
+      "supports": "Evidence, safety, and multi-format requirements for public APT case studies and portfolio narratives."
+    },
+    {
+      "path": "docs/refactor/boilerplate-and-specialization-review.md",
+      "supports": "Verified shared-core and thin-specialization baseline, pilot changes, priority sequence, and deletion decision."
+    },
+    {
+      "path": "references/content-specialization-baseline.json",
+      "supports": "Hash-backed non-regression baseline for thin canonical content families."
+    }
+  ],
+  "last_verified": "2026-08-16",
+  "architecture_pattern": "Canonical documentation and reusable agent assets with manifest-driven distribution and dependency-free Node.js governance tooling",
+  "command_matrix": "See commands[] in this version-2 profile.",
+  "validation_evidence": "npm run check and cross-platform GitHub Actions",
+  "release_model": "Repository revisions plus downstream manifest installation or synchronization",
+  "operations_model": "Detect, preview, apply, verify with drift preservation and forced-repair backups",
+  "ai_agent_usage": "Provider-neutral skills, accountable agent roles, routing guidance, context packs, prompts, and tool-specific adapters",
+  "security_model": "No application runtime or stored customer data; security depends on source review, manifest boundaries, target-owned secrets, and high-accuracy escalation rules",
+  "learning_value": "Demonstrates separation of doctrine, operational capabilities, adapters, generated projections, provenance, and downstream adoption records",
+  "reusable_artifacts": [
+    "principles and standards",
+    "skills and agent contracts",
+    "prompts, templates, checklists, and examples",
+    "manifests and installation lifecycle tooling",
+    "platform adapters and context packs"
+  ],
+  "maturity": "active",
+  "showcase": {
+    "include": true,
+    "summary": "Canonical APT doctrine and reusable agent operating system with governed, manifest-driven distribution."
+  }
+}

@@ -1,14 +1,17 @@
 ---
-title: "API Route Design"
-kind: "example"
-domain: "distribution-showcases"
-status: "active"
-owner: "APT"
-last_updated: "2026-06-28"
+title: Archived API Route Design Distribution Showcase
+kind: archived-example
+domain: distribution-showcases
+status: archived
+owner: APT
+last_updated: 2026-08-16
 source_paths: ["apt-agent-standards/showcases/api/route-design.md"]
+absorbed_into: "examples/showcases/api-route-design.md"
 ---
 
 # API Route Design
+
+> Archived on 2026-08-16 after its unique guidance and source provenance were absorbed into `examples/showcases/api-route-design.md`. This file is historical evidence, not active guidance.
 
 ## Principle
 

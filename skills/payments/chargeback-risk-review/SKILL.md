@@ -1,10 +1,10 @@
 ---
 name: chargeback-risk-review
-description: Use when work must model the complete transaction lifecycle and explicitly address money movement, tokenization, risk, reconciliation, funding, support, and provider differences.
+description: Use when reviewing chargeback exposure, reason categories, prevention, alerts, evidence, representment economics, deadlines, ownership, and customer remediation.
 kind: skill
 status: active
 owner: APT
-last_updated: 2026-06-27
+last_updated: 2026-08-16
 source: consolidated APT guidance
 title: "Chargeback Risk Review"
 domain: "payments"
@@ -15,11 +15,11 @@ source_paths: ["apt-principles-agents/skills/payments/chargeback-risk-review/SKI
 
 ## Purpose
 
-Produce a reviewable chargeback risk review outcome that is grounded in repository evidence and explicit about uncertainty.
+Assess chargeback exposure and controls from transaction and fulfillment evidence through inquiry, alert, dispute, representment, loss, recovery, and prevention feedback.
 
 ## When to Use
 
-Use for planning, design, implementation review, migration, troubleshooting, or documentation where the task must model the complete transaction lifecycle and explicitly address money movement, tokenization, risk, reconciliation, funding, support, and provider differences.
+Use for product launches, payment-flow changes, fraud/risk tuning, dispute-operation design, provider migration, merchant monitoring, or investigation of elevated chargebacks and avoidable customer disputes.
 
 ## Inputs
 
@@ -29,16 +29,16 @@ Use for planning, design, implementation review, migration, troubleshooting, or 
 
 ## Process
 
-1. Restate the intended outcome and affected audiences.
-2. Inventory exact current behavior and source-backed constraints.
-3. Apply the relevant APT principles and identify missing evidence.
-4. Compare viable options, including compatibility and operational effects.
-5. Produce the required artifacts: lifecycle states, amount and currency rules, idempotency, provider mapping, token boundaries, settlement/funding flow, reconciliation, disputes, and support identifiers.
-6. Review invented provider behavior, double processing, confused authorization and settlement, sensitive-data exposure, incomplete reversals, and weak reconciliation; separate blockers, recommendations, and open questions.
+1. Define merchant entities, products, channels, geographies, providers, networks, time window, dispute stages, and authoritative reason/deadline sources.
+2. Reconcile transactions, authentication, authorization, fulfillment, delivery, cancellation/refund, support contact, alert, dispute, representment, and financial outcome.
+3. Segment exposure by fraud, authorization, processing, consumer dispute, fulfillment, subscription, credit-not-processed, and evidence-quality drivers without assuming reason codes equal root cause.
+4. Review prevention and remediation across descriptors, receipts, cancellation, refunds, customer service, authentication, fraud controls, alerts, evidence capture, and representment workflow.
+5. Evaluate win rate together with amount, fees, labor, deadlines, customer harm, monitoring-program exposure, and prevention opportunity.
+6. Produce root-cause hypotheses with confidence, control gaps, economic priorities, owners, deadlines, evidence retention, monitoring, and approval needs.
 
 ## Outputs
 
-A concise recommendation, evidence map, required changes, risks, validation plan, support/documentation impact, and approval status.
+A chargeback lifecycle map, reconciled exposure analysis, reason/root-cause segmentation, prevention and evidence assessment, representment economics, action plan, and monitoring thresholds.
 
 ## Quality Bar
 
@@ -46,9 +46,12 @@ The output is practical, source-backed, audience-aware, testable, reversible whe
 
 ## Domain Checklist
 
-- Treat **Chargeback Risk Review** as an explicit decision with defined scope, evidence, owner, and validation.
-- Required evidence: transaction states, money movement, tokens, provider mapping, risk, funding, reconciliation.
-- State what is verified, what is assumed, and what requires specialist or human approval.
+- Reconcile transaction, authentication, fulfillment, refund, support, alert, dispute, representment, and financial outcome records.
+- Use current provider/network reason categories and deadlines while distinguishing coded reason from verified root cause.
+- Segment fraud, authorization, processing, fulfillment, subscription, customer-service, and credit-not-processed drivers.
+- Assess descriptors, receipts, cancellation/refund paths, support responsiveness, authentication, fraud controls, and evidence capture.
+- Evaluate representment by amount, fees, labor, deadline, evidence strength, customer impact, and expected recovery—not win rate alone.
+- Assign prevention, operations, finance, support, compliance, monitoring, and evidence-retention ownership.
 
 ## Required Reading
 

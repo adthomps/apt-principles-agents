@@ -81,10 +81,34 @@ if (powershell) {
 }
 
 const bash = spawnSync("bash", ["--version"], { stdio: "ignore" });
+let bashLifecycleTested = false;
 if (bash.status === 0) {
-  execFileSync("bash", ["-n", path.join(root, "installers", "install-skills.sh")]);
-  execFileSync("bash", [path.join(root, "installers", "install-skills.sh"), "--target", target, "--manifest", "core", "--dry-run"], { stdio: "ignore" });
+  const toBashPath = (value) => {
+    if (process.platform !== "win32") return value;
+    const flavor = execFileSync("bash", [
+      "-lc",
+      "if command -v wslpath >/dev/null 2>&1; then printf wsl; elif command -v cygpath >/dev/null 2>&1; then printf msys; else printf unknown; fi",
+    ], { encoding: "utf8" }).trim();
+    const match = value.match(/^([A-Za-z]):[\\/](.*)$/);
+    if (!match) return value.replaceAll("\\", "/");
+    const drive = match[1].toLowerCase();
+    const remainder = match[2].replaceAll("\\", "/");
+    if (flavor === "wsl") return `/mnt/${drive}/${remainder}`;
+    if (flavor === "msys") return `/${drive}/${remainder}`;
+    return value.replaceAll("\\", "/");
+  };
+  const bashInstaller = toBashPath(path.join(root, "installers", "install-skills.sh"));
+  const bashTarget = toBashPath(target);
+  execFileSync("bash", ["-n", bashInstaller]);
+  const bashNode = spawnSync("bash", ["-lc", "command -v node >/dev/null 2>&1"], { stdio: "ignore" });
+  if (bashNode.status === 0) {
+    execFileSync("bash", [bashInstaller, "--target", bashTarget, "--manifest", "core", "--dry-run"], { stdio: "ignore" });
+    bashLifecycleTested = true;
+  }
 }
 
 rmSync(tempRoot, { recursive: true, force: true });
-console.log(`Installer lifecycle tests: PASS (${[powershell && "PowerShell", bash.status === 0 && "Bash"].filter(Boolean).join(" + ") || "Node lifecycle"})`);
+console.log(`Installer lifecycle tests: PASS (${[
+  powershell && "PowerShell",
+  bashLifecycleTested ? "Bash" : bash.status === 0 ? "Bash syntax" : null,
+].filter(Boolean).join(" + ") || "Node lifecycle"})`);
