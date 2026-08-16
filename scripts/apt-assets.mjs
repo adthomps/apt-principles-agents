@@ -40,6 +40,22 @@ function normalize(value) {
   return value.replaceAll("\\", "/");
 }
 
+function parseTargetSelector(availableTargets) {
+  const values = String(args.targets || "")
+    .split(",")
+    .map((value) => normalize(value.trim()))
+    .filter(Boolean);
+  if (!values.length) return null;
+  const selected = new Set();
+  for (const value of values) {
+    if (path.isAbsolute(value) || value.split("/").includes("..")) throw new Error(`Unsafe managed target selector: ${value}`);
+    if (selected.has(value)) throw new Error(`Duplicate managed target selector: ${value}`);
+    if (!availableTargets.has(value)) throw new Error(`Unknown managed target selector: ${value}`);
+    selected.add(value);
+  }
+  return selected;
+}
+
 function sha256(file) {
   return createHash("sha256").update(readFileSync(file)).digest("hex");
 }
@@ -319,6 +335,7 @@ function syncOrRepair(type) {
   const desiredMappings = mappingsFor(resolveManifests(record.manifests), record.platforms);
   const desiredTargets = new Set(desiredMappings.map((item) => item.target));
   const previous = new Map(record.managedFiles.map((item) => [item.target, item]));
+  const selectedTargets = parseTargetSelector(new Set([...desiredTargets, ...previous.keys()]));
   const apply = Boolean(args.apply);
   const force = Boolean(args.force);
   const backupRoot = path.join(target, ".apt-backups", timestamp());
@@ -326,6 +343,10 @@ function syncOrRepair(type) {
   const retained = [];
   const skippedDesiredTargets = new Set();
   for (const item of record.managedFiles.filter((entry) => !desiredTargets.has(entry.target))) {
+    if (selectedTargets && !selectedTargets.has(item.target)) {
+      retained.push(item);
+      continue;
+    }
     const destination = path.join(target, item.target);
     const drifted = exists(destination) && sha256(destination) !== item.sha256;
     if (drifted && !force) {
@@ -341,6 +362,11 @@ function syncOrRepair(type) {
   }
   const nextManaged = [];
   for (const mapping of desiredMappings) {
+    if (selectedTargets && !selectedTargets.has(mapping.target)) {
+      const old = previous.get(mapping.target);
+      if (old) nextManaged.push(old);
+      continue;
+    }
     const source = path.join(sourceRoot, mapping.source);
     const destination = path.join(target, mapping.target);
     const old = previous.get(mapping.target);
@@ -366,6 +392,7 @@ function syncOrRepair(type) {
     nextManaged.push(item);
   }
   for (const mapping of desiredMappings) {
+    if (selectedTargets && !selectedTargets.has(mapping.target)) continue;
     if (nextManaged.some((item) => item.target === mapping.target)) continue;
     if (skippedDesiredTargets.has(mapping.target)) continue;
     nextManaged.push({ ...mapping, sha256: sha256(path.join(sourceRoot, mapping.source)) });
@@ -376,7 +403,7 @@ function syncOrRepair(type) {
     record.source = { repository: "apt-principles-agents", version: packageJson.version, commit: gitCommit() };
     writeRecord(target, record);
   }
-  return { target, type, apply, force, actions };
+  return { target, type, apply, force, selectedTargets: selectedTargets ? [...selectedTargets].sort() : null, actions };
 }
 
 function uninstall() {
@@ -585,8 +612,8 @@ Commands:
   detect --target <repo>
   install --target <repo> --manifests core,documentation [--platforms codex,claude,copilot,gemini] [--dry-run] [--force]
   scan --target <repo>
-  sync --target <repo> [--apply] [--force]
-  repair --target <repo> [--apply] [--force]
+  sync --target <repo> [--apply] [--force] [--targets path1,path2]
+  repair --target <repo> [--apply] [--force] [--targets path1,path2]
   uninstall --target <repo> [--apply] [--force]
   migrate-legacy --target <repo> [--apply]
   audit-workspace --workspace-root <path>

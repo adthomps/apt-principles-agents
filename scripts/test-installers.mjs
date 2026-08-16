@@ -35,14 +35,24 @@ if (!existsSync(recordPath)) throw new Error("Installation record was not create
 const record = JSON.parse(readFileSync(recordPath, "utf8"));
 if (!record.schemaVersion || !record.source?.commit || !record.managedFiles?.length) throw new Error("Installation record is incomplete");
 
-const managed = record.managedFiles[0];
+const [managed, secondManaged] = record.managedFiles;
 const managedPath = path.join(target, managed.target);
+const secondManagedPath = path.join(target, secondManaged.target);
 writeFileSync(managedPath, `${readFileSync(managedPath, "utf8")}\nlocal drift\n`, "utf8");
+writeFileSync(secondManagedPath, `${readFileSync(secondManagedPath, "utf8")}\nsecond local drift\n`, "utf8");
 let scan = JSON.parse(run(["scan", "--target", target]));
 if (!scan.files.some((item) => item.status === "drifted")) throw new Error("Scan did not detect drift");
 
 const safeSync = JSON.parse(run(["sync", "--target", target, "--apply"]));
 if (!safeSync.actions.some((item) => item.action === "skipped-local-drift")) throw new Error("Sync did not preserve local drift");
+const targetedPreview = JSON.parse(run(["repair", "--target", target, "--force", "--targets", managed.target]));
+if (targetedPreview.actions.length !== 1 || targetedPreview.actions[0].target !== managed.target) throw new Error("Targeted repair preview exceeded its selected target");
+run(["repair", "--target", target, "--apply", "--force", "--targets", managed.target]);
+scan = JSON.parse(run(["scan", "--target", target]));
+if (scan.files.find((item) => item.target === managed.target)?.status !== "current") throw new Error("Targeted repair did not restore the selected target");
+if (scan.files.find((item) => item.target === secondManaged.target)?.status !== "drifted") throw new Error("Targeted repair changed an unselected target");
+const unknownTarget = spawnSync("node", [cli, "repair", "--target", target, "--force", "--targets", "unknown/file.md"], { cwd: root });
+if (unknownTarget.status === 0) throw new Error("Unknown managed target selector was accepted");
 run(["repair", "--target", target, "--apply", "--force"]);
 scan = JSON.parse(run(["scan", "--target", target]));
 if (scan.status !== "current") throw new Error("Forced repair did not restore current state");
