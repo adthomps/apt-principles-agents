@@ -1,10 +1,10 @@
 ---
 name: retry-strategy-review
-description: Use when work must model the complete transaction lifecycle and explicitly address money movement, tokenization, risk, reconciliation, funding, support, and provider differences.
+description: Use when reviewing payment retries for outcome certainty, idempotency, duplicate protection, decline semantics, budgets, backoff, customer consent, reconciliation, and operational stop conditions.
 kind: skill
 status: active
 owner: APT
-last_updated: 2026-06-27
+last_updated: 2026-08-16
 source: consolidated APT guidance
 title: "Retry Strategy Review"
 domain: "payments"
@@ -15,11 +15,11 @@ source_paths: ["apt-principles-agents/skills/payments/retry-strategy-review/SKIL
 
 ## Purpose
 
-Produce a reviewable retry strategy review outcome that is grounded in repository evidence and explicit about uncertainty.
+Determine when a payment operation may be retried safely, who may initiate it, what identity it retains, and how unknown outcomes and duplicate financial effects are prevented or reconciled.
 
 ## When to Use
 
-Use for planning, design, implementation review, migration, troubleshooting, or documentation where the task must model the complete transaction lifecycle and explicitly address money movement, tokenization, risk, reconciliation, funding, support, and provider differences.
+Use for synchronous calls, queues, webhooks, scheduled/recurring payments, recovery workers, client retries, provider failover, incident remediation, or decline-handling changes.
 
 ## Inputs
 
@@ -29,16 +29,16 @@ Use for planning, design, implementation review, migration, troubleshooting, or 
 
 ## Process
 
-1. Restate the intended outcome and affected audiences.
-2. Inventory exact current behavior and source-backed constraints.
-3. Apply the relevant APT principles and identify missing evidence.
-4. Compare viable options, including compatibility and operational effects.
-5. Produce the required artifacts: lifecycle states, amount and currency rules, idempotency, provider mapping, token boundaries, settlement/funding flow, reconciliation, disputes, and support identifiers.
-6. Review invented provider behavior, double processing, confused authorization and settlement, sensitive-data exposure, incomplete reversals, and weak reconciliation; separate blockers, recommendations, and open questions.
+1. Inventory each retried operation, initiator, lifecycle state, provider behavior, idempotency mechanism, attempt identity, timeout, and financial side effect.
+2. Classify outcomes as confirmed success, confirmed terminal failure, correctable request, transient failure, rate-limited, authentication/configuration failure, or unknown outcome.
+3. Define eligibility, maximum attempts, elapsed-time budget, backoff/jitter, concurrency control, circuit breaking, customer consent, and stop conditions per class.
+4. Ensure all layers share or safely translate idempotency and correlation identifiers; prevent client, queue, worker, and provider retries from multiplying attempts.
+5. Test lost responses, delayed callbacks, duplicate delivery, worker restart, concurrent retry, provider timeout/outage, failover, hard decline, recovery, and reconciliation.
+6. Publish retry/non-retry matrices, residual duplicate risk, monitoring, alerts, manual recovery, customer/support messaging, rollback, and accountable approvals.
 
 ## Outputs
 
-A concise recommendation, evidence map, required changes, risks, validation plan, support/documentation impact, and approval status.
+A retry eligibility matrix, idempotency/correlation design, budget and backoff policy, scenario evidence, duplicate/unknown-outcome controls, monitoring, recovery runbook, and approval record.
 
 ## Quality Bar
 
@@ -46,9 +46,12 @@ The output is practical, source-backed, audience-aware, testable, reversible whe
 
 ## Domain Checklist
 
-- Treat **Retry Strategy Review** as an explicit decision with defined scope, evidence, owner, and validation.
-- Required evidence: transaction states, money movement, tokens, provider mapping, risk, funding, reconciliation.
-- State what is verified, what is assumed, and what requires specialist or human approval.
+- Classify confirmed success, terminal failure, correctable request, transient failure, rate limit, configuration/authentication failure, and unknown outcome separately.
+- Retry only operations with verified idempotency, safe lifecycle state, preserved attempt identity, and bounded financial exposure.
+- Coordinate client, API, queue, worker, webhook, and provider retries so layered mechanisms cannot multiply attempts.
+- Set attempt and elapsed-time budgets, backoff/jitter, concurrency controls, circuit breakers, consent, and stop conditions.
+- Test lost response, delayed callback, duplicate delivery, restart, concurrency, outage, failover, decline, and reconciliation scenarios.
+- Monitor attempt chains, duplicates, unknown outcomes, recovery age, customer impact, and manual interventions with named owners.
 
 ## Required Reading
 

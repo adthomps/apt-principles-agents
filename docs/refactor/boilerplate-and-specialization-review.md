@@ -23,7 +23,7 @@ The audit covers 414 canonical assets. Platform adapters remain outside this bas
 
 | Family | Files | Shared-core family | Thin specialization | Interpretation |
 |---|---:|---:|---:|---|
-| Skills | 142 | 93 | 30 | The final thin-principle batch replaced six generic skill procedures; 30 shared-core skills still lack a substantive topic-specific domain-checklist bullet. |
+| Skills | 142 | 84 | 21 | The modernization/payment batch replaced nine generic procedures; the remaining thin skills are concentrated in documentation, product, AI review, engineering, and knowledge-base authoring. |
 | Agents | 75 | 52 | 50 | Two API agents now have explicit perspective-specific checks; most shared-core roles still differ mainly through name, trigger, or required-skill link. |
 | Principles | 123 | 85 | 0 | Every previously thin shared-core principle now has substantive topic guidance; the thin-principle queue is complete. |
 | Prompts | 74 | 38 | 36 | The API and repository audit prompts now have task-specific requirements; most shared-core prompts remain title-swapped execution shells. |
@@ -63,10 +63,12 @@ Platform source and distribution copies need source hashes, generated markers, p
 
 ## Priority Sequence
 
-1. Enrich the remaining 30 thin skills in bounded domain batches, beginning with modernization contract testing/planning and payment acceptance/risk procedures that have direct operational consequences.
+1. Enrich the remaining 21 thin skills in bounded domain batches, beginning with the seven documentation skills and then AI review, engineering review, and knowledge-base authoring.
 2. Consolidate or enrich overlapping accountable agents, starting with core leadership, customer/audience reviewers, API, security, and documentation roles.
 3. Replace title-swapped prompts with task-specific requirements or a smaller parameterized prompt family only after consumers and manifests are mapped.
 4. Pilot shared-core generation across one canonical skill, one agent mapping, and one platform adapter; require byte-stable regeneration, source attribution, tool compatibility, and rollback evidence.
+
+See [Remaining Specialization Backlog](remaining-specialization-backlog.md) for the complete domain counts, consolidation gates, and archive/deletion position.
 
 ## Archive And Deletion Decision
 

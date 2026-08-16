@@ -1,10 +1,10 @@
 ---
 name: cybersource-review
-description: Use when work must model the complete transaction lifecycle and explicitly address money movement, tokenization, risk, reconciliation, funding, support, and provider differences.
+description: Use when reviewing a CyberSource integration against its exact products, APIs, versions, credentials, merchant configuration, transaction flows, risk services, tokens, events, and current provider evidence.
 kind: skill
 status: active
 owner: APT
-last_updated: 2026-06-27
+last_updated: 2026-08-16
 source: consolidated APT guidance
 title: "Cybersource Review"
 domain: "payments"
@@ -15,11 +15,11 @@ source_paths: ["apt-principles-agents/skills/payments/cybersource-review/SKILL.m
 
 ## Purpose
 
-Produce a reviewable cybersource review outcome that is grounded in repository evidence and explicit about uncertainty.
+Review a CyberSource integration without treating the provider name as a single uniform product or assuming that documented capabilities are enabled for the merchant, region, API, and version in scope.
 
 ## When to Use
 
-Use for planning, design, implementation review, migration, troubleshooting, or documentation where the task must model the complete transaction lifecycle and explicitly address money movement, tokenization, risk, reconciliation, funding, support, and provider differences.
+Use for integration design, implementation review, migration, incident analysis, or documentation involving CyberSource payment, token, authentication, risk, reporting, event, or related services.
 
 ## Inputs
 
@@ -29,16 +29,16 @@ Use for planning, design, implementation review, migration, troubleshooting, or 
 
 ## Process
 
-1. Restate the intended outcome and affected audiences.
-2. Inventory exact current behavior and source-backed constraints.
-3. Apply the relevant APT principles and identify missing evidence.
-4. Compare viable options, including compatibility and operational effects.
-5. Produce the required artifacts: lifecycle states, amount and currency rules, idempotency, provider mapping, token boundaries, settlement/funding flow, reconciliation, disputes, and support identifiers.
-6. Review invented provider behavior, double processing, confused authorization and settlement, sensitive-data exposure, incomplete reversals, and weak reconciliation; separate blockers, recommendations, and open questions.
+1. Inventory exact CyberSource products/services, APIs, versions, environments, regions, merchant IDs/configuration, processors, credentials, and authoritative documentation dates.
+2. Trace each supported payment and risk flow across request fields, identifiers, tokens, decisions, status transitions, follow-on actions, events/webhooks, reports, and reconciliation.
+3. Verify authentication/signing, secret storage, endpoint selection, permissions, token domains, sensitive-data scope, idempotency/merchant references, and log redaction.
+4. Map raw responses, errors, risk decisions, and processor/network results without inventing universal semantics; identify configuration- and processor-dependent behavior.
+5. Test success, decline, review, challenge, timeout, duplicate, unknown outcome, delayed event, reversal/refund, outage, credential rotation, and reconciliation scenarios.
+6. Report verified capability, enabled configuration, implementation evidence, gaps, operational readiness, support/escalation needs, and provider or specialist questions.
 
 ## Outputs
 
-A concise recommendation, evidence map, required changes, risks, validation plan, support/documentation impact, and approval status.
+A product/configuration inventory, end-to-end flow map, field/status mapping, security and token review, scenario results, evidence index, readiness verdict, and provider questions.
 
 ## Quality Bar
 
@@ -46,9 +46,12 @@ The output is practical, source-backed, audience-aware, testable, reversible whe
 
 ## Domain Checklist
 
-- Treat **Cybersource Review** as an explicit decision with defined scope, evidence, owner, and validation.
-- Required evidence: transaction states, money movement, tokens, provider mapping, risk, funding, reconciliation.
-- State what is verified, what is assumed, and what requires specialist or human approval.
+- Name exact products/services, APIs, versions, regions, environments, processors, merchant configuration, and documentation dates.
+- Separate provider-documented capability, contracted/enabled service, merchant configuration, repository implementation, and observed behavior.
+- Verify credentials/signing, endpoints, permissions, token scope, sensitive-data boundaries, identifiers, idempotency, and redaction.
+- Trace payment, risk, authentication, token, event/webhook, reporting, follow-on, and reconciliation states used by the integration.
+- Preserve raw provider/processor results and test decline, review, challenge, timeout, duplicate, unknown, delayed, reversal, outage, and rotation cases.
+- Route unresolved product behavior to current authoritative CyberSource evidence or an accountable provider specialist.
 
 ## Required Reading
 

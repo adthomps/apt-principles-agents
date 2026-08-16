@@ -35,7 +35,7 @@ Reduce maintenance and navigation cost without deleting unique doctrine, provena
 
 | Candidate | Current evidence | Decision gate | Intended result |
 |---|---|---|---|
-| Repeated skill, agent, prompt, and principle boilerplate | Baseline review found zero exact body duplicates and now records 30 thin shared-core skills, 50 agents, zero principles, and 36 prompts after the final thin-principle batch. | Ratchet specialization upward, map consumers, and prove generated or referenced shared contracts preserve standalone installation and tool compatibility. | Material topic deltas plus a smaller governed shared contract; no mass deletion. |
+| Repeated skill, agent, prompt, and principle boilerplate | Baseline review found zero exact body duplicates and now records 21 thin shared-core skills, 50 agents, zero principles, and 36 prompts after the modernization/payment skill batch. | Ratchet specialization upward, map consumers, and prove generated or referenced shared contracts preserve standalone installation and tool compatibility. | Material topic deltas plus a smaller governed shared contract; no mass deletion. |
 | Product-hub template and example diagrams | Two diagram pairs are byte-identical. | Confirm the example build does not require self-contained copies and define generation/derivation behavior. | One authored source or an explicitly generated copy. |
 | Completed `docs/refactor/` plans | Several plans describe already completed consolidation phases. | Promote remaining decisions and evidence into live docs, migration ledger, or archive index. | Archive historical plans; delete only when provenance adds no value. |
 
@@ -54,4 +54,4 @@ Generated public copies, caches, and build outputs do not require archival when 
 
 ## Next Consolidation Increment
 
-The thin-principle queue is complete. API facade, backward compatibility, legacy inventory, reconciliation/funding, transaction intelligence, release communication, and digital-asset risk now have distinct doctrine, evidence requirements, failure modes, review questions, and paired operating procedures. The next bounded increment is the remaining thin-skill queue, beginning with modernization contract testing/planning and payment acceptance/risk procedures; agent and prompt consolidation remains separate so accountable perspectives and consumers can be reviewed first.
+The thin-principle queue and modernization/payment skill increment are complete. The remaining 21 thin skills are concentrated in documentation, product, AI review, engineering review, and knowledge-base authoring. The next bounded increment is the seven documentation skills; agent and prompt consolidation remains separate so accountable perspectives, task consumers, manifests, adapters, and standalone installation behavior can be reviewed first. See [Remaining Specialization Backlog](remaining-specialization-backlog.md) for the full sequence and archive/deletion gates.

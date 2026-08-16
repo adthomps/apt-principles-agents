@@ -1,10 +1,10 @@
 ---
 name: response-code-analysis
-description: Use when work must model the complete transaction lifecycle and explicitly address money movement, tokenization, risk, reconciliation, funding, support, and provider differences.
+description: Use when mapping payment transport, provider, processor, network, issuer, risk, and lifecycle results into safe actions, retry rules, customer messages, telemetry, and support guidance.
 kind: skill
 status: active
 owner: APT
-last_updated: 2026-06-27
+last_updated: 2026-08-16
 source: consolidated APT guidance
 title: "Response Code Analysis"
 domain: "payments"
@@ -15,11 +15,11 @@ source_paths: ["apt-principles-agents/skills/payments/response-code-analysis/SKI
 
 ## Purpose
 
-Produce a reviewable response code analysis outcome that is grounded in repository evidence and explicit about uncertainty.
+Turn layered payment results into an evidence-backed outcome taxonomy without flattening transport failure, provider error, processor/network response, issuer decline, risk decision, and final transaction state into one ambiguous code.
 
 ## When to Use
 
-Use for planning, design, implementation review, migration, troubleshooting, or documentation where the task must model the complete transaction lifecycle and explicitly address money movement, tokenization, risk, reconciliation, funding, support, and provider differences.
+Use for provider integrations, decline analysis, error normalization, retry design, customer/support messaging, migration parity, dashboards, or troubleshooting where response semantics drive action.
 
 ## Inputs
 
@@ -29,16 +29,16 @@ Use for planning, design, implementation review, migration, troubleshooting, or 
 
 ## Process
 
-1. Restate the intended outcome and affected audiences.
-2. Inventory exact current behavior and source-backed constraints.
-3. Apply the relevant APT principles and identify missing evidence.
-4. Compare viable options, including compatibility and operational effects.
-5. Produce the required artifacts: lifecycle states, amount and currency rules, idempotency, provider mapping, token boundaries, settlement/funding flow, reconciliation, disputes, and support identifiers.
-6. Review invented provider behavior, double processing, confused authorization and settlement, sensitive-data exposure, incomplete reversals, and weak reconciliation; separate blockers, recommendations, and open questions.
+1. Identify each result layer, source, API/version, merchant configuration, transaction type, lifecycle state, and current authoritative code reference.
+2. Capture raw HTTP/transport, provider, processor/network, issuer, authentication, risk, validation, and internal orchestration results separately.
+3. Normalize into explicit outcome, state certainty, retry class, customer action, merchant/support action, and observability categories while retaining raw values.
+4. Validate mappings for success, partial/async acceptance, soft/hard decline, invalid request, authentication, risk review, timeout, duplicate, rate limit, outage, and unknown outcome.
+5. Test UI/API messages, retry behavior, support playbooks, metrics, alerts, parity, and reconciliation against sanitized examples and production evidence.
+6. Publish conflicts, unknown codes, version/configuration dependencies, safe fallback behavior, owners, review dates, and provider escalation needs.
 
 ## Outputs
 
-A concise recommendation, evidence map, required changes, risks, validation plan, support/documentation impact, and approval status.
+A layered raw-code inventory, normalized outcome taxonomy, action/retry/message matrix, unknown/conflict register, test evidence, monitoring guidance, and ownership record.
 
 ## Quality Bar
 
@@ -46,9 +46,12 @@ The output is practical, source-backed, audience-aware, testable, reversible whe
 
 ## Domain Checklist
 
-- Treat **Response Code Analysis** as an explicit decision with defined scope, evidence, owner, and validation.
-- Required evidence: transaction states, money movement, tokens, provider mapping, risk, funding, reconciliation.
-- State what is verified, what is assumed, and what requires specialist or human approval.
+- Keep transport, API/provider, processor/network, issuer, authentication, risk, validation, and internal results distinct.
+- Preserve raw codes and source/version/configuration context alongside normalized outcome and action categories.
+- Distinguish final failure from asynchronous acceptance, timeout, unknown outcome, review, and follow-on-required states.
+- Map each result to state certainty, safe retry class, customer action/message, merchant/support action, telemetry, and reconciliation.
+- Validate mappings against current authoritative sources and observed evidence; do not generalize one provider's semantics.
+- Give unknown/conflicting codes safe defaults, alerting, owners, review dates, and provider-escalation paths.
 
 ## Required Reading
 
