@@ -289,7 +289,7 @@ function mappingsFor(manifests, platforms) {
     }
     for (const [filename, group] of byFilename) {
       if (group.length === 1) {
-        add(group[0].source, `${targetPrefix}/${filename}`, "platform");
+        add(group[0].source, `${targetPrefix}/${filename}`, "platform-agent");
         continue;
       }
       // Genuine collision: two different agents flatten to the same filename (a root/global
@@ -298,7 +298,7 @@ function mappingsFor(manifests, platforms) {
       // local one so both actually get installed instead of one silently disappearing.
       for (const candidate of group) {
         const target = candidate.domain ? `${targetPrefix}/${candidate.domain}-${filename}` : `${targetPrefix}/${filename}`;
-        add(candidate.source, target, "platform");
+        add(candidate.source, target, "platform-agent");
       }
     }
   }
