@@ -55,3 +55,10 @@ Keep `graphify-out/`, graph caches, HTML visualizations, cost files, manifests, 
 ## Recommended APT Pattern
 
 Use `apt-principles-agents` as the portfolio graph operator home. Use this profile to teach target repos how to participate safely and how agents should interpret graph evidence.
+
+## Workspace Operator Artifacts
+
+- `reports/GRAPHIFY_RUNBOOK.md` defines the local-only, on-demand operating workflow.
+- `references/graphify-portfolio.json` defines participation, curated portfolio sources, exclusions, and starter queries.
+- `scripts/graphify-workspace.mjs` audits, stages, builds, renders, and query-checks ignored graph outputs without changing canonical source material.
+- `docs/diagrams/apt-portfolio-knowledge-system.md` holds source-backed diagrams promoted from verified relationships.

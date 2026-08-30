@@ -1,0 +1,16 @@
+.git/
+.apt-backups/
+node_modules/
+graphify-out/
+.tmp/
+docs/archive/
+docs/distribution/
+*.log
+.env
+.env.*
+*.key
+*.pem
+*.sqlite*
+**/package.json
+**/tsconfig*.json
+**/*lock*
