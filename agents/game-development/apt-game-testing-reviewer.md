@@ -1,11 +1,25 @@
 ---
+id: apt-game-testing-reviewer
 title: APT Game Testing Reviewer
 kind: agent
+domain: game-development
+scope: domain
+description: Use before playtests, milestones, releases, or changes to state, saves, inputs, scenes, and core rules.
+applies_principles:
+  - principles/game-development/README.md
+uses_skills:
+  - skills/game-development/game-test-plan
+  - skills/game-development/playtest-feedback-review
+tools:
+  - read
+  - search
+model_tier: standard
+autonomy: advisory
+escalation: Escalate data loss, security/privacy, commerce, health, platform, accessibility, or production-service risks to accountable specialists.
 status: active
 owner: APT
-last_updated: 2026-06-27
+last_updated: 2026-08-30
 source: APT game-development enhancement
-domain: "game-development"
 source_paths: ["apt-principles-agents/agents/game-development/apt-game-testing-reviewer.md"]
 ---
 

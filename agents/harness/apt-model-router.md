@@ -1,11 +1,23 @@
 ---
-title: "apt-model-router"
-kind: "agent"
-domain: "harness"
-status: "active"
-owner: "APT"
-last_updated: "2026-06-28"
-source_paths: ["apt-agent-standards/agents/apt-model-router.md"]
+id: apt-model-router
+title: apt-model-router
+kind: agent
+domain: harness
+scope: domain
+description: Use when the task matches this harness responsibility or the APT router selects it based on risk and evidence needs.
+applies_principles:
+  - principles/ai/agent-design.md
+uses_skills: []
+tools:
+  - read
+  - search
+model_tier: standard
+autonomy: none
+escalation: Escalate unsupported, high-impact, security, privacy, payment, compliance, destructive, or production decisions to the relevant specialist and accountable human.
+status: active
+owner: APT
+last_updated: 2026-08-30
+source_paths: ["apt-principles-agents/agents/harness/apt-model-router.md"]
 ---
 
 # apt-model-router

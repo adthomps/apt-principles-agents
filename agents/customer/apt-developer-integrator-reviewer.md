@@ -1,11 +1,24 @@
 ---
+id: apt-developer-integrator-reviewer
 title: Apt Developer Integrator Reviewer
 kind: agent
+domain: customer
+scope: domain
+description: Use when reviewing the steady-state integration experience for a developer already familiar with the product, to confirm advanced flows and edge cases are covered, not just the first call.
+applies_principles:
+  - principles/design/role-based-experience.md
+uses_skills:
+  - skills/documentation/developer-guide-writer
+tools:
+  - read
+  - search
+model_tier: standard
+autonomy: advisory
+escalation: Escalate unsupported payment, security, privacy, compliance, legal, production-launch, or irreversible migration decisions to the accountable human and relevant expert.
 status: active
 owner: APT
-last_updated: 2026-08-29
+last_updated: 2026-08-30
 source: apt-agent-standards roles and APT doctrine
-domain: "customer"
 source_paths: ["apt-principles-agents/agents/customer/apt-developer-integrator-reviewer.md"]
 ---
 

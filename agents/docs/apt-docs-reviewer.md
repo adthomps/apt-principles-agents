@@ -1,11 +1,23 @@
 ---
+id: apt-docs-reviewer
 title: Apt Docs Reviewer
 kind: agent
+domain: docs
+scope: domain
+description: Use as a general accuracy and completeness pass on any documentation deliverable that doesn't need a specialized audience or API-contract review.
+applies_principles:
+  - principles/documentation/README.md
+uses_skills: []
+tools:
+  - read
+  - search
+model_tier: standard
+autonomy: advisory
+escalation: Escalate unsupported payment, security, privacy, compliance, legal, production-launch, or irreversible migration decisions to the accountable human and relevant expert.
 status: active
 owner: APT
-last_updated: 2026-08-29
+last_updated: 2026-08-30
 source: apt-agent-standards roles and APT doctrine
-domain: "docs"
 source_paths: ["apt-principles-agents/agents/docs/apt-docs-reviewer.md"]
 ---
 

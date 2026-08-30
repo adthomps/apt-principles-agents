@@ -1,11 +1,24 @@
 ---
+id: kaidan
 title: Kaidan
 kind: agent
+domain: ecommerce
+scope: global
+description: Use when a partner or acquirer integration/onboarding flow needs review, distinct from a single merchant's onboarding.
+applies_principles:
+  - principles/ecommerce/README.md
+uses_skills:
+  - skills/ecommerce/partner-acquirer-onboarding-review
+tools:
+  - read
+  - search
+model_tier: standard
+autonomy: advisory
+escalation: Escalate unsupported payment, security, privacy, compliance, legal, production-launch, or irreversible migration decisions to the accountable human and relevant expert.
 status: active
 owner: APT
-last_updated: 2026-08-29
+last_updated: 2026-08-30
 source: apt-agent-standards roles and APT doctrine
-domain: "ecommerce"
 source_paths: ["apt-principles-agents/agents/ecommerce/kaidan.md"]
 ---
 

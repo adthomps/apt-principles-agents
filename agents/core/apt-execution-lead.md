@@ -1,11 +1,25 @@
 ---
+id: apt-execution-lead
 title: Apt Execution Lead
 kind: agent
+domain: core
+scope: global
+description: Use when a change is ready to move from design/architecture into implementation, and someone needs to confirm the plan is buildable, safely sequenced, and verifiable before work starts.
+applies_principles:
+  - principles/framework.md
+  - principles/thinking/practical-thinking.md
+uses_skills:
+  - skills/engineering/implementation-review
+tools:
+  - read
+  - search
+model_tier: deep
+autonomy: advisory
+escalation: Escalate unsupported payment, security, privacy, compliance, legal, production-launch, or irreversible migration decisions to the accountable human and relevant expert.
 status: active
 owner: APT
-last_updated: 2026-08-29
+last_updated: 2026-08-30
 source: apt-agent-standards roles and APT doctrine
-domain: "core"
 source_paths: ["apt-principles-agents/agents/core/apt-execution-lead.md"]
 ---
 

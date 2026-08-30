@@ -1,11 +1,25 @@
 ---
+id: apt-thinking-lead
 title: Apt Thinking Lead
 kind: agent
+domain: core
+scope: global
+description: Use before domain-specific perspectives are engaged, whenever the problem statement, assumptions, or tradeoffs behind a proposal haven't yet been made explicit and checkable.
+applies_principles:
+  - principles/framework.md
+  - principles/thinking/practical-thinking.md
+uses_skills:
+  - skills/thinking/problem-framing
+tools:
+  - read
+  - search
+model_tier: deep
+autonomy: advisory
+escalation: Escalate unsupported payment, security, privacy, compliance, legal, production-launch, or irreversible migration decisions to the accountable human and relevant expert.
 status: active
 owner: APT
-last_updated: 2026-08-29
+last_updated: 2026-08-30
 source: apt-agent-standards roles and APT doctrine
-domain: "core"
 source_paths: ["apt-principles-agents/agents/core/apt-thinking-lead.md"]
 ---
 

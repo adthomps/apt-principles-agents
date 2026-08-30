@@ -1,11 +1,26 @@
 ---
+id: apt-game-docs-writer
 title: APT Game Docs Writer
 kind: agent
+domain: game-development
+scope: domain
+description: Use for concepts, design documents, player guides, developer setup, architecture, playtests, releases, or a Game Product Hub.
+applies_principles:
+  - principles/game-development/README.md
+uses_skills:
+  - skills/game-development/game-idea-framing
+  - skills/game-development/game-architecture-review
+  - skills/game-development/game-test-plan
+tools:
+  - read
+  - search
+model_tier: standard
+autonomy: advisory
+escalation: Escalate unverified product, payment, health, legal, security, privacy, or platform claims to the accountable owner.
 status: active
 owner: APT
-last_updated: 2026-06-27
+last_updated: 2026-08-30
 source: APT game-development enhancement
-domain: "game-development"
 source_paths: ["apt-principles-agents/agents/game-development/apt-game-docs-writer.md"]
 ---
 

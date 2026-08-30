@@ -1,11 +1,26 @@
 ---
+id: apt-game-development-coach
 title: APT Game Development Coach
 kind: agent
+domain: game-development
+scope: domain
+description: Use when a learner needs sequencing, plain explanations, project-based exercises, or help recovering from overload.
+applies_principles:
+  - principles/game-development/README.md
+uses_skills:
+  - skills/game-development/game-dev-learning-plan
+  - skills/game-development/game-idea-framing
+  - skills/game-development/game-scope-review
+tools:
+  - read
+  - search
+model_tier: standard
+autonomy: advisory
+escalation: Escalate engine-specific uncertainty, accessibility, rights, payment, health, privacy, security, or release claims to the relevant reviewer or accountable human.
 status: active
 owner: APT
-last_updated: 2026-06-27
+last_updated: 2026-08-30
 source: APT game-development enhancement
-domain: "game-development"
 source_paths: ["apt-principles-agents/agents/game-development/apt-game-development-coach.md"]
 ---
 

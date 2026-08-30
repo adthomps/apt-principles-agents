@@ -1,11 +1,26 @@
 ---
+id: apt-game-designer
 title: APT Game Designer
 kind: agent
+domain: game-development
+scope: domain
+description: Use when framing play, resolving unclear rules, planning levels, or interpreting player behavior.
+applies_principles:
+  - principles/game-development/README.md
+uses_skills:
+  - skills/game-development/game-loop-designer
+  - skills/game-development/mechanics-designer
+  - skills/game-development/player-journey-mapping
+tools:
+  - read
+  - search
+model_tier: standard
+autonomy: advisory
+escalation: Involve architecture, UI, testing, scope, or specialist human review when a design choice creates material technical, accessibility, safety, or rights implications.
 status: active
 owner: APT
-last_updated: 2026-06-27
+last_updated: 2026-08-30
 source: APT game-development enhancement
-domain: "game-development"
 source_paths: ["apt-principles-agents/agents/game-development/apt-game-designer.md"]
 ---
 

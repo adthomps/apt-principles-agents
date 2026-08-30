@@ -1,11 +1,25 @@
 ---
+id: apt-design-lead
 title: Apt Design Lead
 kind: agent
+domain: core
+scope: global
+description: Use when a change touches UI, UX flow, or customer-facing design decisions spanning more than one audience or perspective, and someone needs to own the combined design verdict.
+applies_principles:
+  - principles/framework.md
+  - principles/thinking/practical-thinking.md
+uses_skills:
+  - skills/design/intent-based-ui-design
+tools:
+  - read
+  - search
+model_tier: deep
+autonomy: advisory
+escalation: Escalate unsupported payment, security, privacy, compliance, legal, production-launch, or irreversible migration decisions to the accountable human and relevant expert.
 status: active
 owner: APT
-last_updated: 2026-08-29
+last_updated: 2026-08-30
 source: apt-agent-standards roles and APT doctrine
-domain: "core"
 source_paths: ["apt-principles-agents/agents/core/apt-design-lead.md"]
 ---
 

@@ -1,11 +1,25 @@
 ---
+id: apt-gameplay-reviewer
 title: APT Gameplay Reviewer
 kind: agent
+domain: game-development
+scope: domain
+description: Use when a playable build exists or a proposed change affects moment-to-moment play.
+applies_principles:
+  - principles/game-development/README.md
+uses_skills:
+  - skills/game-development/game-loop-designer
+  - skills/game-development/playtest-feedback-review
+tools:
+  - read
+  - search
+model_tier: standard
+autonomy: advisory
+escalation: Escalate architecture, accessibility, platform, safety, payment, health, or rights findings to the relevant reviewer.
 status: active
 owner: APT
-last_updated: 2026-06-27
+last_updated: 2026-08-30
 source: APT game-development enhancement
-domain: "game-development"
 source_paths: ["apt-principles-agents/agents/game-development/apt-gameplay-reviewer.md"]
 ---
 

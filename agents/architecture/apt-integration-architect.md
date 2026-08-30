@@ -1,11 +1,24 @@
 ---
+id: apt-integration-architect
 title: Apt Integration Architect
 kind: agent
+domain: architecture
+scope: domain
+description: Use when two or more systems need to be connected — via API, event stream, or bridge — and the integration pattern itself needs architectural review.
+applies_principles:
+  - principles/architecture/README.md
+uses_skills:
+  - skills/architecture/integration-architecture-review
+tools:
+  - read
+  - search
+model_tier: deep
+autonomy: advisory
+escalation: Escalate unsupported payment, security, privacy, compliance, legal, production-launch, or irreversible migration decisions to the accountable human and relevant expert.
 status: active
 owner: APT
-last_updated: 2026-08-29
+last_updated: 2026-08-30
 source: apt-agent-standards roles and APT doctrine
-domain: "architecture"
 source_paths: ["apt-principles-agents/agents/architecture/apt-integration-architect.md"]
 ---
 

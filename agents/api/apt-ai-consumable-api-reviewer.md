@@ -1,11 +1,25 @@
 ---
+id: apt-ai-consumable-api-reviewer
 title: Apt AI Consumable API Reviewer
 kind: agent
+domain: api
+scope: domain
+description: Use when an API will be called primarily by AI agents rather than human-written client code, to confirm it's structured for reliable agent consumption.
+applies_principles:
+  - principles/api/README.md
+  - principles/api/modern-api-design.md
+uses_skills:
+  - skills/api/ai-consumable-api-design
+tools:
+  - read
+  - search
+model_tier: standard
+autonomy: advisory
+escalation: Escalate unsupported payment, security, privacy, compliance, legal, production-launch, or irreversible migration decisions to the accountable human and relevant expert.
 status: active
 owner: APT
-last_updated: 2026-08-29
+last_updated: 2026-08-30
 source: apt-agent-standards roles and APT doctrine
-domain: "api"
 source_paths: ["apt-principles-agents/agents/api/apt-ai-consumable-api-reviewer.md"]
 ---
 

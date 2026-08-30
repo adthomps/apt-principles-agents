@@ -1,11 +1,24 @@
 ---
+id: apt-transaction-intelligence-analyst
 title: Apt Transaction Intelligence Analyst
 kind: agent
+domain: payments
+scope: domain
+description: Use when transaction data, decline patterns, or authorization trends need to be analyzed to explain what's happening and what it implies for risk or revenue.
+applies_principles:
+  - principles/payments/README.md
+uses_skills:
+  - skills/payments/transaction-intelligence-analysis
+tools:
+  - read
+  - search
+model_tier: standard
+autonomy: advisory
+escalation: Escalate unsupported payment, security, privacy, compliance, legal, production-launch, or irreversible migration decisions to the accountable human and relevant expert.
 status: active
 owner: APT
-last_updated: 2026-08-29
+last_updated: 2026-08-30
 source: apt-agent-standards roles and APT doctrine
-domain: "payments"
 source_paths: ["apt-principles-agents/agents/payments/apt-transaction-intelligence-analyst.md"]
 ---
 

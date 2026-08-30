@@ -1,11 +1,25 @@
 ---
+id: apt-beginner-game-dev-reviewer
 title: APT Beginner Game Dev Reviewer
 kind: agent
+domain: game-development
+scope: domain
+description: Use for onboarding, learning plans, setup, architecture explanations, templates, examples, and AI-generated implementation plans.
+applies_principles:
+  - principles/game-development/README.md
+uses_skills:
+  - skills/game-development/game-dev-learning-plan
+  - skills/game-development/game-scope-review
+tools:
+  - read
+  - search
+model_tier: standard
+autonomy: advisory
+escalation: Escalate unresolved technical claims to the relevant specialist and unsafe or high-accuracy claims to the accountable human.
 status: active
 owner: APT
-last_updated: 2026-06-27
+last_updated: 2026-08-30
 source: APT game-development enhancement
-domain: "game-development"
 source_paths: ["apt-principles-agents/agents/game-development/apt-beginner-game-dev-reviewer.md"]
 ---
 

@@ -1,11 +1,25 @@
 ---
+id: apt-refactor-agent
 title: Apt Refactor Agent
 kind: agent
+domain: engineering
+scope: domain
+description: Use when code is being restructured without an intended behavior change, to confirm the refactor is actually behavior-preserving.
+applies_principles:
+  - principles/execution/quality-and-testing.md
+uses_skills:
+  - skills/engineering/refactor-safety
+tools:
+  - read
+  - search
+  - edit
+model_tier: standard
+autonomy: bounded-edit
+escalation: Escalate unsupported payment, security, privacy, compliance, legal, production-launch, or irreversible migration decisions to the accountable human and relevant expert.
 status: active
 owner: APT
-last_updated: 2026-08-29
+last_updated: 2026-08-30
 source: apt-agent-standards roles and APT doctrine
-domain: "engineering"
 source_paths: ["apt-principles-agents/agents/engineering/apt-refactor-agent.md"]
 ---
 

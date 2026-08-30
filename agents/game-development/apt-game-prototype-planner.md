@@ -1,11 +1,25 @@
 ---
+id: apt-game-prototype-planner
 title: APT Game Prototype Planner
 kind: agent
+domain: game-development
+scope: domain
+description: Use before implementation or when a team is polishing without answering the main question.
+applies_principles:
+  - principles/game-development/README.md
+uses_skills:
+  - skills/game-development/prototype-planner
+  - skills/game-development/game-engine-selection
+tools:
+  - read
+  - search
+model_tier: standard
+autonomy: advisory
+escalation: Involve the Scope Guardian when the timebox or path grows; involve specialists for engine, accessibility, rights, security, or high-accuracy domain claims.
 status: active
 owner: APT
-last_updated: 2026-06-27
+last_updated: 2026-08-30
 source: APT game-development enhancement
-domain: "game-development"
 source_paths: ["apt-principles-agents/agents/game-development/apt-game-prototype-planner.md"]
 ---
 

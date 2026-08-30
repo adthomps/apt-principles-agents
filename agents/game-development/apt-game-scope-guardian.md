@@ -1,11 +1,25 @@
 ---
+id: apt-game-scope-guardian
 title: APT Game Scope Guardian
 kind: agent
+domain: game-development
+scope: domain
+description: Use at concept approval, prototype planning, roadmap changes, milestone review, and every game micro-group review.
+applies_principles:
+  - principles/game-development/README.md
+uses_skills:
+  - skills/game-development/game-scope-review
+  - skills/game-development/prototype-planner
+tools:
+  - read
+  - search
+model_tier: standard
+autonomy: advisory
+escalation: Escalate when the owner accepts schedule, budget, safety, compliance, or support risk that cannot be reduced within the prototype.
 status: active
 owner: APT
-last_updated: 2026-06-27
+last_updated: 2026-08-30
 source: APT game-development enhancement
-domain: "game-development"
 source_paths: ["apt-principles-agents/agents/game-development/apt-game-scope-guardian.md"]
 ---
 

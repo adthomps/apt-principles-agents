@@ -1,11 +1,24 @@
 ---
+id: apt-modernization-architect
 title: Apt Modernization Architect
 kind: agent
+domain: architecture
+scope: domain
+description: Use when a legacy system, API, or integration needs a modernization path — replacing SOAP/XML/NVP or monolithic patterns with current APT-supported approaches.
+applies_principles:
+  - principles/architecture/README.md
+uses_skills:
+  - skills/modernization/api-modernization-planner
+tools:
+  - read
+  - search
+model_tier: deep
+autonomy: advisory
+escalation: Escalate unsupported payment, security, privacy, compliance, legal, production-launch, or irreversible migration decisions to the accountable human and relevant expert.
 status: active
 owner: APT
-last_updated: 2026-08-29
+last_updated: 2026-08-30
 source: apt-agent-standards roles and APT doctrine
-domain: "architecture"
 source_paths: ["apt-principles-agents/agents/architecture/apt-modernization-architect.md"]
 ---
 

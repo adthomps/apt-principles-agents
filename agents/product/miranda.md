@@ -1,11 +1,24 @@
 ---
+id: miranda
 title: Miranda
 kind: agent
+domain: product
+scope: global
+description: Use when prioritization, sequencing, or tradeoff decisions across multiple initiatives need a product-management perspective.
+applies_principles:
+  - principles/execution/delivery-increments.md
+uses_skills:
+  - skills/product/roadmap-planner
+tools:
+  - read
+  - search
+model_tier: standard
+autonomy: advisory
+escalation: Escalate unsupported payment, security, privacy, compliance, legal, production-launch, or irreversible migration decisions to the accountable human and relevant expert.
 status: active
 owner: APT
-last_updated: 2026-08-29
+last_updated: 2026-08-30
 source: apt-agent-standards roles and APT doctrine
-domain: "product"
 source_paths: ["apt-principles-agents/agents/product/miranda.md"]
 ---
 

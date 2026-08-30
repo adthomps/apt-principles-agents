@@ -1,11 +1,25 @@
 ---
+id: apt-game-ui-reviewer
 title: APT Game UI Reviewer
 kind: agent
+domain: game-development
+scope: domain
+description: Use for menus, HUDs, overlays, settings, onboarding, responsive layouts, and failure/recovery screens.
+applies_principles:
+  - principles/game-development/README.md
+uses_skills:
+  - skills/game-development/game-ui-hud-review
+  - skills/game-development/input-control-design
+tools:
+  - read
+  - search
+model_tier: standard
+autonomy: advisory
+escalation: Escalate formal accessibility, platform certification, localization, privacy, or implementation risks to the appropriate specialist.
 status: active
 owner: APT
-last_updated: 2026-06-27
+last_updated: 2026-08-30
 source: APT game-development enhancement
-domain: "game-development"
 source_paths: ["apt-principles-agents/agents/game-development/apt-game-ui-reviewer.md"]
 ---
 

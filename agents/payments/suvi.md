@@ -1,11 +1,24 @@
 ---
+id: suvi
 title: Suvi
 kind: agent
+domain: payments
+scope: global
+description: Use when a product is evaluating or building stablecoin acceptance or settlement, to confirm operational and compliance readiness before launch.
+applies_principles:
+  - principles/payments/README.md
+uses_skills:
+  - skills/stablecoin-crypto/stablecoin-readiness-review
+tools:
+  - read
+  - search
+model_tier: standard
+autonomy: advisory
+escalation: Escalate unsupported payment, security, privacy, compliance, legal, production-launch, or irreversible migration decisions to the accountable human and relevant expert.
 status: active
 owner: APT
-last_updated: 2026-08-29
+last_updated: 2026-08-30
 source: apt-agent-standards roles and APT doctrine
-domain: "payments"
 source_paths: ["apt-principles-agents/agents/payments/suvi.md"]
 ---
 

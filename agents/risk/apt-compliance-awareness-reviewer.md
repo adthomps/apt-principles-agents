@@ -1,11 +1,24 @@
 ---
+id: apt-compliance-awareness-reviewer
 title: Apt Compliance Awareness Reviewer
 kind: agent
+domain: risk
+scope: domain
+description: Use when a change touches data handling, disclosures, or regulated processes, to confirm the team is aware of the compliance obligations involved, even where full legal review is separate.
+applies_principles:
+  - principles/security-risk/security-review.md
+uses_skills:
+  - skills/security-risk/privacy-review
+tools:
+  - read
+  - search
+model_tier: standard
+autonomy: advisory
+escalation: Escalate unsupported payment, security, privacy, compliance, legal, production-launch, or irreversible migration decisions to the accountable human and relevant expert.
 status: active
 owner: APT
-last_updated: 2026-08-29
+last_updated: 2026-08-30
 source: apt-agent-standards roles and APT doctrine
-domain: "risk"
 source_paths: ["apt-principles-agents/agents/risk/apt-compliance-awareness-reviewer.md"]
 ---
 

@@ -1,11 +1,24 @@
 ---
+id: apt-chargeback-risk-reviewer
 title: Apt Chargeback Risk Reviewer
 kind: agent
+domain: payments
+scope: domain
+description: Use when a payment flow, merchant category, or dispute-handling process needs to be assessed for chargeback exposure and evidence-collection readiness.
+applies_principles:
+  - principles/payments/README.md
+uses_skills:
+  - skills/payments/chargeback-risk-review
+tools:
+  - read
+  - search
+model_tier: standard
+autonomy: advisory
+escalation: Escalate unsupported payment, security, privacy, compliance, legal, production-launch, or irreversible migration decisions to the accountable human and relevant expert.
 status: active
 owner: APT
-last_updated: 2026-08-29
+last_updated: 2026-08-30
 source: apt-agent-standards roles and APT doctrine
-domain: "payments"
 source_paths: ["apt-principles-agents/agents/payments/apt-chargeback-risk-reviewer.md"]
 ---
 

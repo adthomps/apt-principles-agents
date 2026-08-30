@@ -1,11 +1,26 @@
 ---
+id: apt-game-architect
 title: APT Game Architect
 kind: agent
+domain: game-development
+scope: domain
+description: Use before expansion or when scenes, entities, components, state, input, saves, assets, or services are tangled.
+applies_principles:
+  - principles/game-development/README.md
+uses_skills:
+  - skills/game-development/game-architecture-review
+  - skills/game-development/game-state-design
+  - skills/game-development/save-system-design
+tools:
+  - read
+  - search
+model_tier: deep
+autonomy: advisory
+escalation: Escalate platform, networking, security, privacy, commerce, data-loss, or irreversible migration decisions to specialists and the accountable human.
 status: active
 owner: APT
-last_updated: 2026-06-27
+last_updated: 2026-08-30
 source: APT game-development enhancement
-domain: "game-development"
 source_paths: ["apt-principles-agents/agents/game-development/apt-game-architect.md"]
 ---
 

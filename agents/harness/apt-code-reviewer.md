@@ -1,11 +1,23 @@
 ---
-title: "apt-code-reviewer"
-kind: "agent"
-domain: "harness"
-status: "active"
-owner: "APT"
-last_updated: "2026-06-28"
-source_paths: ["apt-agent-standards/agents/apt-code-reviewer.md"]
+id: apt-code-reviewer
+title: apt-code-reviewer
+kind: agent
+domain: harness
+scope: domain
+description: Use when the task matches this harness responsibility or the APT router selects it based on risk and evidence needs.
+applies_principles:
+  - principles/ai/agent-design.md
+uses_skills: []
+tools:
+  - read
+  - search
+model_tier: standard
+autonomy: advisory
+escalation: Escalate unsupported, high-impact, security, privacy, payment, compliance, destructive, or production decisions to the relevant specialist and accountable human.
+status: active
+owner: APT
+last_updated: 2026-08-30
+source_paths: ["apt-principles-agents/agents/harness/apt-code-reviewer.md"]
 ---
 
 # apt-code-reviewer

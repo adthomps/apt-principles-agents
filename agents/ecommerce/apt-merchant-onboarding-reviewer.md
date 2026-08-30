@@ -1,11 +1,24 @@
 ---
+id: apt-merchant-onboarding-reviewer
 title: Apt Merchant Onboarding Reviewer
 kind: agent
+domain: ecommerce
+scope: domain
+description: Use when a merchant onboarding flow — signup through first live transaction — needs review for completeness and time-to-first-sale.
+applies_principles:
+  - principles/ecommerce/README.md
+uses_skills:
+  - skills/ecommerce/merchant-onboarding-review
+tools:
+  - read
+  - search
+model_tier: standard
+autonomy: advisory
+escalation: Escalate unsupported payment, security, privacy, compliance, legal, production-launch, or irreversible migration decisions to the accountable human and relevant expert.
 status: active
 owner: APT
-last_updated: 2026-08-29
+last_updated: 2026-08-30
 source: apt-agent-standards roles and APT doctrine
-domain: "ecommerce"
 source_paths: ["apt-principles-agents/agents/ecommerce/apt-merchant-onboarding-reviewer.md"]
 ---
 

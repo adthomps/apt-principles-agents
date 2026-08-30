@@ -1,11 +1,24 @@
 ---
+id: apt-bank-acquirer-reviewer
 title: Apt Bank Acquirer Reviewer
 kind: agent
+domain: customer
+scope: domain
+description: Use when a deliverable will be reviewed or used by a bank or acquirer partner, to confirm it addresses their risk, compliance, and settlement concerns.
+applies_principles:
+  - principles/design/role-based-experience.md
+uses_skills:
+  - skills/ecommerce/partner-acquirer-onboarding-review
+tools:
+  - read
+  - search
+model_tier: standard
+autonomy: advisory
+escalation: Escalate unsupported payment, security, privacy, compliance, legal, production-launch, or irreversible migration decisions to the accountable human and relevant expert.
 status: active
 owner: APT
-last_updated: 2026-08-29
+last_updated: 2026-08-30
 source: apt-agent-standards roles and APT doctrine
-domain: "customer"
 source_paths: ["apt-principles-agents/agents/customer/apt-bank-acquirer-reviewer.md"]
 ---
 
