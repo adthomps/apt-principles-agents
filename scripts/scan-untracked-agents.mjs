@@ -90,9 +90,24 @@ function discoverCandidateRepos(workspaceRoot) {
     .sort((a, b) => a.localeCompare(b));
 }
 
+// A repo may declare intentionally-local, non-canonical agent files in
+// .apt/local-agents.md as "- <repo-relative path>" bullets. Those are expected
+// local content, not drift.
+function readDeclaredLocal(repoRoot) {
+  const file = path.join(repoRoot, ".apt", "local-agents.md");
+  if (!existsSync(file)) return { exists: false, paths: new Set() };
+  const paths = new Set();
+  for (const line of readFileSync(file, "utf8").split(/\r?\n/)) {
+    const m = line.match(/^\s*-\s+`?([^`\s]+)`?/);
+    if (m) paths.add(m[1].split(path.sep).join("/"));
+  }
+  return { exists: true, paths };
+}
+
 function scanRepo(workspaceRoot, repoName) {
   const repoRoot = path.join(workspaceRoot, repoName);
   const { exists: installed, targets: trackedTargets, error: installationError } = readTrackedTargets(repoRoot);
+  const declared = readDeclaredLocal(repoRoot);
 
   const files = [];
   for (const relDir of PLATFORM_AGENT_DIRS) {
@@ -101,11 +116,15 @@ function scanRepo(workspaceRoot, repoName) {
     }
   }
 
-  const untracked = files.filter((relative) => !trackedTargets.has(relative)).sort((a, b) => a.localeCompare(b));
+  const untracked = files
+    .filter((relative) => !trackedTargets.has(relative) && !declared.paths.has(relative))
+    .sort((a, b) => a.localeCompare(b));
 
   return {
     repository: repoName,
     installed,
+    declaredLocalOnly: !installed && declared.exists,
+    declaredLocalCount: declared.paths.size,
     installationError,
     totalAgentFiles: files.length,
     untrackedFiles: untracked,
@@ -125,7 +144,8 @@ function main() {
 
   const totalUntracked = results.reduce((sum, r) => sum + r.untrackedFiles.length, 0);
   const reposWithUntracked = results.filter((r) => r.untrackedFiles.length > 0);
-  const notInstalled = results.filter((r) => !r.installed);
+  const notInstalled = results.filter((r) => !r.installed && !r.declaredLocalOnly);
+  const declaredLocal = results.filter((r) => r.declaredLocalOnly);
 
   if (args.json) {
     process.stdout.write(
@@ -149,8 +169,12 @@ function main() {
   }
 
   for (const result of results) {
-    if (result.untrackedFiles.length === 0 && result.installed) continue;
-    const flag = result.installed ? "" : "  [NOT INSTALLED - no .apt/installation.json]";
+    if (result.untrackedFiles.length === 0 && (result.installed || result.declaredLocalOnly)) continue;
+    const flag = result.installed
+      ? ""
+      : result.declaredLocalOnly
+        ? `  [DECLARED LOCAL-ONLY - ${result.declaredLocalCount} agent(s) in .apt/local-agents.md]`
+        : "  [NOT INSTALLED - no .apt/installation.json]";
     process.stdout.write(`## ${result.repository}${flag}\n`);
     if (result.installationError) {
       process.stdout.write(`  installation.json could not be parsed: ${result.installationError}\n`);
@@ -168,6 +192,11 @@ function main() {
   if (notInstalled.length > 0) {
     process.stdout.write(
       `${notInstalled.length} repositor${notInstalled.length === 1 ? "y has" : "ies have"} a platform agents directory but no .apt/installation.json at all: ${notInstalled.map((r) => r.repository).join(", ")}\n`,
+    );
+  }
+  if (declaredLocal.length > 0) {
+    process.stdout.write(
+      `${declaredLocal.length} repositor${declaredLocal.length === 1 ? "y is" : "ies are"} declared local-only via .apt/local-agents.md: ${declaredLocal.map((r) => r.repository).join(", ")}\n`,
     );
   }
 }
