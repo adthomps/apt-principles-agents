@@ -175,6 +175,26 @@ function suffixAfter(source, marker) {
   return position >= 0 ? normalized.slice(position + marker.length) : path.basename(normalized);
 }
 
+function globallyReferencedPlatformAgentPaths() {
+  const referenced = new Set();
+  const manifestDir = path.join(sourceRoot, "manifests");
+  if (!exists(manifestDir)) return referenced;
+  for (const entry of readdirSync(manifestDir, { withFileTypes: true })) {
+    if (!entry.isFile() || !entry.name.endsWith(".yaml")) continue;
+    const name = entry.name.replace(/\.yaml$/, "");
+    let manifest;
+    try {
+      manifest = parseManifest(name);
+    } catch {
+      continue;
+    }
+    for (const item of manifest.agents || []) {
+      if (item.startsWith("platforms/")) referenced.add(normalize(item));
+    }
+  }
+  return referenced;
+}
+
 function mappingsFor(manifests, platforms) {
   const selected = selectedFiles(manifests);
   const mappings = [];
@@ -199,6 +219,102 @@ function mappingsFor(manifests, platforms) {
       }
     }
   }
+  // Platform-native agent adapters: platforms/<platform>/source/agents/*.md, when present,
+  // install into that platform's own agents directory (e.g. .claude/agents/) the same way
+  // skills already install into .claude/skills/. This is the live replacement for the
+  // retired install-agent-standards.mjs / sync-agent-standards.mjs tools: previously nothing
+  // kept these files current after the apt-agent-standards consolidation. Only "claude" has a
+  // populated source/agents directory today; codex and cursor pick this up automatically once
+  // platforms/codex/source/agents or platforms/cursor/source/agents exist.
+  //
+  // Scoping rule (fixed 2026-08-30 alongside the review-council/persona subagent conversion):
+  // - A root-level file (directly in .../source/agents/) is GLOBAL by default (installs into
+  //   every repo using that platform) -- this preserves the original behavior every existing
+  //   root-level adapter file already depends on. EXCEPTION: if any manifest anywhere in this
+  //   repo explicitly references that exact source path under an "agents:" section (as several
+  //   already do, e.g. cloudflare.yaml listing cloudflare-architect.md), the file becomes scoped
+  //   to only the manifests that reference it -- honoring intent the manifest authors already
+  //   expressed but that this loop previously ignored.
+  // - A file inside a domain subdirectory (.../source/agents/<domain>/*.md) is LOCAL: it installs
+  //   only when this target's manifests select the matching canonical agents/<domain> directory
+  //   (or that specific file), via the same "agents" section selection already used for the
+  //   .apt/agents/ canonical mirror above. This is how the 76 review-council agents and the 9
+  //   adopted personas (personas live at root -> global; everything else lives in a domain
+  //   subdirectory -> local) get installed as real Claude Code subagents without dumping all 75
+  //   of them into every repo in the workspace regardless of relevance.
+  // The install target path is always flat (target/<filename>.md, domain subdirectory dropped)
+  // since Claude Code subagent discovery is not known to recurse into .claude/agents/ subfolders.
+  const agentAdapterTargets = { claude: ".claude/agents", codex: ".codex/agents", cursor: ".cursor/agents" };
+  const selectedAgentFiles = new Set(selected.get("agents") || []);
+  const scopedPlatformAgentPaths = globallyReferencedPlatformAgentPaths();
+  for (const [platform, targetPrefix] of Object.entries(agentAdapterTargets)) {
+    if (!platforms.includes(platform)) continue;
+    const agentSourceDir = path.join(sourceRoot, "platforms", platform, "source", "agents");
+    if (!exists(agentSourceDir) || !statSync(agentSourceDir).isDirectory()) continue;
+    // Collect every selected candidate first (source, filename, domain) instead of installing
+    // as we walk, so a filename collision between two genuinely different agents -- e.g. the
+    // core lead "apt-router.md" and the harness task-router "apt-router.md" -- can be detected
+    // and disambiguated instead of silently dropping whichever one the filesystem happens to
+    // walk second (add() below is target-keyed and a second write to the same target is a no-op).
+    const candidates = [];
+    const collectAgentAdapters = (dir, domain) => {
+      for (const entry of readdirSync(dir, { withFileTypes: true })) {
+        const childPath = path.join(dir, entry.name);
+        if (entry.isDirectory()) {
+          collectAgentAdapters(childPath, entry.name);
+          continue;
+        }
+        if (!entry.isFile() || !entry.name.endsWith(".md")) continue;
+        const source = normalize(path.relative(sourceRoot, childPath));
+        if (domain) {
+          // LOCAL file: install only if ITS OWN canonical counterpart (agents/<domain>/<name>.md)
+          // -- not just some other file in the same domain -- was actually selected. This is what
+          // makes a manifest's single-file entry (e.g. "agents/architecture/apt-api-architect.md")
+          // behave precisely, rather than pulling in the whole domain because one sibling matched.
+          const canonicalEquivalent = `agents/${domain}/${entry.name}`;
+          if (!selectedAgentFiles.has(canonicalEquivalent) && !selectedAgentFiles.has(source)) continue;
+        } else if (scopedPlatformAgentPaths.has(source) && !selectedAgentFiles.has(source)) {
+          continue;
+        }
+        candidates.push({ source, filename: entry.name, domain });
+      }
+    };
+    collectAgentAdapters(agentSourceDir, null);
+
+    const byFilename = new Map();
+    for (const candidate of candidates) {
+      const list = byFilename.get(candidate.filename) || [];
+      list.push(candidate);
+      byFilename.set(candidate.filename, list);
+    }
+    for (const [filename, group] of byFilename) {
+      if (group.length === 1) {
+        add(group[0].source, `${targetPrefix}/${filename}`, "platform");
+        continue;
+      }
+      // Genuine collision: two different agents flatten to the same filename (a root/global
+      // agent and a domain-local agent sharing a name, or two domains sharing a name). Keep the
+      // root/global one bare (it's the more broadly-depended-on identity) and domain-prefix every
+      // local one so both actually get installed instead of one silently disappearing.
+      for (const candidate of group) {
+        const target = candidate.domain ? `${targetPrefix}/${candidate.domain}-${filename}` : `${targetPrefix}/${filename}`;
+        add(candidate.source, target, "platform");
+      }
+    }
+  }
+
+  // Session-sync hook: platforms/<platform>/source/settings.json, when present, installs
+  // into that platform's own settings file (e.g. .claude/settings.json) so downstream repos
+  // get the SessionStart hook that runs session-sync-check.mjs. Drift-safe like everything
+  // else here: sync will not overwrite a local settings file that already differs.
+  const settingsTargets = { claude: ".claude/settings.json" };
+  for (const [platform, target] of Object.entries(settingsTargets)) {
+    if (!platforms.includes(platform)) continue;
+    const settingsSource = path.join("platforms", platform, "source", "settings.json");
+    if (!exists(path.join(sourceRoot, settingsSource))) continue;
+    add(normalize(settingsSource), target, "platform");
+  }
+
   const roots = {
     codex: ["CODEX.md", "CODEX.md"],
     claude: ["CLAUDE.md", "CLAUDE.md"],

@@ -3,7 +3,7 @@ title: Apt Crypto Payment Risk Reviewer
 kind: agent
 status: active
 owner: APT
-last_updated: 2026-06-27
+last_updated: 2026-08-29
 source: apt-agent-standards roles and APT doctrine
 domain: "payments"
 source_paths: ["apt-principles-agents/agents/payments/apt-crypto-payment-risk-reviewer.md"]
@@ -17,7 +17,7 @@ Provide the Apt Crypto Payment Risk Reviewer perspective while keeping APT princ
 
 ## When to Use
 
-Use when a decision or deliverable must separate mature capability from emerging or future-looking options and require legal, compliance, custody, counterparty, settlement, and risk review, especially when it affects multiple audiences or high-accuracy domains.
+Use when a payment flow accepts or settles in cryptocurrency and needs review for custody, volatility, and settlement risk.
 
 ## Responsibilities
 
@@ -26,9 +26,16 @@ Use when a decision or deliverable must separate mature capability from emerging
 - Identify blockers, risks, tradeoffs, and required approvals.
 - Make recommendations concrete enough to validate.
 
+## Perspective-Specific Checks
+
+- Confirm custody of received crypto (self-custody, custodian, or immediate conversion) is explicit and matches the stated risk tolerance.
+- Check how price volatility between authorization and settlement is handled and who bears that risk.
+- Confirm on-chain transaction finality assumptions match the actual chain's confirmation guarantees.
+- Flag AML/sanctions-screening gaps specific to crypto rails.
+
 ## Required Skills
 
-- [Stablecoin Readiness Review](../../skills/stablecoin-crypto/stablecoin-readiness-review/SKILL.md)
+- [Crypto Payment Risk Review](../../skills/stablecoin-crypto/crypto-payment-risk-review/SKILL.md)
 - Cross-audience review and source verification.
 
 ## Inputs

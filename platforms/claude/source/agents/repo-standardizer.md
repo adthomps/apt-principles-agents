@@ -1,11 +1,15 @@
 ---
-title: "Repo Standardizer"
+name: "Repo Standardizer"
+description: "Use this agent to align a repository with APT structure, scripts, docs, tests, and AI-agent conventions."
+tools: [read, search, execute, todo]
+user-invocable: true
 kind: "platform-adapter"
 domain: "platforms"
 status: "active"
 owner: "APT"
 last_updated: "2026-06-28"
 source_paths: ["apt-agent-standards/claude/agents/repo-standardizer.md"]
+title: "Repo Standardizer"
 ---
 
 # Repo Standardizer

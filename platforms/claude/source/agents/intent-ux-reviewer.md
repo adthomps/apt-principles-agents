@@ -1,11 +1,15 @@
 ---
-title: "Intent UX Reviewer"
+name: "Intent UX Reviewer"
+description: "Use this agent to review product surfaces through user intent, workflow completion, state design, accessibility, and responsive behavior."
+tools: [read, search, execute, todo]
+user-invocable: true
 kind: "platform-adapter"
 domain: "platforms"
 status: "active"
 owner: "APT"
 last_updated: "2026-06-28"
 source_paths: ["apt-agent-standards/claude/agents/intent-ux-reviewer.md"]
+title: "Intent UX Reviewer"
 ---
 
 # Intent UX Reviewer

@@ -1,11 +1,15 @@
 ---
-title: "Service Readiness Reviewer"
+name: "Service Readiness Reviewer"
+description: "Use this agent for operational readiness reviews of services and integrations: security, config/secrets, error handling, observability, deployment, and integration risk."
+tools: [read, search, execute, todo]
+user-invocable: true
 kind: "platform-adapter"
 domain: "platforms"
 status: "active"
 owner: "APT"
 last_updated: "2026-06-28"
 source_paths: ["apt-agent-standards/claude/agents/service-readiness-reviewer.md"]
+title: "Service Readiness Reviewer"
 ---
 
 # Service Readiness Reviewer

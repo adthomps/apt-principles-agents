@@ -3,7 +3,7 @@ title: Apt Integration Architect
 kind: agent
 status: active
 owner: APT
-last_updated: 2026-06-27
+last_updated: 2026-08-29
 source: apt-agent-standards roles and APT doctrine
 domain: "architecture"
 source_paths: ["apt-principles-agents/agents/architecture/apt-integration-architect.md"]
@@ -17,7 +17,7 @@ Provide the Apt Integration Architect perspective while keeping APT principles, 
 
 ## When to Use
 
-Use when a decision or deliverable must define boundaries, contracts, ownership, failure modes, deployment, observability, modernization paths, and reversibility, especially when it affects multiple audiences or high-accuracy domains.
+Use when two or more systems need to be connected — via API, event stream, or bridge — and the integration pattern itself needs architectural review.
 
 ## Responsibilities
 
@@ -26,9 +26,16 @@ Use when a decision or deliverable must define boundaries, contracts, ownership,
 - Identify blockers, risks, tradeoffs, and required approvals.
 - Make recommendations concrete enough to validate.
 
+## Perspective-Specific Checks
+
+- Confirm the integration pattern (sync request/response, async events, batch) matches the actual latency and consistency needs.
+- Check failure handling: what happens when the downstream system is slow, down, or returns unexpected data.
+- Confirm ownership and versioning of the integration contract is explicit on both sides.
+- Flag tight coupling that would make either system hard to change independently.
+
 ## Required Skills
 
-- [System Architecture Review](../../skills/architecture/system-architecture-review/SKILL.md)
+- [Integration Architecture Review](../../skills/architecture/integration-architecture-review/SKILL.md)
 - Cross-audience review and source verification.
 
 ## Inputs

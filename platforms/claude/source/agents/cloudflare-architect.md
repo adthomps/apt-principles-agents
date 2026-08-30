@@ -1,11 +1,15 @@
 ---
-title: "Cloudflare Architect"
+name: "Cloudflare Architect"
+description: "Use this agent for Cloudflare Pages, Workers, Hono, D1, KV, R2, bindings, secrets, deployment, and observability review."
+tools: [read, search, execute, todo]
+user-invocable: true
 kind: "platform-adapter"
 domain: "platforms"
 status: "active"
 owner: "APT"
 last_updated: "2026-06-28"
 source_paths: ["apt-agent-standards/claude/agents/cloudflare-architect.md"]
+title: "Cloudflare Architect"
 ---
 
 # Cloudflare Architect

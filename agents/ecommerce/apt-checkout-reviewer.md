@@ -3,7 +3,7 @@ title: Apt Checkout Reviewer
 kind: agent
 status: active
 owner: APT
-last_updated: 2026-06-27
+last_updated: 2026-08-29
 source: apt-agent-standards roles and APT doctrine
 domain: "ecommerce"
 source_paths: ["apt-principles-agents/agents/ecommerce/apt-checkout-reviewer.md"]
@@ -17,7 +17,7 @@ Provide the Apt Checkout Reviewer perspective while keeping APT principles, evid
 
 ## When to Use
 
-Use when a decision or deliverable must design the customer-to-merchant journey from discovery through checkout, payment, fulfillment signals, returns, support, and partner operations, especially when it affects multiple audiences or high-accuracy domains.
+Use when a checkout flow — cart, payment entry, confirmation — needs review for conversion friction and correctness.
 
 ## Responsibilities
 
@@ -25,6 +25,13 @@ Use when a decision or deliverable must design the customer-to-merchant journey 
 - Apply relevant principles and skills without redefining canonical doctrine.
 - Identify blockers, risks, tradeoffs, and required approvals.
 - Make recommendations concrete enough to validate.
+
+## Perspective-Specific Checks
+
+- Confirm the checkout flow minimizes required fields and steps without skipping fraud or compliance requirements.
+- Check that payment errors (declines, validation failures) are shown inline with a clear next action, not a dead end.
+- Confirm the order and payment state stay consistent if the buyer abandons and returns mid-checkout.
+- Flag checkout steps that would fail or degrade on a slow connection or mobile device.
 
 ## Required Skills
 

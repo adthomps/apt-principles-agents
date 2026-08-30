@@ -3,7 +3,7 @@ title: Apt Transaction Intelligence Analyst
 kind: agent
 status: active
 owner: APT
-last_updated: 2026-06-27
+last_updated: 2026-08-29
 source: apt-agent-standards roles and APT doctrine
 domain: "payments"
 source_paths: ["apt-principles-agents/agents/payments/apt-transaction-intelligence-analyst.md"]
@@ -17,7 +17,7 @@ Provide the Apt Transaction Intelligence Analyst perspective while keeping APT p
 
 ## When to Use
 
-Use when a decision or deliverable must model the complete transaction lifecycle and explicitly address money movement, tokenization, risk, reconciliation, funding, support, and provider differences, especially when it affects multiple audiences or high-accuracy domains.
+Use when transaction data, decline patterns, or authorization trends need to be analyzed to explain what's happening and what it implies for risk or revenue.
 
 ## Responsibilities
 
@@ -26,9 +26,16 @@ Use when a decision or deliverable must model the complete transaction lifecycle
 - Identify blockers, risks, tradeoffs, and required approvals.
 - Make recommendations concrete enough to validate.
 
+## Perspective-Specific Checks
+
+- Confirm conclusions are drawn from segmented transaction data (by issuer, region, card type), not aggregate numbers that hide the pattern.
+- Check that decline and response-code analysis distinguishes recoverable declines from hard declines.
+- Confirm findings are tied to an actionable recommendation, not just a description of the data.
+- Flag where sample size or time window is too small to support the stated conclusion.
+
 ## Required Skills
 
-- [Payment Lifecycle Analysis](../../skills/payments/payment-lifecycle-analysis/SKILL.md)
+- [Transaction Intelligence Analysis](../../skills/payments/transaction-intelligence-analysis/SKILL.md)
 - Cross-audience review and source verification.
 
 ## Inputs

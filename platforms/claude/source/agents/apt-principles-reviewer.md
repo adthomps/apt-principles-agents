@@ -1,11 +1,15 @@
 ---
-title: "APT Principles Reviewer"
+name: "APT Principles Reviewer"
+description: "Use this agent to review code, documentation, plans, and diffs for APT Core alignment: behavior preservation, clear intent, reviewable scope, and grounded, non-invented output."
+tools: [read, search, execute, todo]
+user-invocable: true
 kind: "platform-adapter"
 domain: "platforms"
 status: "active"
 owner: "APT"
 last_updated: "2026-06-28"
 source_paths: ["apt-agent-standards/claude/agents/apt-principles-reviewer.md"]
+title: "APT Principles Reviewer"
 ---
 
 # APT Principles Reviewer

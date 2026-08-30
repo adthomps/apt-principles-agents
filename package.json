@@ -8,6 +8,7 @@
     "validate:metadata": "node scripts/normalize-metadata.mjs",
     "validate:parity": "node scripts/apt-assets.mjs check-parity",
     "audit:workspace": "node scripts/apt-assets.mjs audit-workspace --workspace-root ..",
+    "scan:untracked-agents": "node scripts/scan-untracked-agents.mjs --workspace-root ..",
     "detect": "node scripts/apt-assets.mjs detect",
     "install": "node scripts/apt-assets.mjs install",
     "scan": "node scripts/apt-assets.mjs scan",

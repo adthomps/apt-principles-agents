@@ -1,11 +1,15 @@
 ---
-title: "Cloudflare Modernization Architect"
+name: "Cloudflare Modernization Architect"
+description: "Use this agent to plan staged modernization of an existing app toward Cloudflare while preserving behavior. Does not recommend edits before the plan is reviewed."
+tools: [read, search, execute, todo]
+user-invocable: true
 kind: "platform-adapter"
 domain: "platforms"
 status: "active"
 owner: "APT"
 last_updated: "2026-06-28"
 source_paths: ["apt-agent-standards/claude/agents/cloudflare-modernization-architect.md"]
+title: "Cloudflare Modernization Architect"
 ---
 
 # Cloudflare Modernization Architect

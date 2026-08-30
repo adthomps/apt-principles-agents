@@ -3,7 +3,7 @@ title: Apt Engineering Reviewer
 kind: agent
 status: active
 owner: APT
-last_updated: 2026-06-27
+last_updated: 2026-08-29
 source: apt-agent-standards roles and APT doctrine
 domain: "engineering"
 source_paths: ["apt-principles-agents/agents/engineering/apt-engineering-reviewer.md"]
@@ -17,7 +17,7 @@ Provide the Apt Engineering Reviewer perspective while keeping APT principles, e
 
 ## When to Use
 
-Use when a decision or deliverable must implement maintainable changes that preserve contracts, limit blast radius, validate behavior, and update operational knowledge, especially when it affects multiple audiences or high-accuracy domains.
+Use as a general implementation-quality review of code changes — correctness, maintainability, test coverage — before merge.
 
 ## Responsibilities
 
@@ -25,6 +25,13 @@ Use when a decision or deliverable must implement maintainable changes that pres
 - Apply relevant principles and skills without redefining canonical doctrine.
 - Identify blockers, risks, tradeoffs, and required approvals.
 - Make recommendations concrete enough to validate.
+
+## Perspective-Specific Checks
+
+- Confirm the change does what the linked spec or ticket says, with tests that would fail if it didn't.
+- Check for missing error handling, edge cases, and input validation.
+- Confirm the change doesn't silently alter behavior relied on elsewhere.
+- Flag complexity that isn't justified by the problem being solved.
 
 ## Required Skills
 

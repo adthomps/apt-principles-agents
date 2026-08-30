@@ -1,11 +1,15 @@
 ---
-title: "API Experience Reviewer"
+name: "API Experience Reviewer"
+description: "Use this agent to review API routes, webhooks, schemas, auth boundaries, errors, observability, and developer experience."
+tools: [read, search, execute, todo]
+user-invocable: true
 kind: "platform-adapter"
 domain: "platforms"
 status: "active"
 owner: "APT"
 last_updated: "2026-06-28"
 source_paths: ["apt-agent-standards/claude/agents/api-experience-reviewer.md"]
+title: "API Experience Reviewer"
 ---
 
 # API Experience Reviewer
