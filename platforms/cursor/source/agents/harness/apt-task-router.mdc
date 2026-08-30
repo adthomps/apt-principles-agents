@@ -28,6 +28,15 @@ Turn a user request into a compact, reviewable task packet for the smallest suit
 - Build a task packet with goal, scope, inputs, constraints, validation, and human-approval gates.
 - Route to `apt-model-router` before model selection or escalation.
 
+## Perspective-Specific Checks
+
+- Identify and surface intent, affected surfaces, risk level, and expected output.
+- Detect whether a Working Backwards package, PRD, press release, FAQ set, readiness checklist, telemetry plan, or outcome tracker is available.
+- Select relevant profiles, skills, agents, prompts, and context packs.
+- Decide whether the request is planning, review, implementation, install, scan, repair, sync, or verification.
+- Confirm any build of a task packet with goal, scope, inputs, constraints, validation, and human-approval gates.
+- Route to `apt-model-router` before model selection or escalation.
+
 ## Required Inputs
 - User request.
 - `docs/project-context.md` when working inside an installed target repo.

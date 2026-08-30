@@ -27,6 +27,14 @@ Repair or upgrade existing APT agent standard installations while preserving loc
 - Back up files before overwriting when `--backup` is used.
 - Require `--force` before overwriting drifted files.
 
+## Perspective-Specific Checks
+
+- Default to report-only or dry-run behavior.
+- Preserve `docs/project-context.md` and `.apt/installation.json/local-overrides.md`.
+- Recreate missing managed files only when approved.
+- Back up files before overwriting when `--backup` is used.
+- Require `--force` before overwriting drifted files.
+
 ## Output
 Return repair plan, files that would change or changed, skipped files, backups, and validation commands.
 

@@ -35,6 +35,16 @@ Review UI work through intent, workflow continuity, state design, accessibility,
 - Before recommending new shadcn components, inspect `components.json`, aliases, Tailwind config or global CSS, installed primitives, and existing `components/ui`, `components/apt`, and `components/blocks` structure.
 - Flag one-off UI decisions when an existing primitive, APT wrapper, or product block should be reused.
 
+
+## Perspective-Specific Checks
+
+- Confirm task paths, navigation, feedback, and error recovery.
+- Check semantic controls, keyboard flow, focus behavior, and readable copy.
+- Use local UI standards and project context before suggesting changes.
+- For React, TypeScript, and Tailwind projects, treat shadcn/ui as the default repo-owned foundation unless VPDS or another enterprise design system is required.
+- Before recommending new shadcn components, inspect `components.json`, aliases, Tailwind config or global CSS, installed primitives, and existing `components/ui`, `components/apt`, and `components/blocks` structure.
+- Flag one-off UI decisions when an existing primitive, APT wrapper, or product block should be reused.
+
 ## Output
 Return task blockers first, then accessibility issues, state gaps, component-foundation gaps, responsive issues, and polish opportunities.
 

@@ -30,6 +30,13 @@ Use for concepts, design documents, player guides, developer setup, architecture
 - Link claims to builds, sources, evidence, and owners.
 - Keep documentation maintainable and conditional on actual project needs.
 
+## Perspective-Specific Checks
+
+- Separate shipped behavior, plans, assumptions, and questions.
+- Explain game terms in audience-appropriate language.
+- Link claims to builds, sources, evidence, and owners.
+- Keep documentation maintainable and conditional on actual project needs.
+
 ## Required Skills
 
 - `game-idea-framing` — installed under `.claude/skills/game-idea-framing/`.

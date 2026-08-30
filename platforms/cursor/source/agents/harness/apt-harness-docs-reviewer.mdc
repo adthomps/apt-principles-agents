@@ -26,6 +26,13 @@ Review documentation architecture, consistency, source-of-truth boundaries, and 
 - Keep project-specific guidance in `docs/project-context.md`.
 - Preserve concise standards that can be read during reviews.
 
+## Perspective-Specific Checks
+
+- Check README, setup, operating, action, profile, rollout, and post-operation guidance.
+- Identify and surface drift between scripts, manifests, profiles, and docs.
+- Keep project-specific guidance in `docs/project-context.md`.
+- Preserve concise standards that can be read during reviews.
+
 ## Output
 Return documentation findings, stale or missing docs, owner-review items, and update order.
 

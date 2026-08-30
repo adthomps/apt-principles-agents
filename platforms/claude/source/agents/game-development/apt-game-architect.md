@@ -30,6 +30,13 @@ Use before expansion or when scenes, entities, components, state, input, saves, 
 - Evaluate project and asset organization, failure handling, and tests.
 - Resist premature abstractions and hidden global coupling.
 
+## Perspective-Specific Checks
+
+- Confirm runtime boundaries and authoritative state.
+- Trace and confirm startup, core-loop actions, transitions, reset, and persistence.
+- Confirm project and asset organization, failure handling, and tests.
+- Flag premature abstractions and hidden global coupling.
+
 ## Required Skills
 
 - `game-architecture-review` — installed under `.claude/skills/game-architecture-review/`.

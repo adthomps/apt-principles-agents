@@ -25,6 +25,14 @@ Verify outputs, installs, repairs, routing config, and documentation alignment b
 - Validate that implementation matches the approved plan.
 - When a Working Backwards package is present, verify traceability, readiness gates, telemetry coverage, release decomposition, outcome tracker coverage, blockers, and deferred-artifact reasons before build or release claims.
 
+## Perspective-Specific Checks
+
+- Check manifests, managed files, reports, scripts, docs, and profile references.
+- Confirm commands were run or clearly mark unverified commands.
+- Verify sync preserves local context and only touches managed files.
+- Verify that implementation matches the approved plan.
+- When a Working Backwards package is present, verify traceability, readiness gates, telemetry coverage, release decomposition, outcome tracker coverage, blockers, and deferred-artifact reasons before build or release claims.
+
 ## Output
 Return verification result, evidence, failed checks, unverified assumptions, and required follow-up.
 

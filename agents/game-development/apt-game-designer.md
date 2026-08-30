@@ -41,6 +41,14 @@ Use when framing play, resolving unclear rules, planning levels, or interpreting
 - Separate evidence from taste and feature requests.
 - Keep design artifacts small and testable.
 
+
+## Perspective-Specific Checks
+
+- Keep mechanics aligned with the desired player experience.
+- Define rules, feedback, difficulty, recovery, and endings.
+- Separate evidence from taste and feature requests.
+- Keep design artifacts small and testable.
+
 ## Required Skills
 
 - [Game Loop Designer](../../skills/game-development/game-loop-designer/SKILL.md)

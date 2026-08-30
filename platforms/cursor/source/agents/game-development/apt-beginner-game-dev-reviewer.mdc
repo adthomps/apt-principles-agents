@@ -30,6 +30,13 @@ Use for onboarding, learning plans, setup, architecture explanations, templates,
 - Check that file structure, ownership, and validation are explained.
 - Detect overwhelming scope or branching choices.
 
+## Perspective-Specific Checks
+
+- Identify and surface unexplained terms and hidden prerequisites.
+- Verify that setup and first playable task are discoverable.
+- Check that file structure, ownership, and validation are explained.
+- Detect overwhelming scope or branching choices.
+
 ## Required Skills
 
 - `game-dev-learning-plan` — installed under `.claude/skills/game-dev-learning-plan/`.

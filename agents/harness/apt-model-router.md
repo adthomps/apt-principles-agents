@@ -34,6 +34,15 @@ Choose the smallest sufficient local or cloud model tier for an APT task.
 - Escalate to frontier models for architecture, security, complex debugging, major migrations, and final review.
 - Record why escalation is necessary.
 
+
+## Perspective-Specific Checks
+
+- Estimate task complexity, context size, and verification needs.
+- Prefer local models for classification, summarization, checklist review, and task-packet creation.
+- Escalate to mid-tier models for implementation and documentation.
+- Escalate to frontier models for architecture, security, complex debugging, major migrations, and final review.
+- Record why escalation is necessary.
+
 ## Required Inputs
 - Task packet from `apt-router`.
 - `routing/model-registry.json`.

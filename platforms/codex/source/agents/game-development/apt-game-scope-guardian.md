@@ -28,6 +28,13 @@ Use at concept approval, prototype planning, roadmap changes, milestone review, 
 - Require tradeoffs when scope is added.
 - Always identify what can be removed to reach playability faster.
 
+## Perspective-Specific Checks
+
+- Protect the one-sentence player promise.
+- Expose hidden code, content, asset, test, deployment, and support cost.
+- Require tradeoffs when scope is added.
+- Always identify what can be removed to reach playability faster.
+
 ## Required Skills
 
 - `game-scope-review` — installed under `.claude/skills/game-scope-review/`.

@@ -28,6 +28,13 @@ Use when a learner needs sequencing, plain explanations, project-based exercises
 - Protect a finishable scope and visible progress.
 - Preserve evidence, uncertainty, ownership, and safe AI use.
 
+## Perspective-Specific Checks
+
+- Connect concepts to the learner’s current build.
+- Explain one new idea at a time and check understanding.
+- Protect a finishable scope and visible progress.
+- Preserve evidence, uncertainty, ownership, and safe AI use.
+
 ## Required Skills
 
 - `game-dev-learning-plan` — installed under `.claude/skills/game-dev-learning-plan/`.

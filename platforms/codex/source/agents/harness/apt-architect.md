@@ -24,6 +24,13 @@ Review architecture, repository structure, migration strategy, and harness desig
 - Identify staged implementation paths with validation and rollback.
 - Review major profile, manifest, routing, and lifecycle-tool changes.
 
+## Perspective-Specific Checks
+
+- Confirm structure, module boundaries, and lifecycle workflows.
+- Preserve the boundary between `apt-principles-agents` doctrine and this repo's harness/distribution role.
+- Identify and surface staged implementation paths with validation and rollback.
+- Confirm major profile, manifest, routing, and lifecycle-tool changes.
+
 ## Output
 Return current state, target architecture, staged plan, risks, validation commands, and rollback notes.
 

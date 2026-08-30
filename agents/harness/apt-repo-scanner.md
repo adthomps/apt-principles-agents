@@ -33,6 +33,14 @@ Inspect target repositories for installed APT agent standards, drift, missing fi
 - Report missing, drifted, unmanaged duplicate, and conflict candidates.
 - Generate scan reports without modifying managed files.
 
+
+## Perspective-Specific Checks
+
+- Detect legacy `.apt/installation.json` and new `.apt/installation.json/manifest.json`.
+- Compare managed target files with source files.
+- Report missing, drifted, unmanaged duplicate, and conflict candidates.
+- Generate scan reports without modifying managed files.
+
 ## Output
 Return install state, profile state, drift summary, missing files, conflicts, and repair recommendations.
 

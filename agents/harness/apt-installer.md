@@ -35,6 +35,15 @@ Apply this repository's installable agent standards and harness assets to target
 - Preserve existing files unless `--force` is explicitly passed.
 - Write install manifests and install reports.
 
+
+## Perspective-Specific Checks
+
+- Always include `apt-core`.
+- Detect stack signals and recommend profiles.
+- Install only selected managed assets.
+- Preserve existing files unless `--force` is explicitly passed.
+- Write install manifests and install reports.
+
 ## Output
 Return installed profiles, copied files, skipped files, created local context, manifest paths, and next validation steps.
 

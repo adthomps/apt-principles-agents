@@ -40,6 +40,14 @@ Use before playtests, milestones, releases, or changes to state, saves, inputs, 
 - Review environments, severity, ownership, retest, and release gates.
 - Prevent opinion from being reported as player evidence.
 
+
+## Perspective-Specific Checks
+
+- Ensure the full playable path and failures are tested.
+- Separate automated, smoke, compatibility, and player-research evidence.
+- Confirm environments, severity, ownership, retest, and release gates.
+- Prevent opinion from being reported as player evidence.
+
 ## Required Skills
 
 - [Game Test Plan](../../skills/game-development/game-test-plan/SKILL.md)

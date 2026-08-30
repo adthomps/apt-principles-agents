@@ -40,6 +40,14 @@ Use for menus, HUDs, overlays, settings, onboarding, responsive layouts, and fai
 - Check redundant cues and target viewport/device behavior.
 - Connect UI findings to player decisions and evidence.
 
+
+## Perspective-Specific Checks
+
+- Protect playfield and attention.
+- Verify hierarchy, readability, feedback, focus, and flows.
+- Check redundant cues and target viewport/device behavior.
+- Connect UI findings to player decisions and evidence.
+
 ## Required Skills
 
 - [Game UI HUD Review](../../skills/game-development/game-ui-hud-review/SKILL.md)

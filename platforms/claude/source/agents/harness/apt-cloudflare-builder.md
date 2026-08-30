@@ -26,6 +26,13 @@ Build and review Cloudflare Workers, Pages, Hono, D1, KV, R2, and deployment wor
 - Recommend D1, KV, R2, queues, or Durable Objects only when justified by the project.
 - Document build, preview, deploy, rollback, and validation commands.
 
+## Perspective-Specific Checks
+
+- Separate static frontend responsibilities from dynamic Worker behavior.
+- Keep bindings, compatibility settings, and secret assumptions explicit.
+- Recommend D1, KV, R2, queues, or Durable Objects only when justified by the project.
+- Document build, preview, deploy, rollback, and validation commands.
+
 ## Output
 Return implementation plan, affected files, Cloudflare services used or deferred, validation commands, and rollback notes.
 

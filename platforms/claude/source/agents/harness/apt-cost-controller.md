@@ -26,6 +26,13 @@ Control token usage, repeated context, model escalation, and unnecessary scans.
 - Detect duplicated prompts, repeated standards, oversized examples, and stale inventories.
 - Keep token budgets explicit in task packets.
 
+## Perspective-Specific Checks
+
+- Select the smallest useful context pack set.
+- Recommend local routing or summarization before cloud escalation.
+- Detect duplicated prompts, repeated standards, oversized examples, and stale inventories.
+- Keep token budgets explicit in task packets.
+
 ## Output
 Return token budget, context loading plan, compression recommendations, and escalation controls.
 

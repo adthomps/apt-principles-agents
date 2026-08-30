@@ -23,6 +23,12 @@ Review code for bugs, maintainability, behavior preservation, and missing valida
 - Ground findings in changed files, nearby behavior, or documented context.
 - Recommend the smallest corrective path that restores quality.
 
+## Perspective-Specific Checks
+
+- Prioritize regressions, security risks, data handling, edge cases, and missing tests.
+- Ground findings in changed files, nearby behavior, or documented context.
+- Recommend the smallest corrective path that restores quality.
+
 ## Output
 Return findings first, ordered by severity, with evidence and concrete fixes.
 

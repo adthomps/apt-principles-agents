@@ -33,6 +33,14 @@ Review security-sensitive agent, code, configuration, MCP, model-routing, and li
 - Flag destructive operations, unexpected network calls, and paid API use.
 - Require human approval before material security-impacting changes.
 
+
+## Perspective-Specific Checks
+
+- Confirm prompt injection, secret handling, permission scope, logs, manifests, and generated reports.
+- Treat payment, health, auth, and webhook systems as high risk.
+- Flag destructive operations, unexpected network calls, and paid API use.
+- Require human approval before material security-impacting changes.
+
 ## Output
 Return security findings, severity, evidence, required fixes, and approval gates.
 

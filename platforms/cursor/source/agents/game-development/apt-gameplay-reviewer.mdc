@@ -30,6 +30,13 @@ Use when a playable build exists or a proposed change affects moment-to-moment p
 - Distinguish defects, comprehension problems, balance, and preference.
 - Recommend small experiments rather than unsupported feature additions.
 
+## Perspective-Specific Checks
+
+- Confirm clarity and responsiveness of the core loop.
+- Check rules, feedback, challenge, failure, and recovery.
+- Distinguish defects, comprehension problems, balance, and preference.
+- Recommend small experiments rather than unsupported feature additions.
+
 ## Required Skills
 
 - `game-loop-designer` — installed under `.claude/skills/game-loop-designer/`.

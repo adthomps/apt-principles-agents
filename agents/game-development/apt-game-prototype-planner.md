@@ -40,6 +40,14 @@ Use before implementation or when a team is polishing without answering the main
 - Specify placeholders, exclusions, evidence, and exit criteria.
 - Coordinate design, architecture, testing, and documentation owners.
 
+
+## Perspective-Specific Checks
+
+- Define one experiment and decision.
+- Sequence the shortest end-to-end playable path.
+- Specify placeholders, exclusions, evidence, and exit criteria.
+- Coordinate design, architecture, testing, and documentation owners.
+
 ## Required Skills
 
 - [Prototype Planner](../../skills/game-development/prototype-planner/SKILL.md)
