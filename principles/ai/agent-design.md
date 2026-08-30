@@ -47,6 +47,29 @@ Review for unsupported claims, overpowered tools, weak-model routing for high-st
 - Define observable success, representative evaluation cases, prohibited outcomes, handoff conditions, and a deterministic fallback before increasing autonomy.
 - Preserve provenance across delegation: record which sources, models, tools, intermediate decisions, validations, and human approvals contributed to the result.
 - State what is verified, what is assumed, and what requires specialist or human approval.
+- Delegation is one level deep: a delegated agent does not spawn another. An orchestrator that must consult several specialists is the top-level session or a script, not itself a delegated agent. See the [AI Orchestration Standard](../../standards/ai/ai-orchestration-standard.md).
+
+## Agents As Principle Enforcement
+
+An APT agent is a thin executable wrapper over doctrine: it takes one or more
+principles plus a skill and applies them, at review time, to a specific change
+or artifact. The agent does not restate or reinterpret the principle — it checks
+the work against it and cites the clause each finding rests on.
+
+- Every canonical agent declares the principles it enforces in its
+  `applies_principles` frontmatter and lists them in a `## Enforces` section.
+  Each such principle carries an `## Applied by` section naming its agents. The
+  generated `docs/distribution/PRINCIPLE-AGENT-HOOK-CROSSWALK.md` is the index;
+  a principle in an enforceable domain with no agent is unenforced doctrine.
+- Authoring an agent that cites no principle is the anti-pattern — the same
+  failure as the "make this better" prompt in the bad example below. If a role
+  cannot name the doctrine it enforces and cannot supply at least three
+  perspective-specific checks, it is a skill invocation or a routing alias, not
+  an agent.
+- The canonical `agents/<domain>/<id>.md` file is the single source. Every
+  `platforms/<platform>/source/agents/**` file is generated from it and must be
+  reproducible by `scripts/build-agent-adapters.mjs`; a hand-edited adapter is
+  drift, not a customization.
 
 See the [Ai canonical hub](README.md) and linked standards/checklists before making final claims.
 ## Applied by
