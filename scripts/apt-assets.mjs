@@ -328,6 +328,18 @@ function mappingsFor(manifests, platforms) {
         }
       }
     }
+    // Hook scripts: hooks/<name>.mjs -> .claude/hooks/<name>.mjs. Availability
+    // only; activation is per repo via .claude/settings.json (see
+    // standards/ai/hook-enforcement-standard.md). settings.json distributes just
+    // the SessionStart notice.
+    const hooksDir = path.join(sourceRoot, "hooks");
+    if (exists(hooksDir) && statSync(hooksDir).isDirectory()) {
+      for (const entry of readdirSync(hooksDir, { withFileTypes: true })) {
+        if (entry.isFile() && entry.name.endsWith(".mjs")) {
+          add(normalize(`hooks/${entry.name}`), `.claude/hooks/${entry.name}`, "hook");
+        }
+      }
+    }
   }
 
   const roots = {
