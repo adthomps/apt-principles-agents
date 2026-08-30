@@ -67,8 +67,9 @@ function upsertSection(body, heading, lines, beforeHeading) {
   return body.trimEnd() + "\n\n" + block + "\n";
 }
 
-function write(file, next) {
-  const cur = existsSync(file) ? readFileSync(file, "utf8") : null;
+function write(file, nextRaw) {
+  const next = nextRaw.replace(/\r\n/g, "\n");
+  const cur = existsSync(file) ? readFileSync(file, "utf8").replace(/\r\n/g, "\n") : null;
   if (cur === next) return;
   changed.push(path.relative(root, file).replaceAll("\\", "/"));
   if (!check) writeFileSync(file, next, "utf8");

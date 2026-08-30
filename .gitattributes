@@ -1,0 +1,17 @@
+# Normalize all text to LF in the repo and the working tree. The agent-adapter
+# and principle-link generators compare file bytes; a CRLF working tree (git
+# autocrlf on Windows) otherwise makes every generated file read as out of date.
+* text=auto eol=lf
+
+# PowerShell tooling keeps CRLF.
+*.ps1 text eol=crlf
+
+# Binary assets.
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.ico binary
+*.pdf binary
+*.woff binary
+*.woff2 binary

@@ -204,7 +204,7 @@ for (const file of canonical) {
     const outPath = path.join(emitter.dir, `${placement}${fm.id}${emitter.ext}`);
     owned[platform].add(path.relative(emitter.dir, outPath).replaceAll("\\", "/"));
     const next = emitter.render(fm, body);
-    const current = existsSync(outPath) ? readFileSync(outPath, "utf8") : null;
+    const current = existsSync(outPath) ? readFileSync(outPath, "utf8").replace(/\r\n/g, "\n") : null;
     if (current === next) continue;
     if (check) {
       diffs.push(`${path.relative(root, outPath)}: ${current === null ? "missing" : "out of date"}`);
@@ -241,7 +241,7 @@ const catalogJson = JSON.stringify(
   null,
   2,
 ) + "\n";
-if (existsSync(catalogPath) && readFileSync(catalogPath, "utf8") === catalogJson) {
+if (existsSync(catalogPath) && readFileSync(catalogPath, "utf8").replace(/\r\n/g, "\n") === catalogJson) {
   // up to date
 } else if (check) {
   diffs.push("references/agent-catalog.json: out of date");
