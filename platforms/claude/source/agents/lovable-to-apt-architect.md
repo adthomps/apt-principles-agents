@@ -1,14 +1,14 @@
 ---
-name: "Lovable-To-APT Architect"
+name: lovable-to-apt-architect
 description: "Use this agent to convert Lovable-generated or Lovable-influenced projects toward APT conventions. Produces a migration plan before edits."
-tools: [read, search, execute, todo]
-user-invocable: true
-kind: "platform-adapter"
-domain: "platforms"
-status: "active"
-owner: "APT"
-last_updated: "2026-06-28"
-source_paths: ["apt-agent-standards/claude/agents/lovable-to-apt-architect.md"]
+tools: Read, Grep, Glob, Bash, TodoWrite
+model: opus
+kind: agent-adapter
+domain: platforms
+status: active
+owner: APT
+last_updated: 2026-08-30
+source_paths: ["apt-principles-agents/platforms/claude/source/agents/lovable-to-apt-architect.md"]
 title: "Lovable-To-APT Architect"
 ---
 

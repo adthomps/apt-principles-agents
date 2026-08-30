@@ -1,14 +1,14 @@
 ---
-name: "APT Readiness Auditor"
+name: apt-readiness-auditor
 description: "Use this agent to score a repository's APT adoption and operational readiness across alignment, architecture, documentation, UX, API, testing, Cloudflare readiness, and maintainability. Read-only on the first pass."
-tools: [read, search, execute, todo]
-user-invocable: true
-kind: "platform-adapter"
-domain: "platforms"
-status: "active"
-owner: "APT"
-last_updated: "2026-06-28"
-source_paths: ["apt-agent-standards/claude/agents/apt-readiness-auditor.md"]
+tools: Read, Grep, Glob, Bash, TodoWrite
+model: opus
+kind: agent-adapter
+domain: platforms
+status: active
+owner: APT
+last_updated: 2026-08-30
+source_paths: ["apt-principles-agents/platforms/claude/source/agents/apt-readiness-auditor.md"]
 title: "APT Readiness Auditor"
 ---
 

@@ -1,14 +1,14 @@
 ---
-name: "Repo Standardizer"
+name: repo-standardizer
 description: "Use this agent to align a repository with APT structure, scripts, docs, tests, and AI-agent conventions."
-tools: [read, search, execute, todo]
-user-invocable: true
-kind: "platform-adapter"
-domain: "platforms"
-status: "active"
-owner: "APT"
-last_updated: "2026-06-28"
-source_paths: ["apt-agent-standards/claude/agents/repo-standardizer.md"]
+tools: Read, Grep, Glob, Bash, TodoWrite
+model: sonnet
+kind: agent-adapter
+domain: platforms
+status: active
+owner: APT
+last_updated: 2026-08-30
+source_paths: ["apt-principles-agents/platforms/claude/source/agents/repo-standardizer.md"]
 title: "Repo Standardizer"
 ---
 

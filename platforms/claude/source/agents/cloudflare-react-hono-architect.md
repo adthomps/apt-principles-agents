@@ -1,14 +1,14 @@
 ---
-name: "Cloudflare React Hono Architect"
+name: cloudflare-react-hono-architect
 description: "Use this agent for React, Vite, Hono, and Cloudflare Pages/Workers architecture reviews."
-tools: [read, search, execute, todo]
-user-invocable: true
-kind: "platform-adapter"
-domain: "platforms"
-status: "active"
-owner: "APT"
-last_updated: "2026-06-28"
-source_paths: ["apt-agent-standards/claude/agents/cloudflare-react-hono-architect.md"]
+tools: Read, Grep, Glob, Bash, TodoWrite
+model: opus
+kind: agent-adapter
+domain: platforms
+status: active
+owner: APT
+last_updated: 2026-08-30
+source_paths: ["apt-principles-agents/platforms/claude/source/agents/cloudflare-react-hono-architect.md"]
 title: "Cloudflare React Hono Architect"
 ---
 

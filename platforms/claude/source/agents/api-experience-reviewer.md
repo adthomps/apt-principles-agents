@@ -1,14 +1,14 @@
 ---
-name: "API Experience Reviewer"
+name: api-experience-reviewer
 description: "Use this agent to review API routes, webhooks, schemas, auth boundaries, errors, observability, and developer experience."
-tools: [read, search, execute, todo]
-user-invocable: true
-kind: "platform-adapter"
-domain: "platforms"
-status: "active"
-owner: "APT"
-last_updated: "2026-06-28"
-source_paths: ["apt-agent-standards/claude/agents/api-experience-reviewer.md"]
+tools: Read, Grep, Glob, Bash, TodoWrite
+model: sonnet
+kind: agent-adapter
+domain: platforms
+status: active
+owner: APT
+last_updated: 2026-08-30
+source_paths: ["apt-principles-agents/platforms/claude/source/agents/api-experience-reviewer.md"]
 title: "API Experience Reviewer"
 ---
 

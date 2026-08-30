@@ -1,14 +1,14 @@
 ---
-name: "AI Output Auditor"
+name: ai-output-auditor
 description: "Use this agent to audit generated code, documentation, plans, review comments, or migration proposals for unsupported claims, invented files/APIs, hidden behavior changes, or missing validation."
-tools: [read, search, execute, todo]
-user-invocable: true
-kind: "platform-adapter"
-domain: "platforms"
-status: "active"
-owner: "APT"
-last_updated: "2026-06-28"
-source_paths: ["apt-agent-standards/claude/agents/ai-output-auditor.md"]
+tools: Read, Grep, Glob, Bash, TodoWrite
+model: opus
+kind: agent-adapter
+domain: platforms
+status: active
+owner: APT
+last_updated: 2026-08-30
+source_paths: ["apt-principles-agents/platforms/claude/source/agents/ai-output-auditor.md"]
 title: "AI Output Auditor"
 ---
 

@@ -1,14 +1,14 @@
 ---
-name: "Documentation Architect"
+name: documentation-architect
 description: "Use this agent to design documentation structure and governance for a repository: README clarity, project-context completeness, and canonical-versus-duplicated docs."
-tools: [read, search, execute, todo]
-user-invocable: true
-kind: "platform-adapter"
-domain: "platforms"
-status: "active"
-owner: "APT"
-last_updated: "2026-06-28"
-source_paths: ["apt-agent-standards/claude/agents/documentation-architect.md"]
+tools: Read, Grep, Glob, Bash, TodoWrite
+model: opus
+kind: agent-adapter
+domain: platforms
+status: active
+owner: APT
+last_updated: 2026-08-30
+source_paths: ["apt-principles-agents/platforms/claude/source/agents/documentation-architect.md"]
 title: "Documentation Architect"
 ---
 

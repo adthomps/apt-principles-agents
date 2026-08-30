@@ -1,14 +1,14 @@
 ---
-name: "Documentation Normalizer"
+name: documentation-normalizer
 description: "Use this agent to consolidate duplicated, stale, or scattered documentation. Proposes a merge/move/delete plan before making changes."
-tools: [read, search, execute, todo]
-user-invocable: true
-kind: "platform-adapter"
-domain: "platforms"
-status: "active"
-owner: "APT"
-last_updated: "2026-06-28"
-source_paths: ["apt-agent-standards/claude/agents/documentation-normalizer.md"]
+tools: Read, Grep, Glob, Bash, TodoWrite
+model: sonnet
+kind: agent-adapter
+domain: platforms
+status: active
+owner: APT
+last_updated: 2026-08-30
+source_paths: ["apt-principles-agents/platforms/claude/source/agents/documentation-normalizer.md"]
 title: "Documentation Normalizer"
 ---
 

@@ -1,14 +1,14 @@
 ---
-name: "Lovable-To-Cloudflare Architect"
+name: lovable-to-cloudflare-architect
 description: "Use this agent to plan migration from Lovable-style projects toward React, Vite, Hono, and Cloudflare Pages/Workers."
-tools: [read, search, execute, todo]
-user-invocable: true
-kind: "platform-adapter"
-domain: "platforms"
-status: "active"
-owner: "APT"
-last_updated: "2026-06-28"
-source_paths: ["apt-agent-standards/claude/agents/lovable-to-cloudflare-architect.md"]
+tools: Read, Grep, Glob, Bash, TodoWrite
+model: opus
+kind: agent-adapter
+domain: platforms
+status: active
+owner: APT
+last_updated: 2026-08-30
+source_paths: ["apt-principles-agents/platforms/claude/source/agents/lovable-to-cloudflare-architect.md"]
 title: "Lovable-To-Cloudflare Architect"
 ---
 
