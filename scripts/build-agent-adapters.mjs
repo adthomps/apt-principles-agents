@@ -115,14 +115,68 @@ function claudeAdapter(fm, body) {
   return front.join("\n") + adaptBody(body, fm.uses_skills || []);
 }
 
+function aptMeta(fm, canonical, extra = []) {
+  return [
+    ...extra,
+    "kind: agent-adapter",
+    `domain: ${fm.domain}`,
+    `status: ${fm.status || "active"}`,
+    `owner: ${fm.owner || "APT"}`,
+    `last_updated: ${fm.last_updated}`,
+    `source_paths: ["${canonical}"]`,
+    `title: ${JSON.stringify(fm.title || fm.id)}`,
+    "---",
+    `<!-- Generated from ${canonical} by scripts/build-agent-adapters.mjs. Edit the canonical file, not this one. -->`,
+    "",
+  ];
+}
+
+// Codex reads AGENTS.md; there is no sub-agent runtime, so the adapter is a
+// titled prompt block a human or CI invokes by name.
+function codexAdapter(fm, body) {
+  const canonical = `apt-principles-agents/agents/${fm.domain}/${fm.canonicalBase}.md`;
+  const front = ["---", `name: ${fm.id}`, `description: ${JSON.stringify(fm.description)}`, ...aptMeta(fm, canonical)];
+  return front.join("\n") + adaptBody(body, fm.uses_skills || []);
+}
+
+// Cursor .mdc rule: description + globs steer when the rule attaches.
+function cursorAdapter(fm, body) {
+  const canonical = `apt-principles-agents/agents/${fm.domain}/${fm.canonicalBase}.md`;
+  const front = [
+    "---",
+    `description: ${JSON.stringify(fm.description)}`,
+    `globs: ["**/*"]`,
+    "alwaysApply: false",
+    ...aptMeta(fm, canonical, [`name: ${fm.id}`]),
+  ];
+  return front.join("\n") + adaptBody(body, fm.uses_skills || []);
+}
+
+// GitHub Copilot chat mode: description + a coarse tools list.
+const COPILOT_TOOLS = { read: ["codebase", "search"], search: ["search"], edit: ["editFiles"], execute: ["runCommands"], web: ["fetch"], todo: [] };
+function copilotAdapter(fm, body) {
+  const canonical = `apt-principles-agents/agents/${fm.domain}/${fm.canonicalBase}.md`;
+  const tools = [...new Set((fm.tools || []).flatMap((c) => COPILOT_TOOLS[c] || []))];
+  const front = [
+    "---",
+    `description: ${JSON.stringify(fm.description)}`,
+    `tools: [${tools.map((t) => JSON.stringify(t)).join(", ")}]`,
+    ...aptMeta(fm, canonical, [`name: ${fm.id}`]),
+  ];
+  return front.join("\n") + adaptBody(body, fm.uses_skills || []);
+}
+
 const EMITTERS = {
-  claude: { dir: path.join(root, "platforms", "claude", "source", "agents"), render: claudeAdapter },
+  claude: { dir: path.join(root, "platforms", "claude", "source", "agents"), render: claudeAdapter, ext: ".md" },
+  codex: { dir: path.join(root, "platforms", "codex", "source", "agents"), render: codexAdapter, ext: ".md" },
+  cursor: { dir: path.join(root, "platforms", "cursor", "source", "agents"), render: cursorAdapter, ext: ".mdc" },
 };
+void copilotAdapter; // emitter drafted; not wired until .github/agents install lands
 
 const canonical = walk(path.join(root, "agents")).filter((f) => f.endsWith(".md") && !f.endsWith("README.md"));
 const diffs = [];
 let written = 0;
-const owned = { claude: new Set() };
+const owned = Object.fromEntries(Object.keys(EMITTERS).map((p) => [p, new Set()]));
 const catalog = [];
 
 for (const file of canonical) {
@@ -147,7 +201,7 @@ for (const file of canonical) {
   });
   for (const [platform, emitter] of Object.entries(EMITTERS)) {
     const placement = fm.scope === "global" ? "" : `${fm.domain}/`;
-    const outPath = path.join(emitter.dir, `${placement}${fm.id}.md`);
+    const outPath = path.join(emitter.dir, `${placement}${fm.id}${emitter.ext}`);
     owned[platform].add(path.relative(emitter.dir, outPath).replaceAll("\\", "/"));
     const next = emitter.render(fm, body);
     const current = existsSync(outPath) ? readFileSync(outPath, "utf8") : null;
@@ -167,7 +221,7 @@ const adapterOnly = [];
 for (const [platform, emitter] of Object.entries(EMITTERS)) {
   for (const f of walk(emitter.dir)) {
     const rel = path.relative(emitter.dir, f).replaceAll("\\", "/");
-    if (!rel.endsWith(".md")) continue;
+    if (!rel.endsWith(emitter.ext)) continue;
     if (owned[platform].has(rel)) continue;
     const looksGenerated = readFileSync(f, "utf8").includes("by scripts/build-agent-adapters.mjs");
     if (looksGenerated) {
