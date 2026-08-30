@@ -4,7 +4,7 @@ kind: runbook
 domain: operations
 status: active
 owner: APT maintainers
-last_updated: 2026-06-28
+last_updated: 2026-08-24
 source_paths: ["apt-principles-agents/scripts/apt-assets.mjs"]
 ---
 
@@ -21,6 +21,8 @@ node scripts/apt-assets.mjs scan --target ../target-repo
 ```
 
 `scan` reports missing, changed, and current managed artifacts. `sync` preserves locally changed files. Use `repair --force` only after reviewing drift; overwritten files are backed up first.
+
+OKF records installed through manifests are portable context, not replacement doctrine. Consumers should use OKF to find concepts and relationships, then verify required behavior through the linked `source_paths` before changing a target repository or answering policy-level questions.
 
 ```powershell
 node scripts/apt-assets.mjs repair --target ../target-repo --dry-run

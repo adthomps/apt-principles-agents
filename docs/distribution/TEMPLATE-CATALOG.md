@@ -76,6 +76,7 @@ Generated from active repository artifacts by `scripts/generate-catalogs.mjs`. D
 | [Field Mapping](../../templates/migration/field-mapping.md) | `templates/migration/field-mapping.md` | And Decision - Owner: - Date: - Status: - Intended outcome: - Audiences: - Decision or deliverable: |
 | [Legacy API Inventory](../../templates/migration/legacy-api-inventory.md) | `templates/migration/legacy-api-inventory.md` | And Decision - Owner: - Date: - Status: - Intended outcome: - Audiences: - Decision or deliverable: |
 | [Parity Matrix](../../templates/migration/parity-matrix.md) | `templates/migration/parity-matrix.md` | And Decision - Owner: - Date: - Status: - Intended outcome: - Audiences: - Decision or deliverable: |
+| [{{TITLE}}](../../templates/okf/concept.md) | `templates/okf/concept.md` | {{ONE_SENTENCE_DESCRIPTION}} |
 | [Chargeback Risk Review](../../templates/payments/chargeback-risk-review.md) | `templates/payments/chargeback-risk-review.md` | And Decision - Owner: - Date: - Status: - Intended outcome: - Audiences: - Decision or deliverable: |
 | [Gateway Migration Map](../../templates/payments/gateway-migration-map.md) | `templates/payments/gateway-migration-map.md` | And Decision - Owner: - Date: - Status: - Intended outcome: - Audiences: - Decision or deliverable: |
 | [Payment Lifecycle](../../templates/payments/payment-lifecycle.md) | `templates/payments/payment-lifecycle.md` | And Decision - Owner: - Date: - Status: - Intended outcome: - Audiences: - Decision or deliverable: |

@@ -10,6 +10,7 @@ context:
 skills:
 agents:
 templates:
+  - templates/okf/
 prompts:
 knowledge:
   - knowledge/okf/

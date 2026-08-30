@@ -3,7 +3,7 @@ title: Installing Into Projects
 kind: guide
 status: active
 owner: APT
-last_updated: 2026-06-27
+last_updated: 2026-08-24
 source: APT consolidation
 domain: "documentation"
 source_paths: ["apt-principles-agents/docs/installing-into-projects.md"]
@@ -14,3 +14,7 @@ source_paths: ["apt-principles-agents/docs/installing-into-projects.md"]
 Choose a manifest, dry-run both asset and platform installation, review collisions, apply, then validate the target's local instructions and examples.
 
 Record owners, source links, assumptions, validation, and freshness. Use [APT principles](../principles/README.md) for decisions and [skills](../skills/README.md) for procedures.
+
+## OKF Consumers
+
+Target repositories may install the OKF bundle as portable context for agents and downstream tools. Treat OKF records as routing and relationship metadata: follow each record's `source_paths` and `sources` back to canonical APT files before making policy, architecture, security, or support claims.

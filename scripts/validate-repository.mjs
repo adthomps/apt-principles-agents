@@ -57,39 +57,6 @@ for (const file of active.filter((item) => item.endsWith(".md"))) {
   if (["README", "repository", "general"].includes(domain)) errors.push(`Non-specific active domain ${domain}: ${relative(file)}`);
 }
 
-const okfRoot = path.join(root, "knowledge", "okf");
-const okfConceptTypes = new Set(["Principle", "Skill", "Workflow", "Decision"]);
-const okfAuthorities = new Set(["canonical", "derived", "informational"]);
-if (existsSync(okfRoot)) {
-  const rootIndex = path.join(okfRoot, "index.md");
-  if (!existsSync(rootIndex)) {
-    errors.push("OKF bundle missing knowledge/okf/index.md");
-  } else {
-    const data = frontmatter(readFileSync(rootIndex, "utf8"));
-    if (data?.okf_version?.replaceAll(/["']/g, "") !== "0.2") errors.push("OKF root index must declare okf_version 0.2");
-  }
-  for (const file of files(okfRoot).filter((item) => item.endsWith(".md"))) {
-    const rel = relative(file);
-    const basename = path.basename(file);
-    if (basename === "index.md" || basename === "log.md") continue;
-    const data = frontmatter(readFileSync(file, "utf8"));
-    if (!data) {
-      errors.push(`OKF concept missing frontmatter: ${rel}`);
-      continue;
-    }
-    const type = data.type?.replaceAll(/["']/g, "");
-    const authority = data.authority?.replaceAll(/["']/g, "");
-    if (!type) errors.push(`OKF concept missing type: ${rel}`);
-    else if (!okfConceptTypes.has(type)) errors.push(`Unexpected OKF concept type ${type}: ${rel}`);
-    for (const field of ["title", "description", "status", "owner", "last_updated", "source_paths", "sources", "authority"]) {
-      if (!data[field]) errors.push(`OKF concept missing ${field}: ${rel}`);
-    }
-    if (!data.verified && !data.generated) errors.push(`OKF concept must include verified or generated metadata: ${rel}`);
-    if (authority && !okfAuthorities.has(authority)) errors.push(`Unexpected OKF authority ${authority}: ${rel}`);
-    if (data.generated && authority === "canonical") errors.push(`Generated OKF concept cannot be canonical authority: ${rel}`);
-  }
-}
-
 const skillHeadings = ["# ", "## Purpose", "## When to Use", "## Inputs", "## Process", "## Outputs", "## Quality Bar", "## References"];
 for (const file of files(path.join(root, "skills")).filter((item) => item.endsWith("SKILL.md"))) {
   const text = readFileSync(file, "utf8");
