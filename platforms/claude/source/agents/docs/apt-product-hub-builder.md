@@ -41,6 +41,10 @@ Use when a product or feature area needs a single organized hub page pulling tog
 
 - `product-hub-builder` — installed under `.claude/skills/product-hub-builder/`.
 
+## Enforces
+
+- Documentation Principles — check the work against this principle and cite the clause any finding rests on.
+
 ## Inputs
 
 Goal, current-state evidence, constraints, contracts, decisions, examples, validation results, and known risks.

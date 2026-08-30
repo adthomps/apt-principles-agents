@@ -45,6 +45,10 @@ Use before playtests, milestones, releases, or changes to state, saves, inputs, 
 - [Game Test Plan](../../skills/game-development/game-test-plan/SKILL.md)
 - [Playtest Feedback Review](../../skills/game-development/playtest-feedback-review/SKILL.md)
 
+## Enforces
+
+- [Game Development Principles](../../principles/game-development/README.md) — check the work against this principle and cite the clause any finding rests on.
+
 ## Inputs
 
 Build, acceptance criteria, risks, test plan, environments, evidence, known defects, and release decision.

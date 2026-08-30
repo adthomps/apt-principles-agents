@@ -41,6 +41,10 @@ Use when reviewing material a support agent will use to help a customer, to conf
 
 - `kb-article-writer` — installed under `.claude/skills/kb-article-writer/`.
 
+## Enforces
+
+- Beginner Clarity — check the work against this principle and cite the clause any finding rests on.
+
 ## Inputs
 
 Goal, current-state evidence, constraints, contracts, decisions, examples, validation results, and known risks.

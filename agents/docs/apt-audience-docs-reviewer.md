@@ -51,6 +51,10 @@ Use when documentation exists but it's unclear whether it's actually usable by t
 - [Audience-Layered Docs](../../skills/documentation/audience-layered-docs/SKILL.md)
 - Cross-audience review and source verification.
 
+## Enforces
+
+- [Documentation Principles](../../principles/documentation/README.md) — check the work against this principle and cite the clause any finding rests on.
+
 ## Inputs
 
 Goal, current-state evidence, constraints, contracts, decisions, examples, validation results, and known risks.

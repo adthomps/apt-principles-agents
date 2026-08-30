@@ -51,6 +51,10 @@ Use when transaction data, decline patterns, or authorization trends need to be 
 - [Transaction Intelligence Analysis](../../skills/payments/transaction-intelligence-analysis/SKILL.md)
 - Cross-audience review and source verification.
 
+## Enforces
+
+- [Payments Principles](../../principles/payments/README.md) — check the work against this principle and cite the clause any finding rests on.
+
 ## Inputs
 
 Goal, current-state evidence, constraints, contracts, decisions, examples, validation results, and known risks.

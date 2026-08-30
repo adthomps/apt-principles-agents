@@ -41,6 +41,11 @@ Use when a change has structural or system-design implications spanning more tha
 
 - `system-architecture-review` — installed under `.claude/skills/system-architecture-review/`.
 
+## Enforces
+
+- APT Principles Framework — check the work against this principle and cite the clause any finding rests on.
+- Practical Thinking — check the work against this principle and cite the clause any finding rests on.
+
 ## Inputs
 
 Goal, current-state evidence, constraints, contracts, decisions, examples, validation results, and known risks.

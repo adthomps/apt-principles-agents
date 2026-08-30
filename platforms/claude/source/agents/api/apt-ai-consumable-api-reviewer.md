@@ -41,6 +41,11 @@ Use when an API will be called primarily by AI agents rather than human-written 
 
 - `ai-consumable-api-design` — installed under `.claude/skills/ai-consumable-api-design/`.
 
+## Enforces
+
+- API Principles — check the work against this principle and cite the clause any finding rests on.
+- Modern API Design — check the work against this principle and cite the clause any finding rests on.
+
 ## Inputs
 
 Goal, current-state evidence, constraints, contracts, decisions, examples, validation results, and known risks.

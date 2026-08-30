@@ -1,10 +1,10 @@
 ---
 id: apt-task-router
-title: apt-router
+title: APT Task Router
 kind: agent
 domain: harness
 scope: domain
-description: Use when the task matches this harness responsibility or the APT router selects it based on risk and evidence needs.
+description: Use at the start of a harness engagement to turn a request into a compact, reviewable task packet for the smallest suitable APT workflow.
 applies_principles:
   - principles/ai/agent-design.md
 uses_skills: []
@@ -17,10 +17,10 @@ escalation: Escalate unsupported, high-impact, security, privacy, payment, compl
 status: active
 owner: APT
 last_updated: 2026-08-30
-source_paths: ["apt-principles-agents/agents/harness/apt-router.md"]
+source_paths: ["apt-principles-agents/agents/harness/apt-task-router.md"]
 ---
 
-# apt-router
+# APT Task Router
 
 Category: Router
 
@@ -62,11 +62,14 @@ Act as the apt router within the APT discover, classify, validate, remediate, ve
 
 ## When to Use
 
-Use when the task matches this harness responsibility or the APT router selects it based on risk and evidence needs.
-
+Use at the start of a harness engagement to turn a request into a compact, reviewable task packet for the smallest suitable APT workflow.
 ## Required Skills
 
 Use the closest canonical APT skill, the relevant context pack, and exact target-repository instructions.
+
+## Enforces
+
+- [Agent Design](../../principles/ai/agent-design.md) — check the work against this principle and cite the clause any finding rests on.
 
 ## Inputs
 

@@ -1,10 +1,10 @@
 ---
 id: apt-harness-docs-reviewer
-title: apt-docs-reviewer
+title: APT Harness Docs Reviewer
 kind: agent
 domain: harness
 scope: domain
-description: Use when the task matches this harness responsibility or the APT router selects it based on risk and evidence needs.
+description: Use when reviewing this repository’s own documentation architecture, consistency, source-of-truth boundaries, or operating guidance.
 applies_principles:
   - principles/ai/agent-design.md
 uses_skills: []
@@ -17,10 +17,10 @@ escalation: Escalate unsupported, high-impact, security, privacy, payment, compl
 status: active
 owner: APT
 last_updated: 2026-08-30
-source_paths: ["apt-principles-agents/agents/harness/apt-docs-reviewer.md"]
+source_paths: ["apt-principles-agents/agents/harness/apt-harness-docs-reviewer.md"]
 ---
 
-# apt-docs-reviewer
+# APT Harness Docs Reviewer
 
 Category: Reviewer
 
@@ -42,11 +42,14 @@ Act as the apt docs reviewer within the APT discover, classify, validate, remedi
 
 ## When to Use
 
-Use when the task matches this harness responsibility or the APT router selects it based on risk and evidence needs.
-
+Use when reviewing this repository’s own documentation architecture, consistency, source-of-truth boundaries, or operating guidance.
 ## Required Skills
 
 Use the closest canonical APT skill, the relevant context pack, and exact target-repository instructions.
+
+## Enforces
+
+- [Agent Design](../../principles/ai/agent-design.md) — check the work against this principle and cite the clause any finding rests on.
 
 ## Inputs
 

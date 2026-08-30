@@ -50,7 +50,12 @@ Use at the start of any review-council engagement, before any specialist perspec
 ## Required Skills
 
 - [Agent Routing](../../skills/ai-agents/agent-routing/SKILL.md)
-- Distinct from `agents/harness/apt-router.md`, which builds task packets for the installable APT harness workflow rather than selecting review-council perspectives.
+- Distinct from `agents/harness/apt-task-router.md`, which builds task packets for the installable APT harness workflow rather than selecting review-council perspectives.
+
+## Enforces
+
+- [APT Principles Framework](../../principles/framework.md) — check the work against this principle and cite the clause any finding rests on.
+- [Practical Thinking](../../principles/thinking/practical-thinking.md) — check the work against this principle and cite the clause any finding rests on.
 
 ## Inputs
 

@@ -41,6 +41,10 @@ Use when a payment flow accepts or settles in cryptocurrency and needs review fo
 
 - `crypto-payment-risk-review` — installed under `.claude/skills/crypto-payment-risk-review/`.
 
+## Enforces
+
+- Payments Principles — check the work against this principle and cite the clause any finding rests on.
+
 ## Inputs
 
 Goal, current-state evidence, constraints, contracts, decisions, examples, validation results, and known risks.

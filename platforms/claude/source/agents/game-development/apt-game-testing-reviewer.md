@@ -35,6 +35,10 @@ Use before playtests, milestones, releases, or changes to state, saves, inputs, 
 - `game-test-plan` — installed under `.claude/skills/game-test-plan/`.
 - `playtest-feedback-review` — installed under `.claude/skills/playtest-feedback-review/`.
 
+## Enforces
+
+- Game Development Principles — check the work against this principle and cite the clause any finding rests on.
+
 ## Inputs
 
 Build, acceptance criteria, risks, test plan, environments, evidence, known defects, and release decision.

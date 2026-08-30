@@ -51,6 +51,10 @@ Use when a payment flow, fraud rule set, or decline-handling process needs to be
 - [Fraud Rule Review](../../skills/payments/fraud-rule-review/SKILL.md)
 - Cross-audience review and source verification.
 
+## Enforces
+
+- [Payments Principles](../../principles/payments/README.md) — check the work against this principle and cite the clause any finding rests on.
+
 ## Inputs
 
 Goal, current-state evidence, constraints, contracts, decisions, examples, validation results, and known risks.

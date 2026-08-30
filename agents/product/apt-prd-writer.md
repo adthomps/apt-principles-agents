@@ -51,6 +51,10 @@ Use when a feature or initiative needs a PRD written or reviewed — problem, go
 - [PRD Writer](../../skills/product/prd-writer/SKILL.md)
 - Cross-audience review and source verification.
 
+## Enforces
+
+- [APT Execution Model (Build)](../../principles/execution/delivery-increments.md) — check the work against this principle and cite the clause any finding rests on.
+
 ## Inputs
 
 Goal, current-state evidence, constraints, contracts, decisions, examples, validation results, and known risks.

@@ -36,6 +36,10 @@ Use when framing play, resolving unclear rules, planning levels, or interpreting
 - `mechanics-designer` — installed under `.claude/skills/mechanics-designer/`.
 - `player-journey-mapping` — installed under `.claude/skills/player-journey-mapping/`.
 
+## Enforces
+
+- Game Development Principles — check the work against this principle and cite the clause any finding rests on.
+
 ## Inputs
 
 Concept, player, constraints, loop, mechanics, build, playtest evidence, and open decisions.

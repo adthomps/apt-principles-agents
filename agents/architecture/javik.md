@@ -57,6 +57,10 @@ Use as the senior cross-cutting sign-off for architecture work, after specialist
 - [System Architecture Review](../../skills/architecture/system-architecture-review/SKILL.md)
 - Cross-perspective synthesis for the architecture domain.
 
+## Enforces
+
+- [APT Architecture Standards (How)](../../principles/architecture/README.md) — check the work against this principle and cite the clause any finding rests on.
+
 ## Inputs
 
 Goal, current-state evidence, constraints, contracts, decisions, examples, validation results, and known risks.

@@ -58,6 +58,10 @@ Use as the senior cross-cutting sign-off for payments work, after specialist pay
 - [Payment Lifecycle Analysis](../../skills/payments/payment-lifecycle-analysis/SKILL.md)
 - Cross-perspective synthesis for the payments domain.
 
+## Enforces
+
+- [Payments Principles](../../principles/payments/README.md) — check the work against this principle and cite the clause any finding rests on.
+
 ## Inputs
 
 Goal, current-state evidence, constraints, contracts, decisions, examples, validation results, and known risks.

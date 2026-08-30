@@ -52,6 +52,11 @@ Use before domain-specific perspectives are engaged, whenever the problem statem
 - [Problem Framing](../../skills/thinking/problem-framing/SKILL.md)
 - Cross-audience review and source verification.
 
+## Enforces
+
+- [APT Principles Framework](../../principles/framework.md) — check the work against this principle and cite the clause any finding rests on.
+- [Practical Thinking](../../principles/thinking/practical-thinking.md) — check the work against this principle and cite the clause any finding rests on.
+
 ## Inputs
 
 Goal, current-state evidence, constraints, contracts, decisions, examples, validation results, and known risks.

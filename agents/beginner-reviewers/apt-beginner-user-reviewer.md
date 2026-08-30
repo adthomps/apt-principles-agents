@@ -51,6 +51,10 @@ Use when a deliverable will be seen by someone with no prior context on APT or t
 - [Beginner Clarity Review](../../skills/thinking/beginner-clarity-review/SKILL.md)
 - Cross-audience review and source verification.
 
+## Enforces
+
+- [Beginner Clarity](../../principles/thinking/beginner-clarity.md) — check the work against this principle and cite the clause any finding rests on.
+
 ## Inputs
 
 Goal, current-state evidence, constraints, contracts, decisions, examples, validation results, and known risks.

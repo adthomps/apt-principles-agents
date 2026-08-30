@@ -52,6 +52,11 @@ Use when a bridge or adapter layer sits between a legacy API and a modern one, t
 - [Bridge Architecture Review](../../skills/architecture/bridge-architecture-review/SKILL.md)
 - Cross-audience review and source verification.
 
+## Enforces
+
+- [API Principles](../../principles/api/README.md) — check the work against this principle and cite the clause any finding rests on.
+- [Modern API Design](../../principles/api/modern-api-design.md) — check the work against this principle and cite the clause any finding rests on.
+
 ## Inputs
 
 Goal, current-state evidence, constraints, contracts, decisions, examples, validation results, and known risks.

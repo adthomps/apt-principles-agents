@@ -14,7 +14,6 @@ const SCOPES = new Set(contract.fields.scope.values);
 const TIERS = new Set(contract.fields.model_tier.values);
 const AUTONOMY = new Set(contract.fields.autonomy.values);
 const TOOLS = new Set(contract.fields.tools.values);
-const idExceptions = contract.knownIdExceptions || {};
 
 function walk(dir) {
   return readdirSync(dir, { withFileTypes: true }).flatMap((e) => {
@@ -70,8 +69,7 @@ for (const file of filesList) {
   }
 
   const base = path.basename(file, ".md");
-  const expectedId = idExceptions[rel] || base;
-  if (fm.id && fm.id !== expectedId) errors.push(`${rel}: id "${fm.id}" should be "${expectedId}"`);
+  if (fm.id && fm.id !== base) errors.push(`${rel}: id "${fm.id}" should equal the filename "${base}"`);
   if (fm.id) {
     if (!/^[a-z0-9][a-z0-9-]*$/.test(fm.id)) errors.push(`${rel}: id "${fm.id}" is not kebab-case`);
     if (ids.has(fm.id)) errors.push(`${rel}: duplicate id "${fm.id}" (also ${ids.get(fm.id)})`);

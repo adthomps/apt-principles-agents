@@ -45,6 +45,10 @@ Use when a playable build exists or a proposed change affects moment-to-moment p
 - [Game Loop Designer](../../skills/game-development/game-loop-designer/SKILL.md)
 - [Playtest Feedback Review](../../skills/game-development/playtest-feedback-review/SKILL.md)
 
+## Enforces
+
+- [Game Development Principles](../../principles/game-development/README.md) — check the work against this principle and cite the clause any finding rests on.
+
 ## Inputs
 
 Build/version, controls, loop, mechanics, target player, test question, observations, and known limitations.

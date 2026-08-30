@@ -41,6 +41,10 @@ Use when a merchant, platform, or integration is migrating from one payment gate
 
 - `gateway-design` — installed under `.claude/skills/gateway-design/`.
 
+## Enforces
+
+- Payments Principles — check the work against this principle and cite the clause any finding rests on.
+
 ## Inputs
 
 Goal, current-state evidence, constraints, contracts, decisions, examples, validation results, and known risks.

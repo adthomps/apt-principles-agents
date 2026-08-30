@@ -51,6 +51,10 @@ Use when a design or architecture decision is approved and needs to become a con
 - [Implementation Blueprint Writer](../../skills/documentation/implementation-blueprint-writer/SKILL.md)
 - Cross-audience review and source verification.
 
+## Enforces
+
+- [Documentation Principles](../../principles/documentation/README.md) — check the work against this principle and cite the clause any finding rests on.
+
 ## Inputs
 
 Goal, current-state evidence, constraints, contracts, decisions, examples, validation results, and known risks.

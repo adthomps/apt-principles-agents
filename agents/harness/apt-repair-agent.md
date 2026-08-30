@@ -4,7 +4,7 @@ title: apt-repair-agent
 kind: agent
 domain: harness
 scope: domain
-description: Use when the task matches this harness responsibility or the APT router selects it based on risk and evidence needs.
+description: Use when repairing or upgrading an existing APT standards installation while preserving local customizations.
 applies_principles:
   - principles/ai/agent-design.md
 uses_skills: []
@@ -44,11 +44,14 @@ Act as the apt repair agent within the APT discover, classify, validate, remedia
 
 ## When to Use
 
-Use when the task matches this harness responsibility or the APT router selects it based on risk and evidence needs.
-
+Use when repairing or upgrading an existing APT standards installation while preserving local customizations.
 ## Required Skills
 
 Use the closest canonical APT skill, the relevant context pack, and exact target-repository instructions.
+
+## Enforces
+
+- [Agent Design](../../principles/ai/agent-design.md) — check the work against this principle and cite the clause any finding rests on.
 
 ## Inputs
 

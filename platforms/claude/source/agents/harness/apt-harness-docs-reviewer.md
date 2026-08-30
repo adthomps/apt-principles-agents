@@ -1,6 +1,6 @@
 ---
 name: apt-harness-docs-reviewer
-description: "Use when the task matches this harness responsibility or the APT router selects it based on risk and evidence needs."
+description: "Use when reviewing this repository’s own documentation architecture, consistency, source-of-truth boundaries, or operating guidance."
 tools: Read, Grep, Glob
 model: sonnet
 kind: agent-adapter
@@ -8,12 +8,12 @@ domain: harness
 status: active
 owner: APT
 last_updated: 2026-08-30
-source_paths: ["apt-principles-agents/agents/harness/apt-docs-reviewer.md"]
-title: "apt-docs-reviewer"
+source_paths: ["apt-principles-agents/agents/harness/apt-harness-docs-reviewer.md"]
+title: "APT Harness Docs Reviewer"
 ---
-<!-- Generated from apt-principles-agents/agents/harness/apt-docs-reviewer.md by scripts/build-agent-adapters.mjs. Edit the canonical file, not this one. -->
+<!-- Generated from apt-principles-agents/agents/harness/apt-harness-docs-reviewer.md by scripts/build-agent-adapters.mjs. Edit the canonical file, not this one. -->
 
-# apt-docs-reviewer
+# APT Harness Docs Reviewer
 
 Category: Reviewer
 
@@ -35,12 +35,14 @@ Act as the apt docs reviewer within the APT discover, classify, validate, remedi
 
 ## When to Use
 
-Use when the task matches this harness responsibility or the APT router selects it based on risk and evidence needs.
-
+Use when reviewing this repository’s own documentation architecture, consistency, source-of-truth boundaries, or operating guidance.
 ## Required Skills
 
-- `[` — installed under `.claude/skills/[/`.
-- `]` — installed under `.claude/skills/]/`.
+- Use the closest canonical APT skill installed under `.claude/skills/`.
+
+## Enforces
+
+- Agent Design — check the work against this principle and cite the clause any finding rests on.
 
 ## Inputs
 

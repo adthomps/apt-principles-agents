@@ -47,6 +47,10 @@ Use for concepts, design documents, player guides, developer setup, architecture
 - [Game Architecture Review](../../skills/game-development/game-architecture-review/SKILL.md)
 - [Game Test Plan](../../skills/game-development/game-test-plan/SKILL.md)
 
+## Enforces
+
+- [Game Development Principles](../../principles/game-development/README.md) — check the work against this principle and cite the clause any finding rests on.
+
 ## Inputs
 
 Verified project sources, audiences, build/version, decisions, diagrams, tests, owners, and freshness expectations.

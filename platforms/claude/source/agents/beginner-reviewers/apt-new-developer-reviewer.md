@@ -41,6 +41,10 @@ Use when reviewing a developer's first-run experience — first API call, first 
 
 - `developer-guide-writer` — installed under `.claude/skills/developer-guide-writer/`.
 
+## Enforces
+
+- Beginner Clarity — check the work against this principle and cite the clause any finding rests on.
+
 ## Inputs
 
 Goal, current-state evidence, constraints, contracts, decisions, examples, validation results, and known risks.

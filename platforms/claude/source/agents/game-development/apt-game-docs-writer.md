@@ -36,6 +36,10 @@ Use for concepts, design documents, player guides, developer setup, architecture
 - `game-architecture-review` — installed under `.claude/skills/game-architecture-review/`.
 - `game-test-plan` — installed under `.claude/skills/game-test-plan/`.
 
+## Enforces
+
+- Game Development Principles — check the work against this principle and cite the clause any finding rests on.
+
 ## Inputs
 
 Verified project sources, audiences, build/version, decisions, diagrams, tests, owners, and freshness expectations.

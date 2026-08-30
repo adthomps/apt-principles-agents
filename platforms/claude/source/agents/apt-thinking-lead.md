@@ -41,6 +41,11 @@ Use before domain-specific perspectives are engaged, whenever the problem statem
 
 - `problem-framing` — installed under `.claude/skills/problem-framing/`.
 
+## Enforces
+
+- APT Principles Framework — check the work against this principle and cite the clause any finding rests on.
+- Practical Thinking — check the work against this principle and cite the clause any finding rests on.
+
 ## Inputs
 
 Goal, current-state evidence, constraints, contracts, decisions, examples, validation results, and known risks.

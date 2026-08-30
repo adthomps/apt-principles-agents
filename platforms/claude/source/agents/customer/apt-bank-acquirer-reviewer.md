@@ -41,6 +41,10 @@ Use when a deliverable will be reviewed or used by a bank or acquirer partner, t
 
 - `partner-acquirer-onboarding-review` — installed under `.claude/skills/partner-acquirer-onboarding-review/`.
 
+## Enforces
+
+- Role Based Experience — check the work against this principle and cite the clause any finding rests on.
+
 ## Inputs
 
 Goal, current-state evidence, constraints, contracts, decisions, examples, validation results, and known risks.

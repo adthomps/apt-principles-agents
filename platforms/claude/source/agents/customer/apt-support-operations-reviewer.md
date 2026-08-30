@@ -41,6 +41,10 @@ Use when a change is about to ship, to confirm the support organization can actu
 
 - `support-readiness-review` — installed under `.claude/skills/support-readiness-review/`.
 
+## Enforces
+
+- Role Based Experience — check the work against this principle and cite the clause any finding rests on.
+
 ## Inputs
 
 Goal, current-state evidence, constraints, contracts, decisions, examples, validation results, and known risks.

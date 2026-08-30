@@ -51,6 +51,10 @@ Use when reviewing the steady-state integration experience for a developer alrea
 - [Developer Guide Writer](../../skills/documentation/developer-guide-writer/SKILL.md)
 - Distinct from `agents/beginner-reviewers/apt-new-developer-reviewer.md`, which reviews first-run onboarding rather than steady-state integration.
 
+## Enforces
+
+- [Role Based Experience](../../principles/design/role-based-experience.md) — check the work against this principle and cite the clause any finding rests on.
+
 ## Inputs
 
 Goal, current-state evidence, constraints, contracts, decisions, examples, validation results, and known risks.

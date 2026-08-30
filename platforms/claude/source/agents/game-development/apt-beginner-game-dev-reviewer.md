@@ -35,6 +35,10 @@ Use for onboarding, learning plans, setup, architecture explanations, templates,
 - `game-dev-learning-plan` — installed under `.claude/skills/game-dev-learning-plan/`.
 - `game-scope-review` — installed under `.claude/skills/game-scope-review/`.
 
+## Enforces
+
+- Game Development Principles — check the work against this principle and cite the clause any finding rests on.
+
 ## Inputs
 
 Artifact under review, intended beginner, project sources, prerequisites, glossary, setup path, and acceptance criteria.

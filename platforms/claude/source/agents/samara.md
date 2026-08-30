@@ -48,6 +48,10 @@ Use when a change affects who can do what — roles, scopes, access control rule
 
 - `permission-review` — installed under `.claude/skills/permission-review/`.
 
+## Enforces
+
+- Security Review — check the work against this principle and cite the clause any finding rests on.
+
 ## Inputs
 
 Goal, current-state evidence, constraints, contracts, decisions, examples, validation results, and known risks.

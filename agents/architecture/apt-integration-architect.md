@@ -51,6 +51,10 @@ Use when two or more systems need to be connected — via API, event stream, or 
 - [Integration Architecture Review](../../skills/architecture/integration-architecture-review/SKILL.md)
 - Cross-audience review and source verification.
 
+## Enforces
+
+- [APT Architecture Standards (How)](../../principles/architecture/README.md) — check the work against this principle and cite the clause any finding rests on.
+
 ## Inputs
 
 Goal, current-state evidence, constraints, contracts, decisions, examples, validation results, and known risks.

@@ -47,6 +47,10 @@ Use as the senior cross-cutting sign-off for architecture work, after specialist
 
 - `system-architecture-review` — installed under `.claude/skills/system-architecture-review/`.
 
+## Enforces
+
+- APT Architecture Standards (How) — check the work against this principle and cite the clause any finding rests on.
+
 ## Inputs
 
 Goal, current-state evidence, constraints, contracts, decisions, examples, validation results, and known risks.

@@ -45,6 +45,10 @@ Use at concept approval, prototype planning, roadmap changes, milestone review, 
 - [Game Scope Review](../../skills/game-development/game-scope-review/SKILL.md)
 - [Prototype Planner](../../skills/game-development/prototype-planner/SKILL.md)
 
+## Enforces
+
+- [Game Development Principles](../../principles/game-development/README.md) — check the work against this principle and cite the clause any finding rests on.
+
 ## Inputs
 
 Prototype question, concept, roadmap, feature/asset list, dependencies, constraints, current build, deadline, and owner.

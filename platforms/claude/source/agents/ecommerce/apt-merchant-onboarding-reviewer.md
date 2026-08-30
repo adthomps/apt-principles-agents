@@ -41,6 +41,10 @@ Use when a merchant onboarding flow — signup through first live transaction �
 
 - `merchant-onboarding-review` — installed under `.claude/skills/merchant-onboarding-review/`.
 
+## Enforces
+
+- Ecommerce Principles — check the work against this principle and cite the clause any finding rests on.
+
 ## Inputs
 
 Goal, current-state evidence, constraints, contracts, decisions, examples, validation results, and known risks.

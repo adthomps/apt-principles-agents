@@ -41,6 +41,10 @@ Use when a legacy system, API, or integration needs a modernization path — rep
 
 - `api-modernization-planner` — installed under `.claude/skills/api-modernization-planner/`.
 
+## Enforces
+
+- APT Architecture Standards (How) — check the work against this principle and cite the clause any finding rests on.
+
 ## Inputs
 
 Goal, current-state evidence, constraints, contracts, decisions, examples, validation results, and known risks.

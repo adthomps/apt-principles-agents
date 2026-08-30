@@ -57,6 +57,10 @@ Use when a partner or acquirer integration/onboarding flow needs review, distinc
 - [Partner/Acquirer Onboarding Review](../../skills/ecommerce/partner-acquirer-onboarding-review/SKILL.md)
 - Cross-audience review and source verification.
 
+## Enforces
+
+- [Ecommerce Principles](../../principles/ecommerce/README.md) — check the work against this principle and cite the clause any finding rests on.
+
 ## Inputs
 
 Goal, current-state evidence, constraints, contracts, decisions, examples, validation results, and known risks.

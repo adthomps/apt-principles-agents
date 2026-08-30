@@ -35,6 +35,10 @@ Use when a playable build exists or a proposed change affects moment-to-moment p
 - `game-loop-designer` — installed under `.claude/skills/game-loop-designer/`.
 - `playtest-feedback-review` — installed under `.claude/skills/playtest-feedback-review/`.
 
+## Enforces
+
+- Game Development Principles — check the work against this principle and cite the clause any finding rests on.
+
 ## Inputs
 
 Build/version, controls, loop, mechanics, target player, test question, observations, and known limitations.

@@ -51,6 +51,10 @@ Use before a launch or major release, to confirm the product, support, and opera
 - [Launch Readiness Review](../../skills/service-readiness/launch-readiness-review/SKILL.md)
 - Cross-audience review and source verification.
 
+## Enforces
+
+- [APT Execution Model (Build)](../../principles/execution/delivery-increments.md) — check the work against this principle and cite the clause any finding rests on.
+
 ## Inputs
 
 Goal, current-state evidence, constraints, contracts, decisions, examples, validation results, and known risks.

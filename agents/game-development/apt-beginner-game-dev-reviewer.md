@@ -45,6 +45,10 @@ Use for onboarding, learning plans, setup, architecture explanations, templates,
 - [Game Dev Learning Plan](../../skills/game-development/game-dev-learning-plan/SKILL.md)
 - [Game Scope Review](../../skills/game-development/game-scope-review/SKILL.md)
 
+## Enforces
+
+- [Game Development Principles](../../principles/game-development/README.md) — check the work against this principle and cite the clause any finding rests on.
+
 ## Inputs
 
 Artifact under review, intended beginner, project sources, prerequisites, glossary, setup path, and acceptance criteria.

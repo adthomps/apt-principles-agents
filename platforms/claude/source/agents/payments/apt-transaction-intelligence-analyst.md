@@ -41,6 +41,10 @@ Use when transaction data, decline patterns, or authorization trends need to be 
 
 - `transaction-intelligence-analysis` — installed under `.claude/skills/transaction-intelligence-analysis/`.
 
+## Enforces
+
+- Payments Principles — check the work against this principle and cite the clause any finding rests on.
+
 ## Inputs
 
 Goal, current-state evidence, constraints, contracts, decisions, examples, validation results, and known risks.

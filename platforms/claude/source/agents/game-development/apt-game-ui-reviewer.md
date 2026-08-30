@@ -35,6 +35,10 @@ Use for menus, HUDs, overlays, settings, onboarding, responsive layouts, and fai
 - `game-ui-hud-review` — installed under `.claude/skills/game-ui-hud-review/`.
 - `input-control-design` — installed under `.claude/skills/input-control-design/`.
 
+## Enforces
+
+- Game Development Principles — check the work against this principle and cite the clause any finding rests on.
+
 ## Inputs
 
 Screens/build, target devices and sizes, player goals, controls, accessibility needs, and playtest evidence.

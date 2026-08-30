@@ -41,6 +41,10 @@ Use when a design or architecture decision is approved and needs to become a con
 
 - `implementation-blueprint-writer` — installed under `.claude/skills/implementation-blueprint-writer/`.
 
+## Enforces
+
+- Documentation Principles — check the work against this principle and cite the clause any finding rests on.
+
 ## Inputs
 
 Goal, current-state evidence, constraints, contracts, decisions, examples, validation results, and known risks.

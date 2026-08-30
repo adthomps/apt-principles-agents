@@ -47,6 +47,10 @@ Use when a learner needs sequencing, plain explanations, project-based exercises
 - [Game Idea Framing](../../skills/game-development/game-idea-framing/SKILL.md)
 - [Game Scope Review](../../skills/game-development/game-scope-review/SKILL.md)
 
+## Enforces
+
+- [Game Development Principles](../../principles/game-development/README.md) — check the work against this principle and cite the clause any finding rests on.
+
 ## Inputs
 
 Learner goal, experience, constraints, project sources, current build, blockers, and chosen stack.

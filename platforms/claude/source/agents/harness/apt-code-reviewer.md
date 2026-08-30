@@ -1,6 +1,6 @@
 ---
 name: apt-code-reviewer
-description: "Use when the task matches this harness responsibility or the APT router selects it based on risk and evidence needs."
+description: "Use when code needs a review for bugs, maintainability, behavior preservation, or missing validation."
 tools: Read, Grep, Glob
 model: sonnet
 kind: agent-adapter
@@ -34,12 +34,14 @@ Act as the apt code reviewer within the APT discover, classify, validate, remedi
 
 ## When to Use
 
-Use when the task matches this harness responsibility or the APT router selects it based on risk and evidence needs.
-
+Use when code needs a review for bugs, maintainability, behavior preservation, or missing validation.
 ## Required Skills
 
-- `[` — installed under `.claude/skills/[/`.
-- `]` — installed under `.claude/skills/]/`.
+- Use the closest canonical APT skill installed under `.claude/skills/`.
+
+## Enforces
+
+- Agent Design — check the work against this principle and cite the clause any finding rests on.
 
 ## Inputs
 

@@ -51,6 +51,10 @@ Use when an autonomous AI agent (not a human) is the one integrating with or act
 - [Agent Routing](../../skills/ai-agents/agent-routing/SKILL.md)
 - Cross-audience review and source verification.
 
+## Enforces
+
+- [Role Based Experience](../../principles/design/role-based-experience.md) — check the work against this principle and cite the clause any finding rests on.
+
 ## Inputs
 
 Goal, current-state evidence, constraints, contracts, decisions, examples, validation results, and known risks.

@@ -47,6 +47,10 @@ Use when a partner or acquirer integration/onboarding flow needs review, distinc
 
 - `partner-acquirer-onboarding-review` — installed under `.claude/skills/partner-acquirer-onboarding-review/`.
 
+## Enforces
+
+- Ecommerce Principles — check the work against this principle and cite the clause any finding rests on.
+
 ## Inputs
 
 Goal, current-state evidence, constraints, contracts, decisions, examples, validation results, and known risks.

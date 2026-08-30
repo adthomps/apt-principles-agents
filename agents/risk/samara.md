@@ -58,6 +58,10 @@ Use when a change affects who can do what — roles, scopes, access control rule
 - [Permission Review](../../skills/security-risk/permission-review/SKILL.md)
 - Cross-audience review and source verification.
 
+## Enforces
+
+- [Security Review](../../principles/security-risk/security-review.md) — check the work against this principle and cite the clause any finding rests on.
+
 ## Inputs
 
 Goal, current-state evidence, constraints, contracts, decisions, examples, validation results, and known risks.

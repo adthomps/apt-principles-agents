@@ -51,6 +51,10 @@ Use when reviewing material a support agent will use to help a customer, to conf
 - [KB Article Writer](../../skills/service-readiness/kb-article-writer/SKILL.md)
 - Cross-audience review and source verification.
 
+## Enforces
+
+- [Beginner Clarity](../../principles/thinking/beginner-clarity.md) — check the work against this principle and cite the clause any finding rests on.
+
 ## Inputs
 
 Goal, current-state evidence, constraints, contracts, decisions, examples, validation results, and known risks.

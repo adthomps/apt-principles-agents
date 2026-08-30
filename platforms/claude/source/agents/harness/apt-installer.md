@@ -1,6 +1,6 @@
 ---
 name: apt-installer
-description: "Use when the task matches this harness responsibility or the APT router selects it based on risk and evidence needs."
+description: "Use when applying this repository’s installable agent standards and harness assets to a target repository for the first time."
 tools: Read, Grep, Glob, Edit, Write, MultiEdit
 model: sonnet
 kind: agent-adapter
@@ -36,12 +36,14 @@ Act as the apt installer within the APT discover, classify, validate, remediate,
 
 ## When to Use
 
-Use when the task matches this harness responsibility or the APT router selects it based on risk and evidence needs.
-
+Use when applying this repository’s installable agent standards and harness assets to a target repository for the first time.
 ## Required Skills
 
-- `[` — installed under `.claude/skills/[/`.
-- `]` — installed under `.claude/skills/]/`.
+- Use the closest canonical APT skill installed under `.claude/skills/`.
+
+## Enforces
+
+- Agent Design — check the work against this principle and cite the clause any finding rests on.
 
 ## Inputs
 

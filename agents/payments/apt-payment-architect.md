@@ -51,6 +51,10 @@ Use when a payment system's structure — gateway abstraction, tokenization boun
 - [Payment Architecture Review](../../skills/architecture/payment-architecture-review/SKILL.md)
 - Cross-audience review and source verification.
 
+## Enforces
+
+- [Payments Principles](../../principles/payments/README.md) — check the work against this principle and cite the clause any finding rests on.
+
 ## Inputs
 
 Goal, current-state evidence, constraints, contracts, decisions, examples, validation results, and known risks.

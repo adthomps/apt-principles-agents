@@ -52,6 +52,10 @@ Use when a concept, architecture, or workflow needs a demo script or diagram to 
 - [Demo Plan Writer](../../skills/documentation/demo-plan-writer/SKILL.md)
 - Also see the [Diagram Generator](../../skills/documentation/diagram-generator/SKILL.md) skill for diagram output.
 
+## Enforces
+
+- [Documentation Principles](../../principles/documentation/README.md) — check the work against this principle and cite the clause any finding rests on.
+
 ## Inputs
 
 Goal, current-state evidence, constraints, contracts, decisions, examples, validation results, and known risks.

@@ -41,6 +41,11 @@ Use when designing a new API from scratch, to confirm it follows current best pr
 
 - `modern-api-design` — installed under `.claude/skills/modern-api-design/`.
 
+## Enforces
+
+- API Principles — check the work against this principle and cite the clause any finding rests on.
+- Modern API Design — check the work against this principle and cite the clause any finding rests on.
+
 ## Inputs
 
 Goal, current-state evidence, constraints, contracts, decisions, examples, validation results, and known risks.

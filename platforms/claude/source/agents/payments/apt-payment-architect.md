@@ -41,6 +41,10 @@ Use when a payment system's structure — gateway abstraction, tokenization boun
 
 - `payment-architecture-review` — installed under `.claude/skills/payment-architecture-review/`.
 
+## Enforces
+
+- Payments Principles — check the work against this principle and cite the clause any finding rests on.
+
 ## Inputs
 
 Goal, current-state evidence, constraints, contracts, decisions, examples, validation results, and known risks.

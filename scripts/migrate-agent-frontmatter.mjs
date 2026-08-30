@@ -29,12 +29,7 @@ const GLOBAL_IDS = new Set([
 // agents/harness/apt-router.md collides with agents/core/apt-router.md on id.
 // The harness one is the task-packet router (Charter Matrix "third router");
 // give it a distinct id pending a file rename.
-// Harness agents whose bare name collides with a domain agent get a distinct id
-// pending a file rename (Charter Matrix flagged the router pair).
-const ID_OVERRIDE = {
-  "agents/harness/apt-router.md": "apt-task-router",
-  "agents/harness/apt-docs-reviewer.md": "apt-harness-docs-reviewer",
-};
+const ID_OVERRIDE = {};
 
 const EDIT_IDS = new Set(["apt-refactor-agent", "apt-repair-agent", "apt-cloudflare-builder", "apt-installer"]);
 const NONE_IDS = new Set(["apt-router", "apt-task-router", "apt-model-router", "apt-repo-scanner"]);

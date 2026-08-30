@@ -57,6 +57,10 @@ Use when a change has security implications — authentication, data exposure, a
 - [Security Review](../../skills/security-risk/security-review/SKILL.md)
 - Owns the security lens of the risk domain — see `agents/risk/apt-permissions-reviewer.md` and `apt-compliance-awareness-reviewer.md` for the governance/access lens.
 
+## Enforces
+
+- [Security Review](../../principles/security-risk/security-review.md) — check the work against this principle and cite the clause any finding rests on.
+
 ## Inputs
 
 Goal, current-state evidence, constraints, contracts, decisions, examples, validation results, and known risks.

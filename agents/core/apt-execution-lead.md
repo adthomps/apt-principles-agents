@@ -52,6 +52,11 @@ Use when a change is ready to move from design/architecture into implementation,
 - [Implementation Review](../../skills/engineering/implementation-review/SKILL.md)
 - Cross-audience review and source verification.
 
+## Enforces
+
+- [APT Principles Framework](../../principles/framework.md) — check the work against this principle and cite the clause any finding rests on.
+- [Practical Thinking](../../principles/thinking/practical-thinking.md) — check the work against this principle and cite the clause any finding rests on.
+
 ## Inputs
 
 Goal, current-state evidence, constraints, contracts, decisions, examples, validation results, and known risks.

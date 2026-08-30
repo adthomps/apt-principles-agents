@@ -47,6 +47,10 @@ Use when prioritization, sequencing, or tradeoff decisions across multiple initi
 
 - `roadmap-planner` — installed under `.claude/skills/roadmap-planner/`.
 
+## Enforces
+
+- APT Execution Model (Build) — check the work against this principle and cite the clause any finding rests on.
+
 ## Inputs
 
 Goal, current-state evidence, constraints, contracts, decisions, examples, validation results, and known risks.

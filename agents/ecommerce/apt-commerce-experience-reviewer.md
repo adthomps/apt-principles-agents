@@ -51,6 +51,10 @@ Use when reviewing the broader shopping experience — browsing, cart, post-purc
 - [Customer Journey Mapping](../../skills/design/customer-journey-mapping/SKILL.md)
 - Distinct from `agents/ecommerce/apt-checkout-reviewer.md`, which reviews the checkout transaction itself rather than the surrounding experience.
 
+## Enforces
+
+- [Ecommerce Principles](../../principles/ecommerce/README.md) — check the work against this principle and cite the clause any finding rests on.
+
 ## Inputs
 
 Goal, current-state evidence, constraints, contracts, decisions, examples, validation results, and known risks.

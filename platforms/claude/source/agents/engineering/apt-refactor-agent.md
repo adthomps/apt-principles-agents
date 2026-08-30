@@ -41,6 +41,10 @@ Use when code is being restructured without an intended behavior change, to conf
 
 - `refactor-safety` — installed under `.claude/skills/refactor-safety/`.
 
+## Enforces
+
+- APT Quality & Testing (Validate) — check the work against this principle and cite the clause any finding rests on.
+
 ## Inputs
 
 Goal, current-state evidence, constraints, contracts, decisions, examples, validation results, and known risks.

@@ -57,6 +57,10 @@ Use when implementation work targets the Cloudflare Workers/Pages + Hono stack, 
 - [Cloudflare + Hono Architecture](../../skills/architecture/cloudflare-hono-architecture/SKILL.md)
 - Cross-audience review and source verification.
 
+## Enforces
+
+- [APT Quality & Testing (Validate)](../../principles/execution/quality-and-testing.md) — check the work against this principle and cite the clause any finding rests on.
+
 ## Inputs
 
 Goal, current-state evidence, constraints, contracts, decisions, examples, validation results, and known risks.

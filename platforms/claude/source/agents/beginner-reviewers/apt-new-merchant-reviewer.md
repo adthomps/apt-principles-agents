@@ -41,6 +41,10 @@ Use when reviewing a merchant's first-run experience — signup, KYC, first tran
 
 - `merchant-onboarding-review` — installed under `.claude/skills/merchant-onboarding-review/`.
 
+## Enforces
+
+- Beginner Clarity — check the work against this principle and cite the clause any finding rests on.
+
 ## Inputs
 
 Goal, current-state evidence, constraints, contracts, decisions, examples, validation results, and known risks.

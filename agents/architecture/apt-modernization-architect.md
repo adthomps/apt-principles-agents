@@ -51,6 +51,10 @@ Use when a legacy system, API, or integration needs a modernization path — rep
 - [API Modernization Planner](../../skills/modernization/api-modernization-planner/SKILL.md)
 - Cross-audience review and source verification.
 
+## Enforces
+
+- [APT Architecture Standards (How)](../../principles/architecture/README.md) — check the work against this principle and cite the clause any finding rests on.
+
 ## Inputs
 
 Goal, current-state evidence, constraints, contracts, decisions, examples, validation results, and known risks.

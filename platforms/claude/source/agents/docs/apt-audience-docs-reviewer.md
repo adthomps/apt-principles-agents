@@ -41,6 +41,10 @@ Use when documentation exists but it's unclear whether it's actually usable by t
 
 - `audience-layered-docs` — installed under `.claude/skills/audience-layered-docs/`.
 
+## Enforces
+
+- Documentation Principles — check the work against this principle and cite the clause any finding rests on.
+
 ## Inputs
 
 Goal, current-state evidence, constraints, contracts, decisions, examples, validation results, and known risks.

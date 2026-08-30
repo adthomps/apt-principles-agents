@@ -41,6 +41,10 @@ Use when an API's overall structure — resource model, versioning strategy, ser
 
 - `api-architecture-review` — installed under `.claude/skills/api-architecture-review/`.
 
+## Enforces
+
+- APT Architecture Standards (How) — check the work against this principle and cite the clause any finding rests on.
+
 ## Inputs
 
 Goal, current-state evidence, constraints, contracts, decisions, examples, validation results, and known risks.

@@ -52,6 +52,11 @@ Use when a change touches UI, UX flow, or customer-facing design decisions spann
 - [Intent-Based UI Design](../../skills/design/intent-based-ui-design/SKILL.md)
 - Cross-audience review and source verification.
 
+## Enforces
+
+- [APT Principles Framework](../../principles/framework.md) — check the work against this principle and cite the clause any finding rests on.
+- [Practical Thinking](../../principles/thinking/practical-thinking.md) — check the work against this principle and cite the clause any finding rests on.
+
 ## Inputs
 
 Goal, current-state evidence, constraints, contracts, decisions, examples, validation results, and known risks.

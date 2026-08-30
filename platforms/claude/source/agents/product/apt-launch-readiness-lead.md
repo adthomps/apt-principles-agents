@@ -41,6 +41,10 @@ Use before a launch or major release, to confirm the product, support, and opera
 
 - `launch-readiness-review` — installed under `.claude/skills/launch-readiness-review/`.
 
+## Enforces
+
+- APT Execution Model (Build) — check the work against this principle and cite the clause any finding rests on.
+
 ## Inputs
 
 Goal, current-state evidence, constraints, contracts, decisions, examples, validation results, and known risks.

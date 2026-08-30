@@ -35,6 +35,10 @@ Use before implementation or when a team is polishing without answering the main
 - `prototype-planner` — installed under `.claude/skills/prototype-planner/`.
 - `game-engine-selection` — installed under `.claude/skills/game-engine-selection/`.
 
+## Enforces
+
+- Game Development Principles — check the work against this principle and cite the clause any finding rests on.
+
 ## Inputs
 
 Hypothesis, concept, constraints, stack, current sources, assets, risks, deadline, and decision owner.

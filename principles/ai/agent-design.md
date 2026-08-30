@@ -49,6 +49,22 @@ Review for unsupported claims, overpowered tools, weak-model routing for high-st
 - State what is verified, what is assumed, and what requires specialist or human approval.
 
 See the [Ai canonical hub](README.md) and linked standards/checklists before making final claims.
+## Applied by
+
+- [apt-architect](../../agents/harness/apt-architect.md) — Use when reviewing architecture, repository structure, migration strategy, or harness design before an approach is committed.
+- [apt-cloudflare-builder](../../agents/harness/apt-cloudflare-builder.md) — Use when building or reviewing Cloudflare Workers, Pages, Hono, D1, KV, R2, or deployment workflows.
+- [apt-code-reviewer](../../agents/harness/apt-code-reviewer.md) — Use when code needs a review for bugs, maintainability, behavior preservation, or missing validation.
+- [apt-cost-controller](../../agents/harness/apt-cost-controller.md) — Use when a task risks excessive token usage, repeated context loading, unnecessary model escalation, or redundant scans.
+- [apt-harness-docs-reviewer](../../agents/harness/apt-harness-docs-reviewer.md) — Use when reviewing this repository’s own documentation architecture, consistency, source-of-truth boundaries, or operating guidance.
+- [apt-installer](../../agents/harness/apt-installer.md) — Use when applying this repository’s installable agent standards and harness assets to a target repository for the first time.
+- [apt-model-router](../../agents/harness/apt-model-router.md) — Use when choosing the smallest sufficient local or cloud model tier for an APT task.
+- [apt-repair-agent](../../agents/harness/apt-repair-agent.md) — Use when repairing or upgrading an existing APT standards installation while preserving local customizations.
+- [apt-repo-scanner](../../agents/harness/apt-repo-scanner.md) — Use when inspecting a target repository for installed APT standards, drift, missing files, duplicates, or repair needs.
+- [apt-security-reviewer](../../agents/harness/apt-security-reviewer.md) — Use when reviewing security-sensitive agent, code, configuration, MCP, model-routing, or lifecycle behavior.
+- [apt-task-router](../../agents/harness/apt-task-router.md) — Use at the start of a harness engagement to turn a request into a compact, reviewable task packet for the smallest suitable APT workflow.
+- [apt-ui-reviewer](../../agents/harness/apt-ui-reviewer.md) — Use when reviewing UI work for intent, workflow continuity, state design, accessibility, or responsive behavior.
+- [apt-verifier](../../agents/harness/apt-verifier.md) — Use when outputs, installs, repairs, routing config, or documentation alignment must be verified before they are trusted.
+
 ## Related
 
 - [APT Principles](../README.md)

@@ -48,7 +48,11 @@ Use as a general accuracy and completeness pass on any documentation deliverable
 ## Required Skills
 
 - Whichever documentation skill best matches the artifact under review (see `skills/documentation/`).
-- Distinct from `agents/harness/apt-docs-reviewer.md`, which reviews this repository's own documentation architecture rather than a downstream deliverable.
+- Distinct from `agents/harness/apt-harness-docs-reviewer.md`, which reviews this repository's own documentation architecture rather than a downstream deliverable.
+
+## Enforces
+
+- [Documentation Principles](../../principles/documentation/README.md) — check the work against this principle and cite the clause any finding rests on.
 
 ## Inputs
 

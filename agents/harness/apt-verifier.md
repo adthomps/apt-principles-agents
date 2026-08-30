@@ -4,7 +4,7 @@ title: apt-verifier
 kind: agent
 domain: harness
 scope: domain
-description: Use when the task matches this harness responsibility or the APT router selects it based on risk and evidence needs.
+description: Use when outputs, installs, repairs, routing config, or documentation alignment must be verified before they are trusted.
 applies_principles:
   - principles/ai/agent-design.md
 uses_skills: []
@@ -43,11 +43,14 @@ Act as the apt verifier within the APT discover, classify, validate, remediate, 
 
 ## When to Use
 
-Use when the task matches this harness responsibility or the APT router selects it based on risk and evidence needs.
-
+Use when outputs, installs, repairs, routing config, or documentation alignment must be verified before they are trusted.
 ## Required Skills
 
 Use the closest canonical APT skill, the relevant context pack, and exact target-repository instructions.
+
+## Enforces
+
+- [Agent Design](../../principles/ai/agent-design.md) — check the work against this principle and cite the clause any finding rests on.
 
 ## Inputs
 

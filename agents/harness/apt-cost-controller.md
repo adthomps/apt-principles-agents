@@ -4,7 +4,7 @@ title: apt-cost-controller
 kind: agent
 domain: harness
 scope: domain
-description: Use when the task matches this harness responsibility or the APT router selects it based on risk and evidence needs.
+description: Use when a task risks excessive token usage, repeated context loading, unnecessary model escalation, or redundant scans.
 applies_principles:
   - principles/ai/agent-design.md
 uses_skills: []
@@ -42,11 +42,14 @@ Act as the apt cost controller within the APT discover, classify, validate, reme
 
 ## When to Use
 
-Use when the task matches this harness responsibility or the APT router selects it based on risk and evidence needs.
-
+Use when a task risks excessive token usage, repeated context loading, unnecessary model escalation, or redundant scans.
 ## Required Skills
 
 Use the closest canonical APT skill, the relevant context pack, and exact target-repository instructions.
+
+## Enforces
+
+- [Agent Design](../../principles/ai/agent-design.md) — check the work against this principle and cite the clause any finding rests on.
 
 ## Inputs
 

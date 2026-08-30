@@ -51,6 +51,10 @@ Use when reviewing a merchant's first-run experience — signup, KYC, first tran
 - [Merchant Onboarding Review](../../skills/ecommerce/merchant-onboarding-review/SKILL.md)
 - Cross-audience review and source verification.
 
+## Enforces
+
+- [Beginner Clarity](../../principles/thinking/beginner-clarity.md) — check the work against this principle and cite the clause any finding rests on.
+
 ## Inputs
 
 Goal, current-state evidence, constraints, contracts, decisions, examples, validation results, and known risks.

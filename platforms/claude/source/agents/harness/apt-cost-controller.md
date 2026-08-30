@@ -1,6 +1,6 @@
 ---
 name: apt-cost-controller
-description: "Use when the task matches this harness responsibility or the APT router selects it based on risk and evidence needs."
+description: "Use when a task risks excessive token usage, repeated context loading, unnecessary model escalation, or redundant scans."
 tools: Read, Grep, Glob
 model: sonnet
 kind: agent-adapter
@@ -35,12 +35,14 @@ Act as the apt cost controller within the APT discover, classify, validate, reme
 
 ## When to Use
 
-Use when the task matches this harness responsibility or the APT router selects it based on risk and evidence needs.
-
+Use when a task risks excessive token usage, repeated context loading, unnecessary model escalation, or redundant scans.
 ## Required Skills
 
-- `[` — installed under `.claude/skills/[/`.
-- `]` — installed under `.claude/skills/]/`.
+- Use the closest canonical APT skill installed under `.claude/skills/`.
+
+## Enforces
+
+- Agent Design — check the work against this principle and cite the clause any finding rests on.
 
 ## Inputs
 

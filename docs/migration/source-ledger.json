@@ -57,7 +57,7 @@
     {
       "source": "apt-agent-standards/agents/apt-docs-reviewer.md",
       "classification": "migrated",
-      "destination": "agents/harness/apt-docs-reviewer.md",
+      "destination": "agents/harness/apt-harness-docs-reviewer.md",
       "rationale": "Preserved as active source-backed guidance."
     },
     {
@@ -87,7 +87,7 @@
     {
       "source": "apt-agent-standards/agents/apt-router.md",
       "classification": "migrated",
-      "destination": "agents/harness/apt-router.md",
+      "destination": "agents/harness/apt-task-router.md",
       "rationale": "Preserved as active source-backed guidance."
     },
     {

@@ -1,6 +1,6 @@
 ---
 name: apt-cloudflare-builder
-description: "Use when the task matches this harness responsibility or the APT router selects it based on risk and evidence needs."
+description: "Use when building or reviewing Cloudflare Workers, Pages, Hono, D1, KV, R2, or deployment workflows."
 tools: Read, Grep, Glob, Edit, Write, MultiEdit
 model: sonnet
 kind: agent-adapter
@@ -35,12 +35,14 @@ Act as the apt cloudflare builder within the APT discover, classify, validate, r
 
 ## When to Use
 
-Use when the task matches this harness responsibility or the APT router selects it based on risk and evidence needs.
-
+Use when building or reviewing Cloudflare Workers, Pages, Hono, D1, KV, R2, or deployment workflows.
 ## Required Skills
 
-- `[` — installed under `.claude/skills/[/`.
-- `]` — installed under `.claude/skills/]/`.
+- Use the closest canonical APT skill installed under `.claude/skills/`.
+
+## Enforces
+
+- Agent Design — check the work against this principle and cite the clause any finding rests on.
 
 ## Inputs
 

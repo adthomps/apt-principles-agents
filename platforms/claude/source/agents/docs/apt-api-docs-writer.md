@@ -41,6 +41,10 @@ Use when API reference material, quickstarts, or integration guides need to be w
 
 - `api-guide-writer` — installed under `.claude/skills/api-guide-writer/`.
 
+## Enforces
+
+- Documentation Principles — check the work against this principle and cite the clause any finding rests on.
+
 ## Inputs
 
 Goal, current-state evidence, constraints, contracts, decisions, examples, validation results, and known risks.

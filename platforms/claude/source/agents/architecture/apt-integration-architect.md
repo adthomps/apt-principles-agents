@@ -41,6 +41,10 @@ Use when two or more systems need to be connected — via API, event stream, or 
 
 - `integration-architecture-review` — installed under `.claude/skills/integration-architecture-review/`.
 
+## Enforces
+
+- APT Architecture Standards (How) — check the work against this principle and cite the clause any finding rests on.
+
 ## Inputs
 
 Goal, current-state evidence, constraints, contracts, decisions, examples, validation results, and known risks.

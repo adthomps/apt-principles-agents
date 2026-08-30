@@ -41,6 +41,10 @@ Use when a change touches data handling, disclosures, or regulated processes, to
 
 - `privacy-review` — installed under `.claude/skills/privacy-review/`.
 
+## Enforces
+
+- Security Review — check the work against this principle and cite the clause any finding rests on.
+
 ## Inputs
 
 Goal, current-state evidence, constraints, contracts, decisions, examples, validation results, and known risks.

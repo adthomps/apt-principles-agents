@@ -51,6 +51,10 @@ Use when a change is about to ship, to confirm the support organization can actu
 - [Support Readiness Review](../../skills/service-readiness/support-readiness-review/SKILL.md)
 - Cross-audience review and source verification.
 
+## Enforces
+
+- [Role Based Experience](../../principles/design/role-based-experience.md) — check the work against this principle and cite the clause any finding rests on.
+
 ## Inputs
 
 Goal, current-state evidence, constraints, contracts, decisions, examples, validation results, and known risks.

@@ -1,6 +1,6 @@
 ---
 name: apt-repo-scanner
-description: "Use when the task matches this harness responsibility or the APT router selects it based on risk and evidence needs."
+description: "Use when inspecting a target repository for installed APT standards, drift, missing files, duplicates, or repair needs."
 tools: Read, Grep, Glob
 model: sonnet
 kind: agent-adapter
@@ -35,12 +35,14 @@ Act as the apt repo scanner within the APT discover, classify, validate, remedia
 
 ## When to Use
 
-Use when the task matches this harness responsibility or the APT router selects it based on risk and evidence needs.
-
+Use when inspecting a target repository for installed APT standards, drift, missing files, duplicates, or repair needs.
 ## Required Skills
 
-- `[` — installed under `.claude/skills/[/`.
-- `]` — installed under `.claude/skills/]/`.
+- Use the closest canonical APT skill installed under `.claude/skills/`.
+
+## Enforces
+
+- Agent Design — check the work against this principle and cite the clause any finding rests on.
 
 ## Inputs
 

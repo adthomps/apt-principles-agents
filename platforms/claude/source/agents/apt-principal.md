@@ -41,6 +41,11 @@ Use as the final synthesis step after specialist perspectives have reported, whe
 
 - `decision-rationalization` — installed under `.claude/skills/decision-rationalization/`.
 
+## Enforces
+
+- APT Principles Framework — check the work against this principle and cite the clause any finding rests on.
+- Practical Thinking — check the work against this principle and cite the clause any finding rests on.
+
 ## Inputs
 
 Goal, current-state evidence, constraints, contracts, decisions, examples, validation results, and known risks.

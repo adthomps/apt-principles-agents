@@ -1,6 +1,6 @@
 ---
 name: apt-ui-reviewer
-description: "Use when the task matches this harness responsibility or the APT router selects it based on risk and evidence needs."
+description: "Use when reviewing UI work for intent, workflow continuity, state design, accessibility, or responsive behavior."
 tools: Read, Grep, Glob
 model: sonnet
 kind: agent-adapter
@@ -37,12 +37,14 @@ Act as the apt ui reviewer within the APT discover, classify, validate, remediat
 
 ## When to Use
 
-Use when the task matches this harness responsibility or the APT router selects it based on risk and evidence needs.
-
+Use when reviewing UI work for intent, workflow continuity, state design, accessibility, or responsive behavior.
 ## Required Skills
 
-- `[` — installed under `.claude/skills/[/`.
-- `]` — installed under `.claude/skills/]/`.
+- Use the closest canonical APT skill installed under `.claude/skills/`.
+
+## Enforces
+
+- Agent Design — check the work against this principle and cite the clause any finding rests on.
 
 ## Inputs
 

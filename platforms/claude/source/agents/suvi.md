@@ -48,6 +48,10 @@ Use when a product is evaluating or building stablecoin acceptance or settlement
 
 - `stablecoin-readiness-review` — installed under `.claude/skills/stablecoin-readiness-review/`.
 
+## Enforces
+
+- Payments Principles — check the work against this principle and cite the clause any finding rests on.
+
 ## Inputs
 
 Goal, current-state evidence, constraints, contracts, decisions, examples, validation results, and known risks.

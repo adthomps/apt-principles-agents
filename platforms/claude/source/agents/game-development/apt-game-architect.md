@@ -36,6 +36,10 @@ Use before expansion or when scenes, entities, components, state, input, saves, 
 - `game-state-design` — installed under `.claude/skills/game-state-design/`.
 - `save-system-design` — installed under `.claude/skills/save-system-design/`.
 
+## Enforces
+
+- Game Development Principles — check the work against this principle and cite the clause any finding rests on.
+
 ## Inputs
 
 Exact repository sources, runtime/scene map, state model, controls, save contract, assets, deployment targets, tests, and constraints.

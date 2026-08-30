@@ -41,6 +41,10 @@ Use when a feature or initiative needs a PRD written or reviewed — problem, go
 
 - `prd-writer` — installed under `.claude/skills/prd-writer/`.
 
+## Enforces
+
+- APT Execution Model (Build) — check the work against this principle and cite the clause any finding rests on.
+
 ## Inputs
 
 Goal, current-state evidence, constraints, contracts, decisions, examples, validation results, and known risks.

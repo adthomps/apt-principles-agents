@@ -41,6 +41,10 @@ Use when a payment flow, merchant category, or dispute-handling process needs to
 
 - `chargeback-risk-review` — installed under `.claude/skills/chargeback-risk-review/`.
 
+## Enforces
+
+- Payments Principles — check the work against this principle and cite the clause any finding rests on.
+
 ## Inputs
 
 Goal, current-state evidence, constraints, contracts, decisions, examples, validation results, and known risks.

@@ -47,6 +47,10 @@ Use when implementation work targets the Cloudflare Workers/Pages + Hono stack, 
 
 - `cloudflare-hono-architecture` — installed under `.claude/skills/cloudflare-hono-architecture/`.
 
+## Enforces
+
+- APT Quality & Testing (Validate) — check the work against this principle and cite the clause any finding rests on.
+
 ## Inputs
 
 Goal, current-state evidence, constraints, contracts, decisions, examples, validation results, and known risks.

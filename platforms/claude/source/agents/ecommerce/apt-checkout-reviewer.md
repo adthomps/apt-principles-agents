@@ -41,6 +41,10 @@ Use when a checkout flow — cart, payment entry, confirmation — needs review 
 
 - `checkout-experience-review` — installed under `.claude/skills/checkout-experience-review/`.
 
+## Enforces
+
+- Ecommerce Principles — check the work against this principle and cite the clause any finding rests on.
+
 ## Inputs
 
 Goal, current-state evidence, constraints, contracts, decisions, examples, validation results, and known risks.

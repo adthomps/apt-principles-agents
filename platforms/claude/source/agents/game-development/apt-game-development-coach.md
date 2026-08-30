@@ -36,6 +36,10 @@ Use when a learner needs sequencing, plain explanations, project-based exercises
 - `game-idea-framing` — installed under `.claude/skills/game-idea-framing/`.
 - `game-scope-review` — installed under `.claude/skills/game-scope-review/`.
 
+## Enforces
+
+- Game Development Principles — check the work against this principle and cite the clause any finding rests on.
+
 ## Inputs
 
 Learner goal, experience, constraints, project sources, current build, blockers, and chosen stack.

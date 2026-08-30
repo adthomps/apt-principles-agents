@@ -41,6 +41,11 @@ Use when a change touches UI, UX flow, or customer-facing design decisions spann
 
 - `intent-based-ui-design` — installed under `.claude/skills/intent-based-ui-design/`.
 
+## Enforces
+
+- APT Principles Framework — check the work against this principle and cite the clause any finding rests on.
+- Practical Thinking — check the work against this principle and cite the clause any finding rests on.
+
 ## Inputs
 
 Goal, current-state evidence, constraints, contracts, decisions, examples, validation results, and known risks.

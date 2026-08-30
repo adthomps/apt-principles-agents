@@ -41,6 +41,10 @@ Use when an autonomous AI agent (not a human) is the one integrating with or act
 
 - `agent-routing` — installed under `.claude/skills/agent-routing/`.
 
+## Enforces
+
+- Role Based Experience — check the work against this principle and cite the clause any finding rests on.
+
 ## Inputs
 
 Goal, current-state evidence, constraints, contracts, decisions, examples, validation results, and known risks.

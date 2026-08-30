@@ -1,6 +1,6 @@
 ---
 name: apt-task-router
-description: "Use when the task matches this harness responsibility or the APT router selects it based on risk and evidence needs."
+description: "Use at the start of a harness engagement to turn a request into a compact, reviewable task packet for the smallest suitable APT workflow."
 tools: Read, Grep, Glob
 model: sonnet
 kind: agent-adapter
@@ -8,12 +8,12 @@ domain: harness
 status: active
 owner: APT
 last_updated: 2026-08-30
-source_paths: ["apt-principles-agents/agents/harness/apt-router.md"]
-title: "apt-router"
+source_paths: ["apt-principles-agents/agents/harness/apt-task-router.md"]
+title: "APT Task Router"
 ---
-<!-- Generated from apt-principles-agents/agents/harness/apt-router.md by scripts/build-agent-adapters.mjs. Edit the canonical file, not this one. -->
+<!-- Generated from apt-principles-agents/agents/harness/apt-task-router.md by scripts/build-agent-adapters.mjs. Edit the canonical file, not this one. -->
 
-# apt-router
+# APT Task Router
 
 Category: Router
 
@@ -55,12 +55,14 @@ Act as the apt router within the APT discover, classify, validate, remediate, ve
 
 ## When to Use
 
-Use when the task matches this harness responsibility or the APT router selects it based on risk and evidence needs.
-
+Use at the start of a harness engagement to turn a request into a compact, reviewable task packet for the smallest suitable APT workflow.
 ## Required Skills
 
-- `[` — installed under `.claude/skills/[/`.
-- `]` — installed under `.claude/skills/]/`.
+- Use the closest canonical APT skill installed under `.claude/skills/`.
+
+## Enforces
+
+- Agent Design — check the work against this principle and cite the clause any finding rests on.
 
 ## Inputs
 

@@ -47,6 +47,10 @@ Use when framing play, resolving unclear rules, planning levels, or interpreting
 - [Mechanics Designer](../../skills/game-development/mechanics-designer/SKILL.md)
 - [Player Journey Mapping](../../skills/game-development/player-journey-mapping/SKILL.md)
 
+## Enforces
+
+- [Game Development Principles](../../principles/game-development/README.md) — check the work against this principle and cite the clause any finding rests on.
+
 ## Inputs
 
 Concept, player, constraints, loop, mechanics, build, playtest evidence, and open decisions.

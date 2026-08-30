@@ -45,6 +45,10 @@ Use for menus, HUDs, overlays, settings, onboarding, responsive layouts, and fai
 - [Game UI HUD Review](../../skills/game-development/game-ui-hud-review/SKILL.md)
 - [Input Control Design](../../skills/game-development/input-control-design/SKILL.md)
 
+## Enforces
+
+- [Game Development Principles](../../principles/game-development/README.md) — check the work against this principle and cite the clause any finding rests on.
+
 ## Inputs
 
 Screens/build, target devices and sizes, player goals, controls, accessibility needs, and playtest evidence.

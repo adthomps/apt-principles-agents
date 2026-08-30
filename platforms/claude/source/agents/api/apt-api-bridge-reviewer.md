@@ -41,6 +41,11 @@ Use when a bridge or adapter layer sits between a legacy API and a modern one, t
 
 - `bridge-architecture-review` — installed under `.claude/skills/bridge-architecture-review/`.
 
+## Enforces
+
+- API Principles — check the work against this principle and cite the clause any finding rests on.
+- Modern API Design — check the work against this principle and cite the clause any finding rests on.
+
 ## Inputs
 
 Goal, current-state evidence, constraints, contracts, decisions, examples, validation results, and known risks.

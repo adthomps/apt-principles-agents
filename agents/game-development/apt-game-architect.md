@@ -47,6 +47,10 @@ Use before expansion or when scenes, entities, components, state, input, saves, 
 - [Game State Design](../../skills/game-development/game-state-design/SKILL.md)
 - [Save System Design](../../skills/game-development/save-system-design/SKILL.md)
 
+## Enforces
+
+- [Game Development Principles](../../principles/game-development/README.md) — check the work against this principle and cite the clause any finding rests on.
+
 ## Inputs
 
 Exact repository sources, runtime/scene map, state model, controls, save contract, assets, deployment targets, tests, and constraints.

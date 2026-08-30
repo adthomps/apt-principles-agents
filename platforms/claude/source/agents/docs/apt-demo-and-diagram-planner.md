@@ -42,6 +42,10 @@ Use when a concept, architecture, or workflow needs a demo script or diagram to 
 - `demo-plan-writer` — installed under `.claude/skills/demo-plan-writer/`.
 - `diagram-generator` — installed under `.claude/skills/diagram-generator/`.
 
+## Enforces
+
+- Documentation Principles — check the work against this principle and cite the clause any finding rests on.
+
 ## Inputs
 
 Goal, current-state evidence, constraints, contracts, decisions, examples, validation results, and known risks.

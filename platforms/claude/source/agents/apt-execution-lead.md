@@ -41,6 +41,11 @@ Use when a change is ready to move from design/architecture into implementation,
 
 - `implementation-review` — installed under `.claude/skills/implementation-review/`.
 
+## Enforces
+
+- APT Principles Framework — check the work against this principle and cite the clause any finding rests on.
+- Practical Thinking — check the work against this principle and cite the clause any finding rests on.
+
 ## Inputs
 
 Goal, current-state evidence, constraints, contracts, decisions, examples, validation results, and known risks.

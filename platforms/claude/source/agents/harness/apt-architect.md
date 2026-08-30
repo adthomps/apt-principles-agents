@@ -1,6 +1,6 @@
 ---
 name: apt-architect
-description: "Use when the task matches this harness responsibility or the APT router selects it based on risk and evidence needs."
+description: "Use when reviewing architecture, repository structure, migration strategy, or harness design before an approach is committed."
 tools: Read, Grep, Glob
 model: opus
 kind: agent-adapter
@@ -35,12 +35,14 @@ Act as the apt architect within the APT discover, classify, validate, remediate,
 
 ## When to Use
 
-Use when the task matches this harness responsibility or the APT router selects it based on risk and evidence needs.
-
+Use when reviewing architecture, repository structure, migration strategy, or harness design before an approach is committed.
 ## Required Skills
 
-- `[` — installed under `.claude/skills/[/`.
-- `]` — installed under `.claude/skills/]/`.
+- Use the closest canonical APT skill installed under `.claude/skills/`.
+
+## Enforces
+
+- Agent Design — check the work against this principle and cite the clause any finding rests on.
 
 ## Inputs
 

@@ -39,8 +39,11 @@ Use as a general accuracy and completeness pass on any documentation deliverable
 
 ## Required Skills
 
-- `[` — installed under `.claude/skills/[/`.
-- `]` — installed under `.claude/skills/]/`.
+- Use the closest canonical APT skill installed under `.claude/skills/`.
+
+## Enforces
+
+- Documentation Principles — check the work against this principle and cite the clause any finding rests on.
 
 ## Inputs
 

@@ -41,6 +41,10 @@ Use when a deliverable will be used by a business owner or operator (not a devel
 
 - `customer-journey-mapping` — installed under `.claude/skills/customer-journey-mapping/`.
 
+## Enforces
+
+- Role Based Experience — check the work against this principle and cite the clause any finding rests on.
+
 ## Inputs
 
 Goal, current-state evidence, constraints, contracts, decisions, examples, validation results, and known risks.

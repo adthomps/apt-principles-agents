@@ -52,6 +52,11 @@ Use as the final synthesis step after specialist perspectives have reported, whe
 - [Decision Rationalization](../../skills/thinking/decision-rationalization/SKILL.md)
 - Cross-perspective synthesis and final accountability.
 
+## Enforces
+
+- [APT Principles Framework](../../principles/framework.md) — check the work against this principle and cite the clause any finding rests on.
+- [Practical Thinking](../../principles/thinking/practical-thinking.md) — check the work against this principle and cite the clause any finding rests on.
+
 ## Inputs
 
 Goal, current-state evidence, constraints, contracts, decisions, examples, validation results, and known risks.

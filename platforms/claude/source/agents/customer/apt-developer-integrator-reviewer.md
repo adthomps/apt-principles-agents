@@ -41,6 +41,10 @@ Use when reviewing the steady-state integration experience for a developer alrea
 
 - `developer-guide-writer` — installed under `.claude/skills/developer-guide-writer/`.
 
+## Enforces
+
+- Role Based Experience — check the work against this principle and cite the clause any finding rests on.
+
 ## Inputs
 
 Goal, current-state evidence, constraints, contracts, decisions, examples, validation results, and known risks.

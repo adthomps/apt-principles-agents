@@ -51,6 +51,10 @@ Use when a deliverable will be used by a business owner or operator (not a devel
 - [Customer Journey Mapping](../../skills/design/customer-journey-mapping/SKILL.md)
 - Cross-audience review and source verification.
 
+## Enforces
+
+- [Role Based Experience](../../principles/design/role-based-experience.md) — check the work against this principle and cite the clause any finding rests on.
+
 ## Inputs
 
 Goal, current-state evidence, constraints, contracts, decisions, examples, validation results, and known risks.

@@ -62,10 +62,6 @@
       "source_paths"
     ],
     "optionalFrontmatter": ["source", "status", "persona"],
-    "knownIdExceptions": {
-      "agents/harness/apt-router.md": "apt-task-router",
-      "agents/harness/apt-docs-reviewer.md": "apt-harness-docs-reviewer"
-    },
     "fields": {
       "id": "Equals the filename without .md. Kebab-case. Unique across all agents/<domain>/ directories. Immutable once published; a rename is a new id plus a deprecation note on the old file.",
       "kind": "Always \"agent\".",

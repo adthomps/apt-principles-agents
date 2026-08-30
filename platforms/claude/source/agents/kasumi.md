@@ -47,6 +47,10 @@ Use when a change has security implications — authentication, data exposure, a
 
 - `security-review` — installed under `.claude/skills/security-review/`.
 
+## Enforces
+
+- Security Review — check the work against this principle and cite the clause any finding rests on.
+
 ## Inputs
 
 Goal, current-state evidence, constraints, contracts, decisions, examples, validation results, and known risks.

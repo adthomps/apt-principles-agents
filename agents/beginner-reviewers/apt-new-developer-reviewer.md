@@ -51,6 +51,10 @@ Use when reviewing a developer's first-run experience — first API call, first 
 - [Developer Guide Writer](../../skills/documentation/developer-guide-writer/SKILL.md)
 - Distinct from `agents/customer/apt-developer-integrator-reviewer.md`, which reviews the steady-state integration experience rather than first-run onboarding.
 
+## Enforces
+
+- [Beginner Clarity](../../principles/thinking/beginner-clarity.md) — check the work against this principle and cite the clause any finding rests on.
+
 ## Inputs
 
 Goal, current-state evidence, constraints, contracts, decisions, examples, validation results, and known risks.

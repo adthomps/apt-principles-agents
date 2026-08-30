@@ -35,6 +35,10 @@ Use at concept approval, prototype planning, roadmap changes, milestone review, 
 - `game-scope-review` — installed under `.claude/skills/game-scope-review/`.
 - `prototype-planner` — installed under `.claude/skills/prototype-planner/`.
 
+## Enforces
+
+- Game Development Principles — check the work against this principle and cite the clause any finding rests on.
+
 ## Inputs
 
 Prototype question, concept, roadmap, feature/asset list, dependencies, constraints, current build, deadline, and owner.

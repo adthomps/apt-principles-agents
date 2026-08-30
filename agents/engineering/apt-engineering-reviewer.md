@@ -51,6 +51,10 @@ Use as a general implementation-quality review of code changes — correctness, 
 - [Implementation Review](../../skills/engineering/implementation-review/SKILL.md)
 - Cross-audience review and source verification.
 
+## Enforces
+
+- [APT Quality & Testing (Validate)](../../principles/execution/quality-and-testing.md) — check the work against this principle and cite the clause any finding rests on.
+
 ## Inputs
 
 Goal, current-state evidence, constraints, contracts, decisions, examples, validation results, and known risks.

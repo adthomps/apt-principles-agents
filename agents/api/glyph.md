@@ -59,6 +59,11 @@ Use when a decision or deliverable must select API styles from audience and beha
 - [Modern API Design](../../skills/api/modern-api-design/SKILL.md)
 - Cross-audience review and source verification.
 
+## Enforces
+
+- [API Principles](../../principles/api/README.md) — check the work against this principle and cite the clause any finding rests on.
+- [Modern API Design](../../principles/api/modern-api-design.md) — check the work against this principle and cite the clause any finding rests on.
+
 ## Inputs
 
 Goal, current-state evidence, constraints, contracts, decisions, examples, validation results, and known risks.

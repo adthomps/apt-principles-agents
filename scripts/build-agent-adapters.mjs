@@ -53,6 +53,8 @@ function parseFrontmatter(text) {
         i += 1;
       }
       fm[kv[1]] = list;
+    } else if (value.startsWith("[") && value.endsWith("]")) {
+      fm[kv[1]] = value.slice(1, -1).split(",").map((s) => s.trim().replace(/^["']|["']$/g, "")).filter(Boolean);
     } else {
       fm[kv[1]] = value.replace(/^["']|["']$/g, "");
     }

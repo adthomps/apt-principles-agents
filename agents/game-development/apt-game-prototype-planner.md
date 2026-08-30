@@ -45,6 +45,10 @@ Use before implementation or when a team is polishing without answering the main
 - [Prototype Planner](../../skills/game-development/prototype-planner/SKILL.md)
 - [Game Engine Selection](../../skills/game-development/game-engine-selection/SKILL.md)
 
+## Enforces
+
+- [Game Development Principles](../../principles/game-development/README.md) — check the work against this principle and cite the clause any finding rests on.
+
 ## Inputs
 
 Hypothesis, concept, constraints, stack, current sources, assets, risks, deadline, and decision owner.
