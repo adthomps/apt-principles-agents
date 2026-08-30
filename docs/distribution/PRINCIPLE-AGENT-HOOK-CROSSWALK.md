@@ -17,18 +17,45 @@ enforceable domain with no agent row is unenforced doctrine.
 | Principle | Enforced by agents | Via skills | Enforcement |
 | --- | --- | --- | --- |
 | `principles/ai/agent-design.md` | `apt-architect`, `apt-cloudflare-builder`, `apt-code-reviewer`, `apt-cost-controller`, `apt-harness-docs-reviewer`, `apt-installer`, `apt-model-router`, `apt-repair-agent`, `apt-repo-scanner`, `apt-security-reviewer`, `apt-task-router`, `apt-ui-reviewer`, `apt-verifier` | — | agent |
-| `principles/api/modern-api-design.md` | `apt-ai-consumable-api-reviewer`, `apt-api-bridge-reviewer`, `apt-api-migration-planner`, `apt-modern-api-designer`, `glyph` | `ai-consumable-api-design`, `modern-api-design`, `bridge-architecture-review` | agent |
-| `principles/api/README.md` | `apt-ai-consumable-api-reviewer`, `apt-api-bridge-reviewer`, `apt-api-migration-planner`, `apt-modern-api-designer`, `glyph` | `ai-consumable-api-design`, `modern-api-design`, `bridge-architecture-review` | agent |
-| `principles/architecture/README.md` | `apt-api-architect`, `apt-integration-architect`, `apt-modernization-architect`, `javik` | `api-architecture-review`, `integration-architecture-review`, `system-architecture-review`, `api-modernization-planner` | agent |
+| `principles/api/ai-consumable-apis.md` | `apt-ai-consumable-api-reviewer` | `ai-consumable-api-design` | agent |
+| `principles/api/api-versioning.md` | `apt-api-bridge-reviewer` | `bridge-architecture-review` | agent |
+| `principles/api/json-first-design.md` | `apt-modern-api-designer` | `modern-api-design` | agent |
+| `principles/api/modern-api-design.md` | `apt-modern-api-designer`, `glyph` | `modern-api-design` | agent |
+| `principles/api/rest-api-design.md` | `glyph` | `modern-api-design` | agent |
+| `principles/architecture/api-architecture.md` | `apt-api-architect` | `api-architecture-review` | agent |
+| `principles/architecture/event-driven-architecture.md` | `apt-integration-architect` | `integration-architecture-review` | agent |
+| `principles/architecture/integration-architecture.md` | `apt-integration-architect` | `integration-architecture-review` | agent |
+| `principles/architecture/modernization-architecture.md` | `apt-modernization-architect` | `api-modernization-planner` | agent |
+| `principles/architecture/payment-architecture.md` | `apt-payment-architect`, `wrex` | `payment-architecture-review`, `payment-lifecycle-analysis` | agent |
+| `principles/architecture/system-architecture.md` | `javik` | `system-architecture-review` | agent |
 | `principles/design/role-based-experience.md` | `apt-ai-agent-user-reviewer`, `apt-bank-acquirer-reviewer`, `apt-business-user-reviewer`, `apt-developer-integrator-reviewer`, `apt-support-operations-reviewer` | `agent-routing`, `customer-journey-mapping`, `developer-guide-writer`, `partner-acquirer-onboarding-review`, `support-readiness-review` | agent |
 | `principles/documentation/README.md` | `apt-api-docs-writer`, `apt-audience-docs-reviewer`, `apt-demo-and-diagram-planner`, `apt-docs-reviewer`, `apt-implementation-blueprint-writer`, `apt-product-hub-builder` | `api-guide-writer`, `audience-layered-docs`, `demo-plan-writer`, `diagram-generator`, `implementation-blueprint-writer`, `product-hub-builder` | agent |
-| `principles/ecommerce/README.md` | `apt-checkout-reviewer`, `apt-commerce-experience-reviewer`, `apt-merchant-onboarding-reviewer`, `kaidan` | `customer-journey-mapping`, `checkout-experience-review`, `merchant-onboarding-review`, `partner-acquirer-onboarding-review` | agent |
+| `principles/ecommerce/cart-to-payment-flow.md` | `apt-checkout-reviewer` | `checkout-experience-review` | agent |
+| `principles/ecommerce/checkout-design.md` | `apt-checkout-reviewer` | `checkout-experience-review` | agent |
+| `principles/ecommerce/customer-payment-experience.md` | `apt-commerce-experience-reviewer` | `customer-journey-mapping` | agent |
+| `principles/ecommerce/marketplace-payments.md` | `kaidan` | `partner-acquirer-onboarding-review` | agent |
+| `principles/ecommerce/merchant-onboarding.md` | `apt-merchant-onboarding-reviewer` | `merchant-onboarding-review` | agent |
 | `principles/execution/delivery-increments.md` | `apt-launch-readiness-lead`, `apt-prd-writer`, `apt-voice-of-customer-analyst`, `miranda` | `prd-writer`, `roadmap-planner`, `voice-of-customer`, `launch-readiness-review` | agent |
 | `principles/execution/quality-and-testing.md` | `apt-engineering-reviewer`, `apt-refactor-agent`, `drack` | `cloudflare-hono-architecture`, `implementation-review`, `refactor-safety` | agent |
 | `principles/framework.md` | `apt-architecture-lead`, `apt-design-lead`, `apt-execution-lead`, `apt-principal`, `apt-router`, `apt-thinking-lead` | `agent-routing`, `system-architecture-review`, `intent-based-ui-design`, `implementation-review`, `decision-rationalization`, `problem-framing` | agent |
 | `principles/game-development/README.md` | `apt-beginner-game-dev-reviewer`, `apt-game-architect`, `apt-game-designer`, `apt-game-development-coach`, `apt-game-docs-writer`, `apt-game-prototype-planner`, `apt-game-scope-guardian`, `apt-game-testing-reviewer`, `apt-game-ui-reviewer`, `apt-gameplay-reviewer` | `game-architecture-review`, `game-dev-learning-plan`, `game-engine-selection`, `game-idea-framing`, `game-loop-designer`, `game-scope-review`, `game-state-design`, `game-test-plan`, `game-ui-hud-review`, `input-control-design`, `mechanics-designer`, `player-journey-mapping`, `playtest-feedback-review`, `prototype-planner`, `save-system-design` | agent |
-| `principles/payments/README.md` | `apt-chargeback-risk-reviewer`, `apt-crypto-payment-risk-reviewer`, `apt-fraud-risk-reviewer`, `apt-gateway-migration-reviewer`, `apt-payment-architect`, `apt-transaction-intelligence-analyst`, `suvi`, `wrex` | `payment-architecture-review`, `chargeback-risk-review`, `fraud-rule-review`, `gateway-design`, `payment-lifecycle-analysis`, `transaction-intelligence-analysis`, `crypto-payment-risk-review`, `stablecoin-readiness-review` | agent |
-| `principles/security-risk/security-review.md` | `apt-compliance-awareness-reviewer`, `kasumi`, `samara` | `permission-review`, `privacy-review`, `security-review` | agent |
+| `principles/modernization/api-facade-design.md` | `apt-api-bridge-reviewer`, `apt-gateway-migration-reviewer` | `bridge-architecture-review`, `gateway-design` | agent |
+| `principles/modernization/deprecation-planning.md` | `apt-api-migration-planner` | `modern-api-design` | agent |
+| `principles/modernization/parity-matrix.md` | `apt-api-migration-planner` | `modern-api-design` | agent |
+| `principles/payments/fraud-risk.md` | `apt-fraud-risk-reviewer` | `fraud-rule-review` | agent |
+| `principles/payments/gateway-abstraction.md` | `apt-gateway-migration-reviewer`, `apt-payment-architect` | `payment-architecture-review`, `gateway-design` | agent |
+| `principles/payments/payment-lifecycle.md` | `wrex` | `payment-lifecycle-analysis` | agent |
+| `principles/payments/refunds-voids-disputes.md` | `apt-chargeback-risk-reviewer` | `chargeback-risk-review` | agent |
+| `principles/payments/transaction-intelligence.md` | `apt-transaction-intelligence-analyst` | `transaction-intelligence-analysis` | agent |
+| `principles/security-risk/compliance-awareness.md` | `apt-compliance-awareness-reviewer` | `privacy-review` | agent |
+| `principles/security-risk/data-handling.md` | `apt-compliance-awareness-reviewer` | `privacy-review` | agent |
+| `principles/security-risk/fraud-risk-review.md` | `apt-fraud-risk-reviewer` | `fraud-rule-review` | agent |
+| `principles/security-risk/permission-design.md` | `samara` | `permission-review` | agent |
+| `principles/security-risk/security-review.md` | `kasumi` | `security-review` | agent |
+| `principles/stablecoin-crypto/crypto-payment-review.md` | `apt-crypto-payment-risk-reviewer` | `crypto-payment-risk-review` | agent |
+| `principles/stablecoin-crypto/digital-asset-risk.md` | `apt-crypto-payment-risk-reviewer` | `crypto-payment-risk-review` | agent |
+| `principles/stablecoin-crypto/settlement-and-reconciliation.md` | `suvi` | `stablecoin-readiness-review` | agent |
+| `principles/stablecoin-crypto/stablecoin-readiness.md` | `suvi` | `stablecoin-readiness-review` | agent |
 | `principles/thinking/beginner-clarity.md` | `apt-beginner-user-reviewer`, `apt-new-developer-reviewer`, `apt-new-merchant-reviewer`, `apt-new-support-agent-reviewer` | `developer-guide-writer`, `merchant-onboarding-review`, `kb-article-writer`, `beginner-clarity-review` | agent |
 | `principles/thinking/practical-thinking.md` | `apt-architecture-lead`, `apt-design-lead`, `apt-execution-lead`, `apt-principal`, `apt-router`, `apt-thinking-lead` | `agent-routing`, `system-architecture-review`, `intent-based-ui-design`, `implementation-review`, `decision-rationalization`, `problem-framing` | agent |
 | `principles/ai/ai-safety-and-evaluation.md` | — | — | **unenforced** |
@@ -37,48 +64,24 @@ enforceable domain with no agent row is unenforced doctrine.
 | `principles/ai/prompt-engineering.md` | — | — | **unenforced** |
 | `principles/ai/skill-design.md` | — | — | **unenforced** |
 | `principles/ai/swarm-review.md` | — | — | **unenforced** |
-| `principles/api/ai-consumable-apis.md` | — | — | **unenforced** |
 | `principles/api/api-auth.md` | — | — | **unenforced** |
 | `principles/api/api-errors.md` | — | — | **unenforced** |
 | `principles/api/api-idempotency.md` | — | — | **unenforced** |
 | `principles/api/api-observability.md` | — | — | **unenforced** |
-| `principles/api/api-versioning.md` | — | — | **unenforced** |
 | `principles/api/graphql-review.md` | — | — | **unenforced** |
 | `principles/api/http-query-method-review.md` | — | — | **unenforced** |
 | `principles/api/human-consumable-apis.md` | — | — | **unenforced** |
-| `principles/api/json-first-design.md` | — | — | **unenforced** |
 | `principles/api/json-rpc-design.md` | — | — | **unenforced** |
-| `principles/api/rest-api-design.md` | — | — | **unenforced** |
 | `principles/api/webhook-design.md` | — | — | **unenforced** |
-| `principles/architecture/api-architecture.md` | — | — | **unenforced** |
 | `principles/architecture/cloudflare-hono-architecture.md` | — | — | **unenforced** |
-| `principles/architecture/event-driven-architecture.md` | — | — | **unenforced** |
-| `principles/architecture/integration-architecture.md` | — | — | **unenforced** |
-| `principles/architecture/modernization-architecture.md` | — | — | **unenforced** |
-| `principles/architecture/payment-architecture.md` | — | — | **unenforced** |
-| `principles/architecture/system-architecture.md` | — | — | **unenforced** |
-| `principles/ecommerce/cart-to-payment-flow.md` | — | — | **unenforced** |
-| `principles/ecommerce/checkout-design.md` | — | — | **unenforced** |
-| `principles/ecommerce/customer-payment-experience.md` | — | — | **unenforced** |
 | `principles/ecommerce/invoice-payments.md` | — | — | **unenforced** |
-| `principles/ecommerce/marketplace-payments.md` | — | — | **unenforced** |
-| `principles/ecommerce/merchant-onboarding.md` | — | — | **unenforced** |
 | `principles/ecommerce/payment-links.md` | — | — | **unenforced** |
 | `principles/payments/authorization-capture-settlement.md` | — | — | **unenforced** |
 | `principles/payments/embedded-payments.md` | — | — | **unenforced** |
-| `principles/payments/fraud-risk.md` | — | — | **unenforced** |
-| `principles/payments/gateway-abstraction.md` | — | — | **unenforced** |
 | `principles/payments/hosted-payments.md` | — | — | **unenforced** |
-| `principles/payments/payment-lifecycle.md` | — | — | **unenforced** |
 | `principles/payments/reconciliation-funding.md` | — | — | **unenforced** |
 | `principles/payments/recurring-and-subscriptions.md` | — | — | **unenforced** |
-| `principles/payments/refunds-voids-disputes.md` | — | — | **unenforced** |
 | `principles/payments/tokenization.md` | — | — | **unenforced** |
-| `principles/payments/transaction-intelligence.md` | — | — | **unenforced** |
-| `principles/security-risk/compliance-awareness.md` | — | — | **unenforced** |
-| `principles/security-risk/data-handling.md` | — | — | **unenforced** |
-| `principles/security-risk/fraud-risk-review.md` | — | — | **unenforced** |
-| `principles/security-risk/permission-design.md` | — | — | **unenforced** |
 | `principles/security-risk/privacy-review.md` | — | — | **unenforced** |
 
 Hooks: `SessionStart` (`session-sync-check.mjs`) is repo-wide, not

@@ -6,7 +6,7 @@ domain: risk
 scope: global
 description: Use when a change affects who can do what — roles, scopes, access control rules — to confirm the permission model is correct and least-privilege.
 applies_principles:
-  - principles/security-risk/security-review.md
+  - principles/security-risk/permission-design.md
 uses_skills:
   - skills/security-risk/permission-review
 tools:
@@ -60,7 +60,7 @@ Use when a change affects who can do what — roles, scopes, access control rule
 
 ## Enforces
 
-- [Security Review](../../principles/security-risk/security-review.md) — check the work against this principle and cite the clause any finding rests on.
+- [Permission Design](../../principles/security-risk/permission-design.md) — check the work against this principle and cite the clause any finding rests on.
 
 ## Inputs
 

@@ -46,6 +46,10 @@ Review for invented provider behavior, double processing, confused authorization
 - State what is verified, what is assumed, and what requires specialist or human approval.
 
 See the [Payments canonical hub](README.md) and linked standards/checklists before making final claims.
+## Applied by
+
+- [apt-chargeback-risk-reviewer](../../agents/payments/apt-chargeback-risk-reviewer.md) — Use when a payment flow, merchant category, or dispute-handling process needs to be assessed for chargeback exposure and evidence-collection readiness.
+
 ## Related
 
 - [APT Principles](../README.md)

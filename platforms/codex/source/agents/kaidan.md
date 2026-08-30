@@ -47,7 +47,7 @@ Use when a partner or acquirer integration/onboarding flow needs review, distinc
 
 ## Enforces
 
-- Ecommerce Principles — check the work against this principle and cite the clause any finding rests on.
+- Marketplace Payments — check the work against this principle and cite the clause any finding rests on.
 
 ## Inputs
 

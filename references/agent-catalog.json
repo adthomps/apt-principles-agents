@@ -29,8 +29,7 @@
       "scope": "domain",
       "description": "Use when an API will be called primarily by AI agents rather than human-written client code, to confirm it's structured for reliable agent consumption.",
       "applies_principles": [
-        "principles/api/README.md",
-        "principles/api/modern-api-design.md"
+        "principles/api/ai-consumable-apis.md"
       ],
       "uses_skills": [
         "skills/api/ai-consumable-api-design"
@@ -50,7 +49,7 @@
       "scope": "domain",
       "description": "Use when an API's overall structure — resource model, versioning strategy, service boundaries — needs architectural review, distinct from a single-endpoint contract review.",
       "applies_principles": [
-        "principles/architecture/README.md"
+        "principles/architecture/api-architecture.md"
       ],
       "uses_skills": [
         "skills/architecture/api-architecture-review"
@@ -70,8 +69,8 @@
       "scope": "domain",
       "description": "Use when a bridge or adapter layer sits between a legacy API and a modern one, to confirm it preserves correct behavior on both sides.",
       "applies_principles": [
-        "principles/api/README.md",
-        "principles/api/modern-api-design.md"
+        "principles/modernization/api-facade-design.md",
+        "principles/api/api-versioning.md"
       ],
       "uses_skills": [
         "skills/architecture/bridge-architecture-review"
@@ -111,8 +110,8 @@
       "scope": "domain",
       "description": "Use when a decision or deliverable must select API styles from audience and behavior, then make contracts predictable, secure, observable, evolvable, and usable by humans and agents, especially when it affects multiple audiences or high-accuracy domains.",
       "applies_principles": [
-        "principles/api/README.md",
-        "principles/api/modern-api-design.md"
+        "principles/modernization/parity-matrix.md",
+        "principles/modernization/deprecation-planning.md"
       ],
       "uses_skills": [
         "skills/api/modern-api-design"
@@ -272,7 +271,7 @@
       "scope": "domain",
       "description": "Use when a payment flow, merchant category, or dispute-handling process needs to be assessed for chargeback exposure and evidence-collection readiness.",
       "applies_principles": [
-        "principles/payments/README.md"
+        "principles/payments/refunds-voids-disputes.md"
       ],
       "uses_skills": [
         "skills/payments/chargeback-risk-review"
@@ -292,7 +291,8 @@
       "scope": "domain",
       "description": "Use when a checkout flow — cart, payment entry, confirmation — needs review for conversion friction and correctness.",
       "applies_principles": [
-        "principles/ecommerce/README.md"
+        "principles/ecommerce/checkout-design.md",
+        "principles/ecommerce/cart-to-payment-flow.md"
       ],
       "uses_skills": [
         "skills/ecommerce/checkout-experience-review"
@@ -349,7 +349,7 @@
       "scope": "domain",
       "description": "Use when reviewing the broader shopping experience — browsing, cart, post-purchase — beyond the checkout transaction itself.",
       "applies_principles": [
-        "principles/ecommerce/README.md"
+        "principles/ecommerce/customer-payment-experience.md"
       ],
       "uses_skills": [
         "skills/design/customer-journey-mapping"
@@ -369,7 +369,8 @@
       "scope": "domain",
       "description": "Use when a change touches data handling, disclosures, or regulated processes, to confirm the team is aware of the compliance obligations involved, even where full legal review is separate.",
       "applies_principles": [
-        "principles/security-risk/security-review.md"
+        "principles/security-risk/compliance-awareness.md",
+        "principles/security-risk/data-handling.md"
       ],
       "uses_skills": [
         "skills/security-risk/privacy-review"
@@ -407,7 +408,8 @@
       "scope": "domain",
       "description": "Use when a payment flow accepts or settles in cryptocurrency and needs review for custody, volatility, and settlement risk.",
       "applies_principles": [
-        "principles/payments/README.md"
+        "principles/stablecoin-crypto/digital-asset-risk.md",
+        "principles/stablecoin-crypto/crypto-payment-review.md"
       ],
       "uses_skills": [
         "skills/stablecoin-crypto/crypto-payment-risk-review"
@@ -548,7 +550,8 @@
       "scope": "domain",
       "description": "Use when a payment flow, fraud rule set, or decline-handling process needs to be assessed for fraud exposure without unnecessarily blocking legitimate transactions.",
       "applies_principles": [
-        "principles/payments/README.md"
+        "principles/payments/fraud-risk.md",
+        "principles/security-risk/fraud-risk-review.md"
       ],
       "uses_skills": [
         "skills/payments/fraud-rule-review"
@@ -761,7 +764,8 @@
       "scope": "domain",
       "description": "Use when a merchant, platform, or integration is migrating from one payment gateway or processor to another, and payment continuity during the cutover is at risk.",
       "applies_principles": [
-        "principles/payments/README.md"
+        "principles/payments/gateway-abstraction.md",
+        "principles/modernization/api-facade-design.md"
       ],
       "uses_skills": [
         "skills/payments/gateway-design"
@@ -838,7 +842,8 @@
       "scope": "domain",
       "description": "Use when two or more systems need to be connected — via API, event stream, or bridge — and the integration pattern itself needs architectural review.",
       "applies_principles": [
-        "principles/architecture/README.md"
+        "principles/architecture/integration-architecture.md",
+        "principles/architecture/event-driven-architecture.md"
       ],
       "uses_skills": [
         "skills/architecture/integration-architecture-review"
@@ -878,7 +883,7 @@
       "scope": "domain",
       "description": "Use when a merchant onboarding flow — signup through first live transaction — needs review for completeness and time-to-first-sale.",
       "applies_principles": [
-        "principles/ecommerce/README.md"
+        "principles/ecommerce/merchant-onboarding.md"
       ],
       "uses_skills": [
         "skills/ecommerce/merchant-onboarding-review"
@@ -916,8 +921,8 @@
       "scope": "domain",
       "description": "Use when designing a new API from scratch, to confirm it follows current best practice (REST/GraphQL/JSON-RPC as appropriate) rather than replicating legacy patterns.",
       "applies_principles": [
-        "principles/api/README.md",
-        "principles/api/modern-api-design.md"
+        "principles/api/modern-api-design.md",
+        "principles/api/json-first-design.md"
       ],
       "uses_skills": [
         "skills/api/modern-api-design"
@@ -937,7 +942,7 @@
       "scope": "domain",
       "description": "Use when a legacy system, API, or integration needs a modernization path — replacing SOAP/XML/NVP or monolithic patterns with current APT-supported approaches.",
       "applies_principles": [
-        "principles/architecture/README.md"
+        "principles/architecture/modernization-architecture.md"
       ],
       "uses_skills": [
         "skills/modernization/api-modernization-planner"
@@ -1017,7 +1022,8 @@
       "scope": "domain",
       "description": "Use when a payment system's structure — gateway abstraction, tokenization boundary, ledger design, or provider failover — needs architectural review before implementation.",
       "applies_principles": [
-        "principles/payments/README.md"
+        "principles/architecture/payment-architecture.md",
+        "principles/payments/gateway-abstraction.md"
       ],
       "uses_skills": [
         "skills/architecture/payment-architecture-review"
@@ -1254,7 +1260,7 @@
       "scope": "domain",
       "description": "Use when transaction data, decline patterns, or authorization trends need to be analyzed to explain what's happening and what it implies for risk or revenue.",
       "applies_principles": [
-        "principles/payments/README.md"
+        "principles/payments/transaction-intelligence.md"
       ],
       "uses_skills": [
         "skills/payments/transaction-intelligence-analysis"
@@ -1350,8 +1356,8 @@
       "scope": "global",
       "description": "Use when a decision or deliverable must select API styles from audience and behavior, then make contracts predictable, secure, observable, evolvable, and usable by humans and agents, especially when it affects multiple audiences or high-accuracy domains.",
       "applies_principles": [
-        "principles/api/README.md",
-        "principles/api/modern-api-design.md"
+        "principles/api/modern-api-design.md",
+        "principles/api/rest-api-design.md"
       ],
       "uses_skills": [
         "skills/api/modern-api-design"
@@ -1371,7 +1377,7 @@
       "scope": "global",
       "description": "Use as the senior cross-cutting sign-off for architecture work, after specialist architecture perspectives (api, integration, modernization) have reported, to reconcile them into one accountable structural recommendation.",
       "applies_principles": [
-        "principles/architecture/README.md"
+        "principles/architecture/system-architecture.md"
       ],
       "uses_skills": [
         "skills/architecture/system-architecture-review"
@@ -1391,7 +1397,7 @@
       "scope": "global",
       "description": "Use when a partner or acquirer integration/onboarding flow needs review, distinct from a single merchant's onboarding.",
       "applies_principles": [
-        "principles/ecommerce/README.md"
+        "principles/ecommerce/marketplace-payments.md"
       ],
       "uses_skills": [
         "skills/ecommerce/partner-acquirer-onboarding-review"
@@ -1451,7 +1457,7 @@
       "scope": "global",
       "description": "Use when a change affects who can do what — roles, scopes, access control rules — to confirm the permission model is correct and least-privilege.",
       "applies_principles": [
-        "principles/security-risk/security-review.md"
+        "principles/security-risk/permission-design.md"
       ],
       "uses_skills": [
         "skills/security-risk/permission-review"
@@ -1471,7 +1477,8 @@
       "scope": "global",
       "description": "Use when a product is evaluating or building stablecoin acceptance or settlement, to confirm operational and compliance readiness before launch.",
       "applies_principles": [
-        "principles/payments/README.md"
+        "principles/stablecoin-crypto/stablecoin-readiness.md",
+        "principles/stablecoin-crypto/settlement-and-reconciliation.md"
       ],
       "uses_skills": [
         "skills/stablecoin-crypto/stablecoin-readiness-review"
@@ -1491,7 +1498,8 @@
       "scope": "global",
       "description": "Use as the senior cross-cutting sign-off for payments work, after specialist payment perspectives (fraud, chargeback, gateway, architecture) have reported, to reconcile them into one accountable payments recommendation.",
       "applies_principles": [
-        "principles/payments/README.md"
+        "principles/payments/payment-lifecycle.md",
+        "principles/architecture/payment-architecture.md"
       ],
       "uses_skills": [
         "skills/payments/payment-lifecycle-analysis"

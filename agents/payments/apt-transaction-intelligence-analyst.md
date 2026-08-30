@@ -6,7 +6,7 @@ domain: payments
 scope: domain
 description: Use when transaction data, decline patterns, or authorization trends need to be analyzed to explain what's happening and what it implies for risk or revenue.
 applies_principles:
-  - principles/payments/README.md
+  - principles/payments/transaction-intelligence.md
 uses_skills:
   - skills/payments/transaction-intelligence-analysis
 tools:
@@ -53,7 +53,7 @@ Use when transaction data, decline patterns, or authorization trends need to be 
 
 ## Enforces
 
-- [Payments Principles](../../principles/payments/README.md) — check the work against this principle and cite the clause any finding rests on.
+- [Transaction Intelligence](../../principles/payments/transaction-intelligence.md) — check the work against this principle and cite the clause any finding rests on.
 
 ## Inputs
 

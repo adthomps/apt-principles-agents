@@ -6,7 +6,8 @@ domain: payments
 scope: domain
 description: Use when a merchant, platform, or integration is migrating from one payment gateway or processor to another, and payment continuity during the cutover is at risk.
 applies_principles:
-  - principles/payments/README.md
+  - principles/payments/gateway-abstraction.md
+  - principles/modernization/api-facade-design.md
 uses_skills:
   - skills/payments/gateway-design
 tools:
@@ -53,7 +54,8 @@ Use when a merchant, platform, or integration is migrating from one payment gate
 
 ## Enforces
 
-- [Payments Principles](../../principles/payments/README.md) — check the work against this principle and cite the clause any finding rests on.
+- [Gateway Abstraction](../../principles/payments/gateway-abstraction.md) — check the work against this principle and cite the clause any finding rests on.
+- [API Facade Design](../../principles/modernization/api-facade-design.md) — check the work against this principle and cite the clause any finding rests on.
 
 ## Inputs
 

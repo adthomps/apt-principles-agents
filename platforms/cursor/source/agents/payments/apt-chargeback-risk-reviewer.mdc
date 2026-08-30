@@ -43,7 +43,7 @@ Use when a payment flow, merchant category, or dispute-handling process needs to
 
 ## Enforces
 
-- Payments Principles — check the work against this principle and cite the clause any finding rests on.
+- Refunds Voids Disputes — check the work against this principle and cite the clause any finding rests on.
 
 ## Inputs
 

@@ -6,7 +6,7 @@ domain: ecommerce
 scope: global
 description: Use when a partner or acquirer integration/onboarding flow needs review, distinct from a single merchant's onboarding.
 applies_principles:
-  - principles/ecommerce/README.md
+  - principles/ecommerce/marketplace-payments.md
 uses_skills:
   - skills/ecommerce/partner-acquirer-onboarding-review
 tools:
@@ -59,7 +59,7 @@ Use when a partner or acquirer integration/onboarding flow needs review, distinc
 
 ## Enforces
 
-- [Ecommerce Principles](../../principles/ecommerce/README.md) — check the work against this principle and cite the clause any finding rests on.
+- [Marketplace Payments](../../principles/ecommerce/marketplace-payments.md) — check the work against this principle and cite the clause any finding rests on.
 
 ## Inputs
 

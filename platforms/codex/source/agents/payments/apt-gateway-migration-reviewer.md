@@ -41,7 +41,8 @@ Use when a merchant, platform, or integration is migrating from one payment gate
 
 ## Enforces
 
-- Payments Principles — check the work against this principle and cite the clause any finding rests on.
+- Gateway Abstraction — check the work against this principle and cite the clause any finding rests on.
+- API Facade Design — check the work against this principle and cite the clause any finding rests on.
 
 ## Inputs
 

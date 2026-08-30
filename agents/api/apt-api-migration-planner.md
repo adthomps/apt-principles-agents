@@ -6,8 +6,8 @@ domain: api
 scope: domain
 description: Use when a decision or deliverable must select API styles from audience and behavior, then make contracts predictable, secure, observable, evolvable, and usable by humans and agents, especially when it affects multiple audiences or high-accuracy domains.
 applies_principles:
-  - principles/api/README.md
-  - principles/api/modern-api-design.md
+  - principles/modernization/parity-matrix.md
+  - principles/modernization/deprecation-planning.md
 uses_skills:
   - skills/api/modern-api-design
 tools:
@@ -54,8 +54,8 @@ Use when a decision or deliverable must select API styles from audience and beha
 
 ## Enforces
 
-- [API Principles](../../principles/api/README.md) — check the work against this principle and cite the clause any finding rests on.
-- [Modern API Design](../../principles/api/modern-api-design.md) — check the work against this principle and cite the clause any finding rests on.
+- [Parity Matrix](../../principles/modernization/parity-matrix.md) — check the work against this principle and cite the clause any finding rests on.
+- [Deprecation Planning](../../principles/modernization/deprecation-planning.md) — check the work against this principle and cite the clause any finding rests on.
 
 ## Inputs
 

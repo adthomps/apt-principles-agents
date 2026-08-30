@@ -43,7 +43,8 @@ Use when a payment flow, fraud rule set, or decline-handling process needs to be
 
 ## Enforces
 
-- Payments Principles — check the work against this principle and cite the clause any finding rests on.
+- Fraud Risk — check the work against this principle and cite the clause any finding rests on.
+- Fraud Risk Review — check the work against this principle and cite the clause any finding rests on.
 
 ## Inputs
 

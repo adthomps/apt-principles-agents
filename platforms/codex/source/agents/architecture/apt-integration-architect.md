@@ -41,7 +41,8 @@ Use when two or more systems need to be connected — via API, event stream, or 
 
 ## Enforces
 
-- APT Architecture Standards (How) — check the work against this principle and cite the clause any finding rests on.
+- Integration Architecture — check the work against this principle and cite the clause any finding rests on.
+- Event Driven Architecture — check the work against this principle and cite the clause any finding rests on.
 
 ## Inputs
 

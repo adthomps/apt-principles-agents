@@ -6,7 +6,8 @@ domain: architecture
 scope: domain
 description: Use when two or more systems need to be connected — via API, event stream, or bridge — and the integration pattern itself needs architectural review.
 applies_principles:
-  - principles/architecture/README.md
+  - principles/architecture/integration-architecture.md
+  - principles/architecture/event-driven-architecture.md
 uses_skills:
   - skills/architecture/integration-architecture-review
 tools:
@@ -53,7 +54,8 @@ Use when two or more systems need to be connected — via API, event stream, or 
 
 ## Enforces
 
-- [APT Architecture Standards (How)](../../principles/architecture/README.md) — check the work against this principle and cite the clause any finding rests on.
+- [Integration Architecture](../../principles/architecture/integration-architecture.md) — check the work against this principle and cite the clause any finding rests on.
+- [Event Driven Architecture](../../principles/architecture/event-driven-architecture.md) — check the work against this principle and cite the clause any finding rests on.
 
 ## Inputs
 

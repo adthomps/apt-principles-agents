@@ -6,7 +6,8 @@ domain: risk
 scope: domain
 description: Use when a change touches data handling, disclosures, or regulated processes, to confirm the team is aware of the compliance obligations involved, even where full legal review is separate.
 applies_principles:
-  - principles/security-risk/security-review.md
+  - principles/security-risk/compliance-awareness.md
+  - principles/security-risk/data-handling.md
 uses_skills:
   - skills/security-risk/privacy-review
 tools:
@@ -53,7 +54,8 @@ Use when a change touches data handling, disclosures, or regulated processes, to
 
 ## Enforces
 
-- [Security Review](../../principles/security-risk/security-review.md) — check the work against this principle and cite the clause any finding rests on.
+- [Compliance Awareness](../../principles/security-risk/compliance-awareness.md) — check the work against this principle and cite the clause any finding rests on.
+- [Data Handling](../../principles/security-risk/data-handling.md) — check the work against this principle and cite the clause any finding rests on.
 
 ## Inputs
 

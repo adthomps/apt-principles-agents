@@ -50,7 +50,7 @@ Use when a change affects who can do what — roles, scopes, access control rule
 
 ## Enforces
 
-- Security Review — check the work against this principle and cite the clause any finding rests on.
+- Permission Design — check the work against this principle and cite the clause any finding rests on.
 
 ## Inputs
 

@@ -46,6 +46,10 @@ Review for conversion-only design, hidden fees or states, brittle checkout recov
 - State what is verified, what is assumed, and what requires specialist or human approval.
 
 See the [Ecommerce canonical hub](README.md) and linked standards/checklists before making final claims.
+## Applied by
+
+- [apt-commerce-experience-reviewer](../../agents/ecommerce/apt-commerce-experience-reviewer.md) — Use when reviewing the broader shopping experience — browsing, cart, post-purchase — beyond the checkout transaction itself.
+
 ## Related
 
 - [APT Principles](../README.md)

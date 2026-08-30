@@ -43,7 +43,7 @@ Use when reviewing the broader shopping experience — browsing, cart, post-purc
 
 ## Enforces
 
-- Ecommerce Principles — check the work against this principle and cite the clause any finding rests on.
+- Customer Payment Experience — check the work against this principle and cite the clause any finding rests on.
 
 ## Inputs
 

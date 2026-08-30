@@ -43,7 +43,7 @@ Use when an API's overall structure — resource model, versioning strategy, ser
 
 ## Enforces
 
-- APT Architecture Standards (How) — check the work against this principle and cite the clause any finding rests on.
+- API Architecture — check the work against this principle and cite the clause any finding rests on.
 
 ## Inputs
 

@@ -6,7 +6,7 @@ domain: architecture
 scope: domain
 description: Use when a legacy system, API, or integration needs a modernization path — replacing SOAP/XML/NVP or monolithic patterns with current APT-supported approaches.
 applies_principles:
-  - principles/architecture/README.md
+  - principles/architecture/modernization-architecture.md
 uses_skills:
   - skills/modernization/api-modernization-planner
 tools:
@@ -53,7 +53,7 @@ Use when a legacy system, API, or integration needs a modernization path — rep
 
 ## Enforces
 
-- [APT Architecture Standards (How)](../../principles/architecture/README.md) — check the work against this principle and cite the clause any finding rests on.
+- [Modernization Architecture](../../principles/architecture/modernization-architecture.md) — check the work against this principle and cite the clause any finding rests on.
 
 ## Inputs
 

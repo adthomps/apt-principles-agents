@@ -41,8 +41,8 @@ Use when designing a new API from scratch, to confirm it follows current best pr
 
 ## Enforces
 
-- API Principles — check the work against this principle and cite the clause any finding rests on.
 - Modern API Design — check the work against this principle and cite the clause any finding rests on.
+- JSON First Design — check the work against this principle and cite the clause any finding rests on.
 
 ## Inputs
 

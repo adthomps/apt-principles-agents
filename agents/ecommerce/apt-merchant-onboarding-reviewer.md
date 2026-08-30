@@ -6,7 +6,7 @@ domain: ecommerce
 scope: domain
 description: Use when a merchant onboarding flow — signup through first live transaction — needs review for completeness and time-to-first-sale.
 applies_principles:
-  - principles/ecommerce/README.md
+  - principles/ecommerce/merchant-onboarding.md
 uses_skills:
   - skills/ecommerce/merchant-onboarding-review
 tools:
@@ -53,7 +53,7 @@ Use when a merchant onboarding flow — signup through first live transaction �
 
 ## Enforces
 
-- [Ecommerce Principles](../../principles/ecommerce/README.md) — check the work against this principle and cite the clause any finding rests on.
+- [Merchant Onboarding](../../principles/ecommerce/merchant-onboarding.md) — check the work against this principle and cite the clause any finding rests on.
 
 ## Inputs
 

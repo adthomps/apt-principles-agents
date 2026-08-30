@@ -43,7 +43,8 @@ Use when a payment flow accepts or settles in cryptocurrency and needs review fo
 
 ## Enforces
 
-- Payments Principles — check the work against this principle and cite the clause any finding rests on.
+- Digital Asset Risk — check the work against this principle and cite the clause any finding rests on.
+- Crypto Payment Review — check the work against this principle and cite the clause any finding rests on.
 
 ## Inputs
 

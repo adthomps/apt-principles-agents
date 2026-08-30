@@ -41,8 +41,8 @@ Use when a bridge or adapter layer sits between a legacy API and a modern one, t
 
 ## Enforces
 
-- API Principles — check the work against this principle and cite the clause any finding rests on.
-- Modern API Design — check the work against this principle and cite the clause any finding rests on.
+- API Facade Design — check the work against this principle and cite the clause any finding rests on.
+- API Versioning — check the work against this principle and cite the clause any finding rests on.
 
 ## Inputs
 

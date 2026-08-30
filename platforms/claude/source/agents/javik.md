@@ -49,7 +49,7 @@ Use as the senior cross-cutting sign-off for architecture work, after specialist
 
 ## Enforces
 
-- APT Architecture Standards (How) — check the work against this principle and cite the clause any finding rests on.
+- System Architecture — check the work against this principle and cite the clause any finding rests on.
 
 ## Inputs
 

@@ -6,7 +6,7 @@ domain: payments
 scope: domain
 description: Use when a payment flow, merchant category, or dispute-handling process needs to be assessed for chargeback exposure and evidence-collection readiness.
 applies_principles:
-  - principles/payments/README.md
+  - principles/payments/refunds-voids-disputes.md
 uses_skills:
   - skills/payments/chargeback-risk-review
 tools:
@@ -53,7 +53,7 @@ Use when a payment flow, merchant category, or dispute-handling process needs to
 
 ## Enforces
 
-- [Payments Principles](../../principles/payments/README.md) — check the work against this principle and cite the clause any finding rests on.
+- [Refunds Voids Disputes](../../principles/payments/refunds-voids-disputes.md) — check the work against this principle and cite the clause any finding rests on.
 
 ## Inputs
 

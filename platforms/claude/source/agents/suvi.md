@@ -50,7 +50,8 @@ Use when a product is evaluating or building stablecoin acceptance or settlement
 
 ## Enforces
 
-- Payments Principles — check the work against this principle and cite the clause any finding rests on.
+- Stablecoin Readiness — check the work against this principle and cite the clause any finding rests on.
+- Settlement And Reconciliation — check the work against this principle and cite the clause any finding rests on.
 
 ## Inputs
 

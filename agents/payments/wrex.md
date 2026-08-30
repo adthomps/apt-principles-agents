@@ -6,7 +6,8 @@ domain: payments
 scope: global
 description: Use as the senior cross-cutting sign-off for payments work, after specialist payment perspectives (fraud, chargeback, gateway, architecture) have reported, to reconcile them into one accountable payments recommendation.
 applies_principles:
-  - principles/payments/README.md
+  - principles/payments/payment-lifecycle.md
+  - principles/architecture/payment-architecture.md
 uses_skills:
   - skills/payments/payment-lifecycle-analysis
 tools:
@@ -60,7 +61,8 @@ Use as the senior cross-cutting sign-off for payments work, after specialist pay
 
 ## Enforces
 
-- [Payments Principles](../../principles/payments/README.md) — check the work against this principle and cite the clause any finding rests on.
+- [Payment Lifecycle](../../principles/payments/payment-lifecycle.md) — check the work against this principle and cite the clause any finding rests on.
+- [Payment Architecture](../../principles/architecture/payment-architecture.md) — check the work against this principle and cite the clause any finding rests on.
 
 ## Inputs
 

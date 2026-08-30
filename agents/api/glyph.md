@@ -6,8 +6,8 @@ domain: api
 scope: global
 description: Use when a decision or deliverable must select API styles from audience and behavior, then make contracts predictable, secure, observable, evolvable, and usable by humans and agents, especially when it affects multiple audiences or high-accuracy domains.
 applies_principles:
-  - principles/api/README.md
   - principles/api/modern-api-design.md
+  - principles/api/rest-api-design.md
 uses_skills:
   - skills/api/modern-api-design
 tools:
@@ -61,8 +61,8 @@ Use when a decision or deliverable must select API styles from audience and beha
 
 ## Enforces
 
-- [API Principles](../../principles/api/README.md) — check the work against this principle and cite the clause any finding rests on.
 - [Modern API Design](../../principles/api/modern-api-design.md) — check the work against this principle and cite the clause any finding rests on.
+- [Rest API Design](../../principles/api/rest-api-design.md) — check the work against this principle and cite the clause any finding rests on.
 
 ## Inputs
 

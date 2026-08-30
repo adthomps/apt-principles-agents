@@ -48,8 +48,8 @@ Use when a decision or deliverable must select API styles from audience and beha
 
 ## Enforces
 
-- API Principles — check the work against this principle and cite the clause any finding rests on.
 - Modern API Design — check the work against this principle and cite the clause any finding rests on.
+- Rest API Design — check the work against this principle and cite the clause any finding rests on.
 
 ## Inputs
 

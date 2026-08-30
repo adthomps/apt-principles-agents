@@ -6,7 +6,7 @@ domain: ecommerce
 scope: domain
 description: Use when reviewing the broader shopping experience — browsing, cart, post-purchase — beyond the checkout transaction itself.
 applies_principles:
-  - principles/ecommerce/README.md
+  - principles/ecommerce/customer-payment-experience.md
 uses_skills:
   - skills/design/customer-journey-mapping
 tools:
@@ -53,7 +53,7 @@ Use when reviewing the broader shopping experience — browsing, cart, post-purc
 
 ## Enforces
 
-- [Ecommerce Principles](../../principles/ecommerce/README.md) — check the work against this principle and cite the clause any finding rests on.
+- [Customer Payment Experience](../../principles/ecommerce/customer-payment-experience.md) — check the work against this principle and cite the clause any finding rests on.
 
 ## Inputs
 

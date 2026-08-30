@@ -41,7 +41,7 @@ Use when a merchant onboarding flow — signup through first live transaction �
 
 ## Enforces
 
-- Ecommerce Principles — check the work against this principle and cite the clause any finding rests on.
+- Merchant Onboarding — check the work against this principle and cite the clause any finding rests on.
 
 ## Inputs
 

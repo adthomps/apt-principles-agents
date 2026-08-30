@@ -48,7 +48,8 @@ Use as the senior cross-cutting sign-off for payments work, after specialist pay
 
 ## Enforces
 
-- Payments Principles — check the work against this principle and cite the clause any finding rests on.
+- Payment Lifecycle — check the work against this principle and cite the clause any finding rests on.
+- Payment Architecture — check the work against this principle and cite the clause any finding rests on.
 
 ## Inputs
 

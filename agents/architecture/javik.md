@@ -6,7 +6,7 @@ domain: architecture
 scope: global
 description: Use as the senior cross-cutting sign-off for architecture work, after specialist architecture perspectives (api, integration, modernization) have reported, to reconcile them into one accountable structural recommendation.
 applies_principles:
-  - principles/architecture/README.md
+  - principles/architecture/system-architecture.md
 uses_skills:
   - skills/architecture/system-architecture-review
 tools:
@@ -59,7 +59,7 @@ Use as the senior cross-cutting sign-off for architecture work, after specialist
 
 ## Enforces
 
-- [APT Architecture Standards (How)](../../principles/architecture/README.md) — check the work against this principle and cite the clause any finding rests on.
+- [System Architecture](../../principles/architecture/system-architecture.md) — check the work against this principle and cite the clause any finding rests on.
 
 ## Inputs
 

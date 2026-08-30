@@ -6,7 +6,8 @@ domain: payments
 scope: domain
 description: Use when a payment flow, fraud rule set, or decline-handling process needs to be assessed for fraud exposure without unnecessarily blocking legitimate transactions.
 applies_principles:
-  - principles/payments/README.md
+  - principles/payments/fraud-risk.md
+  - principles/security-risk/fraud-risk-review.md
 uses_skills:
   - skills/payments/fraud-rule-review
 tools:
@@ -53,7 +54,8 @@ Use when a payment flow, fraud rule set, or decline-handling process needs to be
 
 ## Enforces
 
-- [Payments Principles](../../principles/payments/README.md) — check the work against this principle and cite the clause any finding rests on.
+- [Fraud Risk](../../principles/payments/fraud-risk.md) — check the work against this principle and cite the clause any finding rests on.
+- [Fraud Risk Review](../../principles/security-risk/fraud-risk-review.md) — check the work against this principle and cite the clause any finding rests on.
 
 ## Inputs
 

@@ -38,6 +38,40 @@ const DEEP_IDS = new Set([
   "apt-execution-lead", "apt-thinking-lead", "kasumi", "javik", "apt-architect",
 ]);
 
+// Per-agent overrides: point at the specific principle(s) an agent enforces
+// instead of the domain default. Extend this as coverage is refined.
+const AGENT_PRINCIPLES = {
+  // risk
+  "kasumi": ["principles/security-risk/security-review.md"],
+  "samara": ["principles/security-risk/permission-design.md"],
+  "apt-compliance-awareness-reviewer": ["principles/security-risk/compliance-awareness.md", "principles/security-risk/data-handling.md"],
+  // payments
+  "wrex": ["principles/payments/payment-lifecycle.md", "principles/architecture/payment-architecture.md"],
+  "apt-payment-architect": ["principles/architecture/payment-architecture.md", "principles/payments/gateway-abstraction.md"],
+  "apt-fraud-risk-reviewer": ["principles/payments/fraud-risk.md", "principles/security-risk/fraud-risk-review.md"],
+  "apt-chargeback-risk-reviewer": ["principles/payments/refunds-voids-disputes.md"],
+  "apt-crypto-payment-risk-reviewer": ["principles/stablecoin-crypto/digital-asset-risk.md", "principles/stablecoin-crypto/crypto-payment-review.md"],
+  "apt-gateway-migration-reviewer": ["principles/payments/gateway-abstraction.md", "principles/modernization/api-facade-design.md"],
+  "apt-transaction-intelligence-analyst": ["principles/payments/transaction-intelligence.md"],
+  "suvi": ["principles/stablecoin-crypto/stablecoin-readiness.md", "principles/stablecoin-crypto/settlement-and-reconciliation.md"],
+  // ecommerce
+  "apt-checkout-reviewer": ["principles/ecommerce/checkout-design.md", "principles/ecommerce/cart-to-payment-flow.md"],
+  "apt-merchant-onboarding-reviewer": ["principles/ecommerce/merchant-onboarding.md"],
+  "apt-commerce-experience-reviewer": ["principles/ecommerce/customer-payment-experience.md"],
+  "kaidan": ["principles/ecommerce/marketplace-payments.md"],
+  // api
+  "glyph": ["principles/api/modern-api-design.md", "principles/api/rest-api-design.md"],
+  "apt-ai-consumable-api-reviewer": ["principles/api/ai-consumable-apis.md"],
+  "apt-api-bridge-reviewer": ["principles/modernization/api-facade-design.md", "principles/api/api-versioning.md"],
+  "apt-modern-api-designer": ["principles/api/modern-api-design.md", "principles/api/json-first-design.md"],
+  "apt-api-migration-planner": ["principles/modernization/parity-matrix.md", "principles/modernization/deprecation-planning.md"],
+  // architecture
+  "javik": ["principles/architecture/system-architecture.md"],
+  "apt-api-architect": ["principles/architecture/api-architecture.md"],
+  "apt-integration-architect": ["principles/architecture/integration-architecture.md", "principles/architecture/event-driven-architecture.md"],
+  "apt-modernization-architect": ["principles/architecture/modernization-architecture.md"],
+};
+
 const DOMAIN_PRINCIPLES = {
   core: ["principles/framework.md", "principles/thinking/practical-thinking.md"],
   harness: ["principles/ai/agent-design.md"],
@@ -143,7 +177,7 @@ for (const file of filesList) {
   if (seenIds.has(id)) problems.push(`Duplicate id "${id}": ${rel} and ${seenIds.get(id)}`);
   seenIds.set(id, rel);
 
-  const principles = DOMAIN_PRINCIPLES[domain];
+  const principles = AGENT_PRINCIPLES[id] || DOMAIN_PRINCIPLES[domain];
   if (!principles) problems.push(`No principle mapping for domain "${domain}": ${rel}`);
   for (const p of principles || []) {
     if (!existsSync(path.join(root, p))) problems.push(`Mapped principle missing: ${p} (for ${rel})`);

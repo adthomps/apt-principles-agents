@@ -43,7 +43,7 @@ Use when transaction data, decline patterns, or authorization trends need to be 
 
 ## Enforces
 
-- Payments Principles — check the work against this principle and cite the clause any finding rests on.
+- Transaction Intelligence — check the work against this principle and cite the clause any finding rests on.
 
 ## Inputs
 

@@ -6,8 +6,8 @@ domain: api
 scope: domain
 description: Use when designing a new API from scratch, to confirm it follows current best practice (REST/GraphQL/JSON-RPC as appropriate) rather than replicating legacy patterns.
 applies_principles:
-  - principles/api/README.md
   - principles/api/modern-api-design.md
+  - principles/api/json-first-design.md
 uses_skills:
   - skills/api/modern-api-design
 tools:
@@ -54,8 +54,8 @@ Use when designing a new API from scratch, to confirm it follows current best pr
 
 ## Enforces
 
-- [API Principles](../../principles/api/README.md) — check the work against this principle and cite the clause any finding rests on.
 - [Modern API Design](../../principles/api/modern-api-design.md) — check the work against this principle and cite the clause any finding rests on.
+- [JSON First Design](../../principles/api/json-first-design.md) — check the work against this principle and cite the clause any finding rests on.
 
 ## Inputs
 

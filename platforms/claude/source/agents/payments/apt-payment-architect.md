@@ -43,7 +43,8 @@ Use when a payment system's structure — gateway abstraction, tokenization boun
 
 ## Enforces
 
-- Payments Principles — check the work against this principle and cite the clause any finding rests on.
+- Payment Architecture — check the work against this principle and cite the clause any finding rests on.
+- Gateway Abstraction — check the work against this principle and cite the clause any finding rests on.
 
 ## Inputs
 

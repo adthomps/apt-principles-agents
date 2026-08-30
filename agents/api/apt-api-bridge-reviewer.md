@@ -6,8 +6,8 @@ domain: api
 scope: domain
 description: Use when a bridge or adapter layer sits between a legacy API and a modern one, to confirm it preserves correct behavior on both sides.
 applies_principles:
-  - principles/api/README.md
-  - principles/api/modern-api-design.md
+  - principles/modernization/api-facade-design.md
+  - principles/api/api-versioning.md
 uses_skills:
   - skills/architecture/bridge-architecture-review
 tools:
@@ -54,8 +54,8 @@ Use when a bridge or adapter layer sits between a legacy API and a modern one, t
 
 ## Enforces
 
-- [API Principles](../../principles/api/README.md) — check the work against this principle and cite the clause any finding rests on.
-- [Modern API Design](../../principles/api/modern-api-design.md) — check the work against this principle and cite the clause any finding rests on.
+- [API Facade Design](../../principles/modernization/api-facade-design.md) — check the work against this principle and cite the clause any finding rests on.
+- [API Versioning](../../principles/api/api-versioning.md) — check the work against this principle and cite the clause any finding rests on.
 
 ## Inputs
 

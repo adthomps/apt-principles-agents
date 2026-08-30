@@ -6,7 +6,8 @@ domain: payments
 scope: global
 description: Use when a product is evaluating or building stablecoin acceptance or settlement, to confirm operational and compliance readiness before launch.
 applies_principles:
-  - principles/payments/README.md
+  - principles/stablecoin-crypto/stablecoin-readiness.md
+  - principles/stablecoin-crypto/settlement-and-reconciliation.md
 uses_skills:
   - skills/stablecoin-crypto/stablecoin-readiness-review
 tools:
@@ -60,7 +61,8 @@ Use when a product is evaluating or building stablecoin acceptance or settlement
 
 ## Enforces
 
-- [Payments Principles](../../principles/payments/README.md) — check the work against this principle and cite the clause any finding rests on.
+- [Stablecoin Readiness](../../principles/stablecoin-crypto/stablecoin-readiness.md) — check the work against this principle and cite the clause any finding rests on.
+- [Settlement And Reconciliation](../../principles/stablecoin-crypto/settlement-and-reconciliation.md) — check the work against this principle and cite the clause any finding rests on.
 
 ## Inputs
 

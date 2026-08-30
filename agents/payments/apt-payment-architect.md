@@ -6,7 +6,8 @@ domain: payments
 scope: domain
 description: Use when a payment system's structure — gateway abstraction, tokenization boundary, ledger design, or provider failover — needs architectural review before implementation.
 applies_principles:
-  - principles/payments/README.md
+  - principles/architecture/payment-architecture.md
+  - principles/payments/gateway-abstraction.md
 uses_skills:
   - skills/architecture/payment-architecture-review
 tools:
@@ -53,7 +54,8 @@ Use when a payment system's structure — gateway abstraction, tokenization boun
 
 ## Enforces
 
-- [Payments Principles](../../principles/payments/README.md) — check the work against this principle and cite the clause any finding rests on.
+- [Payment Architecture](../../principles/architecture/payment-architecture.md) — check the work against this principle and cite the clause any finding rests on.
+- [Gateway Abstraction](../../principles/payments/gateway-abstraction.md) — check the work against this principle and cite the clause any finding rests on.
 
 ## Inputs
 

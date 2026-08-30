@@ -6,7 +6,8 @@ domain: payments
 scope: domain
 description: Use when a payment flow accepts or settles in cryptocurrency and needs review for custody, volatility, and settlement risk.
 applies_principles:
-  - principles/payments/README.md
+  - principles/stablecoin-crypto/digital-asset-risk.md
+  - principles/stablecoin-crypto/crypto-payment-review.md
 uses_skills:
   - skills/stablecoin-crypto/crypto-payment-risk-review
 tools:
@@ -53,7 +54,8 @@ Use when a payment flow accepts or settles in cryptocurrency and needs review fo
 
 ## Enforces
 
-- [Payments Principles](../../principles/payments/README.md) — check the work against this principle and cite the clause any finding rests on.
+- [Digital Asset Risk](../../principles/stablecoin-crypto/digital-asset-risk.md) — check the work against this principle and cite the clause any finding rests on.
+- [Crypto Payment Review](../../principles/stablecoin-crypto/crypto-payment-review.md) — check the work against this principle and cite the clause any finding rests on.
 
 ## Inputs
 

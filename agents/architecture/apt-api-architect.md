@@ -6,7 +6,7 @@ domain: architecture
 scope: domain
 description: Use when an API's overall structure — resource model, versioning strategy, service boundaries — needs architectural review, distinct from a single-endpoint contract review.
 applies_principles:
-  - principles/architecture/README.md
+  - principles/architecture/api-architecture.md
 uses_skills:
   - skills/architecture/api-architecture-review
 tools:
@@ -53,7 +53,7 @@ Use when an API's overall structure — resource model, versioning strategy, ser
 
 ## Enforces
 
-- [APT Architecture Standards (How)](../../principles/architecture/README.md) — check the work against this principle and cite the clause any finding rests on.
+- [API Architecture](../../principles/architecture/api-architecture.md) — check the work against this principle and cite the clause any finding rests on.
 
 ## Inputs
 

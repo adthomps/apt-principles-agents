@@ -43,8 +43,7 @@ Use when an API will be called primarily by AI agents rather than human-written 
 
 ## Enforces
 
-- API Principles — check the work against this principle and cite the clause any finding rests on.
-- Modern API Design — check the work against this principle and cite the clause any finding rests on.
+- AI Consumable Apis — check the work against this principle and cite the clause any finding rests on.
 
 ## Inputs
 

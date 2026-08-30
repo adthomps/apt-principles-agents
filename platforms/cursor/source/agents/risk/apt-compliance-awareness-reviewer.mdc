@@ -43,7 +43,8 @@ Use when a change touches data handling, disclosures, or regulated processes, to
 
 ## Enforces
 
-- Security Review — check the work against this principle and cite the clause any finding rests on.
+- Compliance Awareness — check the work against this principle and cite the clause any finding rests on.
+- Data Handling — check the work against this principle and cite the clause any finding rests on.
 
 ## Inputs
 

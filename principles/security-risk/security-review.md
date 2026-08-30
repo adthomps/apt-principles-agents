@@ -48,9 +48,7 @@ Review for implicit authorization, excessive data collection, sensitive logs, un
 See the [Security Risk canonical hub](README.md) and linked standards/checklists before making final claims.
 ## Applied by
 
-- [apt-compliance-awareness-reviewer](../../agents/risk/apt-compliance-awareness-reviewer.md) — Use when a change touches data handling, disclosures, or regulated processes, to confirm the team is aware of the compliance obligations involved, even where full legal review is separate.
 - [kasumi](../../agents/risk/kasumi.md) — Use when a change has security implications — authentication, data exposure, attack surface — that need review before it ships.
-- [samara](../../agents/risk/samara.md) — Use when a change affects who can do what — roles, scopes, access control rules — to confirm the permission model is correct and least-privilege.
 
 ## Related
 

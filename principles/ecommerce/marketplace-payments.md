@@ -46,6 +46,10 @@ Review for conversion-only design, hidden fees or states, brittle checkout recov
 - State what is verified, what is assumed, and what requires specialist or human approval.
 
 See the [Ecommerce canonical hub](README.md) and linked standards/checklists before making final claims.
+## Applied by
+
+- [kaidan](../../agents/ecommerce/kaidan.md) — Use when a partner or acquirer integration/onboarding flow needs review, distinct from a single merchant's onboarding.
+
 ## Related
 
 - [APT Principles](../README.md)

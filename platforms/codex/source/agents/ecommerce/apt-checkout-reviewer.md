@@ -41,7 +41,8 @@ Use when a checkout flow — cart, payment entry, confirmation — needs review 
 
 ## Enforces
 
-- Ecommerce Principles — check the work against this principle and cite the clause any finding rests on.
+- Checkout Design — check the work against this principle and cite the clause any finding rests on.
+- Cart To Payment Flow — check the work against this principle and cite the clause any finding rests on.
 
 ## Inputs
 

@@ -46,6 +46,10 @@ Review for conversion-only design, hidden fees or states, brittle checkout recov
 - State what is verified, what is assumed, and what requires specialist or human approval.
 
 See the [Ecommerce canonical hub](README.md) and linked standards/checklists before making final claims.
+## Applied by
+
+- [apt-merchant-onboarding-reviewer](../../agents/ecommerce/apt-merchant-onboarding-reviewer.md) — Use when a merchant onboarding flow — signup through first live transaction — needs review for completeness and time-to-first-sale.
+
 ## Related
 
 - [APT Principles](../README.md)

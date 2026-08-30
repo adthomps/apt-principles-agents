@@ -6,7 +6,8 @@ domain: ecommerce
 scope: domain
 description: Use when a checkout flow — cart, payment entry, confirmation — needs review for conversion friction and correctness.
 applies_principles:
-  - principles/ecommerce/README.md
+  - principles/ecommerce/checkout-design.md
+  - principles/ecommerce/cart-to-payment-flow.md
 uses_skills:
   - skills/ecommerce/checkout-experience-review
 tools:
@@ -53,7 +54,8 @@ Use when a checkout flow — cart, payment entry, confirmation — needs review 
 
 ## Enforces
 
-- [Ecommerce Principles](../../principles/ecommerce/README.md) — check the work against this principle and cite the clause any finding rests on.
+- [Checkout Design](../../principles/ecommerce/checkout-design.md) — check the work against this principle and cite the clause any finding rests on.
+- [Cart To Payment Flow](../../principles/ecommerce/cart-to-payment-flow.md) — check the work against this principle and cite the clause any finding rests on.
 
 ## Inputs
 

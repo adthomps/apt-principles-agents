@@ -6,8 +6,7 @@ domain: api
 scope: domain
 description: Use when an API will be called primarily by AI agents rather than human-written client code, to confirm it's structured for reliable agent consumption.
 applies_principles:
-  - principles/api/README.md
-  - principles/api/modern-api-design.md
+  - principles/api/ai-consumable-apis.md
 uses_skills:
   - skills/api/ai-consumable-api-design
 tools:
@@ -54,8 +53,7 @@ Use when an API will be called primarily by AI agents rather than human-written 
 
 ## Enforces
 
-- [API Principles](../../principles/api/README.md) — check the work against this principle and cite the clause any finding rests on.
-- [Modern API Design](../../principles/api/modern-api-design.md) — check the work against this principle and cite the clause any finding rests on.
+- [AI Consumable Apis](../../principles/api/ai-consumable-apis.md) — check the work against this principle and cite the clause any finding rests on.
 
 ## Inputs
 
