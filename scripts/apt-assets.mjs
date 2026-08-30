@@ -315,6 +315,21 @@ function mappingsFor(manifests, platforms) {
     add(normalize(settingsSource), target, "platform");
   }
 
+  // Slash commands: commands/<name>.md installs into a claude target's
+  // .claude/commands/<name>.md. Commands are top-level workflows (e.g. the EDI
+  // review-council orchestrator), always available where the claude platform is
+  // used. Drift-safe like everything else here.
+  if (platforms.includes("claude")) {
+    const commandsDir = path.join(sourceRoot, "commands");
+    if (exists(commandsDir) && statSync(commandsDir).isDirectory()) {
+      for (const entry of readdirSync(commandsDir, { withFileTypes: true })) {
+        if (entry.isFile() && entry.name.endsWith(".md") && entry.name !== "README.md") {
+          add(normalize(`commands/${entry.name}`), `.claude/commands/${entry.name}`, "command");
+        }
+      }
+    }
+  }
+
   const roots = {
     codex: ["CODEX.md", "CODEX.md"],
     claude: ["CLAUDE.md", "CLAUDE.md"],

@@ -44,6 +44,7 @@ function inferKind(relative) {
     installers: "installer-guide",
     knowledge: "knowledge",
     routing: "routing",
+    commands: "command",
     docs: "guide",
   };
   return map[top] || "repository";
@@ -57,7 +58,7 @@ function inferDomain(relative) {
   }
   if (top === "platforms") return "platforms";
   if (top === "knowledge") return "knowledge";
-  if (top === "routing" || top === "context" || top === "context-packs") return "ai";
+  if (top === "routing" || top === "context" || top === "context-packs" || top === "commands") return "ai";
   if (top === "governance" || top === "references" || top === "manifests" || top === "installers") return "governance";
   if (top === "docs") return parts[1] === "migration" ? "governance" : "documentation";
   return "repository";

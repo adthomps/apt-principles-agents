@@ -15,6 +15,7 @@
       "context-packs",
       "skills",
       "agents",
+      "commands",
       "templates",
       "prompts",
       "examples",

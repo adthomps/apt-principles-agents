@@ -33,7 +33,7 @@ function frontmatter(text) {
 
 const requiredRoot = ["README.md", "AGENTS.md", "CODEX.md", "CLAUDE.md", "GEMINI.md", "CONTRIBUTING.md"];
 for (const file of requiredRoot) if (!existsSync(path.join(root, file))) errors.push(`Missing ${file}`);
-for (const directory of ["principles", "standards", "checklists", "governance", "references", "context-packs", "skills", "agents", "prompts", "templates", "examples", "platforms", "manifests", "installers", "routing", "knowledge"]) {
+for (const directory of ["principles", "standards", "checklists", "governance", "references", "context-packs", "skills", "agents", "commands", "prompts", "templates", "examples", "platforms", "manifests", "installers", "routing", "knowledge"]) {
   if (!existsSync(path.join(root, directory))) errors.push(`Missing first-class directory ${directory}/`);
 }
 
