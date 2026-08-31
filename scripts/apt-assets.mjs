@@ -244,12 +244,20 @@ function mappingsFor(manifests, platforms) {
   //   of them into every repo in the workspace regardless of relevance.
   // The install target path is always flat (target/<filename>.md, domain subdirectory dropped)
   // since Claude Code subagent discovery is not known to recurse into .claude/agents/ subfolders.
-  const agentAdapterTargets = { claude: ".claude/agents", codex: ".codex/agents", cursor: ".cursor/agents" };
+  const agentAdapterTargets = {
+    claude: { target: ".claude/agents", source: "platforms/claude/source/agents" },
+    codex: { target: ".codex/agents", source: "platforms/codex/source/agents" },
+    cursor: { target: ".cursor/agents", source: "platforms/cursor/source/agents" },
+    // Copilot adapters are generated under generated/ so the hand-authored
+    // *.agent.md maintainer chat modes at the top level stay untouched.
+    copilot: { target: ".github/agents", source: "platforms/github-copilot/source/agents/generated" },
+  };
   const selectedAgentFiles = new Set(selected.get("agents") || []);
   const scopedPlatformAgentPaths = globallyReferencedPlatformAgentPaths();
-  for (const [platform, targetPrefix] of Object.entries(agentAdapterTargets)) {
+  for (const [platform, cfg] of Object.entries(agentAdapterTargets)) {
     if (!platforms.includes(platform)) continue;
-    const agentSourceDir = path.join(sourceRoot, "platforms", platform, "source", "agents");
+    const targetPrefix = cfg.target;
+    const agentSourceDir = path.join(sourceRoot, cfg.source);
     if (!exists(agentSourceDir) || !statSync(agentSourceDir).isDirectory()) continue;
     // Collect every selected candidate first (source, filename, domain) instead of installing
     // as we walk, so a filename collision between two genuinely different agents -- e.g. the
@@ -264,14 +272,16 @@ function mappingsFor(manifests, platforms) {
           collectAgentAdapters(childPath, entry.name);
           continue;
         }
-        if (!entry.isFile() || !entry.name.endsWith(".md")) continue;
+        if (!entry.isFile() || !/\.(agent\.md|mdc|md)$/.test(entry.name)) continue;
         const source = normalize(path.relative(sourceRoot, childPath));
+        // Strip the platform-specific extension to compare against canonical (.md) selections.
+        const canonicalName = entry.name.replace(/\.(agent\.md|mdc|md)$/, ".md");
         if (domain) {
           // LOCAL file: install only if ITS OWN canonical counterpart (agents/<domain>/<name>.md)
           // -- not just some other file in the same domain -- was actually selected. This is what
           // makes a manifest's single-file entry (e.g. "agents/architecture/apt-api-architect.md")
           // behave precisely, rather than pulling in the whole domain because one sibling matched.
-          const canonicalEquivalent = `agents/${domain}/${entry.name}`;
+          const canonicalEquivalent = `agents/${domain}/${canonicalName}`;
           if (!selectedAgentFiles.has(canonicalEquivalent) && !selectedAgentFiles.has(source)) continue;
         } else if (scopedPlatformAgentPaths.has(source) && !selectedAgentFiles.has(source)) {
           continue;

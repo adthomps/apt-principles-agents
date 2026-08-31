@@ -170,8 +170,10 @@ const EMITTERS = {
   claude: { dir: path.join(root, "platforms", "claude", "source", "agents"), render: claudeAdapter, ext: ".md" },
   codex: { dir: path.join(root, "platforms", "codex", "source", "agents"), render: codexAdapter, ext: ".md" },
   cursor: { dir: path.join(root, "platforms", "cursor", "source", "agents"), render: cursorAdapter, ext: ".mdc" },
+  // github-copilot: emitted into generated/ so the 9 hand-authored *.agent.md
+  // maintainer chat modes at the top level are untouched.
+  copilot: { dir: path.join(root, "platforms", "github-copilot", "source", "agents", "generated"), render: copilotAdapter, ext: ".agent.md" },
 };
-void copilotAdapter; // emitter drafted; not wired until .github/agents install lands
 
 const canonical = walk(path.join(root, "agents")).filter((f) => f.endsWith(".md") && !f.endsWith("README.md"));
 const diffs = [];
