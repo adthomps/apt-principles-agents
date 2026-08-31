@@ -74,6 +74,31 @@ not `.claude/`. `apt-anet-hosted-toolbox` is registered but not checked out.
 `apt-product-team` is declared local-only (`.apt/local-agents.md`); do not sync
 it as a consumer unless it becomes its own repo.
 
+## Consumer state at hand-off (2026-08-30)
+
+Every consumer carries uncommitted changes — mostly the un-committed 2026-08-29
+partial APT sync, which a fresh `sync --force` supersedes; a few carry real
+application WIP that must be committed or stashed first. Resolve each repo's
+own state before syncing.
+
+| Repo | Branch | Dirty | Real app WIP | Note |
+| --- | --- | --- | --- | --- |
+| adthomps.github.io | main | 54 | ~2 | APT-sync dirt |
+| applied-practical-thinking | preview | 103 | ~2 | on a feature branch |
+| apt-anet-integration-toolbox | main | 125 | ~2 | large APT-sync dirt |
+| apt-commerce | preview | 119 | **66** | active feature work — commit/stash first |
+| apt-design-reference | main | 26 | 0 | APT-sync dirt only |
+| apt-dream-to-reality | main | 36 | ~1 | APT-sync dirt |
+| apt-health | main | 109 | ~2 | large APT-sync dirt |
+| apt-intake | detached | — | — | different Windows owner; needs `safe.directory` + a branch |
+| apt-intelligence-core | main | 34 | ~4 | APT-sync dirt |
+| apt-knowledge-hub | master | 64 | ~4 | APT-sync dirt |
+| apt-novel-reviewer | main | 30 | ~2 | APT-sync dirt |
+| apt-security-harness | main | 35 | ~2 | codex-only target |
+| crt-world | main | 86 | ~2 | APT-sync dirt |
+
+All consumers pin `installation.json` to `620fc6a` (pre agent-system).
+
 ## Rollback
 
 Per repo: `git reset --hard HEAD~1` (the sync commit), or restore individual
