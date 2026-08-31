@@ -59,12 +59,15 @@ node ../apt-principles-agents/scripts/apt-assets.mjs scan --target .   # all man
 
 ## Live check (do once, in apt-commerce)
 
-Open a Claude Code session rooted at the consumer and run `/agents`. Confirm the
-APT agents list, then ask it to invoke one via Task (e.g. `apt-task-router` or
-`glyph`) on a trivial prompt. The static equivalent — every generated adapter
-parses as a valid subagent (`name` a slug, `tools` real, `model` set) — is
-checked by `npm run check` in `apt-principles-agents` (`validate:adapters`) and
-was 89/89 OK at rollout time.
+The `/agents` management wizard has been removed from Claude Code; subagents are
+just the files in `.claude/agents/`. To verify: open a Claude Code session
+rooted at the consumer and ask it to run one of the installed APT subagents on a
+trivial prompt (e.g. "use the `glyph` subagent to review this file" or "have
+`apt-task-router` classify this request"). Confirm it dispatches via the Task
+tool rather than answering inline. The static equivalent — every generated
+adapter parses as a valid subagent (`name` a slug, `tools` real, `model` set) —
+is checked by `npm run check` in `apt-principles-agents` (`validate:adapters`)
+and was 89/89 OK at rollout time.
 
 ## Order
 
