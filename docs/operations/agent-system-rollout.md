@@ -63,8 +63,11 @@ The `/agents` management wizard has been removed from Claude Code; subagents are
 just the files in `.claude/agents/`. To verify: open a Claude Code session
 rooted at the consumer and ask it to run one of the installed APT subagents on a
 trivial prompt (e.g. "use the `glyph` subagent to review this file" or "have
-`apt-task-router` classify this request"). Confirm it dispatches via the Task
-tool rather than answering inline. The static equivalent — every generated
+`apt-router` decide which reviewers this diff needs"). Confirm it dispatches via
+the Task tool rather than answering inline. Use `scope: global` agents like
+`apt-router`, `apt-principal`, `glyph`, `javik` — a `scope: domain` agent such as
+`apt-task-router` (harness) only ships to consumers whose manifest selects that
+domain (`ai-development` for the whole `agents/harness/` set). The static equivalent — every generated
 adapter parses as a valid subagent (`name` a slug, `tools` real, `model` set) —
 is checked by `npm run check` in `apt-principles-agents` (`validate:adapters`)
 and was 89/89 OK at rollout time.
