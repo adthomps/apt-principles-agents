@@ -2,7 +2,7 @@
 title: Legacy Adapter Reconciliation
 kind: guide
 domain: governance
-status: draft
+status: active
 owner: APT
 last_updated: 2026-08-30
 source_paths: ["apt-principles-agents/platforms/claude/source/agents"]
@@ -10,36 +10,32 @@ source_paths: ["apt-principles-agents/platforms/claude/source/agents"]
 
 # Legacy Adapter Reconciliation
 
-Fourteen files in `platforms/claude/source/agents/` have **no canonical
-`agents/<domain>/<id>.md` source**, so `build-agent-adapters.mjs` does not own
-them. Their frontmatter was normalized to Claude-native form on 2026-08-30, but
-each still needs a promote / retire / keep decision, and none have codex or
-cursor equivalents.
+Fourteen files in `platforms/claude/source/agents/` had **no canonical
+`agents/<domain>/<id>.md` source**. **Executed 2026-08-30**: 4 promoted to
+canonical, 8 retired (adapter deleted, ledger entry → `retired`), 2 kept as
+Claude-only adapter-only files. The table below records the outcome.
 
-| Adapter | Recommendation | Rationale |
+| Adapter | Outcome | Detail |
 | --- | --- | --- |
-| `ai-output-auditor` | **Promote** to `agents/engineering/` | Unique lens (unsupported-claim / invented-API audit of generated output); no canonical equivalent. |
-| `apt-principles-reviewer` | **Promote** to `agents/core/` | The "does this diff match APT doctrine" meta-review; distinct from `apt-principal` (synthesis) and `apt-router` (selection). |
-| `apt-readiness-auditor` | **Retire** | Overlaps `agents/harness/apt-repo-scanner` + `apt-verifier`; fold its scoring rubric into `apt-repo-scanner`. |
-| `repo-standardizer` | **Retire** | Overlaps `agents/harness/apt-installer` + `apt-repair-agent`. |
-| `cloudflare-architect` | **Retire** | Overlaps `agents/harness/apt-cloudflare-builder` + `agents/engineering/drack`. Update `manifests/cloudflare.yaml`. |
-| `cloudflare-react-hono-architect` | **Retire** | Subsumed by `drack`. |
-| `cloudflare-modernization-architect` | **Retire** | Overlaps `agents/architecture/apt-modernization-architect`. Update `manifests/cloudflare.yaml`. |
-| `documentation-architect` | **Retire** | Overlaps `agents/docs/apt-docs-reviewer` + `apt-product-hub-builder`. |
-| `documentation-normalizer` | **Promote** to `agents/docs/` | The consolidate-scattered-docs task is distinct from reviewing a single deliverable. |
-| `intent-ux-reviewer` | **Promote** to `agents/design/` | `agents/design/` is an empty category; this is its first real agent. Update `manifests/ux-review.yaml`. |
-| `api-experience-reviewer` | **Retire** | Overlaps `agents/api/glyph` + `apt-modern-api-designer`. |
-| `service-readiness-reviewer` | **Retire** | Overlaps `agents/customer/apt-support-operations-reviewer` + the `service-readiness` skills. |
-| `lovable-to-apt-architect` | **Keep as adapter-only** | Lovable-specific migration path; niche, not doctrine. Referenced by `manifests/lovable.yaml`. |
-| `lovable-to-cloudflare-architect` | **Keep as adapter-only** | Same. |
+| `ai-output-auditor` | **Promoted** | → `agents/engineering/ai-output-auditor.md` |
+| `apt-principles-reviewer` | **Promoted** | → `agents/core/apt-principles-reviewer.md` |
+| `documentation-normalizer` | **Promoted** | → `agents/docs/documentation-normalizer.md` |
+| `intent-ux-reviewer` | **Promoted** | → `agents/design/intent-ux-reviewer.md` (first agent in `design`); `manifests/ux-review.yaml` repointed |
+| `apt-readiness-auditor` | **Retired** | covered by `agents/harness/apt-repo-scanner` + `apt-verifier` |
+| `repo-standardizer` | **Retired** | covered by `agents/harness/apt-installer` + `apt-repair-agent` |
+| `cloudflare-architect` | **Retired** | covered by `agents/harness/apt-cloudflare-builder` + `agents/engineering/drack`; dropped from `manifests/cloudflare.yaml` |
+| `cloudflare-react-hono-architect` | **Retired** | subsumed by `drack` |
+| `cloudflare-modernization-architect` | **Retired** | covered by `agents/architecture/apt-modernization-architect` (added to `manifests/cloudflare.yaml`) |
+| `documentation-architect` | **Retired** | covered by `agents/docs/apt-docs-reviewer` + `apt-product-hub-builder` |
+| `api-experience-reviewer` | **Retired** | covered by `agents/api/glyph` + `apt-modern-api-designer` |
+| `service-readiness-reviewer` | **Retired** | covered by `agents/customer/apt-support-operations-reviewer` + `service-readiness` skills |
+| `lovable-to-apt-architect` | **Kept adapter-only** | Lovable-specific migration path; niche, not doctrine. `manifests/lovable.yaml`. |
+| `lovable-to-cloudflare-architect` | **Kept adapter-only** | Same. |
 
-## Next steps
+## Remaining
 
-1. Promote the four (`ai-output-auditor`, `apt-principles-reviewer`,
-   `documentation-normalizer`, `intent-ux-reviewer`): write
-   `agents/<domain>/<id>.md` in the `agentContract` format, run
-   `npm run build:agents`, remove the hand-maintained adapter.
-2. Retire the eight: delete the adapter, update any manifest that lists it, and
-   note the replacement agent in the manifest comment.
-3. Extend `build-agent-adapters.mjs` to also emit codex/cursor forms for the two
-   kept adapter-only files, or accept them as Claude-only.
+The two kept adapter-only files are Claude-only (no codex/cursor form) and still
+carry hand-maintained frontmatter. Either extend `build-agent-adapters.mjs` to
+pass adapter-only Claude files through to codex/cursor, or accept them as
+Claude-only. Retired adapters' `.claude/agents/<id>.md` copies in the consumers
+are removed by the next `sync --force` (they show as `would-remove-retired`).
