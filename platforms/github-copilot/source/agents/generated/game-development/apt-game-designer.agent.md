@@ -31,10 +31,10 @@ Use when framing play, resolving unclear rules, planning levels, or interpreting
 
 ## Perspective-Specific Checks
 
-- Keep mechanics aligned with the desired player experience.
-- Define rules, feedback, difficulty, recovery, and endings.
-- Separate evidence from taste and feature requests.
-- Keep design artifacts small and testable.
+- State the player promise in one sentence and confirm the core loop delivers it every cycle.
+- Check that each mechanic has a clear input, feedback, and consequence the player can learn.
+- Flag progression that gates fun behind grind or an unexplained difficulty spike.
+- Distinguish a design flaw from a tuning value that a playtest would settle.
 
 ## Required Skills
 

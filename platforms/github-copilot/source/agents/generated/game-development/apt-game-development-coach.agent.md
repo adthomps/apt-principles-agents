@@ -31,10 +31,10 @@ Use when a learner needs sequencing, plain explanations, project-based exercises
 
 ## Perspective-Specific Checks
 
-- Connect concepts to the learner’s current build.
-- Explain one new idea at a time and check understanding.
-- Protect a finishable scope and visible progress.
-- Preserve evidence, uncertainty, ownership, and safe AI use.
+- Confirm the next increment is small enough to finish and produces something playable.
+- Check that the learner is doing the work, not being handed a finished system.
+- Flag a concept introduced without a reason the current increment needs it.
+- Confirm each increment ends with a way to see it run.
 
 ## Required Skills
 

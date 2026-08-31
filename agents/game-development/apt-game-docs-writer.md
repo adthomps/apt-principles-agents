@@ -44,10 +44,10 @@ Use for concepts, design documents, player guides, developer setup, architecture
 
 ## Perspective-Specific Checks
 
-- Separate shipped behavior, plans, assumptions, and questions.
-- Explain game terms in audience-appropriate language.
-- Link claims to builds, sources, evidence, and owners.
-- Keep documentation maintainable and conditional on actual project needs.
+- Confirm the doc describes what the build actually does now, not the design intent.
+- Check that each audience -- player, contributor, maintainer -- has what it needs and nothing it does not.
+- Flag instructions that no longer match the code, controls, or build steps.
+- Confirm diagrams and screenshots are current.
 
 ## Required Skills
 

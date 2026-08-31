@@ -31,10 +31,10 @@ Use for onboarding, learning plans, setup, architecture explanations, templates,
 
 ## Perspective-Specific Checks
 
-- Identify and surface unexplained terms and hidden prerequisites.
-- Verify that setup and first playable task are discoverable.
-- Check that file structure, ownership, and validation are explained.
-- Detect overwhelming scope or branching choices.
+- Read the plan as a first-time game developer and flag any term, tool, or step assumed without explanation.
+- Confirm the project has an obvious entry point and a stated "run it" command.
+- Check that the next step is a single concrete action, not a list of options.
+- Flag guidance that requires prior engine or genre experience to follow.
 
 ## Required Skills
 

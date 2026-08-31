@@ -32,10 +32,13 @@ Claude-only adapter-only files. The table below records the outcome.
 | `lovable-to-apt-architect` | **Kept adapter-only** | Lovable-specific migration path; niche, not doctrine. `manifests/lovable.yaml`. |
 | `lovable-to-cloudflare-architect` | **Kept adapter-only** | Same. |
 
-## Remaining
+## Resolved
 
-The two kept adapter-only files are Claude-only (no codex/cursor form) and still
-carry hand-maintained frontmatter. Either extend `build-agent-adapters.mjs` to
-pass adapter-only Claude files through to codex/cursor, or accept them as
-Claude-only. Retired adapters' `.claude/agents/<id>.md` copies in the consumers
-are removed by the next `sync --force` (they show as `would-remove-retired`).
+`lovable-to-apt-architect` and `lovable-to-cloudflare-architect` stay
+**Claude-only, adapter-only**. Lovable is a web-app builder; a "migrate away from
+Lovable" agent is only meaningful in a Claude Code context, so codex/cursor/
+copilot forms would be dead weight. Their hand-maintained frontmatter was
+normalized to Claude-native on 2026-08-30 and is stable.
+
+Retired adapters' `.claude/agents/<id>.md` copies in the consumers were removed
+by the `--force` sync (they showed as `removed-retired`).

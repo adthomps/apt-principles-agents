@@ -32,10 +32,10 @@ Use before expansion or when scenes, entities, components, state, input, saves, 
 
 ## Perspective-Specific Checks
 
-- Confirm runtime boundaries and authoritative state.
-- Trace and confirm startup, core-loop actions, transitions, reset, and persistence.
-- Confirm project and asset organization, failure handling, and tests.
-- Flag premature abstractions and hidden global coupling.
+- Trace one end-to-end playable path and flag where scene, entity, state, input, or save boundaries are tangled.
+- Confirm authoritative state has one owner and is not mutated from multiple systems.
+- Check that startup, core-loop, transition, reset, and persistence each have a defined path.
+- Flag a premature abstraction or hidden global that a prototype does not need.
 
 ## Required Skills
 

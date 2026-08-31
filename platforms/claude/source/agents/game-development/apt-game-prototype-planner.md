@@ -32,10 +32,10 @@ Use before implementation or when a team is polishing without answering the main
 
 ## Perspective-Specific Checks
 
-- Define one experiment and decision.
-- Sequence the shortest end-to-end playable path.
-- Specify placeholders, exclusions, evidence, and exit criteria.
-- Coordinate design, architecture, testing, and documentation owners.
+- State the single riskiest assumption and confirm the prototype actually tests it.
+- Check the plan is timeboxed and names what "learned enough" looks like.
+- Flag scope in the prototype that does not serve the assumption under test.
+- Confirm there is a keep / change / cut decision at the end.
 
 ## Required Skills
 

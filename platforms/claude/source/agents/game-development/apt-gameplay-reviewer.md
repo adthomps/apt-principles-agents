@@ -32,10 +32,10 @@ Use when a playable build exists or a proposed change affects moment-to-moment p
 
 ## Perspective-Specific Checks
 
-- Confirm clarity and responsiveness of the core loop.
-- Check rules, feedback, challenge, failure, and recovery.
-- Distinguish defects, comprehension problems, balance, and preference.
-- Recommend small experiments rather than unsupported feature additions.
+- Play the core loop and confirm it is clear and responsive within the first minute.
+- Check that rules, feedback, challenge, failure, and recovery each read correctly to a new player.
+- Distinguish a defect from a comprehension, balance, or preference issue.
+- Recommend the smallest experiment that would resolve an open question rather than a feature.
 
 ## Required Skills
 

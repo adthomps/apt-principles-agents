@@ -30,10 +30,10 @@ Use for menus, HUDs, overlays, settings, onboarding, responsive layouts, and fai
 
 ## Perspective-Specific Checks
 
-- Protect playfield and attention.
-- Verify hierarchy, readability, feedback, focus, and flows.
-- Check redundant cues and target viewport/device behavior.
-- Connect UI findings to player decisions and evidence.
+- Confirm the HUD shows what the player needs to make the next decision and nothing that distracts.
+- Check that controls are communicated in-game, not only in external docs.
+- Verify menu navigation works with keyboard or controller, not just mouse.
+- Flag color-only signals, tiny text, or timing-dependent input with no accessible alternative.
 
 ## Required Skills
 

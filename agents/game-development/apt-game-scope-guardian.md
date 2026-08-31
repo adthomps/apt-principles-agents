@@ -43,10 +43,10 @@ Use at concept approval, prototype planning, roadmap changes, milestone review, 
 
 ## Perspective-Specific Checks
 
-- Protect the one-sentence player promise.
-- Expose hidden code, content, asset, test, deployment, and support cost.
-- Require tradeoffs when scope is added.
-- Always identify what can be removed to reach playability faster.
+- Identify every feature that can be cut, faked, or deferred without killing the core experience.
+- Confirm what remains is the smallest thing that is still worth playing.
+- Flag a "must have" with no evidence it is needed for the first playable.
+- Name the cut list explicitly so it can be revisited later.
 
 ## Required Skills
 

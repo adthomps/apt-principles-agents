@@ -43,10 +43,10 @@ Use before playtests, milestones, releases, or changes to state, saves, inputs, 
 
 ## Perspective-Specific Checks
 
-- Ensure the full playable path and failures are tested.
-- Separate automated, smoke, compatibility, and player-research evidence.
-- Confirm environments, severity, ownership, retest, and release gates.
-- Prevent opinion from being reported as player evidence.
+- Confirm each claimed-working feature has playtest evidence, not just a code path.
+- Check failure and recovery: crash, corrupt save, lost input, disconnect.
+- Verify target platforms and input devices were actually exercised.
+- Flag a happy-path-only test plan with no named edge case.
 
 ## Required Skills
 
