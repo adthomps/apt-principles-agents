@@ -17,6 +17,7 @@ enforceable domain with no agent row is unenforced doctrine.
 | Principle | Enforced by agents | Via skills | Enforcement |
 | --- | --- | --- | --- |
 | `principles/ai/agent-design.md` | `apt-architect`, `apt-cloudflare-builder`, `apt-code-reviewer`, `apt-cost-controller`, `apt-harness-docs-reviewer`, `apt-installer`, `apt-model-router`, `apt-repair-agent`, `apt-repo-scanner`, `apt-security-reviewer`, `apt-task-router`, `apt-ui-reviewer`, `apt-verifier` | — | agent |
+| `principles/ai/ai-safety-and-evaluation.md` | `ai-output-auditor` | `hallucination-review` | agent |
 | `principles/api/ai-consumable-apis.md` | `apt-ai-consumable-api-reviewer` | `ai-consumable-api-design` | agent |
 | `principles/api/api-versioning.md` | `apt-api-bridge-reviewer` | `bridge-architecture-review` | agent |
 | `principles/api/json-first-design.md` | `apt-modern-api-designer` | `modern-api-design` | agent |
@@ -28,7 +29,10 @@ enforceable domain with no agent row is unenforced doctrine.
 | `principles/architecture/modernization-architecture.md` | `apt-modernization-architect` | `api-modernization-planner` | agent |
 | `principles/architecture/payment-architecture.md` | `apt-payment-architect`, `wrex` | `payment-architecture-review`, `payment-lifecycle-analysis` | agent |
 | `principles/architecture/system-architecture.md` | `javik` | `system-architecture-review` | agent |
+| `principles/design/accessibility.md` | `intent-ux-reviewer` | `intent-based-ui-design` | agent |
+| `principles/design/intent-based-design.md` | `intent-ux-reviewer` | `intent-based-ui-design` | agent |
 | `principles/design/role-based-experience.md` | `apt-ai-agent-user-reviewer`, `apt-bank-acquirer-reviewer`, `apt-business-user-reviewer`, `apt-developer-integrator-reviewer`, `apt-support-operations-reviewer` | `agent-routing`, `customer-journey-mapping`, `developer-guide-writer`, `partner-acquirer-onboarding-review`, `support-readiness-review` | agent |
+| `principles/documentation/audience-layered-docs.md` | `documentation-normalizer` | `audience-layered-docs` | agent |
 | `principles/documentation/README.md` | `apt-api-docs-writer`, `apt-audience-docs-reviewer`, `apt-demo-and-diagram-planner`, `apt-docs-reviewer`, `apt-implementation-blueprint-writer`, `apt-product-hub-builder` | `api-guide-writer`, `audience-layered-docs`, `demo-plan-writer`, `diagram-generator`, `implementation-blueprint-writer`, `product-hub-builder` | agent |
 | `principles/ecommerce/cart-to-payment-flow.md` | `apt-checkout-reviewer` | `checkout-experience-review` | agent |
 | `principles/ecommerce/checkout-design.md` | `apt-checkout-reviewer` | `checkout-experience-review` | agent |
@@ -36,8 +40,9 @@ enforceable domain with no agent row is unenforced doctrine.
 | `principles/ecommerce/marketplace-payments.md` | `kaidan` | `partner-acquirer-onboarding-review` | agent |
 | `principles/ecommerce/merchant-onboarding.md` | `apt-merchant-onboarding-reviewer` | `merchant-onboarding-review` | agent |
 | `principles/execution/delivery-increments.md` | `apt-launch-readiness-lead`, `apt-prd-writer`, `apt-voice-of-customer-analyst`, `miranda` | `prd-writer`, `roadmap-planner`, `voice-of-customer`, `launch-readiness-review` | agent |
-| `principles/execution/quality-and-testing.md` | `apt-engineering-reviewer`, `apt-refactor-agent`, `drack` | `cloudflare-hono-architecture`, `implementation-review`, `refactor-safety` | agent |
-| `principles/framework.md` | `apt-architecture-lead`, `apt-design-lead`, `apt-execution-lead`, `apt-principal`, `apt-router`, `apt-thinking-lead` | `agent-routing`, `system-architecture-review`, `intent-based-ui-design`, `implementation-review`, `decision-rationalization`, `problem-framing` | agent |
+| `principles/execution/knowledge-and-learning.md` | `documentation-normalizer` | `audience-layered-docs` | agent |
+| `principles/execution/quality-and-testing.md` | `ai-output-auditor`, `apt-engineering-reviewer`, `apt-principles-reviewer`, `apt-refactor-agent`, `drack` | `hallucination-review`, `cloudflare-hono-architecture`, `implementation-review`, `refactor-safety` | agent |
+| `principles/framework.md` | `apt-architecture-lead`, `apt-design-lead`, `apt-execution-lead`, `apt-principal`, `apt-principles-reviewer`, `apt-router`, `apt-thinking-lead` | `agent-routing`, `system-architecture-review`, `intent-based-ui-design`, `implementation-review`, `decision-rationalization`, `problem-framing` | agent |
 | `principles/game-development/README.md` | `apt-beginner-game-dev-reviewer`, `apt-game-architect`, `apt-game-designer`, `apt-game-development-coach`, `apt-game-docs-writer`, `apt-game-prototype-planner`, `apt-game-scope-guardian`, `apt-game-testing-reviewer`, `apt-game-ui-reviewer`, `apt-gameplay-reviewer` | `game-architecture-review`, `game-dev-learning-plan`, `game-engine-selection`, `game-idea-framing`, `game-loop-designer`, `game-scope-review`, `game-state-design`, `game-test-plan`, `game-ui-hud-review`, `input-control-design`, `mechanics-designer`, `player-journey-mapping`, `playtest-feedback-review`, `prototype-planner`, `save-system-design` | agent |
 | `principles/modernization/api-facade-design.md` | `apt-api-bridge-reviewer`, `apt-gateway-migration-reviewer` | `bridge-architecture-review`, `gateway-design` | agent |
 | `principles/modernization/deprecation-planning.md` | `apt-api-migration-planner` | `modern-api-design` | agent |
@@ -58,7 +63,6 @@ enforceable domain with no agent row is unenforced doctrine.
 | `principles/stablecoin-crypto/stablecoin-readiness.md` | `suvi` | `stablecoin-readiness-review` | agent |
 | `principles/thinking/beginner-clarity.md` | `apt-beginner-user-reviewer`, `apt-new-developer-reviewer`, `apt-new-merchant-reviewer`, `apt-new-support-agent-reviewer` | `developer-guide-writer`, `merchant-onboarding-review`, `kb-article-writer`, `beginner-clarity-review` | agent |
 | `principles/thinking/practical-thinking.md` | `apt-architecture-lead`, `apt-design-lead`, `apt-execution-lead`, `apt-principal`, `apt-router`, `apt-thinking-lead` | `agent-routing`, `system-architecture-review`, `intent-based-ui-design`, `implementation-review`, `decision-rationalization`, `problem-framing` | agent |
-| `principles/ai/ai-safety-and-evaluation.md` | — | — | **unenforced** |
 | `principles/ai/local-llm-routing.md` | — | — | **unenforced** |
 | `principles/ai/model-routing.md` | — | — | **unenforced** |
 | `principles/ai/prompt-engineering.md` | — | — | **unenforced** |

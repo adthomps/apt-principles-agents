@@ -70,6 +70,11 @@ const AGENT_PRINCIPLES = {
   "apt-api-architect": ["principles/architecture/api-architecture.md"],
   "apt-integration-architect": ["principles/architecture/integration-architecture.md", "principles/architecture/event-driven-architecture.md"],
   "apt-modernization-architect": ["principles/architecture/modernization-architecture.md"],
+  // promoted-from-adapter agents
+  "ai-output-auditor": ["principles/ai/ai-safety-and-evaluation.md", "principles/execution/quality-and-testing.md"],
+  "apt-principles-reviewer": ["principles/framework.md", "principles/execution/quality-and-testing.md"],
+  "documentation-normalizer": ["principles/documentation/audience-layered-docs.md", "principles/execution/knowledge-and-learning.md"],
+  "intent-ux-reviewer": ["principles/design/intent-based-design.md", "principles/design/accessibility.md"],
 };
 
 const DOMAIN_PRINCIPLES = {
@@ -87,6 +92,7 @@ const DOMAIN_PRINCIPLES = {
   engineering: ["principles/execution/quality-and-testing.md"],
   "beginner-reviewers": ["principles/thinking/beginner-clarity.md"],
   customer: ["principles/design/role-based-experience.md"],
+  design: ["principles/design/README.md"],
   "game-development": ["principles/game-development/README.md"],
   thinking: ["principles/thinking/practical-thinking.md"],
 };

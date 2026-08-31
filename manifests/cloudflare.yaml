@@ -16,8 +16,7 @@ skills:
   - platforms/codex/source/skills/cloudflare-modernization/
 agents:
   - agents/engineering/drack.md
-  - platforms/claude/source/agents/cloudflare-architect.md
-  - platforms/claude/source/agents/cloudflare-modernization-architect.md
+  - agents/architecture/apt-modernization-architect.md
 templates:
 prompts:
 knowledge:

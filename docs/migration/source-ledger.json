@@ -213,61 +213,61 @@
     {
       "source": "apt-agent-standards/claude/agents/ai-output-auditor.md",
       "classification": "migrated",
-      "destination": "platforms/claude/source/agents/ai-output-auditor.md",
+      "destination": "agents/engineering/ai-output-auditor.md",
       "rationale": "Preserved as active source-backed guidance."
     },
     {
       "source": "apt-agent-standards/claude/agents/api-experience-reviewer.md",
-      "classification": "migrated",
+      "classification": "retired",
       "destination": "platforms/claude/source/agents/api-experience-reviewer.md",
       "rationale": "Preserved as active source-backed guidance."
     },
     {
       "source": "apt-agent-standards/claude/agents/apt-principles-reviewer.md",
       "classification": "migrated",
-      "destination": "platforms/claude/source/agents/apt-principles-reviewer.md",
+      "destination": "agents/core/apt-principles-reviewer.md",
       "rationale": "Preserved as active source-backed guidance."
     },
     {
       "source": "apt-agent-standards/claude/agents/apt-readiness-auditor.md",
-      "classification": "migrated",
+      "classification": "retired",
       "destination": "platforms/claude/source/agents/apt-readiness-auditor.md",
       "rationale": "Preserved as active source-backed guidance."
     },
     {
       "source": "apt-agent-standards/claude/agents/cloudflare-architect.md",
-      "classification": "migrated",
+      "classification": "retired",
       "destination": "platforms/claude/source/agents/cloudflare-architect.md",
       "rationale": "Preserved as active source-backed guidance."
     },
     {
       "source": "apt-agent-standards/claude/agents/cloudflare-modernization-architect.md",
-      "classification": "migrated",
+      "classification": "retired",
       "destination": "platforms/claude/source/agents/cloudflare-modernization-architect.md",
       "rationale": "Preserved as active source-backed guidance."
     },
     {
       "source": "apt-agent-standards/claude/agents/cloudflare-react-hono-architect.md",
-      "classification": "migrated",
+      "classification": "retired",
       "destination": "platforms/claude/source/agents/cloudflare-react-hono-architect.md",
       "rationale": "Preserved as active source-backed guidance."
     },
     {
       "source": "apt-agent-standards/claude/agents/documentation-architect.md",
-      "classification": "migrated",
+      "classification": "retired",
       "destination": "platforms/claude/source/agents/documentation-architect.md",
       "rationale": "Preserved as active source-backed guidance."
     },
     {
       "source": "apt-agent-standards/claude/agents/documentation-normalizer.md",
       "classification": "migrated",
-      "destination": "platforms/claude/source/agents/documentation-normalizer.md",
+      "destination": "agents/docs/documentation-normalizer.md",
       "rationale": "Preserved as active source-backed guidance."
     },
     {
       "source": "apt-agent-standards/claude/agents/intent-ux-reviewer.md",
       "classification": "migrated",
-      "destination": "platforms/claude/source/agents/intent-ux-reviewer.md",
+      "destination": "agents/design/intent-ux-reviewer.md",
       "rationale": "Preserved as active source-backed guidance."
     },
     {
@@ -284,13 +284,13 @@
     },
     {
       "source": "apt-agent-standards/claude/agents/repo-standardizer.md",
-      "classification": "migrated",
+      "classification": "retired",
       "destination": "platforms/claude/source/agents/repo-standardizer.md",
       "rationale": "Preserved as active source-backed guidance."
     },
     {
       "source": "apt-agent-standards/claude/agents/service-readiness-reviewer.md",
-      "classification": "migrated",
+      "classification": "retired",
       "destination": "platforms/claude/source/agents/service-readiness-reviewer.md",
       "rationale": "Preserved as active source-backed guidance."
     },

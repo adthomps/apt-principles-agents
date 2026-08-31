@@ -1,7 +1,28 @@
 {
   "generatedBy": "scripts/build-agent-adapters.mjs",
-  "count": 75,
+  "count": 79,
   "agents": [
+    {
+      "id": "ai-output-auditor",
+      "title": "AI Output Auditor",
+      "domain": "engineering",
+      "scope": "domain",
+      "description": "Use to audit generated code, documentation, plans, review comments, or migration proposals for unsupported claims, invented files or APIs, hidden behavior changes, and missing validation.",
+      "applies_principles": [
+        "principles/ai/ai-safety-and-evaluation.md",
+        "principles/execution/quality-and-testing.md"
+      ],
+      "uses_skills": [
+        "skills/ai-agents/hallucination-review"
+      ],
+      "tools": [
+        "read",
+        "search"
+      ],
+      "model_tier": "standard",
+      "autonomy": "advisory",
+      "canonical_path": "agents/engineering/ai-output-auditor.md"
+    },
     {
       "id": "apt-ai-agent-user-reviewer",
       "title": "Apt AI Agent User Reviewer",
@@ -1078,6 +1099,27 @@
       "canonical_path": "agents/core/apt-principal.md"
     },
     {
+      "id": "apt-principles-reviewer",
+      "title": "APT Principles Reviewer",
+      "domain": "core",
+      "scope": "domain",
+      "description": "Use to review code, documentation, plans, and diffs for APT Core alignment — behavior preservation, clear intent, small reviewable scope with a rollback path, and grounded output with no invented interfaces.",
+      "applies_principles": [
+        "principles/framework.md",
+        "principles/execution/quality-and-testing.md"
+      ],
+      "uses_skills": [
+        "skills/engineering/implementation-review"
+      ],
+      "tools": [
+        "read",
+        "search"
+      ],
+      "model_tier": "standard",
+      "autonomy": "advisory",
+      "canonical_path": "agents/core/apt-principles-reviewer.md"
+    },
+    {
       "id": "apt-product-hub-builder",
       "title": "Apt Product Hub Builder",
       "domain": "docs",
@@ -1330,6 +1372,27 @@
       "canonical_path": "agents/product/apt-voice-of-customer-analyst.md"
     },
     {
+      "id": "documentation-normalizer",
+      "title": "Documentation Normalizer",
+      "domain": "docs",
+      "scope": "domain",
+      "description": "Use to consolidate duplicated, stale, or scattered documentation into canonical homes, proposing a merge, move, and delete plan before any edits.",
+      "applies_principles": [
+        "principles/documentation/audience-layered-docs.md",
+        "principles/execution/knowledge-and-learning.md"
+      ],
+      "uses_skills": [
+        "skills/documentation/audience-layered-docs"
+      ],
+      "tools": [
+        "read",
+        "search"
+      ],
+      "model_tier": "standard",
+      "autonomy": "advisory",
+      "canonical_path": "agents/docs/documentation-normalizer.md"
+    },
+    {
       "id": "drack",
       "title": "Drack",
       "domain": "engineering",
@@ -1369,6 +1432,27 @@
       "model_tier": "standard",
       "autonomy": "advisory",
       "canonical_path": "agents/api/glyph.md"
+    },
+    {
+      "id": "intent-ux-reviewer",
+      "title": "Intent UX Reviewer",
+      "domain": "design",
+      "scope": "domain",
+      "description": "Use to review a product surface through user intent, workflow completion, state design, accessibility, and responsive behavior.",
+      "applies_principles": [
+        "principles/design/intent-based-design.md",
+        "principles/design/accessibility.md"
+      ],
+      "uses_skills": [
+        "skills/design/intent-based-ui-design"
+      ],
+      "tools": [
+        "read",
+        "search"
+      ],
+      "model_tier": "standard",
+      "autonomy": "advisory",
+      "canonical_path": "agents/design/intent-ux-reviewer.md"
     },
     {
       "id": "javik",

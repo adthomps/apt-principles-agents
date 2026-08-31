@@ -14,7 +14,7 @@ skills:
   - platforms/codex/source/skills/ux-review/
 agents:
   - agents/core/apt-design-lead.md
-  - platforms/claude/source/agents/intent-ux-reviewer.md
+  - agents/design/intent-ux-reviewer.md
 templates:
 prompts:
   - prompts/reviews/ui-api-alignment-review.md
