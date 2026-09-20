@@ -16,7 +16,7 @@ enforceable domain with no agent row is unenforced doctrine.
 
 | Principle | Enforced by agents | Via skills | Enforcement |
 | --- | --- | --- | --- |
-| `principles/ai/agent-design.md` | `apt-architect`, `apt-cloudflare-builder`, `apt-code-reviewer`, `apt-cost-controller`, `apt-harness-docs-reviewer`, `apt-installer`, `apt-model-router`, `apt-repair-agent`, `apt-repo-scanner`, `apt-security-reviewer`, `apt-task-router`, `apt-ui-reviewer`, `apt-verifier` | — | agent |
+| `principles/ai/agent-design.md` | `apt-architect`, `apt-cloudflare-builder`, `apt-code-reviewer`, `apt-cost-controller`, `apt-harness-docs-reviewer`, `apt-installer`, `apt-model-router`, `apt-repair-agent`, `apt-repo-scanner`, `apt-security-reviewer`, `apt-task-router`, `apt-ui-reviewer`, `apt-verifier` | `model-selection`, `token-efficiency`, `clarify-before-acting` | agent |
 | `principles/ai/ai-safety-and-evaluation.md` | `ai-output-auditor` | `hallucination-review` | agent |
 | `principles/api/ai-consumable-apis.md` | `apt-ai-consumable-api-reviewer` | `ai-consumable-api-design` | agent |
 | `principles/api/api-versioning.md` | `apt-api-bridge-reviewer` | `bridge-architecture-review` | agent |

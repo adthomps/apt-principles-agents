@@ -1,292 +1,399 @@
 #!/usr/bin/env node
-import {
-  copyFileSync,
-  existsSync,
-  mkdirSync,
-  readFileSync,
-  rmSync,
-  statSync,
-  writeFileSync,
-} from "node:fs";
+import { copyFileSync, cpSync, existsSync, mkdirSync, readFileSync, readdirSync, renameSync, statSync, writeFileSync } from "node:fs";
 import path from "node:path";
 import { spawnSync } from "node:child_process";
 import { fileURLToPath } from "node:url";
 
 const operatorRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
-const workspaceRoot = path.resolve(operatorRoot, "..");
+const workspaceRoot = path.dirname(operatorRoot);
 const manifestPath = path.join(operatorRoot, "references", "graphify-portfolio.json");
-const allowedParticipation = new Set([
-  "deep",
-  "lightweight-on-demand",
-  "portfolio-metadata",
-  "selected-provenance",
-  "ordinary-docs-search",
-]);
 
-function normalize(value) {
-  return value.replaceAll("\\", "/");
+function normalize(value) { return value.replaceAll("\\", "/"); }
+function inside(parent, candidate) {
+  const relative = path.relative(path.resolve(parent), path.resolve(candidate));
+  return relative === "" || (!relative.startsWith("..") && !path.isAbsolute(relative));
 }
-
-function inside(parent, child) {
-  const relative = path.relative(parent, child);
-  return relative !== "" && !relative.startsWith("..") && !path.isAbsolute(relative);
+function loadManifest() { return JSON.parse(readFileSync(manifestPath, "utf8")); }
+function projectByName(manifest, name) {
+  const project = manifest.projects.find((item) => item.name === name);
+  if (!project) throw new Error(`Unknown project: ${name}`);
+  return project;
 }
-
-function loadManifest() {
-  return JSON.parse(readFileSync(manifestPath, "utf8"));
+function packById(manifest, id) {
+  const pack = manifest.investigation_packs.find((item) => item.id === id);
+  if (!pack) throw new Error(`Unknown investigation pack: ${id}`);
+  return pack;
 }
+function isPack(manifest, target) { return manifest.investigation_packs.some((item) => item.id === target); }
 
 function parseArgs(argv) {
-  const args = { command: argv[0] || "audit", target: argv[1] || "portfolio", run: false, deep: false };
-  for (const arg of argv.slice(2)) {
+  if (!argv.length || argv.includes("--help") || argv.includes("-h")) return { command: "help", target: null, help: true, run: false, promote: false, runId: null, fallback: null, deep: false };
+  const args = { command: argv[0], target: null, help: false, run: false, promote: false, runId: null, fallback: null, deep: false };
+  let index = 1;
+  if (argv[index] && !argv[index].startsWith("--")) args.target = argv[index++];
+  while (index < argv.length) {
+    const arg = argv[index++];
     if (arg === "--run") args.run = true;
+    else if (arg === "--promote") args.promote = true;
+    else if (arg === "--run-id") args.runId = argv[index++] || null;
+    else if (arg === "--fallback") args.fallback = argv[index++] || null;
     else if (arg === "--deep") args.deep = true;
-    else if (arg === "--help" || arg === "-h") args.help = true;
-    else throw new Error(`Unknown argument: ${arg}`);
+    else throw new Error(`Unknown option: ${arg}`);
   }
   return args;
 }
 
-function help() {
+function usage() {
   process.stdout.write([
     "Usage: node scripts/graphify-workspace.mjs <command> [target] [options]",
-    "",
-    "Commands:",
-    "  audit                    validate the manifest, paths, exclusions, and local-only policy",
-    "  stage                    rebuild the ignored curated portfolio corpus",
-    "  build portfolio          stage and build the curated portfolio graph with Ollama",
-    "  build <repo>             build a configured deep repo graph with Ollama",
-    "  views <target>           generate GRAPH_TREE.html and CALLFLOW.html from an existing graph",
-    "  queries <target>         print the five starter graph queries",
-    "  queries <target> --run   run queries and save ignored validation evidence",
-    "",
-    "Options:",
-    "  --deep                   use Graphify semantic deep mode during build",
-    "",
-    "Set GRAPHIFY_OLLAMA_MODEL to override Graphify's Ollama model.",
+    "", "Question-first document workflow:",
+    "  packs                                  list small curated investigation packs",
+    "  stage <pack>                           copy 3-8 allowlisted files into an immutable candidate",
+    "  investigate <pack> [--deep]            run local Ollama semantics; never auto-promotes",
+    "  investigate <pack> --fallback codex    prepare an explicit non-local extraction handoff",
+    "  queries <pack> [--run]                 print or run the pack's focused questions",
+    "", "Deterministic architecture workflow:",
+    "  code <deep-repo> [--promote]           build a local AST-only candidate",
+    "  build <deep-repo> [--promote]          compatibility alias for code",
+    "", "Safety and review:",
+    "  audit                                  validate manifest, sources, exclusions, and policy",
+    "  validate <pack-or-repo> --run-id ID    validate a candidate; add --promote explicitly",
+    "  status <pack-or-repo>                  show current and latest candidate state",
+    "  views <pack-or-repo>                   regenerate views for current",
+    "  quarantine <repo>                      copy a legacy root graph into ignored evidence",
+    "", "Full portfolio semantic builds, automatic promotion, MCP registration, hooks, and schedules are disabled.",
   ].join("\n") + "\n");
 }
 
-function commandResult(command, args, options = {}) {
-  const result = spawnSync(command, args, {
-    cwd: options.cwd || operatorRoot,
-    encoding: "utf8",
-    stdio: options.capture ? "pipe" : "inherit",
-    shell: false,
-    env: process.env,
-  });
-  if (result.error) throw new Error(`${command} is unavailable: ${result.error.message}`);
-  if (result.status !== 0) {
-    const detail = options.capture ? (result.stderr || result.stdout || "").trim() : "";
-    throw new Error(`${command} exited with ${result.status}${detail ? `: ${detail}` : ""}`);
-  }
-  return result;
+function newRunId() { return new Date().toISOString().replaceAll(":", "-"); }
+function assertRunId(runId) {
+  if (!runId || !/^[A-Za-z0-9._-]+$/.test(runId) || runId === "." || runId === "..") throw new Error(`Invalid run id: ${runId}`);
 }
-
-function toolAvailable(command, args) {
-  const result = spawnSync(command, args, { encoding: "utf8", stdio: "pipe", shell: false });
+function outputRoot(manifest) { return path.join(operatorRoot, manifest.output_policy.root); }
+function runRoot(manifest, target, runId) {
+  assertRunId(runId);
+  if (isPack(manifest, target)) return path.join(outputRoot(manifest), "investigations", target, "runs", runId);
+  projectByName(manifest, target);
+  return path.join(workspaceRoot, target, manifest.output_policy.root, manifest.output_policy.runs_directory, runId);
+}
+function currentGraphRoot(manifest, target) {
+  if (isPack(manifest, target)) return path.join(outputRoot(manifest), "investigations", target, manifest.output_policy.current_directory);
+  projectByName(manifest, target);
+  return path.join(workspaceRoot, target, manifest.output_policy.root, manifest.output_policy.current_directory);
+}
+function candidateGraphRoot(candidateRoot) {
+  const nested = path.join(candidateRoot, "graphify-out");
+  return existsSync(path.join(nested, "graph.json")) ? nested : candidateRoot;
+}
+function writeJson(file, value) { writeFileSync(file, `${JSON.stringify(value, null, 2)}\n`, "utf8"); }
+function writeStatus(root, status, details = {}) {
+  mkdirSync(root, { recursive: true });
+  const file = path.join(root, "BUILD_STATUS.json");
+  const previous = existsSync(file) ? JSON.parse(readFileSync(file, "utf8")) : {};
+  writeJson(file, { ...previous, ...details, status, updated_at: new Date().toISOString() });
+}
+function commandResult(command, args, options = {}) {
+  return spawnSync(command, args, { encoding: "utf8", stdio: options.capture ? "pipe" : "inherit", ...options });
+}
+function toolAvailable(command, args = ["--help"]) {
+  const result = spawnSync(command, args, { encoding: "utf8", stdio: "ignore" });
   return !result.error && result.status === 0;
 }
-
-function projectByName(manifest, name) {
-  const project = manifest.projects.find((item) => item.name === name);
-  if (!project) throw new Error(`Unknown Graphify target: ${name}`);
-  return project;
+function semanticArgs(manifest, deepMode = false) {
+  const policy = manifest.semantic_policy;
+  const args = ["--backend", policy.backend, "--model", policy.model, "--max-concurrency", String(policy.max_concurrency), "--token-budget", String(policy.token_budget)];
+  if (deepMode) args.push("--mode", "deep");
+  return args;
 }
 
-function audit(manifest, { quiet = false } = {}) {
+function audit(manifest, quiet = false) {
   const errors = [];
   const warnings = [];
-  if (manifest.schema_version !== 1) errors.push("schema_version must be 1");
-  if (manifest.operator_repository !== "apt-principles-agents") errors.push("operator_repository must be apt-principles-agents");
-  if (manifest.semantic_policy?.mode !== "local-only") errors.push("semantic_policy.mode must be local-only");
-  if (manifest.semantic_policy?.backend !== "ollama") errors.push("semantic_policy.backend must be ollama");
-  if (manifest.semantic_policy?.max_concurrency !== 1) errors.push("semantic_policy.max_concurrency must be 1");
-  if (manifest.semantic_policy?.hosted_backends_allowed !== false) errors.push("hosted_backends_allowed must be false");
-  if (manifest.output_policy?.root !== "graphify-out") errors.push("all generated output must remain under graphify-out");
-  if (manifest.output_policy?.commit_generated_outputs !== false) errors.push("generated Graphify output must remain uncommitted");
-
-  const names = manifest.projects.map((item) => item.name);
-  if (names.length !== 18 || new Set(names).size !== 18) errors.push("projects must list each of the 18 workspace projects exactly once");
-  const requiredCommon = [".git/", "node_modules/", "graphify-out/", ".env", "*.key", "*.sqlite*", "apps/web/public/"];
-  for (const item of requiredCommon) if (!manifest.common_exclusions.includes(item)) errors.push(`common_exclusions missing ${item}`);
-
-  for (const project of manifest.projects) {
-    const repoRoot = path.join(workspaceRoot, project.name);
-    if (!existsSync(repoRoot) || !statSync(repoRoot).isDirectory()) errors.push(`project directory missing: ${project.name}`);
-    if (!allowedParticipation.has(project.participation)) errors.push(`invalid participation mode for ${project.name}`);
-    for (const relative of project.portfolio_paths || []) {
-      const source = path.resolve(repoRoot, relative);
-      if (!inside(repoRoot, source)) errors.push(`portfolio path escapes ${project.name}: ${relative}`);
-      else if (!existsSync(source) || !statSync(source).isFile()) errors.push(`portfolio source missing: ${project.name}/${relative}`);
-    }
-    if (project.participation === "deep") {
-      if (!Array.isArray(project.starter_queries) || project.starter_queries.length !== 5) errors.push(`${project.name} must define exactly five starter queries`);
-      const graphifyIgnore = path.join(repoRoot, ".graphifyignore");
-      const gitIgnore = path.join(repoRoot, ".gitignore");
-      if (!existsSync(graphifyIgnore)) errors.push(`${project.name}/.graphifyignore is missing`);
-      if (!existsSync(gitIgnore) || !readFileSync(gitIgnore, "utf8").split(/\r?\n/).includes("graphify-out/")) {
-        errors.push(`${project.name}/.gitignore must contain graphify-out/`);
-      }
+  const workflow = manifest.workflow || {};
+  const semantic = manifest.semantic_policy || {};
+  const acceptance = manifest.acceptance_policy || {};
+  if (manifest.projects.length !== 18) errors.push(`expected 18 projects, found ${manifest.projects.length}`);
+  if (workflow.full_portfolio_build_enabled !== false) errors.push("full portfolio builds must remain disabled");
+  if (workflow.default_repository_mode !== "code-only") errors.push("default repository mode must be code-only");
+  if (workflow.automatic_promotion !== false) errors.push("automatic promotion must remain disabled");
+  if (workflow.mcp_hooks_and_schedules_enabled !== false) errors.push("MCP, hooks, and schedules must remain disabled during the pivot");
+  if (semantic.mode !== "local-only" || semantic.backend !== "ollama" || semantic.hosted_backends_allowed !== false) errors.push("semantic policy must pin local-only Ollama");
+  if (!semantic.model || semantic.max_concurrency !== 1) errors.push("semantic model is required and concurrency must equal 1");
+  for (const field of ["token_budget", "context_window", "max_output_tokens"]) if (!Number.isInteger(semantic[field]) || semantic[field] < 1) errors.push(`semantic_policy.${field} must be a positive integer`);
+  if (semantic.disable_thinking !== true) errors.push("semantic thinking must remain disabled");
+  for (const mode of ["code_only", "semantic_pack"]) if (!acceptance[mode]) errors.push(`acceptance_policy.${mode} is required`);
+  const packIds = new Set();
+  for (const pack of manifest.investigation_packs || []) {
+    if (!pack.id || packIds.has(pack.id)) errors.push(`duplicate or missing pack id: ${pack.id}`);
+    packIds.add(pack.id);
+    const count = pack.sources?.length || 0;
+    if (count < workflow.semantic_pack_min_files || count > workflow.semantic_pack_max_files) errors.push(`${pack.id} must contain ${workflow.semantic_pack_min_files}-${workflow.semantic_pack_max_files} sources`);
+    if (!Array.isArray(pack.questions) || pack.questions.length < 1 || pack.questions.length > 5) errors.push(`${pack.id} must define 1-5 questions`);
+    for (const relative of pack.sources || []) {
+      const source = path.resolve(workspaceRoot, relative);
+      if (!inside(workspaceRoot, source) || !existsSync(source) || !statSync(source).isFile()) errors.push(`pack source missing or outside workspace: ${relative}`);
     }
   }
-
-  const diagram = path.resolve(operatorRoot, manifest.portfolio.diagram_document);
-  if (!inside(operatorRoot, diagram) || !existsSync(diagram)) errors.push(`portfolio diagram document missing: ${manifest.portfolio.diagram_document}`);
-  const stageRoot = path.resolve(operatorRoot, manifest.portfolio.stage_directory);
-  if (!inside(path.join(operatorRoot, "graphify-out"), stageRoot)) errors.push("portfolio stage_directory must be below graphify-out/");
-  if (!toolAvailable("graphify", ["--version"])) errors.push("Graphify CLI is not available");
-  if (!toolAvailable("ollama", ["list"])) warnings.push("Ollama is not installed or not reachable; semantic builds remain disabled until it is available");
-
-  const hostedKeys = ["GEMINI_API_KEY", "GOOGLE_API_KEY", "OPENAI_API_KEY", "ANTHROPIC_API_KEY", "DEEPSEEK_API_KEY", "KIMI_API_KEY"]
-    .filter((name) => Boolean(process.env[name]));
-  if (hostedKeys.length) warnings.push(`Hosted-model environment variables are present (${hostedKeys.join(", ")}), but build commands explicitly pin --backend ollama`);
-
+  for (const project of manifest.projects) {
+    const repoRoot = path.join(workspaceRoot, project.name);
+    if (!existsSync(repoRoot)) errors.push(`project missing: ${project.name}`);
+    for (const relative of project.portfolio_paths || []) {
+      const source = path.resolve(repoRoot, relative);
+      if (!inside(repoRoot, source) || !existsSync(source)) errors.push(`portfolio inventory source missing: ${project.name}/${relative}`);
+    }
+    if (project.graphify_guide) {
+      const guide = path.resolve(repoRoot, project.graphify_guide);
+      if (!inside(repoRoot, guide) || !existsSync(guide) || !statSync(guide).isFile()) errors.push(`Graphify guide missing: ${project.name}/${project.graphify_guide}`);
+    }
+    if (project.participation === "deep") {
+      if (!existsSync(path.join(repoRoot, ".graphifyignore"))) errors.push(`${project.name} lacks .graphifyignore`);
+      const gitignore = existsSync(path.join(repoRoot, ".gitignore")) ? readFileSync(path.join(repoRoot, ".gitignore"), "utf8") : "";
+      if (!gitignore.includes("graphify-out/")) errors.push(`${project.name} lacks graphify-out/ in .gitignore`);
+    }
+  }
+  if (!existsSync(path.join(operatorRoot, manifest.portfolio.diagram_document))) errors.push("portfolio diagram document is missing");
+  if (!toolAvailable("ollama", ["list"])) warnings.push("Ollama is not reachable on PATH; semantic investigations are unavailable, but code-only graphs still work");
   if (!quiet) {
-    process.stdout.write(`Graphify portfolio audit: ${manifest.projects.length} projects, ${manifest.projects.filter((item) => item.participation === "deep").length} deep graphs\n`);
+    process.stdout.write(`Graphify audit: ${manifest.investigation_packs.length} focused packs; full portfolio build disabled; ${manifest.projects.filter((item) => item.participation === "deep").length} code-only repositories; ${manifest.projects.filter((item) => item.graphify_guide).length} repo guides\n`);
     for (const warning of warnings) process.stdout.write(`WARN: ${warning}\n`);
     for (const error of errors) process.stderr.write(`ERROR: ${error}\n`);
   }
-  if (errors.length) throw new Error(`Graphify portfolio audit failed with ${errors.length} error(s)`);
-  return { warnings };
+  if (errors.length) throw new Error(`Graphify audit failed with ${errors.length} error(s)`);
+  return { errors, warnings };
 }
 
-function copyPortfolioSource(source, destination, records) {
-  mkdirSync(path.dirname(destination), { recursive: true });
-  copyFileSync(source, destination);
-  records.push(normalize(path.relative(workspaceRoot, source)));
-}
-
-function stagePortfolio(manifest) {
-  audit(manifest, { quiet: true });
-  const stageRoot = path.resolve(operatorRoot, manifest.portfolio.stage_directory);
-  const generatedRoot = path.join(operatorRoot, "graphify-out");
-  if (!inside(generatedRoot, stageRoot)) throw new Error(`Refusing to stage outside ${generatedRoot}`);
-  if (existsSync(stageRoot)) rmSync(stageRoot, { recursive: true, force: true });
-  mkdirSync(stageRoot, { recursive: true });
-  const records = [];
-  for (const project of manifest.projects) {
-    for (const relative of project.portfolio_paths || []) {
-      const source = path.resolve(workspaceRoot, project.name, relative);
-      const destination = path.join(stageRoot, project.name, relative);
-      copyPortfolioSource(source, destination, records);
-    }
-  }
-  writeFileSync(path.join(stageRoot, "CORPUS_INDEX.json"), JSON.stringify({
-    generated_at: new Date().toISOString(),
-    policy: manifest.semantic_policy,
-    source_files: records,
-  }, null, 2) + "\n", "utf8");
-  writeFileSync(path.join(stageRoot, ".graphifyignore"), "graphify-out/\nCORPUS_INDEX.json\n", "utf8");
-  process.stdout.write(`Staged ${records.length} curated files in ${stageRoot}\n`);
-  return stageRoot;
-}
-
-function requireLocalBackend() {
-  if (!toolAvailable("ollama", ["list"])) {
-    throw new Error("Local semantic extraction requires Ollama. Install/start Ollama and ensure `ollama list` succeeds; no hosted fallback will be used.");
+function listPacks(manifest) {
+  for (const pack of manifest.investigation_packs) {
+    process.stdout.write(`${pack.id} (${pack.sources.length} files) — ${pack.title}\n`);
+    for (const question of pack.questions) process.stdout.write(`  - ${question}\n`);
   }
 }
 
-function graphLocation(manifest, target) {
-  if (target === "portfolio") {
-    const stageRoot = path.resolve(operatorRoot, manifest.portfolio.stage_directory);
-    return {
-      graphRoot: path.join(stageRoot, "graphify-out"),
-      label: "APT Portfolio",
-    };
+function stagePack(manifest, packId, provenance = "local-ollama") {
+  const pack = packById(manifest, packId);
+  const runId = newRunId();
+  const candidateRoot = runRoot(manifest, packId, runId);
+  const corpusRoot = path.join(candidateRoot, "corpus");
+  mkdirSync(corpusRoot, { recursive: true });
+  for (const relative of pack.sources) {
+    const source = path.resolve(workspaceRoot, relative);
+    const destination = path.join(corpusRoot, relative);
+    if (!inside(corpusRoot, destination)) throw new Error(`Pack source escapes corpus: ${relative}`);
+    mkdirSync(path.dirname(destination), { recursive: true });
+    copyFileSync(source, destination);
   }
-  const project = projectByName(manifest, target);
-  if (project.participation !== "deep") throw new Error(`${target} is not configured for a persistent deep graph`);
-  const repoRoot = path.join(workspaceRoot, project.name);
-  return { graphRoot: path.join(repoRoot, "graphify-out"), label: project.name };
+  writeJson(path.join(candidateRoot, "CORPUS_INDEX.json"), { pack: pack.id, title: pack.title, sources: pack.sources, questions: pack.questions, created_at: new Date().toISOString(), semantic_provenance: provenance });
+  writeStatus(candidateRoot, "staged", { target: pack.id, mode: "semantic-pack", semantic_provenance: provenance });
+  process.stdout.write(`Staged ${pack.sources.length}-file pack at ${candidateRoot}\n`);
+  return { candidateRoot, corpusRoot, runId };
 }
 
-function build(manifest, target, deepMode) {
-  audit(manifest, { quiet: true });
-  requireLocalBackend();
-  const semantic = [
-    "--backend", "ollama",
-    "--max-concurrency", String(manifest.semantic_policy.max_concurrency),
-    "--token-budget", String(manifest.semantic_policy.token_budget),
-  ];
-  if (process.env.GRAPHIFY_OLLAMA_MODEL) semantic.push("--model", process.env.GRAPHIFY_OLLAMA_MODEL);
-  if (deepMode) semantic.push("--mode", "deep");
-  if (target === "portfolio") {
-    const stageRoot = stagePortfolio(manifest);
-    commandResult("graphify", ["extract", stageRoot, ...semantic, "--out", stageRoot], { cwd: operatorRoot });
-  } else {
-    const project = projectByName(manifest, target);
-    if (project.participation !== "deep") throw new Error(`${target} is not configured for a persistent deep graph`);
-    const repoRoot = path.join(workspaceRoot, project.name);
-    commandResult("graphify", ["extract", repoRoot, ...semantic, "--out", repoRoot], { cwd: repoRoot });
+function ensureOllama(manifest) {
+  const result = spawnSync("ollama", ["list"], { encoding: "utf8" });
+  if (result.error || result.status !== 0) throw new Error("Local semantic investigation requires Ollama on PATH; no hosted fallback will be used.");
+  if (!`${result.stdout || ""}${result.stderr || ""}`.includes(manifest.semantic_policy.model)) throw new Error(`Required local model is not installed: ${manifest.semantic_policy.model}`);
+}
+
+function investigate(manifest, packId, options) {
+  audit(manifest, true);
+  if (packId === "portfolio") throw new Error("Full portfolio semantic builds are disabled; select a named investigation pack with `packs`.");
+  if (options.fallback && options.fallback !== "codex") throw new Error(`Unsupported fallback: ${options.fallback}`);
+  const provenance = options.fallback === "codex" ? "non-local-codex" : "local-ollama";
+  const staged = stagePack(manifest, packId, provenance);
+  if (options.fallback === "codex") {
+    writeJson(path.join(staged.candidateRoot, "CODEX_FALLBACK_REQUEST.json"), { pack: packId, corpus: staged.corpusRoot, output: staged.candidateRoot, provenance, instruction: "Use Codex semantic extraction only for this staged corpus, then validate. Do not promote without --promote." });
+    writeStatus(staged.candidateRoot, "awaiting-explicit-codex-extraction", { fallback_authorized: true });
+    process.stdout.write("Prepared an explicit non-local handoff; no extraction or promotion was performed.\n");
+    return staged;
   }
-  views(manifest, target);
-}
-
-function views(manifest, target) {
-  const location = graphLocation(manifest, target);
-  const graphPath = path.join(location.graphRoot, "graph.json");
-  if (!existsSync(graphPath)) throw new Error(`Graph not found: ${graphPath}`);
-  commandResult("graphify", [
-    "tree",
-    "--graph", graphPath,
-    "--output", path.join(location.graphRoot, "GRAPH_TREE.html"),
-    "--label", location.label,
-  ]);
-  commandResult("graphify", [
-    "export", "callflow-html",
-    "--graph", graphPath,
-    "--output", path.join(location.graphRoot, "CALLFLOW.html"),
-  ]);
-}
-
-function slug(value) {
-  return value.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "").slice(0, 72);
-}
-
-function starterQueries(manifest, target) {
-  if (target === "portfolio") return manifest.portfolio.starter_queries;
-  return projectByName(manifest, target).starter_queries || [];
-}
-
-function queries(manifest, target, run) {
-  const items = starterQueries(manifest, target);
-  if (!items.length) throw new Error(`${target} has no configured starter queries`);
-  const location = graphLocation(manifest, target);
-  const graphPath = path.join(location.graphRoot, "graph.json");
-  for (const [index, question] of items.entries()) {
-    if (!run) {
-      process.stdout.write(`${index + 1}. graphify query ${JSON.stringify(question)} --graph ${JSON.stringify(graphPath)} --budget 2400\n`);
-      continue;
-    }
-    if (!existsSync(graphPath)) throw new Error(`Graph not found: ${graphPath}`);
-    const result = commandResult("graphify", ["query", question, "--graph", graphPath, "--budget", "2400"], { capture: true });
-    const output = `${result.stdout || ""}${result.stderr || ""}`;
-    const validationRoot = path.join(location.graphRoot, "query-validation");
-    mkdirSync(validationRoot, { recursive: true });
-    writeFileSync(path.join(validationRoot, `${index + 1}-${slug(question)}.txt`), `Question: ${question}\n\n${output}`, "utf8");
-    const hasSourceLocation = /\bsrc=|source_location|\b(?:README|AGENTS|docs|apps|packages|src)[\\/][^\s]+/i.test(output);
-    process.stdout.write(`${hasSourceLocation ? "PASS" : "REVIEW"}: ${question}\n`);
+  ensureOllama(manifest);
+  writeStatus(staged.candidateRoot, "running");
+  const result = commandResult("graphify", ["extract", staged.corpusRoot, ...semanticArgs(manifest, options.deep), "--out", staged.candidateRoot], { cwd: operatorRoot });
+  if (result.error || result.status !== 0) {
+    writeStatus(staged.candidateRoot, "failed", { exit_code: result.status ?? null });
+    throw new Error(`Semantic investigation failed; candidate retained at ${staged.candidateRoot}`);
   }
-  if (run) process.stdout.write("Graph traversal is only the discovery gate; confirm each durable finding in the cited source before promotion.\n");
+  writeStatus(staged.candidateRoot, "built-awaiting-review");
+  validateCandidate(manifest, packId, staged.candidateRoot, false);
+  return staged;
+}
+
+function codeGraph(manifest, repoName, promote = false) {
+  audit(manifest, true);
+  const project = projectByName(manifest, repoName);
+  if (project.participation !== "deep") throw new Error(`${repoName} is not configured for a repo-local graph`);
+  const runId = newRunId();
+  const candidateRoot = runRoot(manifest, repoName, runId);
+  mkdirSync(candidateRoot, { recursive: true });
+  writeStatus(candidateRoot, "running", { target: repoName, mode: "code-only", semantic_provenance: "none-local-ast" });
+  const repoRoot = path.join(workspaceRoot, repoName);
+  const result = commandResult("graphify", ["extract", repoRoot, "--code-only", "--out", candidateRoot], { cwd: repoRoot });
+  if (result.error || result.status !== 0) {
+    writeStatus(candidateRoot, "failed", { exit_code: result.status ?? null });
+    throw new Error(`Code-only extraction failed; candidate retained at ${candidateRoot}`);
+  }
+  writeStatus(candidateRoot, "built-awaiting-review");
+  validateCandidate(manifest, repoName, candidateRoot, promote);
+  return { candidateRoot, runId };
+}
+
+function graphEdges(graph) { return Array.isArray(graph.links) ? graph.links : Array.isArray(graph.edges) ? graph.edges : []; }
+function endpointId(value) { return typeof value === "object" && value ? value.id ?? value.name ?? value.label : value; }
+
+function validateCandidate(manifest, target, candidateRoot, promote = false) {
+  const graphRoot = candidateGraphRoot(candidateRoot);
+  const graphPath = path.join(graphRoot, "graph.json");
+  const failures = [];
+  if (!existsSync(graphPath)) failures.push("graph.json is missing");
+  let graph = { nodes: [], links: [] };
+  if (!failures.length) graph = JSON.parse(readFileSync(graphPath, "utf8"));
+  const nodes = Array.isArray(graph.nodes) ? graph.nodes : [];
+  const edges = graphEdges(graph);
+  const mode = isPack(manifest, target) ? "semantic_pack" : "code_only";
+  const threshold = manifest.acceptance_policy[mode];
+  if (nodes.length < threshold.minimum_nodes) failures.push(`node count ${nodes.length} is below ${threshold.minimum_nodes}`);
+  if (edges.length < threshold.minimum_edges) failures.push(`edge count ${edges.length} is below ${threshold.minimum_edges}`);
+  const ids = new Set(nodes.map((node) => String(node.id ?? node.name ?? node.label)));
+  const degrees = new Map([...ids].map((id) => [id, 0]));
+  let dangling = 0;
+  let selfLoops = 0;
+  const pairs = new Map();
+  for (const edge of edges) {
+    const source = String(endpointId(edge.source));
+    const destination = String(endpointId(edge.target));
+    if (!ids.has(source) || !ids.has(destination)) dangling += 1;
+    if (source === destination) selfLoops += 1;
+    if (degrees.has(source)) degrees.set(source, degrees.get(source) + 1);
+    if (degrees.has(destination)) degrees.set(destination, degrees.get(destination) + 1);
+    const pair = `${source}\u0000${destination}`;
+    pairs.set(pair, (pairs.get(pair) || 0) + 1);
+  }
+  const collapsedPairs = [...pairs.values()].filter((count) => count > 1).length;
+  const nodeById = new Map(nodes.map((node) => [String(node.id ?? node.name ?? node.label), node]));
+  const topHubs = [...degrees.entries()].sort((left, right) => right[1] - left[1]).slice(0, 10).map(([id, degree]) => ({
+    id,
+    label: String(nodeById.get(id)?.label ?? nodeById.get(id)?.name ?? id),
+    source_file: nodeById.get(id)?.source_file ?? null,
+    degree,
+  }));
+  const noiseLabels = manifest.acceptance_policy.noise_labels.map((label) => label.toLowerCase());
+  const noisyHubs = topHubs.filter((hub) => {
+    const label = hub.label.toLowerCase().replace(/\(\)$/, "");
+    return noiseLabels.some((noise) => label === noise || label.startsWith(`${noise} `));
+  });
+  if (dangling) failures.push(`${dangling} edges have missing endpoints`);
+  if (selfLoops) failures.push(`${selfLoops} self-loops require review`);
+  if (noisyHubs.length > manifest.acceptance_policy.maximum_noisy_god_nodes) failures.push(`${noisyHubs.length} generic utilities dominate the top ten hubs`);
+  let sourceCoverage = null;
+  if (isPack(manifest, target)) {
+    const indexPath = path.join(candidateRoot, "CORPUS_INDEX.json");
+    const expected = existsSync(indexPath) ? JSON.parse(readFileSync(indexPath, "utf8")).sources : packById(manifest, target).sources;
+    const searchable = normalize(JSON.stringify(graph)).toLowerCase();
+    const represented = expected.filter((source) => searchable.includes(normalize(source).toLowerCase()) || searchable.includes(path.basename(source).toLowerCase()));
+    sourceCoverage = expected.length ? represented.length / expected.length : 0;
+    if (sourceCoverage < manifest.acceptance_policy.minimum_source_coverage) failures.push(`source coverage ${(sourceCoverage * 100).toFixed(1)}% is below ${(manifest.acceptance_policy.minimum_source_coverage * 100).toFixed(0)}%`);
+  }
+  const report = { target, mode, passed: failures.length === 0, generated_at: new Date().toISOString(), graph: normalize(path.relative(candidateRoot, graphPath)), nodes: nodes.length, edges: edges.length, source_coverage: sourceCoverage, dangling_endpoints: dangling, self_loops: selfLoops, same_endpoint_pairs: collapsedPairs, top_hubs: topHubs, noisy_hubs: noisyHubs, failures, note: "Passing structure does not validate semantic claims. Confirm every promoted relationship against source files." };
+  writeJson(path.join(candidateRoot, "VALIDATION_REPORT.json"), report);
+  writeFileSync(path.join(candidateRoot, "DIAGNOSTICS.txt"), `nodes=${nodes.length}\nedges=${edges.length}\ndangling_endpoints=${dangling}\nself_loops=${selfLoops}\nsame_endpoint_pairs=${collapsedPairs}\n`, "utf8");
+  writeStatus(candidateRoot, report.passed ? "validated-awaiting-review" : "rejected", { validation_passed: report.passed });
+  if (report.passed) generateViews(graphRoot, target);
+  if (report.passed && promote) promoteCandidate(manifest, target, candidateRoot);
+  process.stdout.write(`Validation ${report.passed ? "PASS" : "FAIL"}: ${nodes.length} nodes, ${edges.length} edges; ${candidateRoot}\n`);
+  if (!report.passed) throw new Error(`Candidate failed validation and was not promoted: ${failures.join("; ")}`);
+  return report;
+}
+
+function promoteCandidate(manifest, target, candidateRoot) {
+  const graphRoot = candidateGraphRoot(candidateRoot);
+  const current = currentGraphRoot(manifest, target);
+  const history = path.join(path.dirname(current), manifest.output_policy.history_directory, newRunId());
+  mkdirSync(path.dirname(current), { recursive: true });
+  if (existsSync(current)) { mkdirSync(path.dirname(history), { recursive: true }); renameSync(current, history); }
+  cpSync(graphRoot, current, { recursive: true });
+  writeJson(path.join(current, "PROMOTION.json"), { target, promoted_at: new Date().toISOString(), candidate: normalize(candidateRoot), evidence_status: "reviewed-operational-evidence-not-canonical-truth" });
+  writeStatus(candidateRoot, "promoted");
+  process.stdout.write(`Promoted candidate to ${current}; prior current was preserved when present.\n`);
+}
+
+function generateViews(graphRoot, label) {
+  const graphPath = path.join(graphRoot, "graph.json");
+  if (!existsSync(graphPath)) throw new Error(`No graph found at ${graphPath}`);
+  commandResult("graphify", ["export", "html", "--graph", graphPath], { cwd: graphRoot });
+  commandResult("graphify", ["tree", "--graph", graphPath, "--output", path.join(graphRoot, "GRAPH_TREE.html"), "--label", label], { cwd: graphRoot });
+  commandResult("graphify", ["export", "callflow-html", "--graph", graphPath, "--output", path.join(graphRoot, "CALLFLOW.html")], { cwd: graphRoot });
+}
+
+function queries(manifest, target, run = false) {
+  const questions = isPack(manifest, target) ? packById(manifest, target).questions : projectByName(manifest, target).starter_queries || [];
+  for (const question of questions) process.stdout.write(`- ${question}\n`);
+  if (!run) return;
+  const graphPath = path.join(currentGraphRoot(manifest, target), "graph.json");
+  if (!existsSync(graphPath)) throw new Error(`No promoted graph for ${target}; validate and promote a reviewed candidate explicitly.`);
+  const results = [];
+  for (const question of questions) {
+    const result = commandResult("graphify", ["query", question, "--graph", graphPath, "--budget", "2000"], { capture: true });
+    const answer = `${result.stdout || ""}${result.stderr || ""}`.trim();
+    process.stdout.write(`\nQUESTION: ${question}\n${answer}\n`);
+    results.push({ question, exit_code: result.status, answer });
+  }
+  const evidenceRoot = path.join(currentGraphRoot(manifest, target), "query-evidence");
+  mkdirSync(evidenceRoot, { recursive: true });
+  writeJson(path.join(evidenceRoot, `${newRunId()}.json`), { target, results });
+}
+
+function status(manifest, target) {
+  if (!target) throw new Error("status requires a pack or repository name");
+  const current = currentGraphRoot(manifest, target);
+  const runs = isPack(manifest, target) ? path.join(outputRoot(manifest), "investigations", target, "runs") : path.join(workspaceRoot, target, manifest.output_policy.root, manifest.output_policy.runs_directory);
+  const names = existsSync(runs) ? readdirSync(runs, { withFileTypes: true }).filter((item) => item.isDirectory()).map((item) => item.name).sort().reverse() : [];
+  process.stdout.write(`Target: ${target}\nCurrent: ${existsSync(path.join(current, "graph.json")) ? current : "none"}\n`);
+  if (!names.length) return process.stdout.write("Latest candidate: none\n");
+  const latest = path.join(runs, names[0]);
+  const statusPath = path.join(latest, "BUILD_STATUS.json");
+  process.stdout.write(`Latest candidate: ${latest}\n${existsSync(statusPath) ? readFileSync(statusPath, "utf8") : "status unavailable\n"}`);
+}
+
+function quarantine(manifest, repoName) {
+  projectByName(manifest, repoName);
+  const repoRoot = path.join(workspaceRoot, repoName);
+  const legacyGraph = path.join(repoRoot, manifest.output_policy.root, "graph.json");
+  if (!existsSync(legacyGraph)) throw new Error(`No legacy root graph found for ${repoName}`);
+  const destination = path.join(repoRoot, manifest.output_policy.root, manifest.output_policy.legacy_directory, newRunId());
+  mkdirSync(destination, { recursive: true });
+  for (const name of ["graph.json", "graph.html", "GRAPH_REPORT.md", "GRAPH_TREE.html", "CALLFLOW.html"]) {
+    const source = path.join(repoRoot, manifest.output_policy.root, name);
+    if (existsSync(source)) copyFileSync(source, path.join(destination, name));
+  }
+  writeJson(path.join(destination, "QUARANTINE.json"), { source: normalize(path.dirname(legacyGraph)), copied_at: new Date().toISOString(), reason: "historical unvalidated evidence" });
+  process.stdout.write(`Copied legacy evidence to ${destination}; original files were not changed.\n`);
 }
 
 function main() {
-  const args = parseArgs(process.argv.slice(2));
-  if (args.help) return help();
   const manifest = loadManifest();
-  if (args.command === "audit") audit(manifest);
-  else if (args.command === "stage") stagePortfolio(manifest);
-  else if (args.command === "build") build(manifest, args.target, args.deep);
-  else if (args.command === "views") views(manifest, args.target);
-  else if (args.command === "queries") queries(manifest, args.target, args.run);
+  const args = parseArgs(process.argv.slice(2));
+  if (args.help || args.command === "help") usage();
+  else if (args.command === "audit") audit(manifest);
+  else if (args.command === "packs") listPacks(manifest);
+  else if (args.command === "stage") stagePack(manifest, args.target);
+  else if (args.command === "investigate") investigate(manifest, args.target, args);
+  else if (args.command === "code" || args.command === "build") {
+    if (args.target === "portfolio") throw new Error("Full portfolio builds are disabled; use `packs`, `investigate <pack>`, or `code <repo>`.");
+    codeGraph(manifest, args.target, args.promote);
+  } else if (args.command === "validate") {
+    if (!args.runId) throw new Error("validate requires --run-id ID");
+    validateCandidate(manifest, args.target, runRoot(manifest, args.target, args.runId), args.promote);
+  } else if (args.command === "queries") queries(manifest, args.target, args.run);
+  else if (args.command === "views") generateViews(currentGraphRoot(manifest, args.target), args.target);
+  else if (args.command === "status") status(manifest, args.target);
+  else if (args.command === "quarantine") quarantine(manifest, args.target);
   else throw new Error(`Unknown command: ${args.command}`);
 }
 
-try {
-  main();
-} catch (error) {
-  process.stderr.write(`${error.message}\n`);
-  process.exitCode = 1;
+const invokedAsScript = process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.meta.url);
+if (invokedAsScript) {
+  try { main(); }
+  catch (error) { process.stderr.write(`ERROR: ${error.message}\n`); process.exitCode = 1; }
 }
+
+export { currentGraphRoot, graphEdges, inside, loadManifest, packById, parseArgs, runRoot, semanticArgs };

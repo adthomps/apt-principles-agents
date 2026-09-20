@@ -99,6 +99,7 @@ APT Agent can map capability tiers to concrete tools in local configuration. `ap
 
 - `../../ai-agent-framework.md`
 - `../../standards/ai/model-routing-standard.md`
+- `mixed-tier-session-example.md`
 - `../../standards/ai/local-first-ai-standard.md`
 - `../../standards/ai/token-efficiency-standard.md`
 - `../../prompts/model-routing-review-prompt.md`

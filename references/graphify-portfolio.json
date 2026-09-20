@@ -3,21 +3,53 @@
   "operator_repository": "apt-principles-agents",
   "audience": "internal-hybrid",
   "update_mode": "curated-on-demand",
+  "workflow": {
+    "search_first": true,
+    "full_portfolio_build_enabled": false,
+    "default_repository_mode": "code-only",
+    "semantic_pack_min_files": 3,
+    "semantic_pack_max_files": 8,
+    "automatic_promotion": false,
+    "mcp_hooks_and_schedules_enabled": false
+  },
   "semantic_policy": {
     "mode": "local-only",
     "backend": "ollama",
+    "model": "qwen2.5-coder:14b",
     "max_concurrency": 1,
     "token_budget": 2000,
+    "context_window": 32768,
+    "max_output_tokens": 16384,
+    "disable_thinking": true,
     "hosted_backends_allowed": false
   },
   "output_policy": {
     "root": "graphify-out",
+    "runs_directory": "runs",
+    "current_directory": "current",
+    "history_directory": "history",
+    "legacy_directory": "legacy",
     "commit_generated_outputs": false,
     "inferred_edges_are_candidates": true
   },
+  "acceptance_policy": {
+    "code_only": {
+      "minimum_nodes": 1,
+      "minimum_edges": 0
+    },
+    "semantic_pack": {
+      "minimum_nodes": 3,
+      "minimum_edges": 2
+    },
+    "minimum_source_coverage": 0.9,
+    "minimum_query_source_locations": 2,
+    "minimum_query_repositories": 2,
+    "maximum_noisy_god_nodes": 2,
+    "noise_labels": ["cn", "react", "import", "package", "metadata"]
+  },
   "portfolio": {
     "id": "apt-portfolio",
-    "stage_directory": "graphify-out/portfolio-corpus",
+    "status": "source-inventory-only",
     "diagram_document": "docs/diagrams/apt-portfolio-knowledge-system.md",
     "starter_queries": [
       "Which repositories own canonical doctrine, local product behavior, internal planning, operational intake, and public proof?",
@@ -27,6 +59,96 @@
       "Which security-review components connect the APT security harness to the repositories it evaluates?"
     ]
   },
+  "investigation_packs": [
+    {
+      "id": "intake-delivery",
+      "title": "Intake to delivery",
+      "minimum_repositories": 3,
+      "sources": [
+        "apt-intake/docs/operating-model.md",
+        "apt-product-team/docs/operating-model.md",
+        "apt-product-team/docs/formalization-direction.md",
+        "apt-product-team/INTAKE_APPLICATION_DIRECTION.md",
+        "apt-dream-to-reality/docs/INTAKE_TO_DELIVERY_CONTRACT.md",
+        "apt-dream-to-reality/docs/WORKING_BACKWARDS_PRODUCT_TEAM_APPLICATION.md"
+      ],
+      "questions": [
+        "How does accepted intake move from triage into product planning and delivery?",
+        "Which repository owns each handoff, approval, and durable artifact?",
+        "Where do the operating models disagree or leave a routing gap?"
+      ]
+    },
+    {
+      "id": "doctrine-adoption-drift",
+      "title": "Doctrine adoption and drift",
+      "minimum_repositories": 2,
+      "sources": [
+        "apt-principles-agents/standards/installable-summaries/knowledge-graph-standards.md",
+        "apt-principles-agents/manifests/knowledge-graph.yaml",
+        "apt-principles-agents/docs/project-context.md",
+        "applied-practical-thinking/docs/apt/adoption.md",
+        "applied-practical-thinking/docs/project-context.md"
+      ],
+      "questions": [
+        "How does canonical doctrine become locally adopted behavior?",
+        "Which evidence reveals stale, partial, or divergent adoption?",
+        "What is canonical, generated, or merely inferred?"
+      ]
+    },
+    {
+      "id": "design-provenance",
+      "title": "Design provenance",
+      "minimum_repositories": 3,
+      "sources": [
+        "apt-design-reference/README.md",
+        "apt-design-reference/docs/archive-decision.md",
+        "apt-design-reference/docs/project-context.md",
+        "apt-principles-agents/docs/design-reference-intake.md",
+        "applied-practical-thinking/docs/DESIGN_REFERENCE_MERGE_DIRECTION.md"
+      ],
+      "questions": [
+        "How does frozen design evidence connect to canonical guidance and public implementation?",
+        "Which sources are historical evidence versus active authority?",
+        "Where could a consumer mistake copied evidence for canonical doctrine?"
+      ]
+    },
+    {
+      "id": "security-review",
+      "title": "Security review relationships",
+      "minimum_repositories": 3,
+      "sources": [
+        "apt-security-harness/README.md",
+        "apt-security-harness/docs/operations.md",
+        "apt-security-harness/docs/project-context.md",
+        "apt-anet-security-sdk/README.md",
+        "apt-anet-security-sdk/docs/architecture.md",
+        "apt-anet-integration-toolbox/docs/project-context.md"
+      ],
+      "questions": [
+        "How do the harness, SDK observations, and reviewed product repositories connect?",
+        "Which artifacts are source evidence, generated findings, or remediation candidates?",
+        "Where are sensitive inputs and runtime outputs excluded?"
+      ]
+    },
+    {
+      "id": "public-proof",
+      "title": "Productization and public proof",
+      "minimum_repositories": 3,
+      "sources": [
+        "apt-product-team/docs/project-context.md",
+        "apt-product-team/docs/formalization-direction.md",
+        "apt-principles-agents/references/publication-manifest.json",
+        "applied-practical-thinking/README.md",
+        "applied-practical-thinking/docs/project-context.md",
+        "applied-practical-thinking/docs/apt/adoption.md"
+      ],
+      "questions": [
+        "How does internal product thinking become reusable doctrine and public proof?",
+        "Which publication sources are canonical and which outputs are generated?",
+        "Where can product claims drift from implemented or published evidence?"
+      ]
+    }
+  ],
   "common_exclusions": [
     ".git/",
     ".apt-backups/",
@@ -76,6 +198,7 @@
       "name": "applied-practical-thinking",
       "participation": "deep",
       "wave": 2,
+      "graphify_guide": "docs/graphify.md",
       "portfolio_paths": [
         "README.md",
         "AGENTS.md",
@@ -85,9 +208,15 @@
       ],
       "additional_exclusions": [
         ".apt/",
+        ".claude/",
+        ".codex/",
+        ".gemini/",
         "apps/web/data/generated/",
         "apps/web/public/",
-        "reports/validation/"
+        "apps/web/docs/",
+        "reports/validation/",
+        "**/test/",
+        "**/*.test.*"
       ],
       "starter_queries": [
         "How does canonical APT doctrine become the curated public reference experience?",
@@ -131,14 +260,19 @@
       "name": "apt-anet-security-sdk",
       "participation": "deep",
       "wave": 2,
+      "graphify_guide": "docs/graphify.md",
       "additional_exclusions": [
         ".claude/",
         "data/",
         "reports/",
+        "_tmp_*",
+        ".sandbox-fs-artifact*",
         "tls-server/certs/",
         "**/target/",
         "**/vendor/",
-        "ruby-runner;C/"
+        "ruby-runner;C/",
+        "**/composer.json",
+        "**/pom.xml"
       ],
       "starter_queries": [
         "How do orchestrator requests flow through SDK runners to controlled TLS profiles and reports?",
@@ -210,13 +344,22 @@
       "name": "apt-health",
       "participation": "deep",
       "wave": 2,
+      "graphify_guide": "docs/graphify.md",
       "additional_exclusions": [
         ".agents/",
         ".apt/",
+        ".claude/",
+        ".codex/",
+        ".gemini/",
+        "apps/web/public/",
+        "packages/design-system/",
         "docs/apt/reports/",
+        "**/test/",
+        "**/*.test.*",
         "**/data/",
         "**/imports/",
-        "**/exports/"
+        "**/exports/",
+        "**/components.json"
       ],
       "starter_queries": [
         "How does imported periodic health data move through validation, persistence, comparison, and direction generation?",
@@ -242,10 +385,18 @@
       "name": "apt-intelligence-core",
       "participation": "deep",
       "wave": 2,
+      "graphify_guide": "docs/graphify.md",
       "additional_exclusions": [
         ".agents/",
         ".apt/",
+        ".claude/",
+        ".codex/",
+        ".gemini/",
         "output/",
+        "tests/",
+        "turbo.json",
+        "intelligence/core/_legacy/",
+        "**/mock-data/",
         "**/generated/",
         "**/*.csv"
       ],
@@ -279,10 +430,19 @@
       "name": "apt-novel-reviewer",
       "participation": "deep",
       "wave": 2,
+      "graphify_guide": "docs/graphify.md",
       "additional_exclusions": [
         ".apt/",
+        ".claude/",
+        ".codex/",
+        ".gemini/",
+        "docs/apt/reports/",
         "test-data/",
         "tmp-docx-sample-*/",
+        "**/test/",
+        "**/*.test.*",
+        "**/*.d.ts",
+        "**/*.d.ts.map",
         "**/*.docx"
       ],
       "starter_queries": [
@@ -350,6 +510,7 @@
         "inputs/",
         "outputs/",
         "targets/",
+        "tests/",
         "vvaharness/",
         "vvaharness.egg-info/"
       ],
@@ -365,11 +526,17 @@
       "name": "crt-world",
       "participation": "deep",
       "wave": 2,
+      "graphify_guide": "docs/graphify.md",
       "additional_exclusions": [
         ".apt/",
+        ".claude/",
+        ".codex/",
+        ".gemini/",
         "apt-core/",
         "apps/site/public/images/",
-        "docs/apt/reports/"
+        "docs/apt/reports/",
+        "**/test/",
+        "**/*.test.*"
       ],
       "starter_queries": [
         "How does authored content move through admin validation, D1 persistence, API view models, and public pages?",

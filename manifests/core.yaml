@@ -37,3 +37,4 @@ platforms:
   - platforms/claude/README.md
   - platforms/github-copilot/README.md
   - platforms/gemini/README.md
+  - platforms/cursor/README.md

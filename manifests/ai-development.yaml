@@ -10,6 +10,7 @@ context:
   - context-packs/apt-agent-pack.md
 skills:
   - skills/ai-agents/
+  - skills/thinking/clarify-before-acting/
   - platforms/codex/source/skills/ai-output-review/
 agents:
   - agents/harness/

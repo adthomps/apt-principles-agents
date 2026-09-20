@@ -64,6 +64,14 @@ function exists(file) {
   return existsSync(file);
 }
 
+function collectFiles(directory) {
+  if (!exists(directory) || !statSync(directory).isDirectory()) return [];
+  return readdirSync(directory, { withFileTypes: true }).flatMap((entry) => {
+    const child = path.join(directory, entry.name);
+    return entry.isDirectory() ? collectFiles(child) : [child];
+  });
+}
+
 function ensureParent(file) {
   mkdirSync(path.dirname(file), { recursive: true });
 }
@@ -209,6 +217,7 @@ function mappingsFor(manifests, platforms) {
         if (platforms.includes("codex")) add(source, `.codex/skills/${suffix}`, "platform");
         if (platforms.includes("claude")) add(source, `.claude/skills/${suffix}`, "platform");
         if (platforms.includes("copilot")) add(source, `.github/skills/${suffix}`, "platform");
+        if (platforms.includes("cursor")) add(source, `.cursor/skills/${suffix}`, "platform");
       }
     }
     if (section === "prompts") {
@@ -317,6 +326,26 @@ function mappingsFor(manifests, platforms) {
   // into that platform's own settings file (e.g. .claude/settings.json) so downstream repos
   // get the SessionStart hook that runs session-sync-check.mjs. Drift-safe like everything
   // else here: sync will not overwrite a local settings file that already differs.
+  if (platforms.includes("cursor")) {
+    const cursorSkillDir = path.join(sourceRoot, "platforms", "cursor", "source", "skills");
+    if (exists(cursorSkillDir) && statSync(cursorSkillDir).isDirectory()) {
+      for (const file of collectFiles(cursorSkillDir)) {
+        const suffix = suffixAfter(normalize(path.relative(sourceRoot, file)), "skills/");
+        add(normalize(path.relative(sourceRoot, file)), `.cursor/skills/${suffix}`, "platform");
+      }
+    }
+    const cursorRulesDir = path.join(sourceRoot, "platforms", "cursor", "source", "rules");
+    if (exists(cursorRulesDir) && statSync(cursorRulesDir).isDirectory()) {
+      for (const file of collectFiles(cursorRulesDir)) {
+        add(normalize(path.relative(sourceRoot, file)), `.cursor/rules/${path.basename(file)}`, "platform");
+      }
+    }
+    const cursorRouting = "platforms/cursor/source/routing/cursor-model-map.md";
+    if (exists(path.join(sourceRoot, cursorRouting))) {
+      add(cursorRouting, ".cursor/routing/cursor-model-map.md", "platform");
+    }
+  }
+
   const settingsTargets = { claude: ".claude/settings.json" };
   for (const [platform, target] of Object.entries(settingsTargets)) {
     if (!platforms.includes(platform)) continue;
@@ -763,7 +792,7 @@ try {
 
 Commands:
   detect --target <repo>
-  install --target <repo> --manifests core,documentation [--platforms codex,claude,copilot,gemini] [--dry-run] [--force]
+  install --target <repo> --manifests core,documentation [--platforms codex,claude,copilot,gemini,cursor] [--dry-run] [--force]
   scan --target <repo>
   sync --target <repo> [--apply] [--force] [--targets path1,path2]
   repair --target <repo> [--apply] [--force] [--targets path1,path2]

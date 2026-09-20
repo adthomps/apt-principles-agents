@@ -4,128 +4,147 @@ kind: "runbook"
 domain: "execution"
 status: "active"
 owner: "APT"
-last_updated: "2026-08-29"
+last_updated: "2026-09-05"
 source_paths: ["apt-principles-agents/reports/GRAPHIFY_RUNBOOK.md", "apt-principles-agents/references/graphify-portfolio.json", "apt-principles-agents/standards/installable-summaries/knowledge-graph-standards.md"]
 ---
 
 # APT Workspace Graphify Runbook
 
-This runbook operates the layered APT knowledge-graph workflow. `apt-principles-agents` owns the portfolio configuration and operator commands; each target repository continues to own its product context, source, exclusions, and validation.
+Graphify is an investigation and diagram-support tool for the APT workspace. It is not a requirement to build one semantic graph of every repository. Ordinary search remains the first tool for locating facts; Graphify is useful when a focused question requires tracing several relationships or when local code structure is hard to see linearly.
 
-Graphify output is discovery evidence, not canonical truth. Confirm durable findings in source docs, code, schemas, decisions, profiles, or validation reports before promoting them.
+Generated graphs are ignored operational evidence, never canonical truth. Confirm useful paths against authored source before updating documentation or a curated Mermaid diagram.
 
-## Prerequisites
+## Supported Modes
 
-- Graphify CLI matching the installed Codex skill.
-- Ollama installed, running, and containing the locally approved model.
-- Node.js 18 or newer.
-- The sibling repositories listed in `references/graphify-portfolio.json` checked out beneath the same workspace root.
+### Focused document investigation
 
-The build script always supplies the manifest's local settings: `--backend ollama --max-concurrency 1 --token-budget 2000`. The bounded chunk size fits the approved local model context and avoids hollow prose responses caused by oversized document batches. It does not fall back to hosted providers, even when hosted-model API keys exist in the shell.
+Use one named pack containing three to eight related, allowlisted files and one to three questions. This is the only supported semantic workflow. It preserves repository-relative paths and keeps unrelated material out of the model context.
 
-## Participation Model
+```powershell
+npm run graphify:packs
+node scripts/graphify-workspace.mjs stage intake-delivery
+node scripts/graphify-workspace.mjs investigate intake-delivery
+node scripts/graphify-workspace.mjs queries intake-delivery
+```
 
-- **Portfolio graph:** selected READMEs, agent instructions, project contexts, ownership contracts, and promotion-path documents from the portfolio nucleus.
-- **Deep graphs:** first-party code and authored documentation for complex repositories, filtered through repository-local `.graphifyignore` files.
-- **Lightweight or metadata participation:** selected context enters the portfolio graph without creating a persistent repo-local graph.
-- **Ordinary docs/search:** small repositories remain outside the persistent graph workflow.
+The available packs are:
 
-The complete project matrix, five starter queries per deep graph, local semantic policy, and curated portfolio paths live in `references/graphify-portfolio.json`.
+- `intake-delivery`
+- `doctrine-adoption-drift`
+- `design-provenance`
+- `security-review`
+- `public-proof`
 
-## Audit Before Building
+The manifest owns each pack's exact sources and questions. Add or change a pack only when a real investigation needs a different evidence boundary.
+
+### Repository architecture
+
+Use deterministic local AST extraction for a configured deep repository. It indexes code without sending prose to a model.
+
+```powershell
+node scripts/graphify-workspace.mjs code apt-knowledge-hub
+node scripts/graphify-workspace.mjs code apt-security-harness --promote
+```
+
+The default creates and validates an immutable candidate but does not promote it. Add `--promote` only after reviewing its diagnostics and opening cited code.
+
+The second-wave repositories with local usage guides are:
+
+- `apt-intelligence-core` — evidence pipeline and domain framework;
+- `apt-health` — web, Worker, D1, and health-domain contracts;
+- `apt-anet-security-sdk` — orchestrator, SDK runners, TLS profiles, and observers;
+- `apt-novel-reviewer` — Electron boundaries, review pipeline, and persistence;
+- `crt-world` — publishing workflow across site, Worker, schemas, auth, and D1;
+- `applied-practical-thinking` — public site, Worker, packages, and publication generators.
+
+Each repository's `docs/graphify.md` records its included architecture, exclusions, questions, and interpretation boundaries.
+
+### Ordinary search
+
+Use `rg`, repository docs, and direct source inspection when the answer needs only one or two files. Small repositories do not need persistent graphs merely to participate in workspace understanding.
+
+## Deliberately Disabled
+
+- full portfolio semantic builds;
+- automatic candidate promotion;
+- automatic hosted-model fallback;
+- MCP registration;
+- commit hooks, watchers, CI graph builds, and weekly schedules.
+
+The portfolio source list remains in the manifest as a curated ownership inventory and diagram reference. It is not a build corpus.
+
+## Audit
 
 ```powershell
 npm run graphify:audit
+npm run test:graphify
 ```
 
-The audit verifies all 18 projects, selected portfolio files, five-query deep-graph sets, local-only backend policy, diagram presence, output location, `.graphifyignore`, and `graphify-out/` ignore rules. A missing Ollama runtime is reported as a warning so repository validation remains usable on machines that do not build semantic graphs.
+The audit verifies the 18-project inventory, five focused packs, pack sizes and source existence, declared repository guides, local-only semantic settings, code-only defaults, `.graphifyignore` coverage, ignored output paths, and disabled automation.
 
-## Build The Portfolio Graph
+Ollama is required only for a semantic investigation. The pinned settings are `qwen2.5-coder:14b`, concurrency `1`, token budget `2000`, context window `32768`, output ceiling `16384`, and thinking disabled. Code-only extraction remains available without Ollama.
 
-```powershell
-npm run graphify:stage
-npm run graphify:build:portfolio
-```
+## Candidate Lifecycle
 
-Staging deletes and recreates only the resolved ignored directory `graphify-out/portfolio-corpus/`. It copies the allowlisted sources with repository-prefixed paths and records their provenance in `CORPUS_INDEX.json`.
-
-The portfolio graph is written beneath:
+Focused packs are staged beneath:
 
 ```text
-graphify-out/portfolio-corpus/graphify-out/
+graphify-out/investigations/<pack>/runs/<timestamp>/
 ```
 
-## Build A Deep Repository Graph
+Code-only candidates live beneath the target repository:
+
+```text
+graphify-out/runs/<timestamp>/
+```
+
+Every run is immutable and records `BUILD_STATUS.json`; packs also record `CORPUS_INDEX.json`. Failed and rejected runs stay available for diagnosis and never replace `current/`.
+
+Validate or explicitly promote an existing run with:
 
 ```powershell
-node scripts/graphify-workspace.mjs build apt-knowledge-hub
-node scripts/graphify-workspace.mjs build apt-dream-to-reality
+node scripts/graphify-workspace.mjs validate intake-delivery --run-id <timestamp>
+node scripts/graphify-workspace.mjs validate intake-delivery --run-id <timestamp> --promote
+node scripts/graphify-workspace.mjs status intake-delivery
 ```
 
-Use `--deep` only for an explicit multi-pass review where additional inferred relationships are worth the extra local-model time. The default favors grounded extraction.
+Promotion copies the graph to `current/` and moves any prior current graph to `history/`. Structural validation checks nodes, edges, pack source coverage, dangling endpoints, self-loops, and same-endpoint edge-collapse risk. Passing structural validation does not make inferred relationships true.
 
-First-wave order:
+## Review And Diagram Workflow
 
-1. `apt-principles-agents`
-2. `apt-knowledge-hub`
-3. `apt-dream-to-reality`
-4. `apt-commerce`
-5. `apt-anet-integration-toolbox`
+1. Start with a named question and the smallest relevant pack or code graph.
+2. Use query, path, neighbors, explain, tree, and call-flow views to find candidate relationships.
+3. Open every cited source and confirm direction, ownership, and current status.
+4. Mark extracted, inferred, and ambiguous relationships distinctly.
+5. Record durable knowledge in the owning source document.
+6. Promote only stable, source-backed relationships to `docs/diagrams/apt-portfolio-knowledge-system.md`.
 
-Run second-wave graphs only after two first-wave build-and-review cycles demonstrate useful queries and acceptable graph hygiene.
-
-## Generate Human Views
-
-Every successful build generates or refreshes:
-
-- `graph.html` — interactive graph exploration;
-- `GRAPH_REPORT.md` — graph health, hubs, connections, gaps, and suggested questions;
-- `graph.json` — machine-readable graph;
-- `GRAPH_TREE.html` — repository and package hierarchy;
-- `CALLFLOW.html` — Mermaid-based architecture and call-flow view.
-
-Regenerate views from an existing graph with:
+Graphify views include `graph.html`, `GRAPH_TREE.html`, and `CALLFLOW.html`. They remain ignored. Regenerate current views with:
 
 ```powershell
-node scripts/graphify-workspace.mjs views portfolio
-node scripts/graphify-workspace.mjs views apt-dream-to-reality
+node scripts/graphify-workspace.mjs views intake-delivery
+node scripts/graphify-workspace.mjs views apt-security-harness
 ```
 
-Stable, reviewed knowledge belongs in `docs/diagrams/apt-portfolio-knowledge-system.md`, not in committed Graphify HTML or JSON.
+Reject or retune a graph when framework utilities, generic imports, package metadata, archives, generated docs, dependencies, fixtures, or copied public assets dominate its hubs or communities.
 
-## Validate Starter Queries
+## Explicit Codex Fallback
 
-Print the configured query set:
+If local semantic extraction is not useful for a specific pack, an operator may explicitly prepare a non-local Codex handoff:
 
 ```powershell
-node scripts/graphify-workspace.mjs queries portfolio
-node scripts/graphify-workspace.mjs queries apt-knowledge-hub
+node scripts/graphify-workspace.mjs investigate design-provenance --fallback codex
 ```
 
-Run the set and save ignored traversal evidence:
+This stages only that pack, writes `CODEX_FALLBACK_REQUEST.json`, labels provenance `non-local-codex`, and performs no extraction or promotion. The fallback is never silent and is never available for the full portfolio inventory.
+
+## Sensitive Data And Legacy Evidence
+
+Do not graph secrets, environment files, certificates, private keys, databases, health imports, manuscripts, downloaded document corpora, security scan inputs, or generated reports. Repository `.graphifyignore` files remain authoritative.
+
+Do not commit graphs, caches, staged corpora, HTML, costs, memory, or query evidence. Existing root-level graphs remain historical evidence. They can be copied into ignored quarantine without modifying the originals:
 
 ```powershell
-node scripts/graphify-workspace.mjs queries portfolio --run
+node scripts/graphify-workspace.mjs quarantine apt-principles-agents
+node scripts/graphify-workspace.mjs quarantine apt-dream-to-reality
 ```
-
-For each question:
-
-1. Require useful source locations from the traversal.
-2. Open the cited source and confirm the claimed relationship.
-3. Treat `INFERRED` and `AMBIGUOUS` edges as review candidates.
-4. Record durable findings in the owning repository, not in graph memory alone.
-5. Retune exclusions if utilities, package metadata, generated copies, fixtures, or archives dominate hubs and communities.
-
-## Local-Only And Sensitive-Data Rules
-
-- Do not configure a hosted semantic backend for this workflow.
-- Do not graph secrets, environment files, certificates, private keys, SQLite databases, health imports, manuscripts, downloaded document corpora, security scan inputs, or generated reports.
-- Code extraction remains local and deterministic; document semantics use the local Ollama model.
-- `.graphifyignore` is authoritative for deep graphs and must retain the repository-specific sensitive and generated exclusions.
-- Do not commit `graphify-out/`, caches, memory, costs, staged corpora, HTML, or query-validation output.
-
-## Promotion Gate
-
-Promote a relationship or diagram only when direct source inspection supports it. Use solid `EXTRACTED` edges for explicit source relationships. Dotted `INFERRED` edges remain candidates and require an owner and review before they can influence doctrine, remediation, readiness, security, or release claims.
-
-Do not install commit hooks, CI rebuilds, or weekly automation until two curated on-demand cycles pass the query and hygiene checks.
