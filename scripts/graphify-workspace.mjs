@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-import { copyFileSync, cpSync, existsSync, mkdirSync, readFileSync, readdirSync, renameSync, statSync, writeFileSync } from "node:fs";
+import { copyFileSync, cpSync, existsSync, mkdirSync, readFileSync, readdirSync, realpathSync, renameSync, statSync, writeFileSync } from "node:fs";
 import path from "node:path";
 import { spawnSync } from "node:child_process";
 import { fileURLToPath } from "node:url";
@@ -14,9 +14,47 @@ function inside(parent, candidate) {
   return relative === "" || (!relative.startsWith("..") && !path.isAbsolute(relative));
 }
 function loadManifest() { return JSON.parse(readFileSync(manifestPath, "utf8")); }
+function readWorkspaceProjects(root = workspaceRoot) {
+  const projectList = readFileSync(path.join(root, "PROJECTS.md"), "utf8");
+  const rows = [...projectList.matchAll(/^(\| \[([^\]]+)\]\(([^/]+)\/docs\/project-identity\.md\) \| ([^|]+) \| (.+) \|)$/gm)];
+  const seen = new Set();
+  return rows.map((match) => {
+    const [, , folder, linkFolder, name, description] = match;
+    if (folder !== linkFolder || !/^[a-z0-9][a-z0-9.-]*$/i.test(folder)) throw new Error(`Invalid project identity link in PROJECTS.md: ${folder}`);
+    if (seen.has(folder)) throw new Error(`Duplicate workspace project in PROJECTS.md: ${folder}`);
+    seen.add(folder);
+    const projectRoot = path.join(root, folder);
+    const identityPath = path.join(projectRoot, "docs", "project-identity.md");
+    const installationPath = path.join(projectRoot, ".apt", "installation.json");
+    const identity = existsSync(identityPath) ? readFileSync(identityPath, "utf8") : "";
+    const installation = existsSync(installationPath) ? JSON.parse(readFileSync(installationPath, "utf8")) : null;
+    const status = identity.match(/^status:\s*["']?([^"'\r\n]+)["']?\s*$/m)?.[1]?.trim() || "identity-missing";
+    const sourceLine = projectList.slice(0, match.index).split(/\r?\n/).length;
+    return {
+      folder,
+      id: `project:${folder}`,
+      label: name.trim(),
+      description: description.trim(),
+      status,
+      directory_exists: existsSync(projectRoot) && statSync(projectRoot).isDirectory(),
+      identity_file: existsSync(identityPath) ? normalize(path.relative(root, identityPath)) : null,
+      installation_source: installation?.source?.repository || null,
+      installed_manifests: Array.isArray(installation?.manifests) ? installation.manifests : [],
+      source_file: "PROJECTS.md",
+      source_location: `L${sourceLine}`,
+    };
+  });
+}
 function projectByName(manifest, name) {
   const project = manifest.projects.find((item) => item.name === name);
   if (!project) throw new Error(`Unknown project: ${name}`);
+  return project;
+}
+function localContentProject(manifest, name) {
+  const project = projectByName(manifest, name);
+  if (project.participation !== "local-content" || project.local_graph?.mode !== "authored-markdown") {
+    throw new Error(`${name} is not configured for a repository-local content graph`);
+  }
   return project;
 }
 function packById(manifest, id) {
@@ -25,10 +63,11 @@ function packById(manifest, id) {
   return pack;
 }
 function isPack(manifest, target) { return manifest.investigation_packs.some((item) => item.id === target); }
+function isPortfolio(manifest, target) { return target === "portfolio" || target === manifest.portfolio.id; }
 
 function parseArgs(argv) {
-  if (!argv.length || argv.includes("--help") || argv.includes("-h")) return { command: "help", target: null, help: true, run: false, promote: false, runId: null, fallback: null, deep: false };
-  const args = { command: argv[0], target: null, help: false, run: false, promote: false, runId: null, fallback: null, deep: false };
+  if (!argv.length || argv.includes("--help") || argv.includes("-h")) return { command: "help", target: null, help: true, run: false, promote: false, runId: null, fallback: null, deep: false, check: false };
+  const args = { command: argv[0], target: null, help: false, run: false, promote: false, runId: null, fallback: null, deep: false, check: false };
   let index = 1;
   if (argv[index] && !argv[index].startsWith("--")) args.target = argv[index++];
   while (index < argv.length) {
@@ -38,6 +77,7 @@ function parseArgs(argv) {
     else if (arg === "--run-id") args.runId = argv[index++] || null;
     else if (arg === "--fallback") args.fallback = argv[index++] || null;
     else if (arg === "--deep") args.deep = true;
+    else if (arg === "--check") args.check = true;
     else throw new Error(`Unknown option: ${arg}`);
   }
   return args;
@@ -53,8 +93,10 @@ function usage() {
     "  investigate <pack> --fallback codex    prepare an explicit non-local extraction handoff",
     "  queries <pack> [--run]                 print or run the pack's focused questions",
     "", "Deterministic architecture workflow:",
-    "  code <deep-repo> [--promote]           build a local AST-only candidate",
-    "  build <deep-repo> [--promote]          compatibility alias for code",
+    "  portfolio [--check]                    build or check the all-project portfolio map",
+    "  code <repo> [--promote]                build a local AST-only candidate",
+    "  content <repo> [--deep] [--promote]    build a local authored-Markdown candidate",
+    "  build <repo> [--promote]               compatibility alias for code",
     "", "Safety and review:",
     "  audit                                  validate manifest, sources, exclusions, and policy",
     "  validate <pack-or-repo> --run-id ID    validate a candidate; add --promote explicitly",
@@ -70,13 +112,16 @@ function assertRunId(runId) {
   if (!runId || !/^[A-Za-z0-9._-]+$/.test(runId) || runId === "." || runId === "..") throw new Error(`Invalid run id: ${runId}`);
 }
 function outputRoot(manifest) { return path.join(operatorRoot, manifest.output_policy.root); }
+function portfolioGraphRoot(manifest) { return path.join(outputRoot(manifest), "portfolio", manifest.output_policy.current_directory); }
 function runRoot(manifest, target, runId) {
   assertRunId(runId);
+  if (isPortfolio(manifest, target)) return path.join(outputRoot(manifest), "portfolio", manifest.output_policy.runs_directory, runId);
   if (isPack(manifest, target)) return path.join(outputRoot(manifest), "investigations", target, "runs", runId);
   projectByName(manifest, target);
   return path.join(workspaceRoot, target, manifest.output_policy.root, manifest.output_policy.runs_directory, runId);
 }
 function currentGraphRoot(manifest, target) {
+  if (isPortfolio(manifest, target)) return portfolioGraphRoot(manifest);
   if (isPack(manifest, target)) return path.join(outputRoot(manifest), "investigations", target, manifest.output_policy.current_directory);
   projectByName(manifest, target);
   return path.join(workspaceRoot, target, manifest.output_policy.root, manifest.output_policy.current_directory);
@@ -112,7 +157,20 @@ function audit(manifest, quiet = false) {
   const workflow = manifest.workflow || {};
   const semantic = manifest.semantic_policy || {};
   const acceptance = manifest.acceptance_policy || {};
-  if (manifest.projects.length !== 18) errors.push(`expected 18 projects, found ${manifest.projects.length}`);
+  const workspaceProjects = readWorkspaceProjects();
+  const workspaceProjectNames = new Set(workspaceProjects.map((project) => project.folder));
+  if (!workspaceProjects.length) errors.push("PROJECTS.md contains no workspace project entries");
+  const configuredProjects = new Set();
+  for (const project of manifest.projects) {
+    if (configuredProjects.has(project.name)) errors.push(`duplicate Graphify project: ${project.name}`);
+    configuredProjects.add(project.name);
+    if (!workspaceProjectNames.has(project.name)) errors.push(`Graphify project is missing from PROJECTS.md: ${project.name}`);
+  }
+  for (const relationship of manifest.portfolio.relationships || []) {
+    if (!workspaceProjectNames.has(relationship.source) || !workspaceProjectNames.has(relationship.target)) errors.push(`portfolio relationship references an unknown project: ${relationship.source} -> ${relationship.target}`);
+    const evidence = path.resolve(workspaceRoot, relationship.source_file);
+    if (!inside(workspaceRoot, evidence) || !existsSync(evidence) || !statSync(evidence).isFile()) errors.push(`portfolio relationship evidence missing: ${relationship.source_file}`);
+  }
   if (workflow.full_portfolio_build_enabled !== false) errors.push("full portfolio builds must remain disabled");
   if (workflow.default_repository_mode !== "code-only") errors.push("default repository mode must be code-only");
   if (workflow.automatic_promotion !== false) errors.push("automatic promotion must remain disabled");
@@ -145,16 +203,48 @@ function audit(manifest, quiet = false) {
       const guide = path.resolve(repoRoot, project.graphify_guide);
       if (!inside(repoRoot, guide) || !existsSync(guide) || !statSync(guide).isFile()) errors.push(`Graphify guide missing: ${project.name}/${project.graphify_guide}`);
     }
-    if (project.participation === "deep") {
+    if (["deep", "local-content"].includes(project.participation)) {
       if (!existsSync(path.join(repoRoot, ".graphifyignore"))) errors.push(`${project.name} lacks .graphifyignore`);
       const gitignore = existsSync(path.join(repoRoot, ".gitignore")) ? readFileSync(path.join(repoRoot, ".gitignore"), "utf8") : "";
       if (!gitignore.includes("graphify-out/")) errors.push(`${project.name} lacks graphify-out/ in .gitignore`);
+    }
+    if (project.participation === "local-content") {
+      const localGraph = project.local_graph;
+      if (localGraph?.mode !== "authored-markdown") errors.push(`${project.name} must declare local_graph.mode=authored-markdown`);
+      const sourceRoots = Array.isArray(localGraph?.source_roots) ? localGraph.source_roots : [];
+      const sourceFiles = Array.isArray(localGraph?.source_files) ? localGraph.source_files : [];
+      if (!sourceRoots.length && !sourceFiles.length) errors.push(`${project.name} must declare authored Markdown source_roots or source_files`);
+      if (typeof localGraph?.provisional !== "boolean") errors.push(`${project.name} must explicitly declare whether its content graph is provisional`);
+      if (localGraph?.provisional === true && workspaceProjects.find((item) => item.folder === project.name)?.status !== "unconfirmed") {
+        errors.push(`${project.name} is marked provisional but its project identity is not unconfirmed`);
+      }
+      if (localGraph?.provisional !== true && workspaceProjects.find((item) => item.folder === project.name)?.status === "unconfirmed") {
+        errors.push(`${project.name} has unconfirmed identity and must keep its local graph provisional`);
+      }
+      const forbiddenRootSegments = new Set([".git", "archive", "certs", "data", "dist", "exports", "graphify-out", "imports", "local", "node_modules", "output", "sources", "tests"]);
+      for (const relative of sourceRoots) {
+        const source = path.resolve(repoRoot, relative);
+        const segments = normalize(relative).split("/").filter(Boolean).map((segment) => segment.toLowerCase());
+        if (relative === "." || segments.some((segment) => forbiddenRootSegments.has(segment))) errors.push(`unsafe local content source root: ${project.name}/${relative}`);
+        if (!inside(repoRoot, source) || !existsSync(source) || !statSync(source).isDirectory()) errors.push(`local content source root missing or invalid: ${project.name}/${relative}`);
+        else if (!inside(realpathSync(repoRoot), realpathSync(source))) errors.push(`local content source root resolves outside project: ${project.name}/${relative}`);
+      }
+      for (const relative of sourceFiles) {
+        const source = path.resolve(repoRoot, relative);
+        const segments = normalize(relative).split("/").filter(Boolean).map((segment) => segment.toLowerCase());
+        if (segments.some((segment) => forbiddenRootSegments.has(segment))) errors.push(`unsafe local content source file: ${project.name}/${relative}`);
+        if (!inside(repoRoot, source) || !existsSync(source) || !statSync(source).isFile() || path.extname(source).toLowerCase() !== ".md") {
+          errors.push(`local content source file missing or invalid: ${project.name}/${relative}`);
+        } else if (!inside(realpathSync(repoRoot), realpathSync(source))) errors.push(`local content source file resolves outside project: ${project.name}/${relative}`);
+      }
+    } else if (project.local_graph) {
+      errors.push(`${project.name} declares local_graph without local-content participation`);
     }
   }
   if (!existsSync(path.join(operatorRoot, manifest.portfolio.diagram_document))) errors.push("portfolio diagram document is missing");
   if (!toolAvailable("ollama", ["list"])) warnings.push("Ollama is not reachable on PATH; semantic investigations are unavailable, but code-only graphs still work");
   if (!quiet) {
-    process.stdout.write(`Graphify audit: ${manifest.investigation_packs.length} focused packs; full portfolio build disabled; ${manifest.projects.filter((item) => item.participation === "deep").length} code-only repositories; ${manifest.projects.filter((item) => item.graphify_guide).length} repo guides\n`);
+    process.stdout.write(`Graphify audit: ${manifest.investigation_packs.length} focused packs; full portfolio build disabled; ${manifest.projects.filter((item) => item.participation === "deep").length} code-only repositories; ${manifest.projects.filter((item) => item.participation === "local-content").length} local content repositories; ${manifest.projects.filter((item) => item.graphify_guide).length} repo guides\n`);
     for (const warning of warnings) process.stdout.write(`WARN: ${warning}\n`);
     for (const error of errors) process.stderr.write(`ERROR: ${error}\n`);
   }
@@ -167,6 +257,115 @@ function listPacks(manifest) {
     process.stdout.write(`${pack.id} (${pack.sources.length} files) — ${pack.title}\n`);
     for (const question of pack.questions) process.stdout.write(`  - ${question}\n`);
   }
+}
+
+function portfolioGraph(manifest, projects = readWorkspaceProjects()) {
+  const ids = new Set(projects.map((project) => project.folder));
+  const configured = new Map(manifest.projects.map((project) => [project.name, project]));
+  const nodes = projects.map((project) => {
+    const configuration = configured.get(project.folder);
+    return {
+      id: project.id,
+      label: project.label,
+      description: project.description,
+      file_type: "document",
+      source_file: project.source_file,
+      source_location: project.source_location,
+      repo: project.folder,
+      project_status: project.status,
+      project_directory_exists: project.directory_exists,
+      project_identity_file: project.identity_file,
+      installed_manifests: project.installed_manifests,
+      graphify_participation: configuration?.participation || "portfolio-catalog-only",
+      graphify_guide: configuration?.graphify_guide || null,
+    };
+  });
+  const links = (manifest.portfolio.relationships || []).map((relationship) => {
+    if (!ids.has(relationship.source) || !ids.has(relationship.target)) throw new Error(`Portfolio relationship references an unknown project: ${relationship.source} -> ${relationship.target}`);
+    const evidence = path.resolve(workspaceRoot, relationship.source_file);
+    if (!inside(workspaceRoot, evidence) || !existsSync(evidence) || !statSync(evidence).isFile()) throw new Error(`Portfolio relationship evidence missing: ${relationship.source_file}`);
+    return {
+      source: `project:${relationship.source}`,
+      target: `project:${relationship.target}`,
+      relation: relationship.relation,
+      confidence: "EXTRACTED",
+      confidence_score: 1,
+      source_file: normalize(relationship.source_file),
+      source_location: relationship.source_location,
+      weight: 1,
+    };
+  });
+  for (const project of projects) {
+    if (!project.installation_source) continue;
+    if (!ids.has(project.installation_source)) throw new Error(`Installation record for ${project.folder} references an unknown source project: ${project.installation_source}`);
+    links.push({
+      source: `project:${project.installation_source}`,
+      target: project.id,
+      relation: "distributes_assets_to",
+      confidence: "EXTRACTED",
+      confidence_score: 1,
+      source_file: `${project.folder}/.apt/installation.json`,
+      source_location: "source.repository",
+      weight: 1,
+    });
+  }
+  return { directed: true, multigraph: true, graph: { name: "APT Project Portfolio", generated_from: "PROJECTS.md", schema_version: 1 }, nodes, links, hyperedges: [] };
+}
+
+function portfolioReport(graph) {
+  const projects = graph.nodes;
+  const links = graph.links;
+  const statusCounts = new Map();
+  for (const project of projects) statusCounts.set(project.project_status, (statusCounts.get(project.project_status) || 0) + 1);
+  const statusSummary = [...statusCounts].sort(([left], [right]) => left.localeCompare(right)).map(([status, count]) => `${status}: ${count}`).join(", ");
+  const rows = projects.map((project) => `| ${project.label.replaceAll("|", "\\|")} | \`${project.repo}\` | ${project.project_status} | ${project.project_directory_exists ? "present" : "not present"} | ${project.graphify_participation} | [${project.source_file}#${project.source_location}](../../../../PROJECTS.md#L${project.source_location.slice(1)}) |`).join("\n");
+  const relationshipRows = links.map((edge) => {
+    const source = projects.find((project) => project.id === edge.source)?.label || edge.source;
+    const target = projects.find((project) => project.id === edge.target)?.label || edge.target;
+    return `| ${source} | ${edge.relation} | ${target} | ${edge.source_file} — ${edge.source_location} |`;
+  }).join("\n");
+  return [
+    "# APT Portfolio Graph",
+    "",
+    `Generated from workspace project records. ${projects.length} listed projects; ${links.length} explicitly documented relationships.`,
+    `Project status inventory: ${statusSummary || "none"}.`,
+    "",
+    "This is a navigation index, not an authority for local project behavior. Project identity and relationship claims cite their workspace source; local behavior belongs to each project repository. Graph participation indicates available Graphify detail, not project maturity.",
+    "",
+    "## Projects",
+    "",
+    "| Project | Folder | Identity status | Workspace folder | Graph detail | Evidence |",
+    "| --- | --- | --- | --- | --- | --- |",
+    rows,
+    "",
+    "## Explicit relationships",
+    "",
+    "| Source | Relationship | Target | Evidence |",
+    "| --- | --- | --- | --- |",
+    relationshipRows || "| — | No curated relationships | — | — |",
+    "",
+  ].join("\n");
+}
+
+function portfolio(manifest, check = false) {
+  audit(manifest, true);
+  const root = portfolioGraphRoot(manifest);
+  const graphPath = path.join(root, "graph.json");
+  const reportPath = path.join(root, "GRAPH_REPORT.md");
+  const graph = portfolioGraph(manifest);
+  const report = portfolioReport(graph);
+  if (check) {
+    if (!existsSync(graphPath) || readFileSync(graphPath, "utf8") !== `${JSON.stringify(graph, null, 2)}\n`) throw new Error(`Portfolio graph is missing or stale: ${graphPath}`);
+    if (!existsSync(reportPath) || readFileSync(reportPath, "utf8") !== report) throw new Error(`Portfolio report is missing or stale: ${reportPath}`);
+    process.stdout.write(`Portfolio map current: ${graph.nodes.length} projects, ${graph.links.length} relationships.\n`);
+    return;
+  }
+  mkdirSync(root, { recursive: true });
+  writeJson(graphPath, graph);
+  writeFileSync(reportPath, report, "utf8");
+  const result = commandResult("graphify", ["export", "html", "--graph", graphPath], { cwd: root });
+  if (result.error || result.status !== 0) throw new Error(`Portfolio HTML export failed${result.error ? `: ${result.error.message}` : ` with exit code ${result.status}`}`);
+  process.stdout.write(`Portfolio map: ${graph.nodes.length} projects, ${graph.links.length} relationships; ${root}\n`);
 }
 
 function stagePack(manifest, packId, provenance = "local-ollama") {
@@ -221,7 +420,7 @@ function investigate(manifest, packId, options) {
 function codeGraph(manifest, repoName, promote = false) {
   audit(manifest, true);
   const project = projectByName(manifest, repoName);
-  if (project.participation !== "deep") throw new Error(`${repoName} is not configured for a repo-local graph`);
+  if (project.participation !== "deep") throw new Error(`${repoName} is not configured for a repository-local code graph`);
   const runId = newRunId();
   const candidateRoot = runRoot(manifest, repoName, runId);
   mkdirSync(candidateRoot, { recursive: true });
@@ -237,6 +436,86 @@ function codeGraph(manifest, repoName, promote = false) {
   return { candidateRoot, runId };
 }
 
+function localContentSources(project, repoRoot = path.join(workspaceRoot, project.name)) {
+  if (project.local_graph?.mode !== "authored-markdown") throw new Error(`${project.name} is not configured for authored-Markdown extraction`);
+  const excluded = (project.local_graph.excluded_paths || []).map((value) => normalize(value).replace(/\/+$/, ""));
+  const sources = [];
+  const visit = (root, directory) => {
+    for (const entry of readdirSync(directory, { withFileTypes: true }).sort((left, right) => left.name.localeCompare(right.name))) {
+      if (entry.isSymbolicLink()) continue;
+      const absolute = path.join(directory, entry.name);
+      const relative = normalize(path.relative(repoRoot, absolute));
+      if (excluded.some((prefix) => relative === prefix || relative.startsWith(`${prefix}/`))) continue;
+      if (entry.isDirectory()) visit(root, absolute);
+      else if (entry.isFile() && path.extname(entry.name).toLowerCase() === ".md") {
+        const realFile = realpathSync(absolute);
+        if (!inside(realpathSync(root), realFile)) throw new Error(`Markdown source resolves outside its allowed root: ${relative}`);
+        sources.push(relative);
+      }
+    }
+  };
+  for (const relative of project.local_graph.source_roots) {
+    const root = path.resolve(repoRoot, relative);
+    if (!inside(repoRoot, root) || !existsSync(root) || !statSync(root).isDirectory()) throw new Error(`Invalid authored Markdown source root: ${project.name}/${relative}`);
+    visit(root, root);
+  }
+  for (const relative of project.local_graph.source_files || []) {
+    const source = path.resolve(repoRoot, relative);
+    const normalized = normalize(relative);
+    if (!inside(repoRoot, source) || !existsSync(source) || !statSync(source).isFile() || path.extname(source).toLowerCase() !== ".md") {
+      throw new Error(`Invalid authored Markdown source file: ${project.name}/${relative}`);
+    }
+    if (excluded.some((prefix) => normalized === prefix || normalized.startsWith(`${prefix}/`))) continue;
+    if (!inside(realpathSync(repoRoot), realpathSync(source))) throw new Error(`Markdown source resolves outside project: ${relative}`);
+    sources.push(normalized);
+  }
+  return [...new Set(sources)].sort();
+}
+
+function contentGraph(manifest, repoName, options = {}) {
+  audit(manifest, true);
+  const project = localContentProject(manifest, repoName);
+  const repoRoot = path.join(workspaceRoot, repoName);
+  const sources = localContentSources(project, repoRoot);
+  if (!sources.length) throw new Error(`No authored Markdown sources found for ${repoName}`);
+  const runId = newRunId();
+  const candidateRoot = runRoot(manifest, repoName, runId);
+  const corpusRoot = path.join(candidateRoot, "corpus");
+  mkdirSync(corpusRoot, { recursive: true });
+  for (const relative of sources) {
+    const source = path.resolve(repoRoot, relative);
+    const destination = path.resolve(corpusRoot, relative);
+    if (!inside(corpusRoot, destination)) throw new Error(`Authored Markdown source escapes candidate corpus: ${relative}`);
+    mkdirSync(path.dirname(destination), { recursive: true });
+    copyFileSync(source, destination);
+  }
+  writeJson(path.join(candidateRoot, "CORPUS_INDEX.json"), {
+    target: repoName,
+    title: project.label || repoName,
+    project_status: project.local_graph.provisional ? "provisional" : "active",
+    sources,
+    excluded_paths: project.local_graph.excluded_paths || [],
+    created_at: new Date().toISOString(),
+    semantic_provenance: "local-ollama",
+  });
+  writeStatus(candidateRoot, "staged", {
+    target: repoName,
+    mode: "authored-markdown",
+    project_status: project.local_graph.provisional ? "provisional" : "active",
+    semantic_provenance: "local-ollama",
+  });
+  ensureOllama(manifest);
+  writeStatus(candidateRoot, "running");
+  const result = commandResult("graphify", ["extract", corpusRoot, ...semanticArgs(manifest, options.deep), "--out", candidateRoot], { cwd: operatorRoot });
+  if (result.error || result.status !== 0) {
+    writeStatus(candidateRoot, "failed", { exit_code: result.status ?? null });
+    throw new Error(`Local content extraction failed; candidate retained at ${candidateRoot}`);
+  }
+  writeStatus(candidateRoot, "built-awaiting-review");
+  validateCandidate(manifest, repoName, candidateRoot, options.promote === true);
+  return { candidateRoot, runId, sources: sources.length };
+}
+
 function graphEdges(graph) { return Array.isArray(graph.links) ? graph.links : Array.isArray(graph.edges) ? graph.edges : []; }
 function endpointId(value) { return typeof value === "object" && value ? value.id ?? value.name ?? value.label : value; }
 
@@ -249,8 +528,11 @@ function validateCandidate(manifest, target, candidateRoot, promote = false) {
   if (!failures.length) graph = JSON.parse(readFileSync(graphPath, "utf8"));
   const nodes = Array.isArray(graph.nodes) ? graph.nodes : [];
   const edges = graphEdges(graph);
-  const mode = isPack(manifest, target) ? "semantic_pack" : "code_only";
-  const threshold = manifest.acceptance_policy[mode];
+  const project = isPack(manifest, target) ? null : projectByName(manifest, target);
+  const localContent = project?.participation === "local-content";
+  const validationClass = isPack(manifest, target) || localContent ? "semantic_pack" : "code_only";
+  const mode = isPack(manifest, target) ? "semantic_pack" : localContent ? "authored-markdown" : "code_only";
+  const threshold = manifest.acceptance_policy[validationClass];
   if (nodes.length < threshold.minimum_nodes) failures.push(`node count ${nodes.length} is below ${threshold.minimum_nodes}`);
   if (edges.length < threshold.minimum_edges) failures.push(`edge count ${edges.length} is below ${threshold.minimum_edges}`);
   const ids = new Set(nodes.map((node) => String(node.id ?? node.name ?? node.label)));
@@ -285,15 +567,15 @@ function validateCandidate(manifest, target, candidateRoot, promote = false) {
   if (selfLoops) failures.push(`${selfLoops} self-loops require review`);
   if (noisyHubs.length > manifest.acceptance_policy.maximum_noisy_god_nodes) failures.push(`${noisyHubs.length} generic utilities dominate the top ten hubs`);
   let sourceCoverage = null;
-  if (isPack(manifest, target)) {
+  if (isPack(manifest, target) || localContent) {
     const indexPath = path.join(candidateRoot, "CORPUS_INDEX.json");
-    const expected = existsSync(indexPath) ? JSON.parse(readFileSync(indexPath, "utf8")).sources : packById(manifest, target).sources;
+    const expected = existsSync(indexPath) ? JSON.parse(readFileSync(indexPath, "utf8")).sources : isPack(manifest, target) ? packById(manifest, target).sources : localContentSources(project);
     const searchable = normalize(JSON.stringify(graph)).toLowerCase();
     const represented = expected.filter((source) => searchable.includes(normalize(source).toLowerCase()) || searchable.includes(path.basename(source).toLowerCase()));
     sourceCoverage = expected.length ? represented.length / expected.length : 0;
     if (sourceCoverage < manifest.acceptance_policy.minimum_source_coverage) failures.push(`source coverage ${(sourceCoverage * 100).toFixed(1)}% is below ${(manifest.acceptance_policy.minimum_source_coverage * 100).toFixed(0)}%`);
   }
-  const report = { target, mode, passed: failures.length === 0, generated_at: new Date().toISOString(), graph: normalize(path.relative(candidateRoot, graphPath)), nodes: nodes.length, edges: edges.length, source_coverage: sourceCoverage, dangling_endpoints: dangling, self_loops: selfLoops, same_endpoint_pairs: collapsedPairs, top_hubs: topHubs, noisy_hubs: noisyHubs, failures, note: "Passing structure does not validate semantic claims. Confirm every promoted relationship against source files." };
+  const report = { target, mode, project_status: localContent ? project.local_graph.provisional ? "provisional" : "active" : null, passed: failures.length === 0, generated_at: new Date().toISOString(), graph: normalize(path.relative(candidateRoot, graphPath)), nodes: nodes.length, edges: edges.length, source_coverage: sourceCoverage, dangling_endpoints: dangling, self_loops: selfLoops, same_endpoint_pairs: collapsedPairs, top_hubs: topHubs, noisy_hubs: noisyHubs, failures, note: "Passing structure does not validate semantic claims. Confirm every promoted relationship against source files." };
   writeJson(path.join(candidateRoot, "VALIDATION_REPORT.json"), report);
   writeFileSync(path.join(candidateRoot, "DIAGNOSTICS.txt"), `nodes=${nodes.length}\nedges=${edges.length}\ndangling_endpoints=${dangling}\nself_loops=${selfLoops}\nsame_endpoint_pairs=${collapsedPairs}\n`, "utf8");
   writeStatus(candidateRoot, report.passed ? "validated-awaiting-review" : "rejected", { validation_passed: report.passed });
@@ -319,27 +601,47 @@ function promoteCandidate(manifest, target, candidateRoot) {
 function generateViews(graphRoot, label) {
   const graphPath = path.join(graphRoot, "graph.json");
   if (!existsSync(graphPath)) throw new Error(`No graph found at ${graphPath}`);
-  commandResult("graphify", ["export", "html", "--graph", graphPath], { cwd: graphRoot });
-  commandResult("graphify", ["tree", "--graph", graphPath, "--output", path.join(graphRoot, "GRAPH_TREE.html"), "--label", label], { cwd: graphRoot });
-  commandResult("graphify", ["export", "callflow-html", "--graph", graphPath, "--output", path.join(graphRoot, "CALLFLOW.html")], { cwd: graphRoot });
+  for (const args of [
+    ["export", "html", "--graph", graphPath],
+    ["tree", "--graph", graphPath, "--output", path.join(graphRoot, "GRAPH_TREE.html"), "--label", label],
+    ["export", "callflow-html", "--graph", graphPath, "--output", path.join(graphRoot, "CALLFLOW.html")],
+  ]) {
+    const result = commandResult("graphify", args, { cwd: graphRoot });
+    if (result.error || result.status !== 0) throw new Error(`Graphify view generation failed for ${args.join(" ")}${result.error ? `: ${result.error.message}` : ` (exit code ${result.status})`}`);
+  }
 }
 
 function queries(manifest, target, run = false) {
-  const questions = isPack(manifest, target) ? packById(manifest, target).questions : projectByName(manifest, target).starter_queries || [];
+  const questions = isPortfolio(manifest, target) ? manifest.portfolio.starter_queries : isPack(manifest, target) ? packById(manifest, target).questions : projectByName(manifest, target).starter_queries || [];
   for (const question of questions) process.stdout.write(`- ${question}\n`);
   if (!run) return;
   const graphPath = path.join(currentGraphRoot(manifest, target), "graph.json");
   if (!existsSync(graphPath)) throw new Error(`No promoted graph for ${target}; validate and promote a reviewed candidate explicitly.`);
   const results = [];
+  const graph = JSON.parse(readFileSync(graphPath, "utf8"));
   for (const question of questions) {
     const result = commandResult("graphify", ["query", question, "--graph", graphPath, "--budget", "2000"], { capture: true });
     const answer = `${result.stdout || ""}${result.stderr || ""}`.trim();
     process.stdout.write(`\nQUESTION: ${question}\n${answer}\n`);
-    results.push({ question, exit_code: result.status, answer });
+    const selected = [...answer.matchAll(/^NODE .+ \[src=(.*?) loc=(.*?) community=/gm)];
+    const sourceLocations = new Set(selected.map((match) => `${match[1]}:${match[2]}`).filter((location) => !location.endsWith(":None")));
+    const repositories = new Set(selected.map((match) => {
+      const source = match[1].replaceAll("\\", "/");
+      return graph.nodes.find((node) => node.source_file === source && node.source_location === match[2])?.repo;
+    }).filter(Boolean));
+    const failures = [];
+    if (result.error || result.status !== 0) failures.push(`query process failed${result.error ? `: ${result.error.message}` : ` with exit code ${result.status}`}`);
+    if (isPortfolio(manifest, target)) {
+      if (sourceLocations.size < manifest.acceptance_policy.minimum_query_source_locations) failures.push(`only ${sourceLocations.size} source locations were represented`);
+      if (repositories.size < manifest.acceptance_policy.minimum_query_repositories) failures.push(`only ${repositories.size} repositories were represented`);
+    }
+    results.push({ question, exit_code: result.status, source_locations: [...sourceLocations], repositories: [...repositories], failures, answer });
   }
   const evidenceRoot = path.join(currentGraphRoot(manifest, target), "query-evidence");
   mkdirSync(evidenceRoot, { recursive: true });
   writeJson(path.join(evidenceRoot, `${newRunId()}.json`), { target, results });
+  const failures = results.flatMap((result) => result.failures.map((failure) => `${result.question}: ${failure}`));
+  if (failures.length) throw new Error(`Graphify query validation failed; evidence retained at ${evidenceRoot}: ${failures.join("; ")}`);
 }
 
 function status(manifest, target) {
@@ -375,11 +677,14 @@ function main() {
   if (args.help || args.command === "help") usage();
   else if (args.command === "audit") audit(manifest);
   else if (args.command === "packs") listPacks(manifest);
+  else if (args.command === "portfolio") portfolio(manifest, args.check);
   else if (args.command === "stage") stagePack(manifest, args.target);
   else if (args.command === "investigate") investigate(manifest, args.target, args);
   else if (args.command === "code" || args.command === "build") {
     if (args.target === "portfolio") throw new Error("Full portfolio builds are disabled; use `packs`, `investigate <pack>`, or `code <repo>`.");
     codeGraph(manifest, args.target, args.promote);
+  } else if (args.command === "content") {
+    contentGraph(manifest, args.target, { deep: args.deep, promote: args.promote });
   } else if (args.command === "validate") {
     if (!args.runId) throw new Error("validate requires --run-id ID");
     validateCandidate(manifest, args.target, runRoot(manifest, args.target, args.runId), args.promote);
@@ -396,4 +701,4 @@ if (invokedAsScript) {
   catch (error) { process.stderr.write(`ERROR: ${error.message}\n`); process.exitCode = 1; }
 }
 
-export { currentGraphRoot, graphEdges, inside, loadManifest, packById, parseArgs, runRoot, semanticArgs };
+export { currentGraphRoot, graphEdges, inside, loadManifest, localContentProject, localContentSources, packById, parseArgs, portfolioGraph, portfolioReport, readWorkspaceProjects, runRoot, semanticArgs };

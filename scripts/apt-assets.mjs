@@ -16,7 +16,7 @@ import { fileURLToPath } from "node:url";
 
 const sourceRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const packageJson = JSON.parse(readFileSync(path.join(sourceRoot, "package.json"), "utf8"));
-const sections = ["principles", "standards", "checklists", "context", "skills", "agents", "templates", "prompts", "knowledge", "platforms"];
+const sections = ["principles", "standards", "checklists", "context", "skills", "agents", "templates", "prompts", "knowledge", "platforms", "design", "references", "examples"];
 const manifestKeys = new Set(["name", "description", "extends", ...sections]);
 const args = parseArgs(process.argv.slice(2));
 const command = args._[0] || "help";
@@ -30,7 +30,7 @@ function parseArgs(values) {
       continue;
     }
     const key = value.slice(2);
-    if (["dry-run", "force", "apply", "json", "summary", "check"].includes(key)) result[key] = true;
+    if (["dry-run", "force", "apply", "json", "summary", "check", "run-design"].includes(key)) result[key] = true;
     else result[key] = values[++index];
   }
   return result;
@@ -394,6 +394,17 @@ function mappingsFor(manifests, platforms) {
   return mappings;
 }
 
+/** Canonical design version (design/VERSION), or null when the source has no design area. */
+function currentDesignVersion() {
+  const file = path.join(sourceRoot, "design", "VERSION");
+  return exists(file) ? readFileSync(file, "utf8").trim() : null;
+}
+
+/** True when a record installs the design manifest's files. */
+function hasDesignFiles(managedFiles) {
+  return managedFiles.some((item) => item.target.startsWith(".apt/design/"));
+}
+
 function readRecord(target) {
   const file = path.join(target, ".apt", "installation.json");
   if (!exists(file)) return null;
@@ -480,6 +491,7 @@ function install(options = {}) {
       manifests: [...new Set([...(old?.manifests || []), ...manifests.map((item) => item.name)])],
       platforms: [...new Set([...(old?.platforms || []), ...platforms])],
       managedFiles: [...managed.values()].sort((a, b) => a.target.localeCompare(b.target)),
+      ...(hasDesignFiles([...managed.values()]) ? { designVersion: currentDesignVersion() } : {}),
       localContext: old?.localContext || "docs/project-context.md",
       lastOperation: { type: "install", at: new Date().toISOString() },
     });
@@ -497,16 +509,69 @@ function scanTarget(target) {
     if (!exists(destination)) return { ...item, status: "missing-target" };
     const sourceHash = sha256(source);
     const targetHash = sha256(destination);
-    return { ...item, status: sourceHash === targetHash ? "current" : "drifted", sourceHash, targetHash };
+    // outdated: unedited locally, just behind the source (safe to sync). drifted: edited locally.
+    const status = sourceHash === targetHash ? "current" : targetHash === item.sha256 ? "outdated" : "drifted";
+    return { ...item, status, sourceHash, targetHash };
   });
+  const recorded = new Set(record.managedFiles.map((item) => item.target));
+  let newFiles = [];
+  try {
+    newFiles = mappingsFor(resolveManifests(record.manifests), record.platforms)
+      .filter((mapping) => !recorded.has(mapping.target))
+      .map((mapping) => ({ ...mapping, status: "new" }));
+  } catch {
+    newFiles = []; // a manifest the record names no longer exists; reported elsewhere
+  }
   const provenanceCurrent = record.source.version === packageJson.version && record.source.commit === gitCommit();
+  const allFiles = [...files, ...newFiles];
+  const anyDrifted = files.some((item) => item.status === "drifted");
+  const anyBehind = allFiles.some((item) => ["outdated", "new", "missing-target"].includes(item.status));
   return {
     target,
-    status: files.every((item) => item.status === "current") && provenanceCurrent ? "current" : "drifted",
+    status: anyDrifted ? "drifted" : anyBehind || !provenanceCurrent ? "outdated" : "current",
     provenanceCurrent,
-    counts: files.reduce((result, item) => ({ ...result, [item.status]: (result[item.status] || 0) + 1 }), {}),
-    files,
+    designVersion: record.designVersion || null,
+    counts: allFiles.reduce((result, item) => ({ ...result, [item.status]: (result[item.status] || 0) + 1 }), {}),
+    files: allFiles,
   };
+}
+
+/** Design alignment facts for one repository (DR-015). Read-only unless runCheck is true. */
+function designStatus(target, consumer, record, runCheck) {
+  const configPath = path.join(target, "apt-design.json");
+  const config = exists(configPath) ? JSON.parse(readFileSync(configPath, "utf8")) : null;
+  const tier = config?.tier ?? consumer.tier ?? null;
+  const packagePath = path.join(target, "package.json");
+  const scripts = exists(packagePath) ? JSON.parse(readFileSync(packagePath, "utf8")).scripts || {} : {};
+  const scriptWired = Object.values(scripts).some((command) => String(command).includes("apt-design-check"));
+  const workflowsDir = path.join(target, ".github", "workflows");
+  const workflowText = exists(workflowsDir)
+    ? readdirSync(workflowsDir).filter((name) => /\.ya?ml$/.test(name)).map((name) => readFileSync(path.join(workflowsDir, name), "utf8")).join("\n")
+    : "";
+  const designScripts = Object.entries(scripts).filter(([, command]) => String(command).includes("apt-design-check")).map(([name]) => name);
+  const ciWired = Boolean(workflowText) && (workflowText.includes("apt-design-check") || designScripts.some((name) => workflowText.includes(name)));
+  const current = currentDesignVersion();
+  const result = {
+    tier,
+    hasConfig: Boolean(config),
+    designVersion: record?.designVersion || null,
+    designCurrent: Boolean(record?.designVersion) && record.designVersion === current,
+    scriptWired,
+    ciWired,
+  };
+  if (runCheck && config && exists(path.join(target, ".apt", "design", "bin", "apt-design-check.mjs"))) {
+    try {
+      const output = execFileSync(process.execPath, [".apt/design/bin/apt-design-check.mjs", "--json"], { cwd: target, encoding: "utf8" });
+      result.check = JSON.parse(output).status;
+    } catch (error) {
+      try {
+        result.check = JSON.parse(error.stdout || "{}").status || "error";
+      } catch {
+        result.check = "error";
+      }
+    }
+  }
+  return result;
 }
 
 function syncOrRepair(type) {
@@ -554,7 +619,16 @@ function syncOrRepair(type) {
     const old = previous.get(mapping.target);
     const sourceHash = sha256(source);
     const item = { ...mapping, sha256: old?.sha256 || sourceHash };
-    item.status = !exists(destination) ? "missing-target" : sha256(destination) === sourceHash ? "current" : "drifted";
+    const destinationHash = exists(destination) ? sha256(destination) : null;
+    // "drifted" means the target was edited locally since install. A target that still
+    // matches its recorded hash is just behind the source ("outdated") and is safe to update.
+    item.status = destinationHash === null
+      ? "missing-target"
+      : destinationHash === sourceHash
+        ? "current"
+        : old && destinationHash === old.sha256
+          ? "outdated"
+          : "drifted";
     if (item.status === "current") continue;
     if (item.status === "drifted" && !force) {
       actions.push({ action: "skipped-local-drift", target: item.target });
@@ -583,6 +657,7 @@ function syncOrRepair(type) {
     record.managedFiles = [...retained, ...nextManaged].map(({ status, ...item }) => item).sort((a, b) => a.target.localeCompare(b.target));
     record.lastOperation = { type, at: new Date().toISOString() };
     record.source = { repository: "apt-principles-agents", version: packageJson.version, commit: gitCommit() };
+    if (hasDesignFiles(record.managedFiles)) record.designVersion = currentDesignVersion();
     writeRecord(target, record);
   }
   return { target, type, apply, force, selectedTargets: selectedTargets ? [...selectedTargets].sort() : null, actions };
@@ -675,6 +750,7 @@ function auditWorkspace() {
       const platformsMatch = record ? consumer.platforms.every((item) => record.platforms.includes(item)) : false;
       const missingProjectContext = targetExists && !exists(path.join(target, "docs", "project-context.md"));
       const missingAgents = targetExists && !exists(path.join(target, "AGENTS.md"));
+      const design = targetExists ? designStatus(target, consumer, record, Boolean(args["run-design"])) : null;
       return {
         repository: consumer.repository,
         registered: true,
@@ -687,6 +763,7 @@ function auditWorkspace() {
         missingProjectContext,
         missingAgents,
         counts: scan.counts || {},
+        design,
       };
     });
   const status = repositories.every((item) => (
@@ -707,6 +784,8 @@ function auditWorkspace() {
     installedUnregistered,
     activeUninstalled,
     activeRepositories,
+    designVersion: currentDesignVersion(),
+    designBehind: repositories.filter((item) => item.design && [1, 2].includes(item.design.tier) && !item.design.designCurrent).map((item) => item.repository),
     repositories,
   };
 }

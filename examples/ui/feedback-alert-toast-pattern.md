@@ -1,7 +1,7 @@
 ---
 title: Feedback Alert Toast Pattern
 version: v1
-last_updated: 2026-06-13
+last_updated: 2026-10-03
 owner: APT
 status: draft
 kind: "example"
@@ -38,7 +38,7 @@ modal/dialog -> user decision, irreversible action, or focused form task
 full-page error -> route-level 403, 404, 500, or unavailable state
 ```
 
-Color is semantic only: blue for information/action, teal for success, amber for warning, red for destructive/error, and neutral for passive status. Feedback should include text, iconography, and placement so meaning does not depend on color alone.
+Color is semantic only, using canonical tokens: blue (`primary`) for information/action, green (`success`) for success, amber (`warning`) for warning, red (`destructive`) for error, and neutral for passive status. Success is not the teal accent. Feedback should include text, iconography, and placement so meaning does not depend on color alone.
 
 Use `examples/ui/design-reference-kit/ui_kits/account/` and `examples/ui/design-reference-kit/ui_kits/patterns/` as reference implementations.
 

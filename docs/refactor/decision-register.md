@@ -4,7 +4,7 @@ kind: decision-register
 domain: governance
 status: active
 owner: APT
-last_updated: 2026-07-11
+last_updated: 2026-10-04
 source_paths: ["apt-principles-agents/docs/refactor/decision-register.md"]
 ---
 
@@ -232,3 +232,23 @@ Additional DR-013 requirements for approval:
 - Blocking or non-blocking: Non-blocking for documentation-only work; blocking before generated wiki tooling or generated-output directories are introduced.
 - Target phase: Phase 1 policy, Phase 5 enforcement.
 - Status: Proposed, added from independent review.
+
+## DR-015: Canonical Design Source And Tiered Alignment (APT-019)
+
+- Identifier: DR-015 (recorded in the APT site as APT-019).
+- Decision: apt-principles-agents owns the canonical APT design tokens and their generated artifacts. Products pull them through `apt-assets` and are checked by `design/bin/apt-design-check.mjs` according to a tier.
+- Why it matters: Token values lived in `applied-practical-thinking` with about six hand-maintained copies, including this repository's `references/design-tokens.json`. Ownership was described three contradictory ways, and four products kept diverged forks of the APT UI package.
+- Verified evidence: the 2026-10-04 inventory of 17 repositories. The generated `design/dist/apt-tokens.css` reproduces `applied-practical-thinking/apps/web/index.css` with zero drift across 98 tokens.
+- Decision details:
+  - Canonical source: `design/tokens/APT-TOKENS.json`, versioned in `design/VERSION` with `design/CHANGELOG.md`.
+  - Generated artifacts: `scripts/build-design.mjs` writes `design/dist/*` and the color sections of `references/design-tokens.json`. `--check` runs in `npm run check`.
+  - Delivery: the `design` manifest copies `design/` and the design references into `.apt/`. No package registry.
+  - Tiers, declared in each repository's `apt-design.json`:
+    - Tier 1 (APT products) must match canonical values except documented exclusions.
+    - Tier 2 (brand products) may keep their own palette but must use APT semantic token names and pass contrast.
+    - Tier 3 (legacy or no UI) gets guidance only.
+- Consequences: Token changes become one edit, a version bump and a sync. Drift and contrast are checked the same way everywhere. Products give up hand-tuning canonical values, so deviations need an exclusion and a decision record.
+- Human approval required: Yes (approved by the owner, 2026-10-04).
+- Blocking or non-blocking: Non-blocking for doctrine; blocking for Tier 1 design changes made outside the canonical source.
+- Target phase: Phase 1 (source, generator, checks, delivery); Phase 2 (repository migration); Phase 3 (shared Apt* components); Phase 4 (release flow).
+- Status: Accepted.

@@ -1,5 +1,6 @@
 #!/usr/bin/env node
 import { execFileSync, spawnSync } from "node:child_process";
+import { createHash } from "node:crypto";
 import { existsSync, mkdirSync, readFileSync, rmSync, writeFileSync } from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
@@ -57,6 +58,48 @@ run(["repair", "--target", target, "--apply", "--force"]);
 scan = JSON.parse(run(["scan", "--target", target]));
 if (scan.status !== "current") throw new Error("Forced repair did not restore current state");
 if (!existsSync(path.join(target, ".apt-backups"))) throw new Error("Forced repair did not create a backup");
+
+// An unedited target installed from an older source must update without --force:
+// simulate the older install by rewriting the target and recording that content's hash.
+{
+  const outdatedPath = path.join(target, managed.target);
+  const olderContent = `${readFileSync(outdatedPath, "utf8")}\nolder source revision\n`;
+  writeFileSync(outdatedPath, olderContent, "utf8");
+  const recorded = JSON.parse(readFileSync(recordPath, "utf8"));
+  const entry = recorded.managedFiles.find((item) => item.target === managed.target);
+  entry.sha256 = createHash("sha256").update(readFileSync(outdatedPath)).digest("hex");
+  writeFileSync(recordPath, `${JSON.stringify(recorded, null, 2)}\n`, "utf8");
+  const outdatedScan = JSON.parse(run(["scan", "--target", target]));
+  if (outdatedScan.files.find((item) => item.target === managed.target)?.status !== "outdated") throw new Error("Scan did not report an unedited, behind target as outdated");
+  const outdatedSync = JSON.parse(run(["sync", "--target", target, "--apply", "--targets", managed.target]));
+  if (outdatedSync.actions[0]?.action !== "updated") throw new Error("Sync did not update an unedited, outdated target");
+  scan = JSON.parse(run(["scan", "--target", target]));
+  if (scan.files.find((item) => item.target === managed.target)?.status !== "current") throw new Error("Outdated target is not current after sync");
+}
+
+// Design manifest (DR-015): installs generated tokens and the check, and records designVersion.
+{
+  const designTarget = path.join(tempRoot, "design-target");
+  mkdirSync(designTarget, { recursive: true });
+  run(["install", "--target", designTarget, "--manifests", "design", "--platforms", "none"]);
+  const designRecord = JSON.parse(readFileSync(path.join(designTarget, ".apt", "installation.json"), "utf8"));
+  const expectedVersion = readFileSync(path.join(root, "design", "VERSION"), "utf8").trim();
+  if (designRecord.designVersion !== expectedVersion) throw new Error(`designVersion not recorded (got ${designRecord.designVersion})`);
+  for (const file of ["dist/apt-tokens.css", "dist/apt-tokens.dark-first.css", "dist/tailwind-preset.cjs", "bin/apt-design-check.mjs"]) {
+    if (!existsSync(path.join(designTarget, ".apt", "design", file))) throw new Error(`design manifest did not install ${file}`);
+  }
+  // A Tier 1 product that imports the generated tokens passes; one broken token fails.
+  mkdirSync(path.join(designTarget, "src"), { recursive: true });
+  const css = path.join(designTarget, "src", "index.css");
+  writeFileSync(css, '@import "../.apt/design/dist/apt-tokens.dark-first.css";\n', "utf8");
+  writeFileSync(path.join(designTarget, "apt-design.json"), JSON.stringify({ tier: 1, css: "src/index.css", lint: { roots: ["src"] } }), "utf8");
+  const designCheck = path.join(designTarget, ".apt", "design", "bin", "apt-design-check.mjs");
+  const passing = spawnSync("node", [designCheck], { cwd: designTarget, encoding: "utf8" });
+  if (passing.status !== 0) throw new Error(`apt-design-check failed on generated tokens:\n${passing.stdout}${passing.stderr}`);
+  writeFileSync(css, '@import "../.apt/design/dist/apt-tokens.dark-first.css";\n:root { --muted-foreground: 220 10% 55%; }\n', "utf8");
+  const failing = spawnSync("node", [designCheck], { cwd: designTarget, encoding: "utf8" });
+  if (failing.status === 0 || !failing.stdout.includes("muted-foreground")) throw new Error("apt-design-check did not fail on a drifted, low-contrast token");
+}
 
 const uninstallPreview = JSON.parse(run(["uninstall", "--target", target]));
 if (!uninstallPreview.actions.some((item) => item.action === "would-remove")) throw new Error("Uninstall preview is incomplete");

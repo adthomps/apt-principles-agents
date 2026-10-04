@@ -4,7 +4,7 @@ kind: "checklist"
 domain: "distribution"
 status: "active"
 owner: "APT"
-last_updated: "2026-06-28"
+last_updated: "2026-10-03"
 source_paths: ["apt-agent-standards/checklists/ui-checklist.md"]
 ---
 
@@ -20,6 +20,7 @@ Use this checklist for React/Vite apps, dashboards, forms, workflows, and visual
 - Text fits in supported mobile and desktop viewports.
 - Forms show validation, recovery, and completion states.
 - Accessibility is treated as product quality, including labels, focus, contrast, and keyboard flow.
+- Text contrast meets WCAG AA on every surface in each theme (not only the page background), and status colors come from the canonical success, warning, and destructive tokens.
 - React, TypeScript, and Tailwind projects use shadcn/ui as the default repo-owned foundation unless VPDS or another approved enterprise design system is required.
 - Existing `components.json`, import aliases, Tailwind config or global CSS, installed primitives, local wrappers, and product blocks are inspected before adding shadcn components.
 - Component layering is clear: `components/ui` for shadcn primitives, `components/apt` for reusable APT wrappers, and `components/blocks` for product workflow blocks.

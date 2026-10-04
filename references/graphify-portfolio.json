@@ -56,7 +56,121 @@
       "How does accepted intake move through planning, reusable doctrine, productized behavior, and delivery?",
       "Which repositories consume assets distributed from apt-principles-agents, and where can adoption drift occur?",
       "How does frozen design evidence connect to canonical design guidance and the public APT experience?",
-      "Which security-review components connect the APT security harness to the repositories it evaluates?"
+      "How do the APT security harness and Authorize.Net Security SDK provide distinct, complementary security coverage?"
+    ],
+    "relationships": [
+      {
+        "source": "apt-principles-agents",
+        "target": "applied-practical-thinking",
+        "relation": "publishes_guidance_to",
+        "source_file": "PROJECT_KNOWLEDGE.md",
+        "source_location": "Canonical Ownership"
+      },
+      {
+        "source": "apt-principles-agents",
+        "target": "apt-product-team",
+        "relation": "powers",
+        "source_file": "PROJECT_KNOWLEDGE.md",
+        "source_location": "Canonical Ownership"
+      },
+      {
+        "source": "apt-product-team",
+        "target": "applied-practical-thinking",
+        "relation": "connected_to",
+        "source_file": "PROJECT_KNOWLEDGE.md",
+        "source_location": "Canonical Ownership"
+      },
+      {
+        "source": "apt-anet-training",
+        "target": "apt-anet-integration-toolbox",
+        "relation": "provides_training_truth_for",
+        "source_file": "WORKSPACE_PROJECT_INVENTORY_2026-09-26.md",
+        "source_location": "Authorize.Net and the move to VAS"
+      },
+      {
+        "source": "apt-anet-vas-smb-move",
+        "target": "apt-developer-mcp-payments",
+        "relation": "migration_source_for",
+        "source_file": "WORKSPACE_PROJECT_INVENTORY_2026-09-26.md",
+        "source_location": "Relationships to preserve"
+      },
+      {
+        "source": "apt-developer-mcp-payments",
+        "target": "apt-anet-vas-migration-acceptance",
+        "relation": "validated_by",
+        "source_file": "WORKSPACE_PROJECT_INVENTORY_2026-09-26.md",
+        "source_location": "Relationships to preserve"
+      },
+      {
+        "source": "apt-anet-integration-toolbox",
+        "target": "apt-anet-vas-migration-acceptance",
+        "relation": "acceptance_tested_by",
+        "source_file": "WORKSPACE_PROJECT_INVENTORY_2026-09-26.md",
+        "source_location": "Relationships to preserve"
+      },
+      {
+        "source": "apt-intake",
+        "target": "apt-dream-to-reality",
+        "relation": "accepted_context_to_product_planning",
+        "source_file": "apt-dream-to-reality/docs/INTAKE_TO_DELIVERY_CONTRACT.md",
+        "source_location": "L16"
+      },
+      {
+        "source": "apt-product-team",
+        "target": "apt-dream-to-reality",
+        "relation": "productization_destination",
+        "source_file": "apt-product-team/docs/operating-model.md",
+        "source_location": "L49"
+      },
+      {
+        "source": "apt-principles-agents",
+        "target": "apt-dream-to-reality",
+        "relation": "owns_reusable_doctrine_for",
+        "source_file": "apt-dream-to-reality/docs/WORKING_BACKWARDS_PRODUCT_TEAM_APPLICATION.md",
+        "source_location": "L10"
+      },
+      {
+        "source": "apt-design-reference",
+        "target": "apt-principles-agents",
+        "relation": "historical_design_evidence_for",
+        "source_file": "apt-principles-agents/docs/design-reference-intake.md",
+        "source_location": "L17"
+      },
+      {
+        "source": "apt-design-reference",
+        "target": "applied-practical-thinking",
+        "relation": "promoted_public_examples_to",
+        "source_file": "apt-principles-agents/docs/design-reference-intake.md",
+        "source_location": "L17"
+      },
+      {
+        "source": "apt-security-harness",
+        "target": "apt-anet-security-sdk",
+        "relation": "complementary_security_scope",
+        "source_file": "WORKSPACE_PROJECT_INVENTORY_2026-09-26.md",
+        "source_location": "Relationships to preserve"
+      },
+      {
+        "source": "apt-playwright-compass",
+        "target": "apt-anet-playwright",
+        "relation": "aggregates_explorer",
+        "source_file": "WORKSPACE_PROJECT_INVENTORY_2026-09-26.md",
+        "source_location": "Playwright explorers"
+      },
+      {
+        "source": "apt-playwright-compass",
+        "target": "apt-vas-ent-playwright",
+        "relation": "aggregates_explorer",
+        "source_file": "WORKSPACE_PROJECT_INVENTORY_2026-09-26.md",
+        "source_location": "Playwright explorers"
+      },
+      {
+        "source": "apt-playwright-compass",
+        "target": "apt-vas-smb-playwright",
+        "relation": "aggregates_explorer",
+        "source_file": "WORKSPACE_PROJECT_INVENTORY_2026-09-26.md",
+        "source_location": "Playwright explorers"
+      }
     ]
   },
   "investigation_packs": [
@@ -227,12 +341,6 @@
       ]
     },
     {
-      "name": "apt-anet-doc-explorer",
-      "participation": "lightweight-on-demand",
-      "wave": "on-demand",
-      "reason": "Graph only when tracing document discovery, catalog provenance, or analysis behavior."
-    },
-    {
       "name": "apt-anet-integration-toolbox",
       "participation": "deep",
       "wave": 1,
@@ -255,6 +363,57 @@
       "participation": "ordinary-docs-search",
       "wave": "none",
       "reason": "Small fixed-behavior Worker collection with an adequate README matrix."
+    },
+    {
+      "name": "apt-anet-training",
+      "participation": "local-content",
+      "wave": 2,
+      "graphify_guide": "docs/graphify.md",
+      "local_graph": {
+        "mode": "authored-markdown",
+        "source_roots": [],
+        "source_files": [
+          "content/foundations/index.md",
+          "content/foundations/01-payments-ecosystem.md",
+          "content/foundations/05-payment-acceptance.md",
+          "content/foundations/07-recurring-and-stored-payments.md",
+          "content/foundations/08-fraud-and-risk.md",
+          "content/foundations/09-developer-and-integration.md",
+          "content/foundations/10-reporting-and-settlement.md",
+          "content/foundations/12-architecture-overview.md"
+        ],
+        "excluded_paths": [
+          "archive",
+          "graphify-out",
+          "sources"
+        ],
+        "provisional": false
+      },
+      "starter_queries": [
+        "How do the foundations connect merchant operations, payments, risk, integration, and settlement?",
+        "How are legacy integrations and current checkout methods organized across the Authorize.Net knowledge pack?",
+        "Which training topics are source-backed, and where does the documentation identify review gaps?"
+      ]
+    },
+    {
+      "name": "apt-anet-vas-migration-acceptance",
+      "participation": "deep",
+      "wave": 2,
+      "graphify_guide": "docs/graphify.md",
+      "additional_exclusions": [
+        ".certs/",
+        ".local/",
+        ".env",
+        ".env.*",
+        "output/",
+        "node_modules/",
+        "tests/"
+      ],
+      "starter_queries": [
+        "How does the sandbox-only checkout move from browser tokenization to the backend sale and safe result?",
+        "Which source modules enforce payment-field allowlists, operation claims, and unresolved-outcome handling?",
+        "Where are live sandbox prerequisites and the boundary between the acceptance app and migration MCP documented?"
+      ]
     },
     {
       "name": "apt-anet-security-sdk",
@@ -286,10 +445,12 @@
       "name": "apt-commerce",
       "participation": "deep",
       "wave": 1,
+      "graphify_guide": "docs/graphify.md",
       "additional_exclusions": [
         ".apt/",
         ".lovable/",
         "_quarantine_github_src_old/",
+        "**/.output/",
         "docs/apt/reports/",
         "apps/web/e2e/"
       ],
@@ -299,6 +460,53 @@
         "Where are partner, merchant, internal staff, developer, and support roles enforced?",
         "How do the React application, Worker APIs, D1 repositories, and external services exchange data?",
         "Where can product documentation, Working Backwards packages, and runtime behavior drift?"
+      ]
+    },
+    {
+      "name": "apt-anet-vas-smb-move",
+      "participation": "local-content",
+      "wave": 2,
+      "graphify_guide": "docs/graphify.md",
+      "local_graph": {
+        "mode": "authored-markdown",
+        "source_roots": [
+          "docs/migrations"
+        ],
+        "source_files": [
+          "README.md",
+          "docs/integration-map.md"
+        ],
+        "excluded_paths": [
+          "docs/archive",
+          "docs/graphify.md",
+          "docs/project-identity.md"
+        ],
+        "provisional": false
+      },
+      "starter_queries": [
+        "Which Authorize.Net products map to VAS SMB products, and what is the documented migration status?",
+        "What merchant-side steps, prerequisites, and verification are required for the included migration guide?",
+        "Where are product migration guidance and developer MCP implementation kept separate?"
+      ]
+    },
+    {
+      "name": "apt-developer-mcp-payments",
+      "participation": "deep",
+      "wave": 2,
+      "graphify_guide": "docs/graphify.md",
+      "additional_exclusions": [
+        ".tmp/",
+        "dist/",
+        "knowledge/local/",
+        "local-settings/",
+        "node_modules/",
+        "tests/",
+        "*.tgz"
+      ],
+      "starter_queries": [
+        "How does bounded Authorize.Net assessment evidence flow into migration planning and verification?",
+        "Which modules own bundled knowledge, imported training context, MCP tools, and reviewed templates?",
+        "Where are payment credentials, customer data, and local imported context excluded from assessment output?"
       ]
     },
     {
@@ -382,51 +590,6 @@
       "reason": "Small operational front door whose main value is its routing relationship to owning repositories."
     },
     {
-      "name": "apt-intelligence-core",
-      "participation": "deep",
-      "wave": 2,
-      "graphify_guide": "docs/graphify.md",
-      "additional_exclusions": [
-        ".agents/",
-        ".apt/",
-        ".claude/",
-        ".codex/",
-        ".gemini/",
-        "output/",
-        "tests/",
-        "turbo.json",
-        "intelligence/core/_legacy/",
-        "**/mock-data/",
-        "**/generated/",
-        "**/*.csv"
-      ],
-      "starter_queries": [
-        "How does source-shaped data become normalized evidence, metrics, findings, narratives, and packaged reports?",
-        "Which core pipeline stages are shared across active intelligence domains?",
-        "How do domain configurations, schemas, report types, and renderers interact?",
-        "What would be affected by adding a new intelligence domain or source system?",
-        "Where can deterministic calculations, generated narratives, and rendered reports drift?"
-      ]
-    },
-    {
-      "name": "apt-knowledge-hub",
-      "participation": "deep",
-      "wave": 1,
-      "additional_exclusions": [
-        ".apt/",
-        "data/",
-        "reports/",
-        "**/generated/"
-      ],
-      "starter_queries": [
-        "How does canonical Git content move through validation, D1 ingest, KV publication, and the React reader?",
-        "How does the APT MCP connect prompts, blueprints, docs, APIs, and examples?",
-        "Which schemas and loaders preserve provenance across content formats and brand scopes?",
-        "What would be affected by changing a knowledge package or OpenAPI contract?",
-        "Where can D1 or KV read models drift from canonical Git content?"
-      ]
-    },
-    {
       "name": "apt-novel-reviewer",
       "participation": "deep",
       "wave": 2,
@@ -451,6 +614,37 @@
         "How are resolved, still-present, and new findings calculated across versions?",
         "What would be affected by adding a review mode or manuscript format?",
         "Where are the local-only, no-rewriting, and no-chat boundaries enforced?"
+      ]
+    },
+    {
+      "name": "apt-vas-smb-training",
+      "participation": "local-content",
+      "wave": 2,
+      "graphify_guide": "docs/graphify.md",
+      "local_graph": {
+        "mode": "authored-markdown",
+        "source_roots": [],
+        "source_files": [
+          "content/foundations/index.md",
+          "content/foundations/01-what-is-vas-smb.md",
+          "content/foundations/02-accounts-and-environments.md",
+          "content/foundations/04-onboarding-and-boarding.md",
+          "content/foundations/05-payment-acceptance.md",
+          "content/foundations/09-developer-integration.md",
+          "content/api/overview.md",
+          "content/online-checkout/index.md"
+        ],
+        "excluded_paths": [
+          "archive",
+          "graphify-out",
+          "sources"
+        ],
+        "provisional": true
+      },
+      "starter_queries": [
+        "How are VAS SMB audiences, accounts, onboarding, payment acceptance, and merchant operations outlined?",
+        "How do the API, checkout, portal, partner, and risk topic outlines connect?",
+        "Which topics remain draft outlines or identify unresolved SMB entitlement and partner questions?"
       ]
     },
     {

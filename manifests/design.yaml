@@ -1,0 +1,29 @@
+name: design
+description: Canonical APT design tokens, generated token CSS and Tailwind presets, and the apt-design-check contrast, drift and lint check (DR-015 / APT-019).
+principles:
+  - principles/design/
+standards:
+checklists:
+  - checklists/design-review-checklist.md
+context:
+skills:
+  - skills/design/apt-contrast-check/
+agents:
+templates:
+  - templates/DESIGN.md
+prompts:
+knowledge:
+platforms:
+design:
+  - design/VERSION
+  - design/CHANGELOG.md
+  - design/README.md
+  - design/tokens/
+  - design/dist/
+  - design/bin/
+references:
+  - references/design-tokens.json
+  - references/design-lint-gates.json
+  - references/apt-design.schema.json
+examples:
+  - examples/ui/

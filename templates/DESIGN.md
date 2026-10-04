@@ -94,7 +94,7 @@ Minimum requirements:
 * Screen reader support
 * Visible focus indicators
 * Accessible form labels
-* Accessible color contrast
+* Accessible color contrast on every surface (background, card, muted, secondary, elevated), checked automatically
 
 Accessibility is required.
 

@@ -48,6 +48,13 @@ function main() {
   } else {
     try {
       const record = JSON.parse(readFileSync(installationFile, "utf8"));
+      // Design tokens are versioned separately (DR-015): flag a stale designVersion explicitly,
+      // since that changes what the product renders, not just its guidance files.
+      const designVersionFile = path.join(sourceRoot, "design", "VERSION");
+      const currentDesign = existsSync(designVersionFile) ? readFileSync(designVersionFile, "utf8").trim() : null;
+      if (currentDesign && record.designVersion && record.designVersion !== currentDesign) {
+        notes.push(`APT design tokens changed: this repo has design ${record.designVersion}, canonical is ${currentDesign}. See apt-principles-agents/design/CHANGELOG.md, then run \`node ../apt-principles-agents/scripts/apt-assets.mjs sync --target . --apply\` and \`node .apt/design/bin/apt-design-check.mjs\`.`);
+      }
       const currentHead = gitHead(sourceRoot);
       if (currentHead && record.source?.commit && record.source.commit !== currentHead) {
         notes.push(`This repo's canonical content is behind apt-principles-agents (installed at ${record.source.commit.slice(0, 8)}, canonical is now at ${currentHead.slice(0, 8)}). Run \`node ../apt-principles-agents/scripts/apt-assets.mjs sync --target . --apply\` to check for updates (it will not overwrite local changes without --force).`);

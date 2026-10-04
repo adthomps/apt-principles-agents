@@ -64,6 +64,12 @@ The [game-development domain](principles/game-development/README.md) helps begin
 
 Use micro-group review for focused cross-functional decisions and swarm review for broad, high-risk work. Every reviewer returns perspective, concerns, recommended changes, risks, questions, and approval status. Always include a beginner reviewer for onboarding, APIs, guides, UI journeys, migrations, troubleshooting, and Product Hubs.
 
+## Workspace knowledge graph
+
+The Graphify operator in `scripts/graphify-workspace.mjs` builds a deterministic portfolio map from the workspace project catalog and explicitly sourced relationships. Run `npm run graphify:portfolio` to generate the portfolio graph, report, and HTML under ignored `graphify-out/portfolio/current/`; run `npm run graphify:portfolio:check` to verify the JSON and report are current. The portfolio map is a routing index, not authority for local project behavior.
+
+Detailed graphs remain repository-local and opt-in: `code <repo>` builds an AST-only candidate for configured code repositories, while `content <repo>` stages only the configured authored Markdown sources and extracts them with local-only Ollama. Candidates stay under each repository's ignored `graphify-out/runs/`; review before explicit promotion. Content graphs are navigation aids, not sources of truth. `apt-vas-smb-training` remains explicitly provisional. Full-portfolio semantic builds, hosted extraction, hooks, schedules, and automatic promotion remain disabled. See each target repository's `docs/graphify.md` and `references/graphify-portfolio.json` for scope and exclusions.
+
 ## Contribute
 
 Put durable decision guidance in **principles/**, procedures in **skills/**, accountable perspectives in **agents/**, reusable inputs in **templates/** or **prompts/**, and concrete demonstrations in **examples/**. Add cross-links, provenance, tests, and audience impact; run **npm run check**.
