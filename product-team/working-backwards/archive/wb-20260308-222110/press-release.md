@@ -1,3 +1,13 @@
+---
+title: "Visa Acceptance Platform Merchant Routing Lets Enterprise Merchants Direct Transactions Across Multiple Processor MIDs Without Building or Maintaining Their Own Routing Infrastructure"
+kind: "working-backwards-record"
+domain: "product-planning"
+status: "active"
+owner: "APT"
+last_updated: "2026-10-04"
+source_paths: ["apt-principles-agents/product-team/working-backwards/archive/wb-20260308-222110/press-release.md"]
+---
+
 # Visa Acceptance Platform Merchant Routing Lets Enterprise Merchants Direct Transactions Across Multiple Processor MIDs Without Building or Maintaining Their Own Routing Infrastructure
 
 **Enterprise payments leaders at large international merchants — including airlines, hospitality groups, and global retailers — can now configure sophisticated multi-MID routing rules directly within their existing VAP merchant account, eliminating the need to engineer, operate, and reconcile a bespoke routing layer.**

@@ -6,6 +6,13 @@ allowed-tools: Bash, Read, Write
 skills:
   - github-operations
   - working-backwards-methodology
+title: "Working Backwards Session Orchestrator"
+kind: "skill"
+domain: "product-planning"
+status: "active"
+owner: "APT"
+last_updated: "2026-10-04"
+source_paths: ["apt-principles-agents/product-team/.claude/skills/working-backwards/SKILL.md"]
 ---
 
 # Working Backwards Session Orchestrator

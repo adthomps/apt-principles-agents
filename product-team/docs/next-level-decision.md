@@ -5,10 +5,7 @@ status: active
 owner: APT
 last_updated: 2026-08-03
 domain: product-planning
-source_paths:
-  - apt-principles-agents/product-team/docs/next-level-decision.md
-  - apt-principles-agents/product-team/docs/formalization-direction.md
-  - apt-principles-agents/product-team/docs/session-retention-policy.md
+source_paths: ["apt-principles-agents/product-team/docs/next-level-decision.md", "apt-principles-agents/product-team/docs/formalization-direction.md", "apt-principles-agents/product-team/docs/session-retention-policy.md"]
 ---
 
 # Next-Level Decision

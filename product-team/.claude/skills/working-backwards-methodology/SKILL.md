@@ -2,6 +2,13 @@
 name: working-backwards-methodology
 description: Reference knowledge for Amazon's Working Backwards methodology. Loaded automatically by all agents in the Working Backwards pipeline.
 user-invocable: false
+title: "Working Backwards Methodology"
+kind: "skill"
+domain: "product-planning"
+status: "active"
+owner: "APT"
+last_updated: "2026-10-04"
+source_paths: ["apt-principles-agents/product-team/.claude/skills/working-backwards-methodology/SKILL.md"]
 ---
 
 # Working Backwards Methodology

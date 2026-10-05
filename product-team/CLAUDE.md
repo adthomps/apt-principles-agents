@@ -1,3 +1,13 @@
+---
+title: "APT Product Team"
+kind: "guide"
+domain: "product-planning"
+status: "active"
+owner: "APT"
+last_updated: "2026-10-04"
+source_paths: ["apt-principles-agents/product-team/CLAUDE.md"]
+---
+
 # APT Product Team
 
 This folder is an internal APT product-thinking cockpit that uses Claude Code-oriented Working Backwards workflows.

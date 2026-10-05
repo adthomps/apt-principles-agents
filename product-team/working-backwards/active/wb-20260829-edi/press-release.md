@@ -1,3 +1,13 @@
+---
+title: "EDI Lets Adam Ask One Question and Get One Accountable Answer From the Right APT Specialists"
+kind: "working-backwards-record"
+domain: "product-planning"
+status: "active"
+owner: "APT"
+last_updated: "2026-10-04"
+source_paths: ["apt-principles-agents/product-team/working-backwards/active/wb-20260829-edi/press-release.md"]
+---
+
 # EDI Lets Adam Ask One Question and Get One Accountable Answer From the Right APT Specialists
 
 **Adam no longer has to know which of 85+ APT agents to invoke, in what order, or how to reconcile them when they disagree — EDI does that, then hands him one synthesized, approval-stamped answer.**

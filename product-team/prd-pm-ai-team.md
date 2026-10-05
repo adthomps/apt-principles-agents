@@ -1,3 +1,13 @@
+---
+title: "Working Backwards AI — Multi-Agent PM Team"
+kind: "guide"
+domain: "product-planning"
+status: "active"
+owner: "APT"
+last_updated: "2026-10-04"
+source_paths: ["apt-principles-agents/product-team/prd-pm-ai-team.md"]
+---
+
 # Working Backwards AI — Multi-Agent PM Team
 
 **Author:** [name]

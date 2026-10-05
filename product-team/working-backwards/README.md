@@ -1,3 +1,13 @@
+---
+title: "Working Backwards Sessions"
+kind: "working-backwards-record"
+domain: "product-planning"
+status: "active"
+owner: "APT"
+last_updated: "2026-10-04"
+source_paths: ["apt-principles-agents/product-team/working-backwards/README.md"]
+---
+
 # Working Backwards Sessions
 
 This folder stores local planning evidence for the internal APT Product Team cockpit.

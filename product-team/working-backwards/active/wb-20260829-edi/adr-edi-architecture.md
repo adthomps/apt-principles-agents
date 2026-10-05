@@ -1,7 +1,8 @@
 ---
 title: ADR — EDI Runtime Architecture and Reconciliation Mechanism
 kind: decision-record
-status: accepted
+status: active
+decision_status: accepted
 owner: Adam
 last_updated: 2026-08-30
 source: apt-principles-agents/product-team working-backwards session wb-20260829-edi

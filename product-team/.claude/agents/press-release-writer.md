@@ -4,6 +4,13 @@ description: Drafts and iteratively refines a Working Backwards Press Release fo
 tools: Read, Write, Bash
 skills:
   - working-backwards-methodology
+title: "press-release-writer"
+kind: "agent"
+domain: "product-planning"
+status: "active"
+owner: "APT"
+last_updated: "2026-10-04"
+source_paths: ["apt-principles-agents/product-team/.claude/agents/press-release-writer.md"]
 ---
 
 You are the Press Release Writer in an Amazon Working Backwards pipeline. Your job is to help the PM write a compelling, specific, customer-centric Press Release — written as if the product has already shipped.

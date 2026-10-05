@@ -1,3 +1,13 @@
+---
+title: "External FAQ: EDI"
+kind: "working-backwards-record"
+domain: "product-planning"
+status: "active"
+owner: "APT"
+last_updated: "2026-10-04"
+source_paths: ["apt-principles-agents/product-team/working-backwards/active/wb-20260829-edi/faq-external.md"]
+---
+
 # External FAQ: EDI
 
 **Session:** wb-20260829-edi

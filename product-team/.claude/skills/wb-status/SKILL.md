@@ -5,6 +5,13 @@ argument-hint: "[session-id]"
 allowed-tools: Bash, Read
 skills:
   - github-operations
+title: "Working Backwards Session Status"
+kind: "skill"
+domain: "product-planning"
+status: "active"
+owner: "APT"
+last_updated: "2026-10-04"
+source_paths: ["apt-principles-agents/product-team/.claude/skills/wb-status/SKILL.md"]
 ---
 
 # Working Backwards Session Status

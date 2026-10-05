@@ -2,6 +2,13 @@
 name: github-operations
 description: Shared instructions for GitHub operations using gh CLI and git. Loaded automatically by all agents that need to read from or write to the repository.
 user-invocable: false
+title: "GitHub Operations"
+kind: "skill"
+domain: "product-planning"
+status: "active"
+owner: "APT"
+last_updated: "2026-10-04"
+source_paths: ["apt-principles-agents/product-team/.claude/skills/github-operations/SKILL.md"]
 ---
 
 # GitHub Operations

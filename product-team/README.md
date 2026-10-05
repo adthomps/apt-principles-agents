@@ -1,3 +1,13 @@
+---
+title: "APT Product Team"
+kind: "guide"
+domain: "product-planning"
+status: "active"
+owner: "APT"
+last_updated: "2026-10-04"
+source_paths: ["apt-principles-agents/product-team/README.md"]
+---
+
 # APT Product Team
 
 An internal APT product-thinking cockpit, currently implemented as a Claude Code-oriented Working Backwards workflow.

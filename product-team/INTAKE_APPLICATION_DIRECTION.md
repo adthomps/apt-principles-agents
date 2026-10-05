@@ -1,3 +1,13 @@
+---
+title: "Intake Application Direction"
+kind: "guide"
+domain: "product-planning"
+status: "active"
+owner: "APT"
+last_updated: "2026-10-04"
+source_paths: ["apt-principles-agents/product-team/INTAKE_APPLICATION_DIRECTION.md"]
+---
+
 # Intake Application Direction
 
 ## Goal

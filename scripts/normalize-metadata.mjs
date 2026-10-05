@@ -26,6 +26,12 @@ function walk(directory) {
 
 function inferKind(relative) {
   const [top] = relative.split("/");
+  if (top === "product-team") {
+    if (relative.startsWith("product-team/.claude/agents/")) return "agent";
+    if (relative.startsWith("product-team/.claude/skills/")) return "skill";
+    if (relative.startsWith("product-team/working-backwards/")) return "working-backwards-record";
+    return "guide";
+  }
   const map = {
     principles: "principle",
     standards: "standard",
@@ -57,6 +63,7 @@ function inferDomain(relative) {
   if (["principles", "skills", "agents", "prompts", "templates", "examples", "standards", "checklists"].includes(top)) {
     return parts[1]?.replace(/\.md$/, "") || top;
   }
+  if (top === "product-team") return "product-planning";
   if (top === "platforms") return "platforms";
   if (top === "knowledge") return "knowledge";
   if (top === "routing" || top === "context" || top === "context-packs" || top === "commands" || top === "hooks") return "ai";
@@ -77,7 +84,8 @@ function updateMetadata(relative, text) {
     domain: inferDomain(relative),
     status: "active",
     owner: "APT",
-    last_updated: "2026-06-28",
+    // Only added when missing, so it records when metadata was first added.
+    last_updated: new Date().toLocaleDateString("en-CA"),
     source_paths: JSON.stringify(sourcesByDestination.get(relative) || [`apt-principles-agents/${relative}`]),
   };
   const match = text.match(/^---\r?\n([\s\S]*?)\r?\n---\r?\n?/);
@@ -100,7 +108,9 @@ for (const file of walk(root).filter((item) => item.endsWith(".md"))) {
   const relative = path.relative(root, file).replaceAll("\\", "/");
   if (relative.startsWith("docs/archive/")) continue;
   const current = readFileSync(file, "utf8");
-  const updated = updateMetadata(relative, current);
+  const normalized = updateMetadata(relative, current);
+  // Keep the file's existing line endings; updateMetadata writes LF headers.
+  const updated = normalized !== current && current.includes("\r\n") ? normalized.replace(/\r?\n/g, "\r\n") : normalized;
   if (updated !== current) {
     issues.push(relative);
     if (apply) writeFileSync(file, updated, "utf8");
