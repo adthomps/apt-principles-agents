@@ -1705,7 +1705,7 @@
       "title": "Apt Working Backwards Critic",
       "domain": "working-backwards",
       "scope": "domain",
-      "description": "Independent sub-agent that scores a Working Backwards package against the versioned rubric plus its declared profile overlay and returns PASS or NEEDS REVISION per stage; must run in a fresh session that authored nothing in the package and writes only critic-review.md and session.json.",
+      "description": "Independent sub-agent that scores a Working Backwards package against the versioned rubric plus its declared domain and repository profile overlays and returns PASS or NEEDS REVISION per stage; must run in a fresh session that authored nothing in the package and writes only critic-review.md and session.json.",
       "applies_principles": [
         "principles/execution/working-backwards.md",
         "principles/ai/ai-safety-and-evaluation.md"
@@ -1753,14 +1753,15 @@
       "title": "Apt Working Backwards Orchestrator",
       "domain": "working-backwards",
       "scope": "domain",
-      "description": "Use to start, resume, or report on a Working Backwards package; it owns session state, stage order, the domain profile and persona, and invokes the writer sub-agents and the independent critic.",
+      "description": "Use to start, resume, or report on a Working Backwards package; it owns session state, stage order, the domain and repository profiles and persona, and invokes the writer sub-agents and the independent critic.",
       "applies_principles": [
         "principles/execution/working-backwards.md",
         "principles/execution/delivery-increments.md"
       ],
       "uses_skills": [
         "skills/working-backwards/run-session",
-        "skills/working-backwards/package-status"
+        "skills/working-backwards/package-status",
+        "skills/working-backwards/adopt"
       ],
       "tools": [
         "read",

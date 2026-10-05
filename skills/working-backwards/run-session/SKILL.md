@@ -25,12 +25,12 @@ Starting a new product-facing change, resuming a package, or when someone asks f
 
 - The feature idea and any customer or player evidence.
 - The repository's package root (default `docs/apt/working-backwards/`) and personas.
-- A domain profile from `templates/working-backwards/domains/` (`payments`, `game-development`, or none).
+- A domain profile from `templates/working-backwards/domains/` (`payments`, `game-development`, or none) and the repository profile (`docs/apt/working-backwards/profile.md`) if the repository has one. Without a repository profile, run the `adopt` skill first.
 
 ## Process
 
-1. **Check the gate.** Decide whether the change needs a full package or a short note (see the principle's "When a package is required" and the profile).
-2. **Create the package.** Copy `templates/working-backwards/` stage templates to `<package-root>/<feature-slug>/`; fill `session.json` with `session_id`, `feature_idea`, `profile`, `persona`, and `rubric_version`.
+1. **Check the gate.** Decide whether the change needs a full package or a short note (see the principle, the domain profile, and the repository profile).
+2. **Create the package.** Copy `templates/working-backwards/` stage templates to `<package-root>/<feature-slug>/`; fill `session.json` with `session_id`, `feature_idea`, `profile`, `repo_profile`, `persona`, and `rubric_version`.
 3. **Stage 1.** Invoke the press release writer. Stop if the persona or evidence is missing.
 4. **Critic.** Ask for the critic in a fresh session. Do not continue in the drafting session.
 5. **Branch on the verdict.** PASS: advance. NEEDS REVISION: send only the failing dimensions back to the writer. Stop after three revisions of one stage and ask for more evidence.

@@ -56,11 +56,13 @@ working-backwards/
 
 ## Agents
 
-- `press-release-writer` — Stage 1 worker
-- `faq-writer` — Stage 2 worker (External and Internal modes)
-- `requirements-writer` — Stage 3 worker
-- `critic` — Reviews all stage outputs against versioned rubrics
+- `apt-wb-press-release-writer` — Stage 1 worker
+- `apt-wb-faq-writer` — Stage 2 worker (External and Internal modes)
+- `apt-wb-requirements-writer` — Stage 3 worker
+- `apt-wb-critic` — Reviews each stage in return-only mode
+
+These are canonical APT agents generated into `.claude/agents/`; do not edit them here. Product Team specifics: `working-backwards/profile.md`.
 
 ## Rubrics
 
-Stage-specific Critic rubrics live in `.claude/rubrics/`. They are versioned JSON files — update them without redeploying any agent.
+The Critic rubric is canonical: `../templates/working-backwards/critic-rubric-1.1.0.json`. Propose changes in `apt-principles-agents` as a new rubric version.

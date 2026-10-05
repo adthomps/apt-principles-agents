@@ -28,14 +28,14 @@ Before starting implementation, when resuming a package, or when someone asks wh
 ## Process
 
 1. Read `session.json` and `critic-review.md` for the package (or for each package under the root).
-2. Report each stage's status and critic verdict, the rubric and profile versions, the revision counts, open items, and blockers.
+2. Report each stage's status and critic verdict, the rubric version and the domain and repository profile versions, the revision counts, open items, and blockers.
 3. State the build decision: **build** only when required stages are PASS or open items are owned and explicitly deferred; otherwise **paused**, with the next action.
 4. Flag inconsistencies: a PASS with no critic review, a `critic-review.md` that names no rubric version, a build decision recorded before PASS, or a package README that disagrees with `session.json`.
 
 ## Outputs
 
 ```text
-WORKING BACKWARDS: <slug>   profile: <id or none>   persona: <id>
+WORKING BACKWARDS: <slug>   profile: <domain>+<repo>   persona: <id>
 Press release   [PASS]      External FAQ  [PASS]
 Internal FAQ    [PENDING]   Requirements  [PENDING]
 Handoff         [PENDING]   Readiness     [PENDING]

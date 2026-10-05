@@ -35,7 +35,9 @@ Each stage should preserve open items with an owner. Blockers must remain visibl
 - [Readiness](readiness.md)
 - [Critic Review](critic-review.md)
 - [Domain Profiles](domains/README.md)
-- [Critic Rubric](critic-rubric.json)
+- [Repository Profile](repo-profile.md) and [rubric overlay](repo-profile.rubric.json): the repository's own layer
+- [Package Index](package-index.md): the repository's `docs/apt/working-backwards/README.md`
+- [Critic Rubric v1.1.0](critic-rubric-1.1.0.json) (current; scores all six stages) and [v1.0.0](critic-rubric.json) (frozen for packages that declared it)
 - [Agent Role Contracts](agent-role-contracts.md)
 - [Stage Gate Status](stage-gate-status.md)
 - [AI Task Contract](ai-task-contract.json)

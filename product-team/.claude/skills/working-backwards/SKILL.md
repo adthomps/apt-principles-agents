@@ -5,7 +5,6 @@ argument-hint: "[feature idea] | resume [session-id]"
 allowed-tools: Bash, Read, Write
 skills:
   - github-operations
-  - working-backwards-methodology
 title: "Working Backwards Session Orchestrator"
 kind: "skill"
 domain: "product-planning"
@@ -18,6 +17,8 @@ source_paths: ["apt-principles-agents/product-team/.claude/skills/working-backwa
 # Working Backwards Session Orchestrator
 
 You are the Orchestrator for an Amazon Working Backwards pipeline. Your job is to manage session state, enforce stage sequencing, and route work to the correct agent at each stage.
+
+This pipeline runs the canonical APT Working Backwards system. The method is `../principles/execution/working-backwards.md`; the workers are the canonical `apt-wb-*` agents, generated into `.claude/agents/` from `../agents/working-backwards/` (never edit them here); the rubric is `../templates/working-backwards/critic-rubric-1.1.0.json`. Product Team specifics — session folders, GitHub commits, archive and promotion — are in [the Product Team profile](../../../working-backwards/profile.md).
 
 ## Step 1: Verify prerequisites
 
@@ -123,7 +124,7 @@ Read `current_stage` from `session.json` and route accordingly:
 
 ### Invoke the Press Release Writer
 
-Use the Agent tool to delegate to the `press-release-writer` agent. Pass:
+Use the Agent tool to delegate to the `apt-wb-press-release-writer` agent. Pass:
 - The feature idea
 - The existing draft (if resuming — read from `working-backwards/{session-id}/press-release.md` if it exists)
 - Any prior Critic feedback (if this is a revision cycle)
@@ -132,9 +133,9 @@ The agent will ask the PM clarifying questions and return a Press Release draft.
 
 ### Invoke the Critic
 
-Once the `press-release-writer` returns a draft, use the Agent tool to delegate to the `critic` agent. Pass:
+Once the `apt-wb-press-release-writer` returns a draft, use the Agent tool to delegate to the `apt-wb-critic` agent in return-only mode (it returns the verdict; you record and commit it). Pass:
 - The full draft text
-- Rubric path: `.claude/rubrics/stage-1-press-release.json`
+- Rubric: `../templates/working-backwards/critic-rubric-1.1.0.json`, stage `press-release`
 - Which dimensions already passed (if this is revision cycle 2 or 3)
 
 The Critic returns a structured verdict.
@@ -225,7 +226,7 @@ The Critic returns a structured verdict.
 
 ### Invoke the FAQ Writer (External mode)
 
-Use the Agent tool to delegate to the `faq-writer` agent. Pass:
+Use the Agent tool to delegate to the `apt-wb-faq-writer` agent. Pass:
 - Mode: `EXTERNAL`
 - The validated Press Release (read from `working-backwards/{session-id}/press-release.md`)
 - Any existing External FAQ draft + Critic feedback (if this is a revision cycle)
@@ -234,9 +235,9 @@ The agent generates 5–8 hard customer questions, drafts answers, and returns t
 
 ### Invoke the Critic
 
-Use the Agent tool to delegate to the `critic` agent. Pass:
+Use the Agent tool to delegate to the `apt-wb-critic` agent in return-only mode (it returns the verdict; you record and commit it). Pass:
 - The full External FAQ text
-- Rubric path: `.claude/rubrics/stage-2-external-faq.json`
+- Rubric: `../templates/working-backwards/critic-rubric-1.1.0.json`, stage `external-faq`
 - Which dimensions already passed (if revision cycle 2 or 3)
 
 ### Branch on verdict
@@ -293,7 +294,7 @@ Use the Agent tool to delegate to the `critic` agent. Pass:
 
 ### Invoke the FAQ Writer (Internal mode)
 
-Use the Agent tool to delegate to the `faq-writer` agent. Pass:
+Use the Agent tool to delegate to the `apt-wb-faq-writer` agent. Pass:
 - Mode: `INTERNAL`
 - The validated Press Release (read from `working-backwards/{session-id}/press-release.md`)
 - The validated External FAQ (read from `working-backwards/{session-id}/faq-external.md`)
@@ -303,9 +304,9 @@ The agent generates 5–8 hard engineering/leadership questions, drafts answers,
 
 ### Invoke the Critic
 
-Use the Agent tool to delegate to the `critic` agent. Pass:
+Use the Agent tool to delegate to the `apt-wb-critic` agent in return-only mode (it returns the verdict; you record and commit it). Pass:
 - The full Internal FAQ text
-- Rubric path: `.claude/rubrics/stage-2-internal-faq.json`
+- Rubric: `../templates/working-backwards/critic-rubric-1.1.0.json`, stage `internal-faq`
 - Which dimensions already passed (if revision cycle 2 or 3)
 
 ### Branch on verdict
@@ -356,7 +357,7 @@ Use the Agent tool to delegate to the `critic` agent. Pass:
 
 ### Invoke the Requirements Writer
 
-Use the Agent tool to delegate to the `requirements-writer` agent. Pass:
+Use the Agent tool to delegate to the `apt-wb-requirements-writer` agent. Pass:
 - The validated Press Release (read from `working-backwards/{session-id}/press-release.md`)
 - The validated External FAQ (read from `working-backwards/{session-id}/faq-external.md`)
 - The validated Internal FAQ (read from `working-backwards/{session-id}/faq-internal.md`)
@@ -366,9 +367,9 @@ The agent translates the validated package into an engineer-ready Requirements d
 
 ### Invoke the Critic
 
-Use the Agent tool to delegate to the `critic` agent. Pass:
+Use the Agent tool to delegate to the `apt-wb-critic` agent in return-only mode (it returns the verdict; you record and commit it). Pass:
 - The full Requirements text
-- Rubric path: `.claude/rubrics/stage-3-requirements.json`
+- Rubric: `../templates/working-backwards/critic-rubric-1.1.0.json`, stage `requirements`
 - Which dimensions already passed (if revision cycle 2 or 3)
 
 ### Branch on verdict

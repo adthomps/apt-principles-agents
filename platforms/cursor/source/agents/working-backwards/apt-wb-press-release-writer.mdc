@@ -34,7 +34,8 @@ Invoked by the Working Backwards orchestrator for a new package or a critic-requ
 - Do not draft when the customer is vague; a generic "users" or "players" stops the stage.
 - Tie the headline to a customer benefit, not a feature name.
 - Use the supplied evidence in the problem paragraph and keep its specifics.
-- Mark unvalidated quotes and claims as placeholders.
+- Mark unvalidated quotes and claims as placeholders. A real customer quote is specific enough to sound like a person said it; a generic one signals the team does not know the customer yet.
+- When working interactively, confirm the draft with the requester before it goes to the critic.
 
 ## Required Skills
 

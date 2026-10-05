@@ -45,11 +45,11 @@ Working Backwards keeps product work customer-led, evidence-backed, and reviewab
 | 2 | `faq-external.md` | FAQ writer (external mode) | Yes |
 | 2 | `faq-internal.md` | FAQ writer (internal mode) | Yes |
 | 3 | `requirements.md` | Requirements writer | Yes |
-| 4 | `engineering-handoff.md` | Requirements writer | Not in rubric v1.0.0 |
-| 4 | `readiness.md` | Requirements writer | Not in rubric v1.0.0 |
+| 4 | `engineering-handoff.md` | Requirements writer | Yes, from rubric v1.1.0 |
+| 4 | `readiness.md` | Requirements writer | Yes, from rubric v1.1.0 |
 | Gate | `critic-review.md`, `session.json` | Critic only | — |
 
-The rubric is `templates/working-backwards/critic-rubric.json`. A domain profile may add dimensions; it never removes base dimensions.
+The rubric version is recorded in `session.json` (`rubric_version`). Rubric files are versioned: `critic-rubric.json` is v1.0.0 and stays frozen for packages that declared it; later versions are `critic-rubric-<version>.json`. New packages use the latest, v1.1.0, which also scores the engineering handoff and readiness. A domain profile may add dimensions; it never removes base dimensions.
 
 ### When a package is required
 
@@ -66,9 +66,27 @@ The rubric is `templates/working-backwards/critic-rubric.json`. A domain profile
 
 The press release names a specific customer. Choose it from the owning repository's personas, indexed in `references/persona-register.json`. The external FAQ uses that persona's reviewer agents as lenses. Do not invent a persona from a passing mention.
 
-### Domain profiles
+### Profiles
 
-A profile adapts the method to a domain without forking it: extra intake questions, FAQ coverage, readiness checks, and rubric dimensions. Profiles live in `templates/working-backwards/domains/`. A package declares its profile in `session.json`.
+A profile adapts the method without forking it: extra intake questions, FAQ coverage, readiness checks, and rubric dimensions. Shared domain profiles live in `templates/working-backwards/domains/`; a repository profile lives in the repository (see Adopting In A Repository). A package declares both in `session.json` (`profile` and `repo_profile`), and the critic scores the base rubric plus every declared overlay.
+
+## Adopting In A Repository
+
+Working Backwards is general. Each repository builds its own version in layers, never by forking APT:
+
+| Layer | Owned by | Holds |
+| --- | --- | --- |
+| 1. Method | APT | This principle, stage templates, the base rubric, the reference agents and sub-agents, and the skills |
+| 2. Domain profile (optional) | APT | Shared adaptations for a domain, such as `payments` or `game-development`, in `templates/working-backwards/domains/` |
+| 3. Repository profile | The repository | Its own rules: when a package is required, its personas, stage guidance, reviewer lenses, and extra rubric dimensions |
+
+- A repository profile **extends** layers 1 and 2. It may add questions, coverage, and rubric dimensions; it never removes or weakens them.
+- The repository owns its package index, repository profile, personas, and packages. It references the method, base rubric, domain profiles, agents, and skills from its `.apt/` install.
+- Use the canonical agents and sub-agents as they are. Repository specifics belong in the repository profile (reviewer lenses, guidance), not in forked agents. Add a repository-local agent only for a genuinely distinct perspective, reviewed by the agent and skill steward.
+- Personas live in the repository (`docs/apt/personas/`) and are indexed in `references/persona-register.json` so APT reviewer lenses can be matched to them.
+- A repository with an established local implementation may keep it; record its owned paths as `localTargets` so installs never overwrite them.
+
+The `working-backwards/adopt` skill sets this up. Examples live in `examples/working-backwards/`.
 
 ## Required Artifacts
 
@@ -92,9 +110,9 @@ Stop for an independent critic review before the FAQ.
 
 ## Applied by
 
-- [apt-wb-critic](../../agents/working-backwards/apt-wb-critic.md) — Independent sub-agent that scores a Working Backwards package against the versioned rubric plus its declared profile overlay and returns PASS or NEEDS REVISION per stage; must run in a fresh session that authored nothing in the package and writes only critic-review.md and session.json.
+- [apt-wb-critic](../../agents/working-backwards/apt-wb-critic.md) — Independent sub-agent that scores a Working Backwards package against the versioned rubric plus its declared domain and repository profile overlays and returns PASS or NEEDS REVISION per stage; must run in a fresh session that authored nothing in the package and writes only critic-review.md and session.json.
 - [apt-wb-faq-writer](../../agents/working-backwards/apt-wb-faq-writer.md) — Sub-agent invoked by the Working Backwards orchestrator to draft or revise Stage 2, the external FAQ (skeptical customer questions) and the internal FAQ (skeptical engineering, leadership, compliance, and operations questions), using the persona's reviewer agents as lenses.
-- [apt-wb-orchestrator](../../agents/working-backwards/apt-wb-orchestrator.md) — Use to start, resume, or report on a Working Backwards package; it owns session state, stage order, the domain profile and persona, and invokes the writer sub-agents and the independent critic.
+- [apt-wb-orchestrator](../../agents/working-backwards/apt-wb-orchestrator.md) — Use to start, resume, or report on a Working Backwards package; it owns session state, stage order, the domain and repository profiles and persona, and invokes the writer sub-agents and the independent critic.
 - [apt-wb-press-release-writer](../../agents/working-backwards/apt-wb-press-release-writer.md) — Sub-agent invoked by the Working Backwards orchestrator to draft or revise Stage 1, a customer-centered press release written as if the product has shipped, for the persona and profile recorded in the session.
 - [apt-wb-requirements-writer](../../agents/working-backwards/apt-wb-requirements-writer.md) — Sub-agent invoked by the Working Backwards orchestrator to draft or revise Stages 3 and 4, traceable and testable requirements, an engineering handoff of validated increments, and a readiness checklist, all derived only from the passed press release and FAQs.
 
@@ -104,6 +122,8 @@ Stop for an independent critic review before the FAQ.
 - [Agent role contracts](../../templates/working-backwards/agent-role-contracts.md)
 - [Package readiness checklist](../../checklists/working-backwards-package-readiness-checklist.md)
 - [Persona register](../../references/persona-register.json)
+- [Adoption skill](../../skills/working-backwards/adopt/SKILL.md)
+- [Working Backwards examples](../../examples/working-backwards/README.md)
 
 ## Summary
 

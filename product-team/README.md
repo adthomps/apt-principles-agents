@@ -277,27 +277,29 @@ In the original Git-backed design, each stage output is committed to GitHub the 
 
 | Agent | Role | Invoked by |
 |---|---|---|
-| `press-release-writer` | Drafts and revises Press Releases | Orchestrator (Stage 1) |
-| `faq-writer` | Generates and answers hard questions (External + Internal modes) | Orchestrator (Stage 2) |
-| `requirements-writer` | Translates validated PR + FAQ into engineering specs | Orchestrator (Stage 3) |
-| `critic` | Reviews all stage outputs against versioned rubrics | Orchestrator (after each worker) |
+| `apt-wb-press-release-writer` | Drafts and revises Press Releases | Orchestrator (Stage 1) |
+| `apt-wb-faq-writer` | Generates and answers hard questions (External + Internal modes) | Orchestrator (Stage 2) |
+| `apt-wb-requirements-writer` | Translates validated PR + FAQ into engineering specs | Orchestrator (Stage 3) |
+| `apt-wb-critic` | Reviews each stage against the versioned rubric (return-only mode) | Orchestrator (after each worker) |
 
-Agents live in `.claude/agents/`. They are invoked by the Orchestrator — you never call them directly.
+These are the canonical APT Working Backwards agents, generated into `.claude/agents/` by `npm run build:agents` from `apt-principles-agents/agents/working-backwards/`. Do not edit them here; change the canonical agents. They are invoked by the Orchestrator — you never call them directly. Product Team specifics are in [working-backwards/profile.md](working-backwards/profile.md).
 
 ---
 
 ## Critic rubrics
 
-Rubrics live in `.claude/rubrics/` as versioned JSON files. They define the pass/fail criteria the Critic uses for each stage.
+The Critic uses the canonical APT rubric, `apt-principles-agents/templates/working-backwards/critic-rubric-1.1.0.json`. It has one section per stage:
 
-| File | Stage | Dimensions |
-|---|---|---|
-| `stage-1-press-release.json` | Press Release | Customer definition, problem evidence, customer benefit, spokesperson quote, customer quote |
-| `stage-2-external-faq.json` | External FAQ | Question quality, answer completeness, evasion, coverage of critical concerns |
-| `stage-2-internal-faq.json` | Internal FAQ | Coverage of engineering/legal/business, open items, blocker flagging |
-| `stage-3-requirements.json` | Requirements | Requirement traceability, testable ACs, edge cases, NFRs, open item propagation |
+| Stage | Dimensions |
+|---|---|
+| Press Release | Customer definition, problem evidence, customer benefit, spokesperson quote, customer quote |
+| External FAQ | Question quality, answer completeness, evasion, coverage |
+| Internal FAQ | Coverage, answer completeness, blocker flagging, evasion |
+| Requirements | Traceability, testable acceptance criteria, edge cases, non-functional requirements, open item propagation |
 
-**To update a rubric:** edit the JSON file and increment the `version` field. No agent redeployment needed. The version used in each Critic review is recorded in `session.json`.
+This pipeline stops at Requirements; the engineering handoff and readiness stages are written in the destination repository after promotion.
+
+**To change the rubric:** propose it in `apt-principles-agents` as a new rubric version (the principles steward owns doctrine changes). The version used in each review is recorded in `session.json`.
 
 ---
 
@@ -310,7 +312,8 @@ Skills are loaded automatically when Claude Code opens in this directory. You do
 | `working-backwards` | Main Orchestrator — `/working-backwards [idea]` |
 | `wb-status` | Session status — `/wb-status [session-id]` |
 | `github-operations` | Shared gh CLI + git instructions for all agents |
-| `working-backwards-methodology` | Shared Working Backwards reference knowledge |
+
+The Working Backwards method itself is canonical: `apt-principles-agents/principles/execution/working-backwards.md`.
 
 ---
 
@@ -346,24 +349,13 @@ AI-Product-Team/
 │   ├── operating-model.md
 │   └── formalization-direction.md
 ├── .claude/
-│   ├── agents/
-│   │   ├── press-release-writer.md
-│   │   ├── faq-writer.md
-│   │   ├── requirements-writer.md
-│   │   └── critic.md
-│   ├── rubrics/
-│   │   ├── stage-1-press-release.json
-│   │   ├── stage-2-external-faq.json
-│   │   ├── stage-2-internal-faq.json
-│   │   └── stage-3-requirements.json
+│   ├── agents/              # generated canonical apt-wb-* agents (do not edit)
 │   └── skills/
 │       ├── working-backwards/
 │       │   └── SKILL.md
 │       ├── wb-status/
 │       │   └── SKILL.md
-│       ├── github-operations/
-│       │   └── SKILL.md
-│       └── working-backwards-methodology/
+│       └── github-operations/
 │           └── SKILL.md
 ├── templates/
 │   ├── session.json.template

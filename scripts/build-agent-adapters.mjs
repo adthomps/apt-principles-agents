@@ -226,6 +226,39 @@ for (const file of canonical) {
   }
 }
 
+// Internal mirrors: subsystems inside this repository that run a platform's agents from their own
+// directory (Claude Code loads .claude/agents from the working directory). The Product Team runs the
+// canonical Working Backwards agents this way instead of keeping local copies.
+const INTERNAL_MIRRORS = [{ platform: "claude", domain: "working-backwards", dir: "product-team/.claude/agents" }];
+for (const mirror of INTERNAL_MIRRORS) {
+  const emitter = EMITTERS[mirror.platform];
+  if (!emitter) continue;
+  const mirrorDir = path.join(root, mirror.dir);
+  const expected = new Set();
+  for (const file of canonical) {
+    const { fm, body } = parseFrontmatter(readFileSync(file, "utf8"));
+    if (fm.domain !== mirror.domain || !fm.id) continue;
+    fm.canonicalBase = path.basename(file, ".md");
+    const outPath = path.join(mirrorDir, `${fm.id}${emitter.ext}`);
+    expected.add(path.basename(outPath));
+    const next = emitter.render(fm, body);
+    const current = existsSync(outPath) ? readFileSync(outPath, "utf8").replace(/\r\n/g, "\n") : null;
+    if (current === next) continue;
+    if (check) diffs.push(`${path.relative(root, outPath)}: ${current === null ? "missing" : "out of date"} (internal mirror)`);
+    else {
+      mkdirSync(mirrorDir, { recursive: true });
+      writeFileSync(outPath, next, "utf8");
+      written += 1;
+    }
+  }
+  for (const f of existsSync(mirrorDir) ? readdirSync(mirrorDir) : []) {
+    const full = path.join(mirrorDir, f);
+    if (expected.has(f) || !readFileSync(full, "utf8").includes("by scripts/build-agent-adapters.mjs")) continue;
+    diffs.push(`${path.relative(root, full)}: generated mirror with no canonical source`);
+    if (!check) rmSync(full);
+  }
+}
+
 // Report generated files whose canonical source was deleted (stale adapters).
 const adapterOnly = [];
 for (const [platform, emitter] of Object.entries(EMITTERS)) {

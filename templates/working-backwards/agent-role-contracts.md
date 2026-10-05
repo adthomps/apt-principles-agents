@@ -150,6 +150,6 @@ Cursor and similar editors: a product repo may ship a **critic skill** (load rub
 
 Improvement backlog for this repo (do not treat as done until implemented here):
 
-- Versioned rubric notes for engineering-handoff / readiness stages (today `critic-rubric.json` stops at requirements).
+- Engineering-handoff and readiness are scored from rubric v1.1.0 (`critic-rubric-1.1.0.json`); `critic-rubric.json` stays v1.0.0 for existing packages.
 - A provider-neutral critic skill stub under `platforms/` that products can copy, instead of each repo inventing lock-file mechanics.
 - Explicit “fresh session” language in Claude/Codex agent files that still map to `.claude/agents/critic.md`.

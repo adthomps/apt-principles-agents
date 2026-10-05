@@ -1,7 +1,7 @@
 {
   "version": "1.0.0",
   "profile": "payments",
-  "extends": "critic-rubric.json@1.0.0",
+  "extends": "critic-rubric@1.x",
   "stages": {
     "press-release": {
       "dimensions": [

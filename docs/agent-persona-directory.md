@@ -27,18 +27,18 @@ The complete, generated [Agent Catalog](./distribution/AGENT-CATALOG.md) lists c
 **Owner:** APT Product Team  
 **Source of truth:** [Local agent declaration](../product-team/.apt/local-agents.md)
 
-APT Product Team declares four active, Claude Code-oriented Working Backwards stage workers. They are local pipeline agents, not canonical review-council roles:
+APT Product Team declares **no local agents**. Its Working Backwards pipeline runs the canonical agents, generated into `product-team/.claude/agents/` as an internal mirror by `npm run build:agents` and checked by `validate:adapters`:
 
-| Worker | Purpose | Definition |
-| --- | --- | --- |
-| Critic | Evaluates each stage artifact against its versioned rubric and returns PASS or NEEDS REVISION with feedback. | [critic.md](../product-team/.claude/agents/critic.md) |
-| Press Release Writer | Drafts and refines the Stage 1 press release. | [press-release-writer.md](../product-team/.claude/agents/press-release-writer.md) |
-| FAQ Writer | Generates and drafts the Stage 2 external and internal FAQs. | [faq-writer.md](../product-team/.claude/agents/faq-writer.md) |
-| Requirements Writer | Converts the validated press release and FAQ package into Stage 3 requirements. | [requirements-writer.md](../product-team/.claude/agents/requirements-writer.md) |
+| Agent | Role in the Product Team pipeline |
+| --- | --- |
+| [apt-wb-press-release-writer](../agents/working-backwards/apt-wb-press-release-writer.md) | Stage 1 |
+| [apt-wb-faq-writer](../agents/working-backwards/apt-wb-faq-writer.md) | Stage 2, external and internal modes |
+| [apt-wb-requirements-writer](../agents/working-backwards/apt-wb-requirements-writer.md) | Stage 3 |
+| [apt-wb-critic](../agents/working-backwards/apt-wb-critic.md) | Reviews each stage in return-only mode; the pipeline records and commits the verdict |
 
-The Product Team is maintained as an internal subsystem of `apt-principles-agents`; its files share the parent repository's version history. These are repository-relative links.
+The Product Team is maintained as an internal subsystem of `apt-principles-agents`; its files share the parent repository's version history. Its own layer is [product-team/working-backwards/profile.md](../product-team/working-backwards/profile.md). The former local workers were retired on 2026-10-05 and their rules folded into the canonical agents, the critic-review skill, and rubric v1.1.0.
 
-**Canonical Working Backwards agents.** Working Backwards is now an APT-wide system: the [orchestrator, writer sub-agents, and independent critic](../agents/working-backwards/README.md), with the method in [principles/execution/working-backwards.md](../principles/execution/working-backwards.md) and domain profiles for payments and game development. Repositories opt in through the `working-backwards` manifest. The four Product Team workers above are the Claude Code–specific precursor and stay in place for the Product Team pipeline; APT Commerce keeps its own local critic skill and hook, recorded as a repository-owned path (`localTargets`).
+**Canonical Working Backwards agents.** Working Backwards is an APT-wide system: the [orchestrator, writer sub-agents, and independent critic](../agents/working-backwards/README.md), with the method in [principles/execution/working-backwards.md](../principles/execution/working-backwards.md), domain profiles for payments and game development, and repository profiles for each adopter. Repositories opt in through the `working-backwards` manifest. APT Commerce keeps its own local critic skill and hook, recorded as a repository-owned path (`localTargets`).
 
 The active-source inventory found no other declared local-only agent bundle. Generated or installed copies of canonical roles belong in the platform-availability view below, not in this local-role list.
 

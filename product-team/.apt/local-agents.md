@@ -4,34 +4,26 @@ kind: agent
 domain: product
 status: active
 owner: APT
-last_updated: 2026-08-30
+last_updated: 2026-10-05
 source_paths: ["apt-principles-agents/product-team/.apt/local-agents.md"]
 ---
 
 # Local Agents
 
-`product-team/` is the Working Backwards pipeline subsystem. The workers below
-are **intentional, repo-local pipeline workers** — not APT review-council
-perspectives and not candidates for canonical `apt-principles-agents/agents/`.
-They are stage workers invoked by the pipeline Orchestrator (the top-level
-session), operate against the versioned rubrics in `.claude/rubrics/`, and use
-the local `working-backwards-methodology` skill.
+`product-team/` is the Working Backwards pipeline subsystem. It declares **no local agents** any more.
 
-`scan-untracked-agents.mjs` and `audit-workspace` treat these as declared local,
-not drift.
+Since 2026-10-05 it runs the canonical APT Working Backwards agents. `npm run build:agents` generates them into `product-team/.claude/agents/` from `apt-principles-agents/agents/working-backwards/`, as an internal mirror; `npm run validate:adapters` fails if the mirror drifts. Do not edit them here.
 
-## Declared local agents
+| Generated agent | Role in this pipeline |
+| --- | --- |
+| `apt-wb-press-release-writer` | Stage 1 |
+| `apt-wb-faq-writer` | Stage 2, external and internal modes |
+| `apt-wb-requirements-writer` | Stage 3 |
+| `apt-wb-critic` | Reviews each stage in return-only mode; the orchestrator records and commits the verdict |
+| `apt-wb-orchestrator` | Canonical role; this pipeline's orchestration is the local `/working-backwards` skill |
 
-- `.claude/agents/critic.md` — evaluates each stage artifact against its
-  versioned rubric; returns PASS / NEEDS REVISION with per-dimension feedback.
-- `.claude/agents/press-release-writer.md` — drafts and refines the Stage 1
-  Press Release.
-- `.claude/agents/faq-writer.md` — generates hard External / Internal FAQ
-  questions and drafts answers for Stage 2.
-- `.claude/agents/requirements-writer.md` — translates the validated PR + FAQ
-  package into an engineer-ready Requirements document for Stage 3.
+The rubric is `templates/working-backwards/critic-rubric-1.1.0.json`. Product Team specifics (session folders, commits, promotion) are in `working-backwards/profile.md`.
 
-This subsystem is maintained inside `apt-principles-agents`; do not add it as a
-separate workspace consumer or install canonical assets into it as if it were an
-independent project. Keep this declaration so the four pipeline workers remain
-distinct from canonical review-council roles.
+The former local workers (`critic`, `press-release-writer`, `faq-writer`, `requirements-writer`), their `.claude/rubrics/`, and the `working-backwards-methodology` skill were retired; their rules were folded into the canonical agents, the critic-review skill, and rubric v1.1.0.
+
+This subsystem is maintained inside `apt-principles-agents`; do not add it as a separate workspace consumer or install canonical assets into it as if it were an independent project.

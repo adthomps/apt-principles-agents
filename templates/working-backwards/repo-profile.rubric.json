@@ -1,0 +1,18 @@
+{
+  "version": "1.0.0",
+  "profile": "repo:[repository-name]",
+  "extends": "critic-rubric@1.x",
+  "domain": "[none | payments | game-development]",
+  "stages": {
+    "internal-faq": {
+      "dimensions": [
+        {
+          "id": "[repository-specific-dimension-id]",
+          "name": "[Dimension Name]",
+          "pass_criteria": "[What a passing artifact shows, specifically for this repository.]",
+          "fail_criteria": "[What makes it fail.]"
+        }
+      ]
+    }
+  }
+}

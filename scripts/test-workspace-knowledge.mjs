@@ -15,6 +15,31 @@ assert.equal(new Set(grouped).size, grouped.length, "a repository is in more tha
 for (const feed of registry.feeds) for (const repository of [feed.to, ...feed.from]) assert.ok(grouped.includes(repository), `feed repository ${repository} is not grouped`);
 for (const entry of registry.copies) for (const file of [entry.source, entry.copy]) assert.ok(grouped.includes(file.split("/")[0]), `copy path ${file} is not in a grouped repository`);
 
+// Working Backwards rubric overlays only add dimensions: valid stages, complete dimensions, no id reused from the base rubric.
+const wbRoot = path.join(sourceRoot, "templates", "working-backwards");
+const baseRubrics = fs.readdirSync(wbRoot).filter((f) => /^critic-rubric(-\d+\.\d+\.\d+)?\.json$/.test(f)).map((f) => ({ file: f, rubric: JSON.parse(fs.readFileSync(path.join(wbRoot, f), "utf8")) }));
+assert.equal(baseRubrics.find((r) => r.file === "critic-rubric.json")?.rubric.version, "1.0.0", "critic-rubric.json must stay v1.0.0 for packages that declared it");
+for (const { file, rubric } of baseRubrics) if (file !== "critic-rubric.json") assert.equal(file, `critic-rubric-${rubric.version}.json`, `${file}: filename must match its version`);
+const latest = baseRubrics.map((r) => r.rubric).sort((x, y) => x.version.localeCompare(y.version, undefined, { numeric: true })).at(-1);
+for (const stage of ["engineering-handoff", "readiness"]) assert.ok(latest.stages[stage]?.dimensions.length, `latest base rubric must score ${stage}`);
+const stageKeys = new Set(baseRubrics.flatMap((r) => Object.keys(r.rubric.stages)));
+const overlays = fs.readdirSync(path.join(wbRoot, "domains")).filter((f) => f.endsWith(".rubric.json")).map((f) => path.join(wbRoot, "domains", f));
+assert.ok(overlays.length >= 2, "expected the payments and game-development overlays");
+for (const file of overlays) {
+  const overlay = JSON.parse(fs.readFileSync(file, "utf8"));
+  assert.match(overlay.extends, /^critic-rubric@1\.x$/, `${file}: extends must be critic-rubric@1.x`);
+  for (const [stage, { dimensions }] of Object.entries(overlay.stages)) {
+    assert.ok(stageKeys.has(stage), `${file}: unknown stage ${stage}`);
+    const baseIds = new Set(baseRubrics.flatMap((r) => (r.rubric.stages[stage]?.dimensions || []).map((d) => d.id)));
+    const ids = dimensions.map((d) => d.id);
+    assert.equal(new Set(ids).size, ids.length, `${file}: duplicate dimension id in ${stage}`);
+    for (const d of dimensions) {
+      assert.ok(d.id && d.name && d.pass_criteria && d.fail_criteria, `${file}: incomplete dimension in ${stage}`);
+      assert.ok(!baseIds.has(d.id), `${file}: ${stage}.${d.id} reuses a base rubric id`);
+    }
+  }
+}
+
 // Fixture workspace.
 const root = fs.mkdtempSync(path.join(os.tmpdir(), "apt-workspace-knowledge-"));
 const write = (file, text) => { fs.mkdirSync(path.dirname(path.join(root, file)), { recursive: true }); fs.writeFileSync(path.join(root, file), text); };

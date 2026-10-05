@@ -46,7 +46,9 @@ Invoked by the Working Backwards orchestrator after both FAQs pass, or for a cri
 ## Perspective-Specific Checks
 
 - Trace every requirement and increment to a press-release or FAQ statement; untraced scope is out until the package is revised.
-- Make each acceptance criterion testable by someone who did not write it.
+- Make each acceptance criterion testable by someone who did not write it: given/when/then, no "correctly", "properly", or "gracefully" without an observable result, and at least one named edge case per requirement.
+- Cover all six non-functional categories (performance, security and privacy, reliability and recovery, accessibility, observability and telemetry, scale and cost) with a real answer or an owned `[OPEN]`.
+- Translate, do not invent: if a requirement cannot point to a sentence in the press release or a specific FAQ answer, it does not belong.
 - Apply the profile's requirements and handoff expectations (for example fail-closed money operations, or playable increments with a playtest question).
 - Name what is forbidden: untraced scope and implementation before critic PASS.
 

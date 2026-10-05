@@ -1,0 +1,168 @@
+{
+  "version": "1.1.0",
+  "changes": "1.1.0 adds dimensions for the stage-4 artifacts (engineering-handoff, readiness) and adopts the APT Product Team rubric wording for stages 1-3 (same dimension ids; stricter on named owners for open items and blockers). critic-rubric.json stays at 1.0.0 for packages that declared it.",
+  "stages": {
+    "press-release": {
+      "dimensions": [
+        {
+          "id": "customer-definition",
+          "name": "Customer Definition",
+          "pass_criteria": "A specific named persona, role, segment, or job title is identified. The reader knows exactly who has this problem.",
+          "fail_criteria": "Customer is vague — 'users', 'teams', 'enterprises', 'people', 'customers' without further specification. A new team member couldn't describe the customer after reading this."
+        },
+        {
+          "id": "problem-evidence",
+          "name": "Problem Evidence",
+          "pass_criteria": "The problem is specific and evidenced — with a concrete pain, a current workaround, a frequency, a cost, or a quote. The reader understands why this matters now.",
+          "fail_criteria": "The problem is generic ('it's frustrating', 'it takes too long', 'there's no good solution') without specifics. No evidence that this is a real, acute pain."
+        },
+        {
+          "id": "customer-benefit",
+          "name": "Customer Benefit",
+          "pass_criteria": "The customer knows exactly what they get. The benefit is concrete, specific, and directly tied to the problem stated. The headline and solution paragraph agree.",
+          "fail_criteria": "The benefit is vague ('easier', 'faster', 'better') without saying what specifically changes for the customer. The customer can't tell what they actually receive."
+        },
+        {
+          "id": "spokesperson-quote",
+          "name": "Spokesperson Quote",
+          "pass_criteria": "The quote explains why this product matters — the insight, the mission, or the opportunity. It says something a real person would say.",
+          "fail_criteria": "The quote is generic marketing language ('We're excited to announce...', 'We're committed to helping customers succeed...'). It could be copy-pasted onto any product announcement."
+        },
+        {
+          "id": "customer-quote",
+          "name": "Customer Quote",
+          "pass_criteria": "The quote is specific and believable. It describes a real outcome or reaction in the customer's voice. Placeholder language is explicitly marked as [placeholder — replace with real customer quote].",
+          "fail_criteria": "The quote invents specific metrics or outcomes not grounded in PM-provided context without marking them as placeholders. Or the quote is generic praise ('This is amazing! It really helps us!')."
+        }
+      ]
+    },
+    "external-faq": {
+      "dimensions": [
+        {
+          "id": "question-quality",
+          "name": "Question Quality",
+          "pass_criteria": "Every question represents a genuine challenge a skeptical customer would raise — about risk, cost, workflow change, data, competition, or failure modes. A new PM could not have predicted all of them easily.",
+          "fail_criteria": "Questions are softballs ('How do I get started?', 'What are the benefits?') or leading questions that assume a positive answer. The set feels like a FAQ written by the marketing team, not a skeptical customer."
+        },
+        {
+          "id": "answer-completeness",
+          "name": "Answer Completeness",
+          "pass_criteria": "Every question has either a substantive answer or is explicitly marked [OPEN — owner: X] with a named owner. No question is left unanswered without acknowledgment.",
+          "fail_criteria": "One or more questions have no answer and are not marked [OPEN]. Or questions are marked [OPEN] without a named owner (e.g. just 'TBD' or blank)."
+        },
+        {
+          "id": "evasion",
+          "name": "No Evasive Answers",
+          "pass_criteria": "Each answer directly resolves the question asked. Answers that reveal genuine uncertainty are marked [OPEN] rather than dressed up as answers.",
+          "fail_criteria": "One or more answers restate the question without resolving it, deflect to vague future plans ('We will address this later'), or use marketing language to avoid a hard truth."
+        },
+        {
+          "id": "coverage",
+          "name": "Coverage of Critical Concerns",
+          "pass_criteria": "The FAQ covers the customer concerns most likely to block adoption: data/privacy, workflow change, cost/value, failure modes, and differentiation from alternatives. A customer finishing this FAQ should have their most important concerns addressed.",
+          "fail_criteria": "The FAQ is missing one or more critical concern categories that a reasonable customer in the target segment would raise. The omission feels intentional rather than accidental."
+        }
+      ]
+    },
+    "internal-faq": {
+      "dimensions": [
+        {
+          "id": "coverage",
+          "name": "Stakeholder Coverage",
+          "pass_criteria": "The FAQ includes hard questions from at least three stakeholder perspectives: engineering (feasibility, scale, dependencies), business/leadership (why now, why us, success metrics, business model), and legal/compliance (if applicable to the domain). A stakeholder from each group would feel their concerns were taken seriously.",
+          "fail_criteria": "One or more stakeholder perspectives are entirely absent or represented only by softball questions. Engineering questions that only cover happy-path implementation are insufficient — risk and failure modes must be covered."
+        },
+        {
+          "id": "answer-completeness",
+          "name": "Answer Completeness",
+          "pass_criteria": "Every question has either a substantive answer or is explicitly marked [OPEN — owner: X] with a named owner. Open items are genuinely open — not avoidance of a question that has an answer.",
+          "fail_criteria": "One or more questions are unanswered without [OPEN] marking. Or [OPEN] items have no named owner (just 'TBD', 'the team', or blank)."
+        },
+        {
+          "id": "blocker-flagging",
+          "name": "Blocker Identification",
+          "pass_criteria": "Any open item that would prevent the build from proceeding — legal risk, missing capability, unresolved dependency, compliance requirement — is flagged as [BLOCKER — owner: X]. The engineering team can read this FAQ and know exactly what must be resolved before work begins.",
+          "fail_criteria": "Build-blocking issues are buried in [OPEN] items without distinction, or are not surfaced at all. The engineering team would have to infer blockers rather than having them made explicit."
+        },
+        {
+          "id": "evasion",
+          "name": "No Evasive Answers",
+          "pass_criteria": "Answers to hard questions are direct. When the answer is 'we don't know yet', it is marked [OPEN] rather than dressed up with confident-sounding language that obscures the uncertainty.",
+          "fail_criteria": "Hard questions (e.g. 'What's the business model?', 'What are the legal risks?') receive vague, aspirational, or deflecting answers rather than honest responses or [OPEN] flags."
+        }
+      ]
+    },
+    "requirements": {
+      "dimensions": [
+        {
+          "id": "traceability",
+          "name": "Requirement Traceability",
+          "pass_criteria": "Every requirement cites which prior artifact it comes from — a specific line, quote, question, or named open/blocker item in the Press Release, External FAQ, or Internal FAQ. A reader can point to the source sentence for any requirement in the document.",
+          "fail_criteria": "One or more requirements appear with no source reference, or the source reference is vague ('per the FAQ') rather than pointing at a specific question or line. A requirement invented independently of the validated PR/FAQ package fails this dimension even if it is otherwise well-written."
+        },
+        {
+          "id": "testable-acceptance-criteria",
+          "name": "Testable Acceptance Criteria",
+          "pass_criteria": "Every functional requirement has at least one acceptance criterion written as observable given/when/then behavior — specific enough that an engineer could write a test against it without asking a follow-up question.",
+          "fail_criteria": "Acceptance criteria are vague ('works correctly', 'handles errors gracefully'), subjective ('feels fast'), or missing entirely for a requirement. A criterion that cannot be turned into a pass/fail test fails this dimension."
+        },
+        {
+          "id": "edge-case-coverage",
+          "name": "Edge Case Coverage",
+          "pass_criteria": "Each requirement names at least one failure mode, boundary condition, or recovery path beyond the happy path — what happens when an input is missing, a dependency fails, or two conditions conflict.",
+          "fail_criteria": "A requirement describes only the happy path with no edge cases considered, or edge cases are named without any indication of expected behavior."
+        },
+        {
+          "id": "non-functional-requirements",
+          "name": "Non-Functional Requirements",
+          "pass_criteria": "Performance, security/privacy, reliability/recovery, accessibility, observability/telemetry, and scale/cost are each addressed with a real answer or explicitly marked open with a named owner — not silently skipped.",
+          "fail_criteria": "One or more non-functional categories are missing from the document entirely, with no open-item marker explaining the omission."
+        },
+        {
+          "id": "open-item-propagation",
+          "name": "Open Item Propagation",
+          "pass_criteria": "Every [OPEN] and [BLOCKER] item from the Press Release, External FAQ, and Internal FAQ that was not resolved before this stage still appears in the Requirements document with its owner intact, or is explicitly noted as resolved with how and when.",
+          "fail_criteria": "An open item or blocker from a prior stage disappears without explanation, is softened into a passing mention, or is worked around silently instead of being carried forward or marked resolved."
+        }
+      ]
+    },
+    "engineering-handoff": {
+      "dimensions": [
+        {
+          "id": "increment-traceability",
+          "name": "Increment Traceability",
+          "pass_criteria": "Every increment names the requirement IDs it delivers, and every requirement is delivered by at least one increment.",
+          "fail_criteria": "An increment delivers work not traced to a requirement, or a requirement has no increment."
+        },
+        {
+          "id": "validation-and-stop",
+          "name": "Validation and Stop Conditions",
+          "pass_criteria": "Every increment names its input, output, a runnable validation (command, test, or check as the press-release persona), and a stop condition that would halt the rollout.",
+          "fail_criteria": "An increment has no runnable validation or no stop condition, or the validation cannot be run by someone else."
+        },
+        {
+          "id": "scope-guard",
+          "name": "Scope Guard",
+          "pass_criteria": "The handoff lists approved source artifacts (only those with critic PASS) and forbids untraced scope and implementation before PASS.",
+          "fail_criteria": "Source artifacts are not named, include unapproved drafts, or the handoff permits untraced scope."
+        }
+      ]
+    },
+    "readiness": {
+      "dimensions": [
+        {
+          "id": "readiness-coverage",
+          "name": "Readiness Coverage",
+          "pass_criteria": "Quality and tests, security and privacy, operations and support, docs, and release with rollback are each confirmed or explicitly deferred with an owner.",
+          "fail_criteria": "One or more areas are missing, or listed with no evidence and no owned deferral."
+        },
+        {
+          "id": "outcome-signals",
+          "name": "Outcome Signals",
+          "pass_criteria": "Names measurable outcome signals tied to the press-release promise (adoption, usage, satisfaction, or value) and when they will be reviewed, or an explicit deferral with an owner.",
+          "fail_criteria": "No outcome signals, signals unrelated to the press release, or no review point."
+        }
+      ]
+    }
+  }
+}

@@ -19,6 +19,8 @@ The package is ready when the team can trace what to build from customer intent 
 
 ## Required Checks
 
+- [ ] `session.json` declares the domain profile (or none), the repository profile, the persona, and the rubric version.
+- [ ] The persona comes from the repository's personas and is indexed in `references/persona-register.json`.
 - [ ] Press release states the customer, problem, outcome, and why now.
 - [ ] External FAQ covers adoption, value, workflow change, trust, pricing or cost, and customer-visible risks.
 - [ ] Internal FAQ covers feasibility, architecture, security, operations, legal/compliance when relevant, cost, and ownership.
@@ -32,6 +34,7 @@ The package is ready when the team can trace what to build from customer intent 
 - [ ] What-to-build and agent handoff artifacts cite approved source artifacts and validation commands.
 - [ ] Independent critic scored the package in a session that did not author it; `PASS` is not a writer self-check or an editor hook.
 - [ ] Critic output is only the verdict files; writer artifacts were not edited by the critic.
+- [ ] Critic scored the base rubric plus every declared overlay (domain and repository) and recorded their versions.
 
 ## Failure Conditions
 

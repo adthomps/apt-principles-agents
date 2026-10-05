@@ -22,9 +22,10 @@ This subsystem is part of the `apt-principles-agents` repository and shares its 
 
 The current implementation surface is Claude Code-oriented:
 
-- `.claude/agents/` contains writer and critic roles.
-- `.claude/rubrics/` contains stage-specific critic criteria.
-- `.claude/skills/` contains command workflows and methodology guidance.
+- `.claude/agents/` contains the canonical Working Backwards writer and critic agents, generated from `apt-principles-agents/agents/working-backwards/` (do not edit).
+- The critic rubric is canonical: `templates/working-backwards/critic-rubric-1.1.0.json` in the parent repository.
+- `.claude/skills/` contains the Product Team command workflows (`/working-backwards`, `/wb-status`, GitHub operations).
+- `working-backwards/profile.md` holds the Product Team profile: session folders, commits, and promotion.
 - `templates/` contains session and output formats.
 - `working-backwards/` contains organized local session evidence.
 

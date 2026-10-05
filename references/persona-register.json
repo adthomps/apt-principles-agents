@@ -224,14 +224,27 @@
       "id": "player",
       "title": "Player",
       "kind": "audience",
-      "description": "A person playing a game or interactive experience. Games define their own player profiles (for example solo or hot-seat group, genre fan, newcomer); none are evidenced yet in the workspace.",
-      "sources": [],
+      "description": "A person playing a game or interactive experience. Each game defines its own player profiles.",
+      "sources": [
+        {
+          "repository": "apt-grey-rain",
+          "path": "docs/apt/personas/README.md",
+          "name": "Solo Runner",
+          "status": "direction"
+        },
+        {
+          "repository": "apt-grey-rain",
+          "path": "docs/apt/personas/README.md",
+          "name": "Hot-Seat Crew",
+          "status": "direction"
+        }
+      ],
       "reviewerAgents": [
         "apt-gameplay-reviewer",
         "apt-game-ui-reviewer",
         "apt-game-testing-reviewer"
       ],
-      "gap": "No game in the workspace has documented player profiles yet; the game-development Working Backwards profile asks each package to name one."
+      "gap": "Grey Rain player profiles are direction only (owner docs, no playtests yet); docs/apt/playtests/pilot-loop-plan.md is the first evidence step."
     }
   ]
 }

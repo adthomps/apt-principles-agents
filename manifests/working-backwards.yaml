@@ -18,3 +18,5 @@ templates:
 prompts:
 knowledge:
 platforms:
+examples:
+  - examples/working-backwards/

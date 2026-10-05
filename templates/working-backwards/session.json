@@ -5,8 +5,9 @@
   "repo": "",
   "feature_idea": "",
   "profile": "",
+  "repo_profile": "",
   "persona": "",
-  "rubric_version": "1.0.0",
+  "rubric_version": "1.1.0",
   "current_stage": "press-release",
   "stages": {
     "press-release": {

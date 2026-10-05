@@ -22,6 +22,6 @@ Each profile defines:
 - **When a full package is required** in that domain.
 - **Stage guidance:** extra intake questions, FAQ coverage, and requirement, handoff, and readiness expectations.
 - **Personas and reviewer lenses** to use from `references/persona-register.json`.
-- **Rubric overlay:** extra dimensions per stage, including the two stage-4 artifacts that the base rubric v1.0.0 does not score.
+- **Rubric overlay:** extra dimensions per stage, including the stage-4 artifacts (engineering handoff and readiness). Overlays extend any 1.x base rubric (`critic-rubric@1.x`) and must not reuse a base dimension id.
 
 To add a profile, copy an existing pair, keep dimension ids unique within each stage, and have the agent and skill steward review it.

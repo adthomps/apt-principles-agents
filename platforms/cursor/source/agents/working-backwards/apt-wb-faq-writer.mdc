@@ -35,6 +35,8 @@ Invoked by the Working Backwards orchestrator after the press release passes, or
 - Ask internal questions through the core leads plus security, support, and launch-readiness perspectives.
 - Reject evasive answers: an answer that restates the question or promises "we will handle it" becomes an open item.
 - Carry every open item and blocker forward into `session.json`.
+- Draft 5–8 genuinely hard questions per mode; if marketing could have written the question set, it is too soft.
+- Mark anything that would stop a safe build (an unresolved legal or compliance risk, a dependency that does not exist yet) as `[BLOCKER]`, not `[OPEN]`.
 
 ## Required Skills
 

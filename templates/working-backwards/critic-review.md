@@ -14,7 +14,7 @@ Written only by an independent critic session that did not author the writer art
 
 ```text
 VERDICT: PENDING
-RUBRIC_VERSION: 1.0.0
+RUBRIC_VERSION: 1.1.0
 PROFILE: (none | profile id and version)
 SUMMARY:
 ```
@@ -25,8 +25,8 @@ SUMMARY:
 | External FAQ | PENDING | |
 | Internal FAQ | PENDING | |
 | Requirements | PENDING | |
-| Engineering handoff | PENDING | No base rubric dimensions in v1.0.0; profile dimensions may apply. |
-| Readiness | PENDING | No base rubric dimensions in v1.0.0; profile dimensions may apply. |
+| Engineering handoff | PENDING | |
+| Readiness | PENDING | |
 
 Open vs blocker:
 

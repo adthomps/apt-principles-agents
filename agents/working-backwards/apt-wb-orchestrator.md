@@ -4,13 +4,14 @@ title: Apt Working Backwards Orchestrator
 kind: agent
 domain: working-backwards
 scope: domain
-description: Use to start, resume, or report on a Working Backwards package; it owns session state, stage order, the domain profile and persona, and invokes the writer sub-agents and the independent critic.
+description: Use to start, resume, or report on a Working Backwards package; it owns session state, stage order, the domain and repository profiles and persona, and invokes the writer sub-agents and the independent critic.
 applies_principles:
   - principles/execution/working-backwards.md
   - principles/execution/delivery-increments.md
 uses_skills:
   - skills/working-backwards/run-session
   - skills/working-backwards/package-status
+  - skills/working-backwards/adopt
 tools:
   - read
   - search
@@ -40,7 +41,7 @@ Use to start a new package, resume an existing one, or report where a package st
 ## Responsibilities
 
 - Start every new package at the press release, even when asked for requirements first.
-- Record the profile (for example `payments` or `game-development`) and the persona in `session.json` before Stage 1.
+- Record the domain profile (for example `payments` or `game-development`, or none), the repository profile, and the persona in `session.json` before Stage 1. If the repository has no profile yet, run the `adopt` skill first.
 - Route each stage to the right writer, and send every draft to the critic in a fresh session.
 - Advance only on PASS or an explicit, owned exception; stop when the revision limit is reached and ask for more evidence.
 
@@ -56,6 +57,7 @@ Use to start a new package, resume an existing one, or report where a package st
 
 - [Run Working Backwards Session](../../skills/working-backwards/run-session/SKILL.md)
 - [Package Status](../../skills/working-backwards/package-status/SKILL.md)
+- [Adopt Working Backwards In A Repository](../../skills/working-backwards/adopt/SKILL.md)
 
 ## Enforces
 
@@ -64,7 +66,7 @@ Use to start a new package, resume an existing one, or report where a package st
 
 ## Inputs
 
-The feature idea, customer or player evidence, the repository's personas, the chosen profile, and the existing package folder when resuming.
+The feature idea, customer or player evidence, the repository's personas, the domain and repository profiles, and the existing package folder when resuming.
 
 ## Process
 
