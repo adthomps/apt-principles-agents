@@ -1,0 +1,80 @@
+# Requirements: [Feature Name]
+
+**Session:** {session-id}
+**Stage:** Requirements
+**Press Release:** working-backwards/{session-id}/press-release.md
+**External FAQ:** working-backwards/{session-id}/faq-external.md
+**Internal FAQ:** working-backwards/{session-id}/faq-internal.md
+
+---
+
+## Source Package
+
+- Press release: [critic verdict + date]
+- External FAQ: [critic verdict + date]
+- Internal FAQ: [critic verdict + date]
+- Approval state: [pending / approved — owner + date]
+
+## Problem Statement
+
+[Derived directly from the validated Press Release's Problem paragraph. Do not restate generically — carry the specific evidence forward.]
+
+## Success Criteria
+
+[Derived from the Press Release's customer benefit and any success-metric answer in the Internal FAQ. What observable outcome tells you this worked?]
+
+## User Journey
+
+[Numbered, end-to-end: how the customer (or system) moves through this from first contact to the outcome described in the Press Release. Reference the Getting Started section.]
+
+## Functional Requirements
+
+### Requirement 1: [Name]
+
+- Source artifact IDs: [Press Release section / FAQ question this comes from]
+- Description: [What this requirement covers]
+- Acceptance criteria:
+  - Given [context], when [action], then [observable result].
+  - Given [edge-case context], when [action], then [observable result].
+- Edge cases: [Named failure modes, boundary conditions, recovery paths]
+- Open items: [OPEN — owner: X] or "none"
+
+### Requirement 2: [Name]
+
+[Repeat the structure above for each requirement. Every requirement must trace to a specific line in the Press Release or a specific FAQ question — do not invent requirements the source package doesn't support.]
+
+## Non-Functional Requirements
+
+- Performance: [answer or [OPEN — owner: X]]
+- Security/privacy: [answer or [OPEN — owner: X]]
+- Reliability/recovery: [answer or [OPEN — owner: X]]
+- Accessibility: [answer or [OPEN — owner: X]]
+- Observability/telemetry: [answer or [OPEN — owner: X]]
+- Scale/cost: [answer or [OPEN — owner: X]]
+
+## Scope
+
+In scope:
+
+- [Item]
+
+Out of scope:
+
+- [Item]
+
+## Blockers And Open Items
+
+[Carry forward every unresolved [OPEN] and [BLOCKER] from the Press Release and both FAQs — do not drop any. Add new ones surfaced while writing Requirements.]
+
+- [OPEN — owner: X] [Question or missing evidence]
+- [BLOCKER — owner: X] [Issue that prevents build handoff]
+
+## Validation
+
+- Required checks: [what must be true before this ships — tests, reviews, sign-offs]
+- Human approval points: [who approves what, and when]
+- Stop conditions: [what would mean this should not ship as designed]
+
+---
+
+<!-- Every requirement must trace to the Press Release or a named FAQ question. Nothing here should be invented independently of the validated source package. -->

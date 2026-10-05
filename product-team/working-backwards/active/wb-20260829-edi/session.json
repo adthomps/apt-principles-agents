@@ -1,0 +1,116 @@
+{
+  "session_id": "wb-20260829-edi",
+  "created_at": "2026-08-29T19:30:28Z",
+  "updated_at": "2026-08-30T01:15:00Z",
+  "repo": "apt-principles-agents",
+  "feature_idea": "EDI orchestrator role: classify a plain-language request from Adam, select the relevant review-council/persona specialist(s), invoke them, reconcile any conflicting recommendations, and return one synthesized answer with a clear approval status.",
+  "current_stage": "complete",
+  "stages": {
+    "press-release": {
+      "status": "critic-pass",
+      "critic_verdict": "PASS",
+      "revision_count": 0,
+      "artifact_path": "working-backwards/wb-20260829-edi/press-release.md"
+    },
+    "faq-external": {
+      "status": "critic-pass",
+      "critic_verdict": "PASS",
+      "revision_count": 0,
+      "artifact_path": "working-backwards/wb-20260829-edi/faq-external.md"
+    },
+    "faq-internal": {
+      "status": "critic-pass",
+      "critic_verdict": "PASS",
+      "revision_count": 0,
+      "artifact_path": "working-backwards/wb-20260829-edi/faq-internal.md"
+    },
+    "requirements": {
+      "status": "complete",
+      "critic_verdict": "PASS",
+      "revision_count": 1,
+      "artifact_path": "working-backwards/wb-20260829-edi/requirements.md"
+    }
+  },
+  "invocation_log": [
+    {
+      "stage": "press-release",
+      "role": "writer",
+      "note": "Drafted from existing charter-matrix/session context rather than a live PM interview; awaiting Adam's confirmation the customer/problem framing is accurate."
+    },
+    {
+      "stage": "press-release",
+      "role": "critic",
+      "verdict": "PASS",
+      "rubric_version": "1.0.0"
+    },
+    {
+      "stage": "faq-external",
+      "role": "writer",
+      "note": "7 questions, EXTERNAL mode (Adam as the skeptical requester of his own tooling)."
+    },
+    {
+      "stage": "faq-external",
+      "role": "critic",
+      "verdict": "PASS",
+      "rubric_version": "1.0.0"
+    },
+    {
+      "stage": "faq-internal",
+      "role": "writer",
+      "note": "6 questions, INTERNAL mode; 3 flagged BLOCKER (selection mechanism, reconciliation mechanism, runtime architecture) \u2014 all must be resolved before Requirements."
+    },
+    {
+      "stage": "faq-internal",
+      "role": "critic",
+      "verdict": "PASS",
+      "rubric_version": "1.0.0"
+    },
+    {
+      "stage": "faq-internal",
+      "role": "orchestrator",
+      "note": "All 3 BLOCKERs (selection mechanism, reconciliation mechanism, runtime architecture) and the success-metric OPEN item resolved directly by Adam via one-at-a-time AskUserQuestion decisions on 2026-08-30. Decisions: EDI = Skill/slash-command using Claude Code's native Task tool; reconciliation = escalation-rules gate first, then LLM synthesis pass; selection = LLM reads AGENT-CATALOG.md per request; success metric = matches Adam's manual conclusion, faster. Recorded in adr-edi-architecture.md."
+    },
+    {
+      "stage": "faq-external",
+      "role": "orchestrator",
+      "note": "2 of 3 remaining OPEN items resolved by Adam on 2026-08-30: unstructured plain-language input confirmed; EDI now always lists consulted specialists + selection rationale before its synthesis (also resolves the external FAQ's synthesis-trust BLOCKER). The cost/token overhead open item (single- vs multi-specialist request mix) remains open and deferred, not blocking."
+    },
+    {
+      "stage": "adr",
+      "role": "writer",
+      "note": "Wrote adr-edi-architecture.md using apt-principles-agents/templates/decision-records/ADR.md, capturing the runtime/selection/reconciliation decisions ahead of Stage 3 Requirements. Status: Accepted, owner Adam."
+    },
+    {
+      "stage": "requirements",
+      "role": "writer",
+      "note": "5 functional requirements (selection, invocation, reconciliation, transparency, approval-authority boundary) plus non-functional requirements, scope, and 4 remaining open items (inline-finding format, retry/fallback behavior, observability/metrics, deferred cost/value measurement). Traces every requirement to press-release.md/faq-external.md/faq-internal.md/adr-edi-architecture.md."
+    },
+    {
+      "stage": "requirements",
+      "role": "critic (self-reviewed)",
+      "verdict": "PASS",
+      "rubric_version": "1.0.0",
+      "note": "Checked against apt-principles-agents/templates/working-backwards/critic-rubric.json 'requirements' dimensions: traceability, testable-acceptance-criteria, edge-case-coverage, non-functional-requirements, open-item-propagation. No live critic agent existed for this stage in the Product Team workflow at the time; a real critic pass is still owed before this is a governance-complete PASS."
+    },
+    {
+      "stage": "requirements",
+      "role": "critic",
+      "verdict": "NEEDS REVISION",
+      "rubric_version": "1.0.0",
+      "note": "Real critic agent (built this session) reviewed against .claude/rubrics/stage-3-requirements.json. Failed edge-case-coverage: Requirements 1-3 named edge cases without stating expected behavior. All other 4 dimensions passed on this first real review."
+    },
+    {
+      "stage": "requirements",
+      "role": "writer (revision 1)",
+      "note": "Added explicit given/when/then acceptance criteria for the previously-bare edge cases in Requirements 1-3, most notably specifying that an ambiguous escalation-rule match fails closed (escalates to Adam) rather than being silently auto-resolved."
+    },
+    {
+      "stage": "requirements",
+      "role": "critic",
+      "verdict": "PASS",
+      "rubric_version": "1.0.0",
+      "note": "Revision cycle 2: edge-case-coverage re-reviewed and passed; other 4 dimensions sanity-checked as unbroken by the edit. Stage 3 now genuinely critic-gated, not self-reviewed. This closes out the earlier gap: the Product Team workflow previously had no live Stage 3 critic agent. requirements-writer.md, stage-3-requirements.json, and requirements.md.template were built this session (Phase 4 of the subsystem's roadmap), critic.md and the working-backwards SKILL.md were wired to use them, and README.md was updated to drop the 'coming in Phase 3/4' markers."
+    }
+  ],
+  "adr_path": "working-backwards/wb-20260829-edi/adr-edi-architecture.md"
+}

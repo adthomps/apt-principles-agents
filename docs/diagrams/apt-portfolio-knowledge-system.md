@@ -5,7 +5,7 @@ domain: "documentation"
 status: "active"
 owner: "APT"
 last_updated: "2026-08-29"
-source_paths: ["apt-principles-agents/AGENTS.md", "apt-principles-agents/docs/intake-routing-application.md", "apt-principles-agents/docs/working-backwards-product-team-application.md", "apt-principles-agents/docs/design-reference-intake.md", "apt-product-team/AGENTS.md", "apt-dream-to-reality/docs/INTAKE_TO_DELIVERY_CONTRACT.md", "applied-practical-thinking/docs/DESIGN_REFERENCE_MERGE_DIRECTION.md"]
+source_paths: ["apt-principles-agents/AGENTS.md", "apt-principles-agents/docs/intake-routing-application.md", "apt-principles-agents/docs/working-backwards-product-team-application.md", "apt-principles-agents/docs/design-reference-intake.md", "apt-principles-agents/product-team/AGENTS.md", "apt-dream-to-reality/docs/INTAKE_TO_DELIVERY_CONTRACT.md", "applied-practical-thinking/docs/DESIGN_REFERENCE_MERGE_DIRECTION.md"]
 ---
 
 # APT Portfolio Knowledge System Diagrams
@@ -16,7 +16,7 @@ These diagrams are curated navigation aids. Canonical truth remains in the cited
 
 ```mermaid
 flowchart LR
-    Intake[apt-intake<br/>operational intake] -->|EXTRACTED: accepted context| Product[apt-product-team<br/>planning cockpit]
+    Intake[apt-intake<br/>operational intake] -->|EXTRACTED: accepted context| Product[product-team subsystem<br/>internal planning cockpit]
     Intake -->|EXTRACTED: accepted context| Dream[apt-dream-to-reality<br/>productized planning and delivery]
     Product -->|EXTRACTED: reusable rules| Doctrine[apt-principles-agents<br/>canonical doctrine and assets]
     Product -->|EXTRACTED: polished behavior| Dream
@@ -26,7 +26,7 @@ flowchart LR
     Doctrine -->|EXTRACTED: selected public projection| Public
 ```
 
-Sources: `apt-product-team/AGENTS.md`, `apt-principles-agents/docs/intake-routing-application.md`, `apt-principles-agents/docs/working-backwards-product-team-application.md`, `apt-principles-agents/docs/design-reference-intake.md`, and `applied-practical-thinking/docs/DESIGN_REFERENCE_MERGE_DIRECTION.md`.
+Sources: `apt-principles-agents/product-team/AGENTS.md`, `apt-principles-agents/docs/intake-routing-application.md`, `apt-principles-agents/docs/working-backwards-product-team-application.md`, `apt-principles-agents/docs/design-reference-intake.md`, and `applied-practical-thinking/docs/DESIGN_REFERENCE_MERGE_DIRECTION.md`.
 
 ## Intake To Delivery And Learning
 
@@ -41,7 +41,7 @@ flowchart LR
     Learning -->|EXTRACTED: reusable lesson| Doctrine
 ```
 
-Sources: `apt-intake/docs/operating-model.md`, `apt-product-team/docs/operating-model.md`, `apt-dream-to-reality/docs/INTAKE_TO_DELIVERY_CONTRACT.md`, and `apt-principles-agents/principles/execution/knowledge-and-learning.md`.
+Sources: `apt-intake/docs/operating-model.md`, `apt-principles-agents/product-team/docs/operating-model.md`, `apt-dream-to-reality/docs/INTAKE_TO_DELIVERY_CONTRACT.md`, and `apt-principles-agents/principles/execution/knowledge-and-learning.md`.
 
 ## Doctrine Distribution And Drift Review
 
@@ -66,7 +66,7 @@ flowchart TB
     subgraph Governance[Governance and product thinking]
       Principles[apt-principles-agents]
       IntakeRepo[apt-intake]
-      Team[apt-product-team]
+      Team[Product Team subsystem]
       DreamRepo[apt-dream-to-reality]
     end
     subgraph Knowledge[Knowledge and evidence]

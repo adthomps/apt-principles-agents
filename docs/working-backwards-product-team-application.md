@@ -5,16 +5,16 @@ status: draft
 owner: APT
 last_updated: 2026-08-16
 domain: thinking
-source_paths: ["apt-principles-agents/docs/working-backwards-product-team-application.md", "apt-product-team/README.md", "apt-product-team/prd-pm-ai-team.md", "apt-product-team/.claude/agents/critic.md", "apt-product-team/.claude/agents/press-release-writer.md", "apt-product-team/.claude/agents/faq-writer.md", "apt-product-team/.claude/skills/working-backwards/SKILL.md", "apt-product-team/.claude/skills/working-backwards-methodology/SKILL.md"]
+source_paths: ["apt-principles-agents/docs/working-backwards-product-team-application.md", "apt-principles-agents/product-team/README.md", "apt-principles-agents/product-team/prd-pm-ai-team.md", "apt-principles-agents/product-team/.claude/agents/critic.md", "apt-principles-agents/product-team/.claude/agents/press-release-writer.md", "apt-principles-agents/product-team/.claude/agents/faq-writer.md", "apt-principles-agents/product-team/.claude/skills/working-backwards/SKILL.md", "apt-principles-agents/product-team/.claude/skills/working-backwards-methodology/SKILL.md"]
 ---
 
 # Working Backwards Product Team Application
 
 ## Purpose
 
-Use this guide when promoting reusable Working Backwards material from `../apt-product-team` into `apt-principles-agents`.
+Use this guide when promoting reusable Working Backwards material from the [`product-team/` subsystem](../product-team/README.md) into canonical APT guidance.
 
-`apt-product-team` is the internal planning cockpit and fast-moving Working Backwards lab. `apt-principles-agents` owns the provider-neutral doctrine, rubrics, templates, agent-role contracts, and review standards that should be reused across APT products. Productized behavior belongs in `../apt-dream-to-reality`; public narrative belongs in `../applied-practical-thinking` only after it is sanitized and polished.
+The `product-team/` subsystem is the internal planning cockpit and Working Backwards lab. The parent repository owns provider-neutral doctrine, rubrics, templates, agent-role contracts, and review standards that should be reused across APT products. Productized behavior belongs in `../../apt-dream-to-reality`; public narrative belongs in `../../applied-practical-thinking` only after it is sanitized and polished.
 
 ## What Belongs Here
 
@@ -47,7 +47,7 @@ Do not promote these as canonical doctrine:
 | `.claude/agents/critic.md` | `templates/working-backwards/agent-role-contracts.md` and `templates/working-backwards/critic-rubric.json` |
 | Cursor `.cursor/skills/*critic*` / edit-guard hooks | Product-repo adapter only. Doctrine stays here. Hooks guard; they do not `PASS`. See `platforms/cursor/README.md`. |
 | `.claude/rubrics/*.json` | `templates/working-backwards/critic-rubric.json` or versioned rubric library |
-| `.claude/skills/working-backwards/SKILL.md` | provider-neutral orchestration guidance; productized implementation in `../apt-dream-to-reality` |
+| `.claude/skills/working-backwards/SKILL.md` | provider-neutral orchestration guidance; productized implementation in `../../apt-dream-to-reality` |
 | `.claude/skills/wb-status/SKILL.md` | `templates/working-backwards/stage-gate-status.md` |
 | `.claude/skills/github-operations/SKILL.md` | platform adapter guidance only when GitHub persistence is selected |
 | `templates/output-formats/*.template` | `templates/working-backwards/*` |

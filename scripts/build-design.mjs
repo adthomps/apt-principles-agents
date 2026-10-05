@@ -1,11 +1,11 @@
 #!/usr/bin/env node
 // Generates the distributable APT design artifacts from the canonical tokens (APT-019).
 //
-//   design/tokens/APT-TOKENS.json  ->  design/dist/apt-tokens.css            (:root light, .dark dark)
-//                                      design/dist/apt-tokens.dark-first.css (:root dark, .light light)
-//                                      design/dist/tailwind-preset.cjs       (Tailwind v3 preset)
-//                                      design/dist/apt-theme.css             (Tailwind v4 @theme inline)
-//                                      design/dist/tokens.ts                 (typed values)
+//   design/tokens/APT-TOKENS.json  ->  design/generated/apt-tokens.css            (:root light, .dark dark)
+//                                      design/generated/apt-tokens.dark-first.css (:root dark, .light light)
+//                                      design/generated/tailwind-preset.cjs       (Tailwind v3 preset)
+//                                      design/generated/apt-theme.css             (Tailwind v4 @theme inline)
+//                                      design/generated/tokens.ts                 (typed values)
 //                                      references/design-tokens.json         (color values only)
 //
 // Usage: node scripts/build-design.mjs [--check]
@@ -110,7 +110,7 @@ function tailwindPreset() {
       },
     },
   };
-  return `/*\n${HEADER("Tailwind CSS v3 preset")}\nUsage: presets: [require("./.apt/design/dist/tailwind-preset.cjs")]\n*/\nmodule.exports = ${JSON.stringify(preset, null, 2)};\n`;
+  return `/*\n${HEADER("Tailwind CSS v3 preset")}\nUsage: presets: [require("./.apt/design/generated/tailwind-preset.cjs")]\n*/\nmodule.exports = ${JSON.stringify(preset, null, 2)};\n`;
 }
 
 function tailwindV4Theme() {
@@ -122,7 +122,7 @@ function tailwindV4Theme() {
   for (const [name, value] of Object.entries(tailwindColors())) flatten(name, value);
   for (let level = 1; level <= 4; level++) lines.push(`  --shadow-elevation-${level}: var(--elevation-${level});`);
   lines.push("  --radius-lg: var(--radius);", "  --radius-md: calc(var(--radius) - 2px);", "  --radius-sm: calc(var(--radius) - 4px);");
-  return `/*\n${HEADER("Tailwind CSS v4 theme mapping")}\nImport after apt-tokens*.css: @import "./.apt/design/dist/apt-theme.css";\n*/\n@theme inline {\n${lines.join("\n")}\n}\n`;
+  return `/*\n${HEADER("Tailwind CSS v4 theme mapping")}\nImport after apt-tokens*.css: @import "./.apt/design/generated/apt-theme.css";\n*/\n@theme inline {\n${lines.join("\n")}\n}\n`;
 }
 
 function tokensTs() {
@@ -166,11 +166,11 @@ function flatReference() {
 }
 
 const outputs = {
-  "design/dist/apt-tokens.css": tokensCss("light-first"),
-  "design/dist/apt-tokens.dark-first.css": tokensCss("dark-first"),
-  "design/dist/tailwind-preset.cjs": tailwindPreset(),
-  "design/dist/apt-theme.css": tailwindV4Theme(),
-  "design/dist/tokens.ts": tokensTs(),
+  "design/generated/apt-tokens.css": tokensCss("light-first"),
+  "design/generated/apt-tokens.dark-first.css": tokensCss("dark-first"),
+  "design/generated/tailwind-preset.cjs": tailwindPreset(),
+  "design/generated/apt-theme.css": tailwindV4Theme(),
+  "design/generated/tokens.ts": tokensTs(),
   "references/design-tokens.json": flatReference(),
 };
 

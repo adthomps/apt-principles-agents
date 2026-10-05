@@ -77,8 +77,9 @@ and was 89/89 OK at rollout time.
 `apt-commerce` first as the pilot; review its commit; then the rest.
 `apt-security-harness` is `platforms: ["codex"]` only — it gets `.codex/agents`,
 not `.claude/`. `apt-anet-hosted-toolbox` is registered but not checked out.
-`apt-product-team` is declared local-only (`.apt/local-agents.md`); do not sync
-it as a consumer unless it becomes its own repo.
+`product-team/` is an internal subsystem in this repository, not a separate
+consumer. Its local workers are declared in `product-team/.apt/local-agents.md`;
+do not install canonical assets into it as if it were an independent project.
 
 ## Consumer state at hand-off (2026-08-30)
 

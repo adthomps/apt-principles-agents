@@ -5,7 +5,7 @@ domain: "thinking"
 status: "draft"
 owner: "APT"
 last_updated: "2026-08-16"
-source_paths: ["apt-principles-agents/templates/working-backwards/agent-role-contracts.md", "apt-product-team/.claude/agents/press-release-writer.md", "apt-product-team/.claude/agents/faq-writer.md", "apt-product-team/.claude/agents/critic.md"]
+source_paths: ["apt-principles-agents/templates/working-backwards/agent-role-contracts.md", "apt-principles-agents/product-team/.claude/agents/press-release-writer.md", "apt-principles-agents/product-team/.claude/agents/faq-writer.md", "apt-principles-agents/product-team/.claude/agents/critic.md"]
 ---
 
 # Working Backwards Agent Role Contracts

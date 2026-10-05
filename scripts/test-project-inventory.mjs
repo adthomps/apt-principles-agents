@@ -108,12 +108,23 @@ try {
   fs.mkdirSync(pendingRoot);
   fs.writeFileSync(path.join(pendingRoot, "README.md"), "# Pending\n", "utf8");
 
+  const parentRepository = path.join(workspaceRoot, "parent-repository");
+  fs.mkdirSync(path.join(parentRepository, ".git"), { recursive: true });
+  fs.writeFileSync(path.join(parentRepository, ".git", "HEAD"), "ref: refs/heads/main\n", "utf8");
+  fs.writeFileSync(path.join(parentRepository, "README.md"), "# Parent repository\n", "utf8");
+  const subsystem = path.join(parentRepository, "internal-subsystem");
+  fs.mkdirSync(subsystem);
+  fs.writeFileSync(path.join(subsystem, "README.md"), "# Internal subsystem\n", "utf8");
+
+  const orphanedGitDirectory = path.join(workspaceRoot, "orphaned-git-directory");
+  fs.mkdirSync(path.join(orphanedGitDirectory, ".git"), { recursive: true });
+
   fs.mkdirSync(path.join(workspaceRoot, ".hidden-project"));
   fs.writeFileSync(path.join(workspaceRoot, ".hidden-project", "README.md"), "# Hidden\n", "utf8");
   fs.mkdirSync(path.join(workspaceRoot, "not-a-project"));
 
   const projects = discoverWorkspaceProjects(workspaceRoot);
-  assert.deepEqual(projects, ["legacy-project", "pending-project", "verified-project"]);
+  assert.deepEqual(projects, ["legacy-project", "parent-repository", "pending-project", "verified-project"]);
 
   const workspace = renderWorkspaceInventory({ workspaceRoot, schema, projectNames: projects });
   assert(workspace.includes("| `verified-project` | verified | Verified example purpose."));

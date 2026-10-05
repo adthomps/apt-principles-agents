@@ -14,6 +14,7 @@ const SCOPES = new Set(contract.fields.scope.values);
 const TIERS = new Set(contract.fields.model_tier.values);
 const AUTONOMY = new Set(contract.fields.autonomy.values);
 const TOOLS = new Set(contract.fields.tools.values);
+const pendingHandoffs = [];
 
 function walk(dir) {
   return readdirSync(dir, { withFileTypes: true }).flatMap((e) => {
@@ -55,7 +56,8 @@ const ids = new Map();
 
 for (const file of filesList) {
   const rel = path.relative(root, file).replaceAll("\\", "/");
-  const fm = parse(readFileSync(file, "utf8"));
+  const text = readFileSync(file, "utf8");
+  const fm = parse(text);
   if (!fm) {
     errors.push(`${rel}: missing frontmatter`);
     continue;
@@ -84,16 +86,87 @@ for (const file of filesList) {
   if (fm.autonomy && !AUTONOMY.has(fm.autonomy)) errors.push(`${rel}: autonomy "${fm.autonomy}" not in ${[...AUTONOMY]}`);
   for (const t of fm.tools || []) if (!TOOLS.has(t)) errors.push(`${rel}: tool "${t}" not in ${[...TOOLS]}`);
 
+  for (const heading of contract.body.requiredHeadings) {
+    const present = heading === "# "
+      ? /^#\s+\S/m.test(text)
+      : new RegExp(`^${heading.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}\\s*$`, "m").test(text);
+    if (!present) errors.push(`${rel}: missing required heading "${heading}"`);
+  }
+
   const enforceable = new Set(["security-risk", "risk", "security", "payments", "api", "architecture", "ai", "ecommerce", "harness"]);
   if (enforceable.has(fm.domain) && (fm.applies_principles || []).length === 0) {
     errors.push(`${rel}: domain "${fm.domain}" is enforceable but applies_principles is empty`);
   }
+  const enforcesHeading = text.search(/^## Enforces\s*$/m);
+  const enforcesBody = enforcesHeading < 0
+    ? ""
+    : text.slice(enforcesHeading).replace(/^## Enforces\s*\r?\n/, "").split(/^##\s/m, 1)[0];
+  const enforcesBullets = [...enforcesBody.matchAll(/^\s*-\s+(.+)$/gm)].map((match) => match[1]);
   for (const p of fm.applies_principles || []) {
-    if (!existsSync(path.join(root, p))) errors.push(`${rel}: applies_principles path missing: ${p}`);
+    const principlePath = path.resolve(root, p);
+    if (!existsSync(principlePath)) {
+      errors.push(`${rel}: applies_principles path missing: ${p}`);
+      continue;
+    }
+    const hasActionableLink = enforcesBullets.some((bullet) => {
+      const link = bullet.match(/\]\(([^)]+)\)\s*[—–-]\s*(.+)$/);
+      if (!link || link[2].trim().length < 8 || /^[\s:.,;!?-]*$/.test(link[2])) return false;
+      let linkedPath;
+      try {
+        linkedPath = decodeURIComponent(link[1].split(/[?#]/, 1)[0]);
+      } catch {
+        return false;
+      }
+      if (/^(?:https?:|mailto:|#)/i.test(linkedPath)) return false;
+      return path.resolve(path.dirname(file), linkedPath) === principlePath;
+    });
+    if (!hasActionableLink) {
+      errors.push(`${rel}: ## Enforces must link "${p}" and state an actionable check on the same bullet`);
+    }
+  }
+  if (fm.handoffs !== undefined) {
+    let handoffs;
+    try {
+      handoffs = JSON.parse(fm.handoffs);
+    } catch {
+      errors.push(`${rel}: handoffs must be a JSON-encoded array`);
+      handoffs = [];
+    }
+    if (!Array.isArray(handoffs) || handoffs.length === 0) {
+      errors.push(`${rel}: handoffs must be a non-empty array`);
+    } else {
+      handoffs.forEach((handoff, index) => {
+        if (!handoff || typeof handoff !== "object" || Array.isArray(handoff)) {
+          errors.push(`${rel}: handoffs[${index}] must be an object`);
+          return;
+        }
+        if (typeof handoff.target !== "string" || !handoff.target.trim()) {
+          errors.push(`${rel}: handoffs[${index}].target must be a non-empty agent id`);
+        } else {
+          pendingHandoffs.push({ rel, index, target: handoff.target.trim() });
+        }
+        if (typeof handoff.when !== "string" || !handoff.when.trim()) {
+          errors.push(`${rel}: handoffs[${index}].when must be a non-empty trigger`);
+        }
+        if (!Array.isArray(handoff.required_evidence) || handoff.required_evidence.length === 0 ||
+            handoff.required_evidence.some((item) => typeof item !== "string" || !item.trim())) {
+          errors.push(`${rel}: handoffs[${index}].required_evidence must contain non-empty strings`);
+        }
+        if (typeof handoff.expected_output !== "string" || !handoff.expected_output.trim()) {
+          errors.push(`${rel}: handoffs[${index}].expected_output must be a non-empty deliverable`);
+        }
+      });
+    }
   }
   for (const s of fm.uses_skills || []) {
     const full = path.join(root, s);
     if (!existsSync(full) || !statSync(full).isDirectory()) errors.push(`${rel}: uses_skills path missing: ${s}`);
+  }
+}
+
+for (const handoff of pendingHandoffs) {
+  if (!ids.has(handoff.target)) {
+    errors.push(`${handoff.rel}: handoffs[${handoff.index}] targets unknown agent "${handoff.target}"`);
   }
 }
 

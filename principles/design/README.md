@@ -65,9 +65,9 @@ Predictable interaction patterns reduce cognitive load and implementation drift.
 
 This repository owns portable design doctrine: decision principles, required states and artifacts, reusable review criteria, semantic token roles, prompts, and examples.
 
-This repository also owns the canonical APT design tokens and their generated artifacts (DR-015 / APT-019): `design/tokens/APT-TOKENS.json`, versioned in `design/VERSION` and generated into `design/dist/` (token CSS, Tailwind v3 preset, Tailwind v4 theme, typed values). Products receive them through the `design` manifest and declare how they align in an `apt-design.json` tier:
+This repository also owns the canonical APT design tokens and their generated artifacts (DR-015 / APT-019): `design/tokens/APT-TOKENS.json`, versioned in `design/VERSION` and generated into `design/generated/` (token CSS, Tailwind v3 preset, Tailwind v4 theme, typed values). Products receive them through the `design` manifest and declare how they align in an `apt-design.json` tier:
 
-- **Tier 1 (APT products):** literal token values come from `design/dist/` unchanged. A product-specific deviation needs an exclusion with a reason and a decision record.
+- **Tier 1 (APT products):** literal token values come from `design/generated/` unchanged. A product-specific deviation needs an exclusion with a reason and a decision record.
 - **Tier 2 (brand products):** the product owns its palette and visual identity, but uses the APT semantic token names and meets the contrast contract.
 - **Tier 3 (legacy or no UI):** doctrine and review guidance only.
 
@@ -131,7 +131,7 @@ A target design system should cover:
 - content naming and messaging that is precise, honest, and matched to user intent
 - accessibility expectations for contrast, focus, keyboard use, reduced motion, and readable text wrapping
 
-Canonical token values live in `design/tokens/APT-TOKENS.json` and ship as generated files in `design/dist/`. `references/design-tokens.json` is a generated flat view of them, and `references/design-lint-gates.json` holds the review gates. Tier 1 products use the generated values; Tier 2 products implement their own values under the same semantic names.
+Canonical token values live in `design/tokens/APT-TOKENS.json` and ship as generated files in `design/generated/`. `references/design-tokens.json` is a generated flat view of them, and `references/design-lint-gates.json` holds the review gates. Tier 1 products use the generated values; Tier 2 products implement their own values under the same semantic names.
 
 ## Working Backwards Design Artifacts
 

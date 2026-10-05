@@ -85,20 +85,30 @@ if (!existsSync(path.join(target, ".apt-backups"))) throw new Error("Forced repa
   const designRecord = JSON.parse(readFileSync(path.join(designTarget, ".apt", "installation.json"), "utf8"));
   const expectedVersion = readFileSync(path.join(root, "design", "VERSION"), "utf8").trim();
   if (designRecord.designVersion !== expectedVersion) throw new Error(`designVersion not recorded (got ${designRecord.designVersion})`);
-  for (const file of ["dist/apt-tokens.css", "dist/apt-tokens.dark-first.css", "dist/tailwind-preset.cjs", "bin/apt-design-check.mjs"]) {
+  for (const file of ["generated/apt-tokens.css", "generated/apt-tokens.dark-first.css", "generated/tailwind-preset.cjs", "bin/apt-design-check.mjs"]) {
     if (!existsSync(path.join(designTarget, ".apt", "design", file))) throw new Error(`design manifest did not install ${file}`);
   }
   // A Tier 1 product that imports the generated tokens passes; one broken token fails.
   mkdirSync(path.join(designTarget, "src"), { recursive: true });
   const css = path.join(designTarget, "src", "index.css");
-  writeFileSync(css, '@import "../.apt/design/dist/apt-tokens.dark-first.css";\n', "utf8");
+  writeFileSync(css, '@import "../.apt/design/generated/apt-tokens.dark-first.css";\n', "utf8");
   writeFileSync(path.join(designTarget, "apt-design.json"), JSON.stringify({ tier: 1, css: "src/index.css", lint: { roots: ["src"] } }), "utf8");
   const designCheck = path.join(designTarget, ".apt", "design", "bin", "apt-design-check.mjs");
   const passing = spawnSync("node", [designCheck], { cwd: designTarget, encoding: "utf8" });
   if (passing.status !== 0) throw new Error(`apt-design-check failed on generated tokens:\n${passing.stdout}${passing.stderr}`);
-  writeFileSync(css, '@import "../.apt/design/dist/apt-tokens.dark-first.css";\n:root { --muted-foreground: 220 10% 55%; }\n', "utf8");
+  writeFileSync(css, '@import "../.apt/design/generated/apt-tokens.dark-first.css";\n:root { --muted-foreground: 220 10% 55%; }\n', "utf8");
   const failing = spawnSync("node", [designCheck], { cwd: designTarget, encoding: "utf8" });
   if (failing.status === 0 || !failing.stdout.includes("muted-foreground")) throw new Error("apt-design-check did not fail on a drifted, low-contrast token");
+  // Lint ratchet: findings at or under lint.baseline pass, findings above it fail.
+  writeFileSync(css, '@import "../.apt/design/generated/apt-tokens.dark-first.css";\n', "utf8");
+  writeFileSync(path.join(designTarget, "src", "view.tsx"), 'export const a = "bg-zinc-900";\nexport const b = "text-white";\n', "utf8");
+  const ratchet = (baseline) => {
+    writeFileSync(path.join(designTarget, "apt-design.json"), JSON.stringify({ tier: 1, css: "src/index.css", lint: { roots: ["src"], baseline } }), "utf8");
+    return spawnSync("node", [designCheck, "--only", "lint"], { cwd: designTarget, encoding: "utf8" });
+  };
+  if (ratchet(2).status !== 0) throw new Error("apt-design-check failed lint findings within baseline");
+  if (!ratchet(3).stdout.includes("lower lint.baseline to 2")) throw new Error("apt-design-check did not ask for the baseline to be lowered");
+  if (ratchet(1).status === 0) throw new Error("apt-design-check passed lint findings above baseline");
 }
 
 const uninstallPreview = JSON.parse(run(["uninstall", "--target", target]));

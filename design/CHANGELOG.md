@@ -16,7 +16,7 @@ Each entry matches a `design/VERSION` value. Consumers record the version they s
 
 Canonical tokens moved into apt-principles-agents (APT-019).
 
-- **Source:** `design/tokens/APT-TOKENS.json` is now the single source. Generated artifacts live in `design/dist/` and ship through the `design` manifest.
+- **Source:** `design/tokens/APT-TOKENS.json` is now the single source. Generated artifacts live in `design/generated/` and ship through the `design` manifest.
 - **Contrast (APT-017):** dark primary family is `220 70% 61%` (5.14:1 on background, 4.68:1 on card).
 - **Status and muted text (APT-018):**
   - `success`, `success-foreground`, `warning` and `warning-foreground` are canonical in both themes.
@@ -25,5 +25,5 @@ Canonical tokens moved into apt-principles-agents (APT-019).
 - **Migration:**
   1. Sync the `design` manifest.
   2. Add `apt-design.json`.
-  3. Import `.apt/design/dist/apt-tokens.css` (or `apt-tokens.dark-first.css`) instead of hand-copied values.
+  3. Import `.apt/design/generated/apt-tokens.css` (or `apt-tokens.dark-first.css`) instead of hand-copied values.
   4. Run `node .apt/design/bin/apt-design-check.mjs` in CI.

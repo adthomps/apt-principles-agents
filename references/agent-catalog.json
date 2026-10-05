@@ -19,6 +19,7 @@
         "read",
         "search"
       ],
+      "handoffs": [],
       "model_tier": "standard",
       "autonomy": "advisory",
       "canonical_path": "agents/engineering/ai-output-auditor.md"
@@ -39,6 +40,7 @@
         "read",
         "search"
       ],
+      "handoffs": [],
       "model_tier": "standard",
       "autonomy": "advisory",
       "canonical_path": "agents/customer/apt-ai-agent-user-reviewer.md"
@@ -59,6 +61,7 @@
         "read",
         "search"
       ],
+      "handoffs": [],
       "model_tier": "standard",
       "autonomy": "advisory",
       "canonical_path": "agents/api/apt-ai-consumable-api-reviewer.md"
@@ -79,6 +82,7 @@
         "read",
         "search"
       ],
+      "handoffs": [],
       "model_tier": "deep",
       "autonomy": "advisory",
       "canonical_path": "agents/architecture/apt-api-architect.md"
@@ -100,6 +104,7 @@
         "read",
         "search"
       ],
+      "handoffs": [],
       "model_tier": "standard",
       "autonomy": "advisory",
       "canonical_path": "agents/api/apt-api-bridge-reviewer.md"
@@ -120,6 +125,7 @@
         "read",
         "search"
       ],
+      "handoffs": [],
       "model_tier": "standard",
       "autonomy": "advisory",
       "canonical_path": "agents/docs/apt-api-docs-writer.md"
@@ -141,6 +147,7 @@
         "read",
         "search"
       ],
+      "handoffs": [],
       "model_tier": "standard",
       "autonomy": "advisory",
       "canonical_path": "agents/api/apt-api-migration-planner.md"
@@ -159,6 +166,7 @@
         "read",
         "search"
       ],
+      "handoffs": [],
       "model_tier": "deep",
       "autonomy": "advisory",
       "canonical_path": "agents/harness/apt-architect.md"
@@ -180,6 +188,7 @@
         "read",
         "search"
       ],
+      "handoffs": [],
       "model_tier": "deep",
       "autonomy": "advisory",
       "canonical_path": "agents/core/apt-architecture-lead.md"
@@ -200,6 +209,7 @@
         "read",
         "search"
       ],
+      "handoffs": [],
       "model_tier": "standard",
       "autonomy": "advisory",
       "canonical_path": "agents/docs/apt-audience-docs-reviewer.md"
@@ -220,6 +230,7 @@
         "read",
         "search"
       ],
+      "handoffs": [],
       "model_tier": "standard",
       "autonomy": "advisory",
       "canonical_path": "agents/customer/apt-bank-acquirer-reviewer.md"
@@ -241,6 +252,7 @@
         "read",
         "search"
       ],
+      "handoffs": [],
       "model_tier": "standard",
       "autonomy": "advisory",
       "canonical_path": "agents/game-development/apt-beginner-game-dev-reviewer.md"
@@ -261,6 +273,7 @@
         "read",
         "search"
       ],
+      "handoffs": [],
       "model_tier": "standard",
       "autonomy": "advisory",
       "canonical_path": "agents/beginner-reviewers/apt-beginner-user-reviewer.md"
@@ -281,6 +294,7 @@
         "read",
         "search"
       ],
+      "handoffs": [],
       "model_tier": "standard",
       "autonomy": "advisory",
       "canonical_path": "agents/customer/apt-business-user-reviewer.md"
@@ -301,6 +315,7 @@
         "read",
         "search"
       ],
+      "handoffs": [],
       "model_tier": "standard",
       "autonomy": "advisory",
       "canonical_path": "agents/payments/apt-chargeback-risk-reviewer.md"
@@ -322,6 +337,7 @@
         "read",
         "search"
       ],
+      "handoffs": [],
       "model_tier": "standard",
       "autonomy": "advisory",
       "canonical_path": "agents/ecommerce/apt-checkout-reviewer.md"
@@ -341,6 +357,7 @@
         "search",
         "edit"
       ],
+      "handoffs": [],
       "model_tier": "standard",
       "autonomy": "bounded-edit",
       "canonical_path": "agents/harness/apt-cloudflare-builder.md"
@@ -359,6 +376,7 @@
         "read",
         "search"
       ],
+      "handoffs": [],
       "model_tier": "standard",
       "autonomy": "advisory",
       "canonical_path": "agents/harness/apt-code-reviewer.md"
@@ -379,6 +397,7 @@
         "read",
         "search"
       ],
+      "handoffs": [],
       "model_tier": "standard",
       "autonomy": "advisory",
       "canonical_path": "agents/ecommerce/apt-commerce-experience-reviewer.md"
@@ -400,6 +419,7 @@
         "read",
         "search"
       ],
+      "handoffs": [],
       "model_tier": "standard",
       "autonomy": "advisory",
       "canonical_path": "agents/risk/apt-compliance-awareness-reviewer.md"
@@ -418,6 +438,7 @@
         "read",
         "search"
       ],
+      "handoffs": [],
       "model_tier": "standard",
       "autonomy": "advisory",
       "canonical_path": "agents/harness/apt-cost-controller.md"
@@ -439,6 +460,7 @@
         "read",
         "search"
       ],
+      "handoffs": [],
       "model_tier": "standard",
       "autonomy": "advisory",
       "canonical_path": "agents/payments/apt-crypto-payment-risk-reviewer.md"
@@ -460,6 +482,7 @@
         "read",
         "search"
       ],
+      "handoffs": [],
       "model_tier": "standard",
       "autonomy": "advisory",
       "canonical_path": "agents/docs/apt-demo-and-diagram-planner.md"
@@ -481,6 +504,7 @@
         "read",
         "search"
       ],
+      "handoffs": [],
       "model_tier": "deep",
       "autonomy": "advisory",
       "canonical_path": "agents/core/apt-design-lead.md"
@@ -501,6 +525,7 @@
         "read",
         "search"
       ],
+      "handoffs": [],
       "model_tier": "standard",
       "autonomy": "advisory",
       "canonical_path": "agents/customer/apt-developer-integrator-reviewer.md"
@@ -519,6 +544,7 @@
         "read",
         "search"
       ],
+      "handoffs": [],
       "model_tier": "standard",
       "autonomy": "advisory",
       "canonical_path": "agents/docs/apt-docs-reviewer.md"
@@ -539,6 +565,7 @@
         "read",
         "search"
       ],
+      "handoffs": [],
       "model_tier": "standard",
       "autonomy": "advisory",
       "canonical_path": "agents/engineering/apt-engineering-reviewer.md"
@@ -560,6 +587,7 @@
         "read",
         "search"
       ],
+      "handoffs": [],
       "model_tier": "deep",
       "autonomy": "advisory",
       "canonical_path": "agents/core/apt-execution-lead.md"
@@ -581,6 +609,7 @@
         "read",
         "search"
       ],
+      "handoffs": [],
       "model_tier": "standard",
       "autonomy": "advisory",
       "canonical_path": "agents/payments/apt-fraud-risk-reviewer.md"
@@ -603,6 +632,7 @@
         "read",
         "search"
       ],
+      "handoffs": [],
       "model_tier": "deep",
       "autonomy": "advisory",
       "canonical_path": "agents/game-development/apt-game-architect.md"
@@ -625,6 +655,7 @@
         "read",
         "search"
       ],
+      "handoffs": [],
       "model_tier": "standard",
       "autonomy": "advisory",
       "canonical_path": "agents/game-development/apt-game-designer.md"
@@ -647,6 +678,7 @@
         "read",
         "search"
       ],
+      "handoffs": [],
       "model_tier": "standard",
       "autonomy": "advisory",
       "canonical_path": "agents/game-development/apt-game-development-coach.md"
@@ -669,6 +701,7 @@
         "read",
         "search"
       ],
+      "handoffs": [],
       "model_tier": "standard",
       "autonomy": "advisory",
       "canonical_path": "agents/game-development/apt-game-docs-writer.md"
@@ -690,6 +723,7 @@
         "read",
         "search"
       ],
+      "handoffs": [],
       "model_tier": "standard",
       "autonomy": "advisory",
       "canonical_path": "agents/game-development/apt-game-prototype-planner.md"
@@ -711,6 +745,7 @@
         "read",
         "search"
       ],
+      "handoffs": [],
       "model_tier": "standard",
       "autonomy": "advisory",
       "canonical_path": "agents/game-development/apt-game-scope-guardian.md"
@@ -732,6 +767,7 @@
         "read",
         "search"
       ],
+      "handoffs": [],
       "model_tier": "standard",
       "autonomy": "advisory",
       "canonical_path": "agents/game-development/apt-game-testing-reviewer.md"
@@ -753,6 +789,7 @@
         "read",
         "search"
       ],
+      "handoffs": [],
       "model_tier": "standard",
       "autonomy": "advisory",
       "canonical_path": "agents/game-development/apt-game-ui-reviewer.md"
@@ -774,6 +811,7 @@
         "read",
         "search"
       ],
+      "handoffs": [],
       "model_tier": "standard",
       "autonomy": "advisory",
       "canonical_path": "agents/game-development/apt-gameplay-reviewer.md"
@@ -795,6 +833,7 @@
         "read",
         "search"
       ],
+      "handoffs": [],
       "model_tier": "standard",
       "autonomy": "advisory",
       "canonical_path": "agents/payments/apt-gateway-migration-reviewer.md"
@@ -813,6 +852,7 @@
         "read",
         "search"
       ],
+      "handoffs": [],
       "model_tier": "standard",
       "autonomy": "advisory",
       "canonical_path": "agents/harness/apt-harness-docs-reviewer.md"
@@ -833,6 +873,7 @@
         "read",
         "search"
       ],
+      "handoffs": [],
       "model_tier": "standard",
       "autonomy": "advisory",
       "canonical_path": "agents/docs/apt-implementation-blueprint-writer.md"
@@ -852,6 +893,7 @@
         "search",
         "edit"
       ],
+      "handoffs": [],
       "model_tier": "standard",
       "autonomy": "bounded-edit",
       "canonical_path": "agents/harness/apt-installer.md"
@@ -873,6 +915,7 @@
         "read",
         "search"
       ],
+      "handoffs": [],
       "model_tier": "deep",
       "autonomy": "advisory",
       "canonical_path": "agents/architecture/apt-integration-architect.md"
@@ -893,6 +936,7 @@
         "read",
         "search"
       ],
+      "handoffs": [],
       "model_tier": "standard",
       "autonomy": "advisory",
       "canonical_path": "agents/product/apt-launch-readiness-lead.md"
@@ -913,6 +957,7 @@
         "read",
         "search"
       ],
+      "handoffs": [],
       "model_tier": "standard",
       "autonomy": "advisory",
       "canonical_path": "agents/ecommerce/apt-merchant-onboarding-reviewer.md"
@@ -934,6 +979,7 @@
         "read",
         "search"
       ],
+      "handoffs": [],
       "model_tier": "standard",
       "autonomy": "none",
       "canonical_path": "agents/harness/apt-model-router.md"
@@ -955,6 +1001,7 @@
         "read",
         "search"
       ],
+      "handoffs": [],
       "model_tier": "standard",
       "autonomy": "advisory",
       "canonical_path": "agents/api/apt-modern-api-designer.md"
@@ -975,6 +1022,7 @@
         "read",
         "search"
       ],
+      "handoffs": [],
       "model_tier": "deep",
       "autonomy": "advisory",
       "canonical_path": "agents/architecture/apt-modernization-architect.md"
@@ -995,6 +1043,7 @@
         "read",
         "search"
       ],
+      "handoffs": [],
       "model_tier": "standard",
       "autonomy": "advisory",
       "canonical_path": "agents/beginner-reviewers/apt-new-developer-reviewer.md"
@@ -1015,6 +1064,7 @@
         "read",
         "search"
       ],
+      "handoffs": [],
       "model_tier": "standard",
       "autonomy": "advisory",
       "canonical_path": "agents/beginner-reviewers/apt-new-merchant-reviewer.md"
@@ -1035,6 +1085,7 @@
         "read",
         "search"
       ],
+      "handoffs": [],
       "model_tier": "standard",
       "autonomy": "advisory",
       "canonical_path": "agents/beginner-reviewers/apt-new-support-agent-reviewer.md"
@@ -1056,6 +1107,7 @@
         "read",
         "search"
       ],
+      "handoffs": [],
       "model_tier": "deep",
       "autonomy": "advisory",
       "canonical_path": "agents/payments/apt-payment-architect.md"
@@ -1076,6 +1128,7 @@
         "read",
         "search"
       ],
+      "handoffs": [],
       "model_tier": "standard",
       "autonomy": "advisory",
       "canonical_path": "agents/product/apt-prd-writer.md"
@@ -1097,6 +1150,7 @@
         "read",
         "search"
       ],
+      "handoffs": [],
       "model_tier": "deep",
       "autonomy": "advisory",
       "canonical_path": "agents/core/apt-principal.md"
@@ -1118,6 +1172,7 @@
         "read",
         "search"
       ],
+      "handoffs": [],
       "model_tier": "standard",
       "autonomy": "advisory",
       "canonical_path": "agents/core/apt-principles-reviewer.md"
@@ -1138,6 +1193,7 @@
         "read",
         "search"
       ],
+      "handoffs": [],
       "model_tier": "standard",
       "autonomy": "advisory",
       "canonical_path": "agents/docs/apt-product-hub-builder.md"
@@ -1159,6 +1215,7 @@
         "search",
         "edit"
       ],
+      "handoffs": [],
       "model_tier": "standard",
       "autonomy": "bounded-edit",
       "canonical_path": "agents/engineering/apt-refactor-agent.md"
@@ -1178,6 +1235,7 @@
         "search",
         "edit"
       ],
+      "handoffs": [],
       "model_tier": "standard",
       "autonomy": "bounded-edit",
       "canonical_path": "agents/harness/apt-repair-agent.md"
@@ -1196,6 +1254,7 @@
         "read",
         "search"
       ],
+      "handoffs": [],
       "model_tier": "standard",
       "autonomy": "none",
       "canonical_path": "agents/harness/apt-repo-scanner.md"
@@ -1217,6 +1276,17 @@
         "read",
         "search"
       ],
+      "handoffs": [
+        {
+          "target": "apt-principles-reviewer",
+          "when": "The request requires a substantive review of code, documentation, plans, or diffs for alignment with APT Core.",
+          "required_evidence": [
+            "the artifact or diff under review",
+            "the decision context and applicable constraints"
+          ],
+          "expected_output": "A source-grounded APT principles review with findings, evidence, and any conditions or blockers."
+        }
+      ],
       "model_tier": "deep",
       "autonomy": "none",
       "canonical_path": "agents/core/apt-router.md"
@@ -1235,6 +1305,7 @@
         "read",
         "search"
       ],
+      "handoffs": [],
       "model_tier": "standard",
       "autonomy": "advisory",
       "canonical_path": "agents/harness/apt-security-reviewer.md"
@@ -1255,6 +1326,7 @@
         "read",
         "search"
       ],
+      "handoffs": [],
       "model_tier": "standard",
       "autonomy": "advisory",
       "canonical_path": "agents/customer/apt-support-operations-reviewer.md"
@@ -1275,6 +1347,7 @@
         "read",
         "search"
       ],
+      "handoffs": [],
       "model_tier": "standard",
       "autonomy": "none",
       "canonical_path": "agents/harness/apt-task-router.md"
@@ -1296,6 +1369,7 @@
         "read",
         "search"
       ],
+      "handoffs": [],
       "model_tier": "deep",
       "autonomy": "advisory",
       "canonical_path": "agents/core/apt-thinking-lead.md"
@@ -1316,6 +1390,7 @@
         "read",
         "search"
       ],
+      "handoffs": [],
       "model_tier": "standard",
       "autonomy": "advisory",
       "canonical_path": "agents/payments/apt-transaction-intelligence-analyst.md"
@@ -1334,6 +1409,7 @@
         "read",
         "search"
       ],
+      "handoffs": [],
       "model_tier": "standard",
       "autonomy": "advisory",
       "canonical_path": "agents/harness/apt-ui-reviewer.md"
@@ -1352,6 +1428,7 @@
         "read",
         "search"
       ],
+      "handoffs": [],
       "model_tier": "standard",
       "autonomy": "advisory",
       "canonical_path": "agents/harness/apt-verifier.md"
@@ -1372,6 +1449,7 @@
         "read",
         "search"
       ],
+      "handoffs": [],
       "model_tier": "standard",
       "autonomy": "advisory",
       "canonical_path": "agents/product/apt-voice-of-customer-analyst.md"
@@ -1393,6 +1471,7 @@
         "read",
         "search"
       ],
+      "handoffs": [],
       "model_tier": "standard",
       "autonomy": "advisory",
       "canonical_path": "agents/docs/documentation-normalizer.md"
@@ -1413,6 +1492,7 @@
         "read",
         "search"
       ],
+      "handoffs": [],
       "model_tier": "standard",
       "autonomy": "advisory",
       "canonical_path": "agents/engineering/drack.md"
@@ -1434,6 +1514,7 @@
         "read",
         "search"
       ],
+      "handoffs": [],
       "model_tier": "standard",
       "autonomy": "advisory",
       "canonical_path": "agents/api/glyph.md"
@@ -1455,6 +1536,7 @@
         "read",
         "search"
       ],
+      "handoffs": [],
       "model_tier": "standard",
       "autonomy": "advisory",
       "canonical_path": "agents/design/intent-ux-reviewer.md"
@@ -1475,6 +1557,7 @@
         "read",
         "search"
       ],
+      "handoffs": [],
       "model_tier": "deep",
       "autonomy": "advisory",
       "canonical_path": "agents/architecture/javik.md"
@@ -1495,6 +1578,7 @@
         "read",
         "search"
       ],
+      "handoffs": [],
       "model_tier": "standard",
       "autonomy": "advisory",
       "canonical_path": "agents/ecommerce/kaidan.md"
@@ -1515,6 +1599,7 @@
         "read",
         "search"
       ],
+      "handoffs": [],
       "model_tier": "deep",
       "autonomy": "advisory",
       "canonical_path": "agents/risk/kasumi.md"
@@ -1535,6 +1620,7 @@
         "read",
         "search"
       ],
+      "handoffs": [],
       "model_tier": "standard",
       "autonomy": "advisory",
       "canonical_path": "agents/product/miranda.md"
@@ -1555,6 +1641,7 @@
         "read",
         "search"
       ],
+      "handoffs": [],
       "model_tier": "standard",
       "autonomy": "advisory",
       "canonical_path": "agents/risk/samara.md"
@@ -1576,6 +1663,7 @@
         "read",
         "search"
       ],
+      "handoffs": [],
       "model_tier": "standard",
       "autonomy": "advisory",
       "canonical_path": "agents/payments/suvi.md"
@@ -1597,6 +1685,7 @@
         "read",
         "search"
       ],
+      "handoffs": [],
       "model_tier": "standard",
       "autonomy": "advisory",
       "canonical_path": "agents/payments/wrex.md"

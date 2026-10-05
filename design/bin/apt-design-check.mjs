@@ -9,7 +9,7 @@
 //   css         stylesheet holding (or importing) the theme tokens
 //   themes      optional { dark, light } block selectors, e.g. { "dark": ":root {", "light": ".light {" }
 //   exclusions  Tier 1 tokens allowed to differ: [{ token, themes?, reason, decision }]
-//   lint        { roots, allowlist, disable }
+//   lint        { roots, allowlist, disable, baseline }  (baseline: accepted finding count, ratchets down)
 //
 // Exit code 1 when any enabled check fails.
 
@@ -20,7 +20,7 @@ import { fileURLToPath } from "node:url";
 import { checkContrast, readThemes } from "../../skills/design/apt-contrast-check/check-contrast.mjs";
 
 const here = path.dirname(fileURLToPath(import.meta.url));
-const distDir = path.resolve(here, "..", "dist");
+const generatedDir = path.resolve(here, "..", "generated");
 const repoRoot = process.cwd();
 
 const arg = (name) => {
@@ -71,7 +71,7 @@ if (themes && enabled("drift")) {
   const failures = [];
   let compared = 0;
   if (tier === 1) {
-    const canonical = readThemes(path.join(distDir, "apt-tokens.css"));
+    const canonical = readThemes(path.join(generatedDir, "apt-tokens.css"));
     for (const theme of ["dark", "light"]) {
       const local = themes[theme];
       if (!local) {
@@ -146,7 +146,16 @@ if (enabled("lint")) {
       }
     });
   }
-  record("lint", failures, `${scanned} files scanned`);
+  // Ratchet: lint.baseline is the number of findings a repo has accepted while it cleans up.
+  // The check fails only when findings rise above it, and asks for the baseline to come down
+  // when they fall below it, so the count can only go one way.
+  const baseline = Number.isInteger(lint.baseline) ? lint.baseline : 0;
+  if (baseline > 0 && failures.length <= baseline) {
+    const note = failures.length < baseline ? `; lower lint.baseline to ${failures.length}` : "";
+    results.push({ check: "lint", status: "pass", summary: `${scanned} files scanned, ${failures.length} findings within baseline ${baseline}${note}`, failures: [] });
+  } else {
+    record("lint", failures, `${scanned} files scanned${baseline > 0 ? `, ${failures.length} findings above baseline ${baseline}` : ""}`);
+  }
 }
 
 // ── Report ──────────────────────────────────────────────────────────────────

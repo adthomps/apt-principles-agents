@@ -8,25 +8,14 @@
 //   node scripts/build-agent-adapters.mjs            # write adapters
 //   node scripts/build-agent-adapters.mjs --check    # exit 1 if any differ
 //
-// Currently emits the Claude adapter. Codex/Cursor/Copilot/generic emitters plug
-// in the same way once their target format is settled.
-
 import { existsSync, readFileSync, readdirSync, writeFileSync, mkdirSync, statSync, rmSync } from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const check = process.argv.includes("--check");
+const capabilities = JSON.parse(readFileSync(path.join(root, "references", "agent-platform-capabilities.json"), "utf8"));
 
-// abstract capability -> Claude Code tool identifiers
-const CLAUDE_TOOLS = {
-  read: ["Read"],
-  search: ["Grep", "Glob"],
-  edit: ["Edit", "Write", "MultiEdit"],
-  execute: ["Bash"],
-  web: ["WebFetch", "WebSearch"],
-  todo: ["TodoWrite"],
-};
 const MODEL_FOR_TIER = { standard: "sonnet", deep: "opus" };
 
 function walk(dir) {
@@ -92,8 +81,26 @@ function adaptBody(body, usesSkills) {
     .trimEnd() + "\n";
 }
 
+function addHandoffGuidance(body, fm) {
+  if (!fm.handoffs) return body;
+  const handoffs = JSON.parse(fm.handoffs);
+  const lines = ["## Handoff Guidance", ""];
+  for (const handoff of handoffs) {
+    lines.push(`- **When:** ${handoff.when}`);
+    lines.push(`  **Route to:** \`${handoff.target}\``);
+    lines.push(`  **Required evidence:** ${handoff.required_evidence.join("; ")}`);
+    lines.push(`  **Expected output:** ${handoff.expected_output}`);
+  }
+  return `${body.trimEnd()}\n\n${lines.join("\n")}\n`;
+}
+
+function renderedBody(fm, body) {
+  return addHandoffGuidance(adaptBody(body, fm.uses_skills || []), fm);
+}
+
 function claudeAdapter(fm, body) {
-  const tools = [...new Set((fm.tools || []).flatMap((cap) => CLAUDE_TOOLS[cap] || []))];
+  const toolMapping = capabilities.platforms.claude.toolMapping;
+  const tools = [...new Set((fm.tools || []).flatMap((cap) => toolMapping[cap] || []))];
   const canonical = `apt-principles-agents/agents/${fm.domain}/${fm.canonicalBase}.md`;
   const front = ["---", `name: ${fm.id}`, `description: ${JSON.stringify(fm.description)}`];
   // Claude Code native keys first; APT provenance metadata after so validate-repository
@@ -112,7 +119,7 @@ function claudeAdapter(fm, body) {
     `<!-- Generated from ${canonical} by scripts/build-agent-adapters.mjs. Edit the canonical file, not this one. -->`,
     "",
   );
-  return front.join("\n") + adaptBody(body, fm.uses_skills || []);
+  return front.join("\n") + renderedBody(fm, body);
 }
 
 function aptMeta(fm, canonical, extra = []) {
@@ -131,12 +138,11 @@ function aptMeta(fm, canonical, extra = []) {
   ];
 }
 
-// Codex reads AGENTS.md; there is no sub-agent runtime, so the adapter is a
-// titled prompt block a human or CI invokes by name.
+// Codex adapter output is a role prompt block, not a native agent configuration.
 function codexAdapter(fm, body) {
   const canonical = `apt-principles-agents/agents/${fm.domain}/${fm.canonicalBase}.md`;
   const front = ["---", `name: ${fm.id}`, `description: ${JSON.stringify(fm.description)}`, ...aptMeta(fm, canonical)];
-  return front.join("\n") + adaptBody(body, fm.uses_skills || []);
+  return front.join("\n") + renderedBody(fm, body);
 }
 
 // Cursor .mdc rule: description + globs steer when the rule attaches.
@@ -149,31 +155,32 @@ function cursorAdapter(fm, body) {
     "alwaysApply: false",
     ...aptMeta(fm, canonical, [`name: ${fm.id}`]),
   ];
-  return front.join("\n") + adaptBody(body, fm.uses_skills || []);
+  return front.join("\n") + renderedBody(fm, body);
 }
 
-// GitHub Copilot chat mode: description + a coarse tools list.
-const COPILOT_TOOLS = { read: ["codebase", "search"], search: ["search"], edit: ["editFiles"], execute: ["runCommands"], web: ["fetch"], todo: [] };
 function copilotAdapter(fm, body) {
   const canonical = `apt-principles-agents/agents/${fm.domain}/${fm.canonicalBase}.md`;
-  const tools = [...new Set((fm.tools || []).flatMap((c) => COPILOT_TOOLS[c] || []))];
+  const toolMapping = capabilities.platforms.copilot.toolMapping;
+  const tools = [...new Set((fm.tools || []).flatMap((c) => toolMapping[c] || []))];
   const front = [
     "---",
     `description: ${JSON.stringify(fm.description)}`,
     `tools: [${tools.map((t) => JSON.stringify(t)).join(", ")}]`,
     ...aptMeta(fm, canonical, [`name: ${fm.id}`]),
   ];
-  return front.join("\n") + adaptBody(body, fm.uses_skills || []);
+  return front.join("\n") + renderedBody(fm, body);
 }
 
-const EMITTERS = {
-  claude: { dir: path.join(root, "platforms", "claude", "source", "agents"), render: claudeAdapter, ext: ".md" },
-  codex: { dir: path.join(root, "platforms", "codex", "source", "agents"), render: codexAdapter, ext: ".md" },
-  cursor: { dir: path.join(root, "platforms", "cursor", "source", "agents"), render: cursorAdapter, ext: ".mdc" },
-  // github-copilot: emitted into generated/ so the 9 hand-authored *.agent.md
-  // maintainer chat modes at the top level are untouched.
-  copilot: { dir: path.join(root, "platforms", "github-copilot", "source", "agents", "generated"), render: copilotAdapter, ext: ".agent.md" },
-};
+const RENDERERS = { claudeAdapter, codexAdapter, cursorAdapter, copilotAdapter };
+const EMITTERS = Object.fromEntries(
+  Object.entries(capabilities.platforms)
+    .filter(([, config]) => config.adapterStatus === "generated")
+    .map(([platform, config]) => {
+      const render = RENDERERS[config.renderer];
+      if (!render) throw new Error(`Unknown renderer "${config.renderer}" for ${platform}`);
+      return [platform, { dir: path.join(root, config.sourceDirectory), render, ext: config.extension }];
+    }),
+);
 
 const canonical = walk(path.join(root, "agents")).filter((f) => f.endsWith(".md") && !f.endsWith("README.md"));
 const diffs = [];
@@ -197,6 +204,7 @@ for (const file of canonical) {
     applies_principles: fm.applies_principles || [],
     uses_skills: fm.uses_skills || [],
     tools: fm.tools || [],
+    handoffs: fm.handoffs ? JSON.parse(fm.handoffs) : [],
     model_tier: fm.model_tier,
     autonomy: fm.autonomy,
     canonical_path: `agents/${fm.domain}/${fm.canonicalBase}.md`,

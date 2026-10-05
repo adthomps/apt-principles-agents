@@ -5,7 +5,7 @@ domain: "thinking"
 status: "active"
 owner: "APT"
 last_updated: "2026-08-01"
-source_paths: ["apt-principles-agents/templates/working-backwards/requirements.md", "apt-product-team/prd-pm-ai-team.md"]
+source_paths: ["apt-principles-agents/templates/working-backwards/requirements.md", "apt-principles-agents/product-team/prd-pm-ai-team.md"]
 ---
 
 # Requirements: [Product Or Feature Name]

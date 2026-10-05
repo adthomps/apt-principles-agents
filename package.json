@@ -12,6 +12,8 @@
     "validate:design": "node scripts/build-design.mjs --check",
     "validate:agents": "node scripts/validate-agents.mjs",
     "validate:adapters": "node scripts/build-agent-adapters.mjs --check",
+    "agent-coverage": "node scripts/agent-coverage.mjs",
+    "test:agent-coverage": "node scripts/test-agent-coverage.mjs",
     "validate:principle-links": "node scripts/build-principle-agent-links.mjs --check",
     "validate:council": "node scripts/run-council.mjs --self-test",
     "validate:hooks": "node scripts/validate-hooks.mjs",
@@ -19,6 +21,10 @@
     "build:principle-links": "node scripts/build-principle-agent-links.mjs",
     "build:agents": "node scripts/build-principle-agent-links.mjs && node scripts/build-agent-adapters.mjs",
     "audit:workspace": "node scripts/apt-assets.mjs audit-workspace --workspace-root ..",
+    "projects:generate": "node scripts/workspace-knowledge.mjs projects --workspace-root ..",
+    "projects:check": "node scripts/workspace-knowledge.mjs projects --check --workspace-root ..",
+    "knowledge:audit": "node scripts/workspace-knowledge.mjs audit --workspace-root ..",
+    "test:workspace-knowledge": "node scripts/test-workspace-knowledge.mjs",
     "graphify:audit": "node scripts/graphify-workspace.mjs audit",
     "graphify:portfolio": "node scripts/graphify-workspace.mjs portfolio",
     "graphify:portfolio:check": "node scripts/graphify-workspace.mjs portfolio --check",
@@ -39,7 +45,7 @@
     "scaffold:audit-report": "node scripts/scaffold-apt-audit-report.mjs",
     "sweep:project-profiles": "node scripts/sweep-project-profiles.mjs",
     "test:graphify": "node scripts/test-graphify-workspace.mjs",
-    "test": "node scripts/test-installers.mjs && node scripts/test-project-inventory.mjs && node scripts/test-graphify-workspace.mjs",
+    "test": "node scripts/test-installers.mjs && node scripts/test-project-inventory.mjs && node scripts/test-graphify-workspace.mjs && node scripts/test-agent-coverage.mjs && node scripts/test-workspace-knowledge.mjs",
     "check": "npm run validate && npm run validate:graphify && npm run validate:okf && npm run validate:metadata && npm run validate:parity && npm run validate:design && npm run validate:agents && npm run validate:adapters && npm run validate:principle-links && npm run validate:council && npm run validate:hooks && npm run validate:specialization && npm run validate:project-profile && npm run inventory:check && npm run test"
   },
   "engines": {

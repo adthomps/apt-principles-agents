@@ -5,7 +5,7 @@ domain: "thinking"
 status: "draft"
 owner: "APT"
 last_updated: "2026-08-02"
-source_paths: ["apt-principles-agents/templates/working-backwards/stage-gate-status.md", "apt-product-team/.claude/skills/wb-status/SKILL.md", "apt-product-team/templates/session.json.template"]
+source_paths: ["apt-principles-agents/templates/working-backwards/stage-gate-status.md", "apt-principles-agents/product-team/.claude/skills/wb-status/SKILL.md", "apt-principles-agents/product-team/templates/session.json.template"]
 ---
 
 # Working Backwards Stage Gate Status

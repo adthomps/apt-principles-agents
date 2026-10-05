@@ -13,9 +13,11 @@ import {
 } from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
+import { auditKnowledge, loadKnowledge } from "./workspace-knowledge-lib.mjs";
 
 const sourceRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const packageJson = JSON.parse(readFileSync(path.join(sourceRoot, "package.json"), "utf8"));
+const agentPlatformCapabilities = JSON.parse(readFileSync(path.join(sourceRoot, "references", "agent-platform-capabilities.json"), "utf8"));
 const sections = ["principles", "standards", "checklists", "context", "skills", "agents", "templates", "prompts", "knowledge", "platforms", "design", "references", "examples"];
 const manifestKeys = new Set(["name", "description", "extends", ...sections]);
 const args = parseArgs(process.argv.slice(2));
@@ -253,14 +255,11 @@ function mappingsFor(manifests, platforms) {
   //   of them into every repo in the workspace regardless of relevance.
   // The install target path is always flat (target/<filename>.md, domain subdirectory dropped)
   // since Claude Code subagent discovery is not known to recurse into .claude/agents/ subfolders.
-  const agentAdapterTargets = {
-    claude: { target: ".claude/agents", source: "platforms/claude/source/agents" },
-    codex: { target: ".codex/agents", source: "platforms/codex/source/agents" },
-    cursor: { target: ".cursor/agents", source: "platforms/cursor/source/agents" },
-    // Copilot adapters are generated under generated/ so the hand-authored
-    // *.agent.md maintainer chat modes at the top level stay untouched.
-    copilot: { target: ".github/agents", source: "platforms/github-copilot/source/agents/generated" },
-  };
+  const agentAdapterTargets = Object.fromEntries(
+    Object.entries(agentPlatformCapabilities.platforms)
+      .filter(([, config]) => config.adapterStatus === "generated")
+      .map(([platform, config]) => [platform, { target: config.installTarget, source: config.sourceDirectory }]),
+  );
   const selectedAgentFiles = new Set(selected.get("agents") || []);
   const scopedPlatformAgentPaths = globallyReferencedPlatformAgentPaths();
   for (const [platform, cfg] of Object.entries(agentAdapterTargets)) {
@@ -540,7 +539,11 @@ function scanTarget(target) {
 function designStatus(target, consumer, record, runCheck) {
   const configPath = path.join(target, "apt-design.json");
   const config = exists(configPath) ? JSON.parse(readFileSync(configPath, "utf8")) : null;
-  const tier = config?.tier ?? consumer.tier ?? null;
+  // The registry (references/workspace-consumers.json) decides a repo's tier; apt-design.json must agree,
+  // so a repo cannot lower its own tier to escape checks.
+  const registryTier = consumer.tier ?? null;
+  const tier = registryTier ?? config?.tier ?? null;
+  const tierMismatch = Boolean(config) && registryTier !== null && config.tier !== registryTier;
   const packagePath = path.join(target, "package.json");
   const scripts = exists(packagePath) ? JSON.parse(readFileSync(packagePath, "utf8")).scripts || {} : {};
   const scriptWired = Object.values(scripts).some((command) => String(command).includes("apt-design-check"));
@@ -553,6 +556,8 @@ function designStatus(target, consumer, record, runCheck) {
   const current = currentDesignVersion();
   const result = {
     tier,
+    declaredTier: config?.tier ?? null,
+    tierMismatch,
     hasConfig: Boolean(config),
     designVersion: record?.designVersion || null,
     designCurrent: Boolean(record?.designVersion) && record.designVersion === current,
@@ -785,7 +790,10 @@ function auditWorkspace() {
     activeUninstalled,
     activeRepositories,
     designVersion: currentDesignVersion(),
+    designTierMismatch: repositories.filter((item) => item.design?.tierMismatch).map((item) => item.repository),
     designBehind: repositories.filter((item) => item.design && [1, 2].includes(item.design.tier) && !item.design.designCurrent).map((item) => item.repository),
+    // Knowledge relationships (PROJECTS.md, feeds, copies) have their own status; they don't change the asset status above.
+    knowledge: auditKnowledge({ workspaceRoot, knowledge: loadKnowledge(sourceRoot) }),
     repositories,
   };
 }

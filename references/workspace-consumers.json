@@ -220,17 +220,6 @@
       "tier": 2
     },
     {
-      "repository": "apt-product-team",
-      "manifests": [
-        "core"
-      ],
-      "platforms": [
-        "cursor"
-      ],
-      "validation": [],
-      "tier": 3
-    },
-    {
       "repository": "apt-security-harness",
       "manifests": [
         "core",

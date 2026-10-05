@@ -273,7 +273,13 @@ export function discoverWorkspaceProjects(workspaceRoot) {
     .filter((entry) => !entry.name.startsWith(".") && !EXCLUDED_WORKSPACE_DIRECTORIES.has(entry.name))
     .filter((entry) => {
       const root = path.join(workspaceRoot, entry.name);
-      return fs.existsSync(path.join(root, "README.md")) || fs.existsSync(path.join(root, "package.json")) || fs.existsSync(path.join(root, ".git"));
+      for (let parent = path.dirname(root); parent !== workspaceRoot; parent = path.dirname(parent)) {
+        if (fs.existsSync(path.join(parent, ".git"))) return false;
+      }
+      const gitPath = path.join(root, ".git");
+      const hasGitMetadata = fs.existsSync(gitPath)
+        && (fs.statSync(gitPath).isFile() || fs.existsSync(path.join(gitPath, "HEAD")));
+      return fs.existsSync(path.join(root, "README.md")) || fs.existsSync(path.join(root, "package.json")) || hasGitMetadata;
     })
     .map((entry) => entry.name)
     .sort((a, b) => a.localeCompare(b));

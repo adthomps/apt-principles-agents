@@ -14,6 +14,7 @@ source_paths: ["apt-principles-agents/templates/README.md"]
 Starter structures that make evidence, tradeoffs, validation, and approval visible.
 
 - [Product](product/README.md)
+- [Product persona profile](product/product-persona-profile.md)
 - [PRD](prd/README.md)
 - [BRD](brd/README.md)
 - [SRD](srd/README.md)

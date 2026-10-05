@@ -3,7 +3,7 @@ title: APT Principles + Agents
 kind: repository
 status: active
 owner: APT
-last_updated: 2026-06-27
+last_updated: 2026-10-04
 source: APT consolidation
 domain: "governance"
 source_paths: ["apt-principles-agents/README.md"]
@@ -22,7 +22,7 @@ source_paths: ["apt-principles-agents/README.md"]
 
 ## Use It As A Human
 
-Start in [principles](principles/README.md), choose a [template](./templates/README.md), use a [skill](skills/README.md) for the workflow, and ask the relevant [agent perspective](agents/README.md) to review the result. Product-facing work should use a [Product Hub](product-hubs/README.md).
+Start in [principles](principles/README.md), choose a [template](./templates/README.md), use a [skill](skills/README.md) for the workflow, and ask the relevant [agent perspective](agents/README.md) to review the result. Product-facing work should use a [Product Hub](product-hubs/README.md). The [APT Agent and Persona Directory](docs/agent-persona-directory.md) is the workspace-level index for canonical roles, local workers, platform availability, product personas, and related mechanisms. The internal [Product Team planning subsystem](product-team/README.md) is maintained here; its Working Backwards workers and planning records are distinct from canonical roles and product-owned personas.
 
 ## Use It With AI Tools
 
@@ -50,7 +50,7 @@ Existing files are skipped by default. The force option creates timestamped back
 
 ## Product Hubs And Audience Layers
 
-A Product Hub is the canonical product-facing package for business/merchant, bank/acquirer/partner, integrator/developer, support/operations, product/internal, and AI-agent audiences. Each layer shares one verified product truth but answers the questions and operational needs of its audience.
+A Product Hub is the canonical product-facing package for business/merchant, bank/acquirer/partner, integrator/developer, support/operations, and product/internal audiences. Product/customer personas and their evidence belong to the product repository that owns them. AI agents may consume those audience layers, but the global [agent catalog](agents/README.md) defines accountable agent roles, not customer personas. Each layer shares one verified product truth but answers the questions and operational needs of its audience.
 
 ## Domain Coverage
 

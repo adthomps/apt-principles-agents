@@ -5,7 +5,7 @@ domain: "thinking"
 status: "active"
 owner: "APT"
 last_updated: "2026-08-01"
-source_paths: ["apt-principles-agents/templates/working-backwards/press-release.md", "apt-product-team/templates/output-formats/press-release.md.template"]
+source_paths: ["apt-principles-agents/templates/working-backwards/press-release.md", "apt-principles-agents/product-team/templates/output-formats/press-release.md.template"]
 ---
 
 # [Product Name]: [Specific Customer Benefit]

@@ -238,10 +238,10 @@ Additional DR-013 requirements for approval:
 - Identifier: DR-015 (recorded in the APT site as APT-019).
 - Decision: apt-principles-agents owns the canonical APT design tokens and their generated artifacts. Products pull them through `apt-assets` and are checked by `design/bin/apt-design-check.mjs` according to a tier.
 - Why it matters: Token values lived in `applied-practical-thinking` with about six hand-maintained copies, including this repository's `references/design-tokens.json`. Ownership was described three contradictory ways, and four products kept diverged forks of the APT UI package.
-- Verified evidence: the 2026-10-04 inventory of 17 repositories. The generated `design/dist/apt-tokens.css` reproduces `applied-practical-thinking/apps/web/index.css` with zero drift across 98 tokens.
+- Verified evidence: the 2026-10-04 inventory of 17 repositories. The generated `design/generated/apt-tokens.css` reproduces `applied-practical-thinking/apps/web/index.css` with zero drift across 98 tokens.
 - Decision details:
   - Canonical source: `design/tokens/APT-TOKENS.json`, versioned in `design/VERSION` with `design/CHANGELOG.md`.
-  - Generated artifacts: `scripts/build-design.mjs` writes `design/dist/*` and the color sections of `references/design-tokens.json`. `--check` runs in `npm run check`.
+  - Generated artifacts: `scripts/build-design.mjs` writes `design/generated/*` and the color sections of `references/design-tokens.json`. `--check` runs in `npm run check`.
   - Delivery: the `design` manifest copies `design/` and the design references into `.apt/`. No package registry.
   - Tiers, declared in each repository's `apt-design.json`:
     - Tier 1 (APT products) must match canonical values except documented exclusions.

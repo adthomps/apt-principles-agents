@@ -35,7 +35,7 @@ for (const name of contentRepositories) {
   assert(sources.every((source) => !(project.local_graph.excluded_paths || []).some((excluded) => source === excluded || source.startsWith(`${excluded}/`))));
 }
 const vasTraining = localContentProject(manifest, "apt-vas-smb-training");
-assert.equal(vasTraining.local_graph.provisional, true);
+assert.equal(vasTraining.local_graph.provisional, false);
 assert.equal(manifest.projects.find((project) => project.name === "apt-anet-vas-smb-move").local_graph.provisional, false);
 assert.equal(localContentSources(manifest.projects.find((project) => project.name === "apt-anet-training")).length, 8);
 assert.equal(localContentSources(vasTraining).length, 8);

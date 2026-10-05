@@ -80,7 +80,7 @@ Keep operational intake material in `apt-intake`:
 
 5. Feed the planning system.
    - Accepted intake should provide evidence and ownership context to Working Backwards planning.
-   - It should not skip customer/problem/outcome framing in `apt-dream-to-reality` or `apt-product-team`.
+   - It should not skip customer/problem/outcome framing in `apt-dream-to-reality` or the [`product-team/` planning subsystem](../product-team/README.md).
 
 ## Reusable Decision Contract
 
@@ -114,7 +114,7 @@ Do not reproduce this lifecycle with `status:*` labels. Labels should remain spa
 
 - `../apt-intake`: operational intake front door and live parent issue context.
 - `../apt-dream-to-reality`: productized planning and delivery handoff flow that should consume accepted intake context.
-- `../apt-product-team`: internal planning cockpit that can analyze ambiguous reports and prepare routing or Working Backwards packages.
+- `../product-team/`: internal planning subsystem that can analyze ambiguous reports and prepare routing or Working Backwards packages.
 - `../applied-practical-thinking`: public presentation surface for polished APT operating examples when appropriate.
 
 ## Validation

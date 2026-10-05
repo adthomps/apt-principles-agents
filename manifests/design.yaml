@@ -19,7 +19,7 @@ design:
   - design/CHANGELOG.md
   - design/README.md
   - design/tokens/
-  - design/dist/
+  - design/generated/
   - design/bin/
 references:
   - references/design-tokens.json

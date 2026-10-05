@@ -50,7 +50,8 @@
           "type": "array",
           "items": { "enum": ["raw-palette", "raw-monochrome", "raw-hex", "accent-interaction"] },
           "uniqueItems": true
-        }
+        },
+        "baseline": { "type": "integer", "minimum": 0, "description": "Lint findings accepted while a repo cleans up (mainly Tier 2). The check fails above it and asks for it to be lowered when findings fall below it. Default 0." }
       }
     }
   },

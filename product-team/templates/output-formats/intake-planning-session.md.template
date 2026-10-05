@@ -1,0 +1,66 @@
+# Intake Planning Session: [Reported Situation Or Idea]
+
+**Session:** [session-id]
+**Source record:** [intake issue, support report, partner note, or pasted context]
+**Facilitator:** [name]
+**Date:** [YYYY-MM-DD]
+
+## Source Context
+
+- Reported situation:
+- Affected audience:
+- Desired outcome:
+- Evidence:
+- Impact: Critical / High / Normal / Low / Unknown
+- Signal: Confirmed / Probable / Unclear
+- Uncertainty:
+- Sensitive-data note:
+
+## Working Backwards Framing
+
+- Customer or operator:
+- Problem today:
+- Current workaround:
+- Outcome that should change:
+- Constraints:
+- Assumptions:
+- Success signal:
+
+## Routing Decision Draft
+
+- Decision: Known owner / Unknown owner / Multiple owners / No change required
+- Decision owner:
+- Rationale:
+- Owning repository or repositories:
+- Parent intake record needed: Yes / No
+- Product planning workspace needed: Yes / No
+- No-change or decline response:
+
+## Repo-Scoped Sub-Issue Drafts
+
+| Owning repo | Scope | Acceptance criteria | Validation evidence | Outcome relationship |
+| --- | --- | --- | --- | --- |
+|  |  |  |  |  |
+
+## Open Items And Blockers
+
+- [OPEN - owner: name] [Question or missing evidence]
+- [BLOCKER - owner: name] [Issue that prevents build handoff]
+
+## Promotion Decision
+
+| Candidate | Destination | Reason |
+| --- | --- | --- |
+| Reusable rule, rubric, prompt, or template | Parent `apt-principles-agents` repository |  |
+| Productized intake-to-planning behavior | `../../apt-dream-to-reality` |  |
+| Live operational parent context | `../../apt-intake` |  |
+| Public proof or narrative example | `../../applied-practical-thinking` |  |
+
+## Outcome Validation
+
+- Original outcome to validate:
+- Validation method:
+- Validator or owner:
+- Evidence needed:
+- Remaining risk:
+- Follow-up owner:

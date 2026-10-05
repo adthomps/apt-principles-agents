@@ -48,8 +48,8 @@
     "Decision record for accepted exceptions"
   ],
   "reference_surfaces": [
-    "design/dist/apt-tokens.css",
-    "design/dist/tailwind-preset.cjs",
+    "design/generated/apt-tokens.css",
+    "design/generated/tailwind-preset.cjs",
     "examples/ui/account-auth-settings-pattern.md",
     "examples/ui/chart-data-visualization-pattern.md",
     "examples/ui/content-insights-card-pattern.md",

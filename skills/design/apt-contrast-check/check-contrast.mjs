@@ -7,7 +7,7 @@
 //
 // Theme blocks are detected when not given: a ".light" block means :root is dark (dark-first);
 // otherwise a ".dark" block means :root is light; otherwise a single :root theme, checked as dark.
-// Local `@import` of other stylesheets (for example the generated .apt/design/dist/apt-tokens.css)
+// Local `@import` of other stylesheets (for example the generated .apt/design/generated/apt-tokens.css)
 // is followed, so imported values count and local blocks override them.
 
 import { existsSync, readFileSync } from "node:fs";

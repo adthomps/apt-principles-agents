@@ -12,4 +12,4 @@ source_paths: ["PROJECTS.md"]
 
 # APT Principles and Agents
 
-Main source of truth for design, principles, and working agents. Connects to applied-practical-thinking.
+Canonical source of truth for APT principles, standards, and agent roles, with reusable workflows and the internal Product Team planning subsystem. Connects to applied-practical-thinking.
