@@ -49,6 +49,7 @@ See the [Payments canonical hub](README.md) and linked standards/checklists befo
 ## Applied by
 
 - [apt-chargeback-risk-reviewer](../../agents/payments/apt-chargeback-risk-reviewer.md) — Use when a payment flow, merchant category, or dispute-handling process needs to be assessed for chargeback exposure and evidence-collection readiness.
+- [apt-payer-reviewer](../../agents/customer/apt-payer-reviewer.md) — Use when a deliverable affects the person paying a merchant beyond the checkout screen, including receipts, statement descriptors, stored cards, recurring charges, refunds, and disputes, to confirm the payer can recognize, control, and resolve their payments.
 
 ## Related
 

@@ -1,0 +1,67 @@
+{
+  "version": "1.0.0",
+  "profile": "payments",
+  "extends": "critic-rubric.json@1.0.0",
+  "stages": {
+    "press-release": {
+      "dimensions": [
+        {
+          "id": "money-path-honesty",
+          "name": "Money Path Honesty",
+          "pass_criteria": "The release states exactly what moves real money and what is sandbox, test, or simulated, and claims nothing beyond that.",
+          "fail_criteria": "The release implies live payment, settlement, or provider capability that the package does not deliver end to end."
+        }
+      ]
+    },
+    "external-faq": {
+      "dimensions": [
+        {
+          "id": "payment-data-and-failure",
+          "name": "Payment Data and Failure Coverage",
+          "pass_criteria": "Answers cover how card and personal data are handled, what the payer and merchant see on decline or failure, and how refunds and disputes work.",
+          "fail_criteria": "Data handling, failure behavior, or refunds and disputes are missing or answered vaguely."
+        }
+      ]
+    },
+    "internal-faq": {
+      "dimensions": [
+        {
+          "id": "compliance-and-authority",
+          "name": "Compliance and Authority",
+          "pass_criteria": "PCI scope, PII and retention, required processor agreements, and which party (acquirer, merchant, partner, staff) holds each authority are answered or raised as owned open items.",
+          "fail_criteria": "Compliance obligations or party authority are assumed, skipped, or stated as fact without evidence."
+        }
+      ]
+    },
+    "requirements": {
+      "dimensions": [
+        {
+          "id": "fail-closed-money-ops",
+          "name": "Fail-Closed Money Operations",
+          "pass_criteria": "Every money operation is idempotent and has no success state without provider confirmation; created and charged are distinct.",
+          "fail_criteria": "A requirement allows success, a status change, or a success message before provider confirmation, or a money operation can run twice."
+        }
+      ]
+    },
+    "engineering-handoff": {
+      "dimensions": [
+        {
+          "id": "slice-validation",
+          "name": "Slice Validation",
+          "pass_criteria": "Each slice names its schema or migration change, a validation command, a stop condition, and a demo-honesty check run as the press-release persona.",
+          "fail_criteria": "A slice has no validation command, no stop condition, or no persona-level check."
+        }
+      ]
+    },
+    "readiness": {
+      "dimensions": [
+        {
+          "id": "money-ops-readiness",
+          "name": "Money Operations Readiness",
+          "pass_criteria": "Audit logging, rollback for each money operation, fail-closed secrets, and labelled sandbox surfaces are confirmed or explicitly deferred with an owner.",
+          "fail_criteria": "Logging, rollback, secret handling, or sandbox labelling is missing without an owned deferral."
+        }
+      ]
+    }
+  }
+}

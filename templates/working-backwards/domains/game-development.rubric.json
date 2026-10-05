@@ -1,0 +1,91 @@
+{
+  "version": "1.0.0",
+  "profile": "game-development",
+  "extends": "critic-rubric.json@1.0.0",
+  "stages": {
+    "press-release": {
+      "dimensions": [
+        {
+          "id": "player-fantasy",
+          "name": "Player Fantasy",
+          "pass_criteria": "A specific player is named and the experience they are promised is concrete enough that a playtester could say whether they felt it.",
+          "fail_criteria": "The player is generic (gamers, everyone) or the promise is a feature list rather than an experience."
+        },
+        {
+          "id": "core-loop-statement",
+          "name": "Core Loop Statement",
+          "pass_criteria": "The core loop is stated in one sentence: what the player repeatedly does, and why they want to do it again.",
+          "fail_criteria": "No core loop is stated, or it describes systems and content instead of repeated player actions."
+        },
+        {
+          "id": "playtest-evidence",
+          "name": "Playtest Evidence",
+          "pass_criteria": "Claims about fun or engagement cite playtest notes, prototype observations, or comparable games, or are explicitly labelled as hypotheses.",
+          "fail_criteria": "Fun or engagement is asserted as fact with no evidence and no hypothesis label."
+        }
+      ]
+    },
+    "external-faq": {
+      "dimensions": [
+        {
+          "id": "player-concerns",
+          "name": "Player Concerns Coverage",
+          "pass_criteria": "Answers cover session length, difficulty and failure, controls and accessibility, losing progress, and replay value.",
+          "fail_criteria": "Two or more of these player concerns are missing or answered vaguely."
+        }
+      ]
+    },
+    "internal-faq": {
+      "dimensions": [
+        {
+          "id": "prototype-and-cut-list",
+          "name": "Prototype and Cut List",
+          "pass_criteria": "States whether a playable core-loop prototype exists and lists named features that will be cut first if the schedule or playtests fail.",
+          "fail_criteria": "No prototype status, or no cut list, or everything is treated as must-have."
+        },
+        {
+          "id": "ai-feature-risk",
+          "name": "AI Feature Risk",
+          "pass_criteria": "When the package uses AI (for example an AI dungeon master), cost per session, latency, content safety, and behavior when the model is unavailable are answered or raised as owned open items. Not applicable when no AI feature is in scope.",
+          "fail_criteria": "An AI feature is in scope and its cost, latency, safety, or outage behavior is ignored."
+        }
+      ]
+    },
+    "requirements": {
+      "dimensions": [
+        {
+          "id": "core-loop-acceptance",
+          "name": "Core Loop Acceptance",
+          "pass_criteria": "The core loop has acceptance criteria tied to a playtest measure, plus game-feel criteria such as input response and feedback.",
+          "fail_criteria": "Requirements describe systems only, with no measurable playtest or game-feel criteria."
+        },
+        {
+          "id": "save-state-compatibility",
+          "name": "Save and State Compatibility",
+          "pass_criteria": "Requirements state what happens to existing saves or campaign state, or state that no persistent state is affected.",
+          "fail_criteria": "Persistent state changes with no compatibility or migration requirement."
+        }
+      ]
+    },
+    "engineering-handoff": {
+      "dimensions": [
+        {
+          "id": "playable-increments",
+          "name": "Playable Increments",
+          "pass_criteria": "Every slice ends in a playable, playtestable build and names its playtest question, how it is measured, and what is cut if it fails.",
+          "fail_criteria": "A slice builds systems or content that cannot be played or playtested on its own."
+        }
+      ]
+    },
+    "readiness": {
+      "dimensions": [
+        {
+          "id": "playtest-results",
+          "name": "Playtest Results",
+          "pass_criteria": "Playtest results are recorded against the core-loop acceptance criteria, with performance on target hardware and accessibility checks, or each is explicitly deferred with an owner.",
+          "fail_criteria": "Release readiness is claimed without playtest results against the stated criteria."
+        }
+      ]
+    }
+  }
+}

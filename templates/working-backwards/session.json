@@ -4,41 +4,51 @@
   "updated_at": "",
   "repo": "",
   "feature_idea": "",
+  "profile": "",
+  "persona": "",
+  "rubric_version": "1.0.0",
   "current_stage": "press-release",
   "stages": {
     "press-release": {
       "status": "in-progress",
       "critic_verdict": null,
       "revision_count": 0,
-      "artifact_path": "",
+      "artifact_path": "press-release.md",
       "artifact_id": ""
     },
     "external-faq": {
       "status": "pending",
       "critic_verdict": null,
       "revision_count": 0,
-      "artifact_path": "",
+      "artifact_path": "faq-external.md",
       "artifact_id": ""
     },
     "internal-faq": {
       "status": "pending",
       "critic_verdict": null,
       "revision_count": 0,
-      "artifact_path": "",
+      "artifact_path": "faq-internal.md",
       "artifact_id": ""
     },
     "requirements": {
       "status": "pending",
       "critic_verdict": null,
       "revision_count": 0,
-      "artifact_path": "",
+      "artifact_path": "requirements.md",
       "artifact_id": ""
     },
     "engineering-prompt": {
       "status": "pending",
       "critic_verdict": null,
       "revision_count": 0,
-      "artifact_path": "",
+      "artifact_path": "engineering-handoff.md",
+      "artifact_id": ""
+    },
+    "readiness": {
+      "status": "pending",
+      "critic_verdict": null,
+      "revision_count": 0,
+      "artifact_path": "readiness.md",
       "artifact_id": ""
     }
   },

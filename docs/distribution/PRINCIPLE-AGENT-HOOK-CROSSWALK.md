@@ -16,11 +16,14 @@ enforceable domain with no agent row is unenforced doctrine.
 
 | Principle | Enforced by agents | Via skills | Enforcement |
 | --- | --- | --- | --- |
-| `principles/ai/agent-design.md` | `apt-architect`, `apt-cloudflare-builder`, `apt-code-reviewer`, `apt-cost-controller`, `apt-harness-docs-reviewer`, `apt-installer`, `apt-model-router`, `apt-repair-agent`, `apt-repo-scanner`, `apt-security-reviewer`, `apt-task-router`, `apt-ui-reviewer`, `apt-verifier` | `agent-routing`, `hallucination-review`, `local-llm-routing`, `model-selection`, `cloudflare-hono-architecture`, `system-architecture-review`, `apt-contrast-check`, `intent-based-ui-design`, `audience-layered-docs`, `implementation-review`, `refactor-safety`, `permission-review`, `security-review`, `token-efficiency`, `clarify-before-acting` | agent |
-| `principles/ai/ai-safety-and-evaluation.md` | `ai-output-auditor`, `apt-verifier` | `hallucination-review` | agent |
+| `principles/ai/agent-design.md` | `apt-agent-skill-steward`, `apt-architect`, `apt-cloudflare-builder`, `apt-code-reviewer`, `apt-cost-controller`, `apt-harness-docs-reviewer`, `apt-installer`, `apt-model-router`, `apt-repair-agent`, `apt-repo-scanner`, `apt-security-reviewer`, `apt-task-router`, `apt-ui-reviewer`, `apt-verifier` | `agent-routing`, `hallucination-review`, `local-llm-routing`, `model-selection`, `prompt-engineering`, `skill-authoring`, `cloudflare-hono-architecture`, `system-architecture-review`, `apt-contrast-check`, `intent-based-ui-design`, `audience-layered-docs`, `implementation-review`, `refactor-safety`, `permission-review`, `security-review`, `token-efficiency`, `clarify-before-acting` | agent |
+| `principles/ai/ai-safety-and-evaluation.md` | `ai-output-auditor`, `apt-agent-skill-steward`, `apt-verifier`, `apt-wb-critic` | `hallucination-review`, `prompt-engineering`, `skill-authoring`, `critic-review` | agent |
 | `principles/ai/local-llm-routing.md` | `apt-cost-controller`, `apt-model-router` | `local-llm-routing`, `model-selection`, `token-efficiency` | agent |
 | `principles/ai/model-routing.md` | `apt-cost-controller`, `apt-model-router`, `apt-task-router` | `agent-routing`, `local-llm-routing`, `model-selection`, `token-efficiency`, `clarify-before-acting` | agent |
+| `principles/ai/prompt-engineering.md` | `apt-agent-skill-steward` | `prompt-engineering`, `skill-authoring` | agent |
+| `principles/ai/skill-design.md` | `apt-agent-skill-steward` | `prompt-engineering`, `skill-authoring` | agent |
 | `principles/api/ai-consumable-apis.md` | `apt-ai-consumable-api-reviewer` | `ai-consumable-api-design` | agent |
+| `principles/api/api-auth.md` | `apt-isv-tech-partner-reviewer` | `api-auth-design`, `partner-acquirer-guide-writer`, `partner-acquirer-onboarding-review` | agent |
 | `principles/api/api-versioning.md` | `apt-api-bridge-reviewer` | `bridge-architecture-review` | agent |
 | `principles/api/json-first-design.md` | `apt-modern-api-designer` | `modern-api-design` | agent |
 | `principles/api/modern-api-design.md` | `apt-modern-api-designer`, `glyph` | `modern-api-design` | agent |
@@ -34,20 +37,21 @@ enforceable domain with no agent row is unenforced doctrine.
 | `principles/architecture/system-architecture.md` | `apt-architect`, `javik` | `system-architecture-review` | agent |
 | `principles/design/accessibility.md` | `apt-ui-reviewer`, `intent-ux-reviewer` | `apt-contrast-check`, `intent-based-ui-design` | agent |
 | `principles/design/intent-based-design.md` | `apt-ui-reviewer`, `intent-ux-reviewer` | `apt-contrast-check`, `intent-based-ui-design` | agent |
-| `principles/design/role-based-experience.md` | `apt-ai-agent-user-reviewer`, `apt-bank-acquirer-reviewer`, `apt-business-user-reviewer`, `apt-developer-integrator-reviewer`, `apt-support-operations-reviewer`, `apt-ui-reviewer` | `agent-routing`, `apt-contrast-check`, `customer-journey-mapping`, `intent-based-ui-design`, `developer-guide-writer`, `partner-acquirer-onboarding-review`, `escalation-path-review`, `support-readiness-review` | agent |
+| `principles/design/role-based-experience.md` | `apt-ai-agent-user-reviewer`, `apt-bank-acquirer-reviewer`, `apt-business-user-reviewer`, `apt-developer-integrator-reviewer`, `apt-isv-tech-partner-reviewer`, `apt-referral-iso-partner-reviewer`, `apt-support-operations-reviewer`, `apt-ui-reviewer` | `agent-routing`, `api-auth-design`, `apt-contrast-check`, `customer-journey-mapping`, `intent-based-ui-design`, `developer-guide-writer`, `partner-acquirer-guide-writer`, `partner-acquirer-onboarding-review`, `escalation-path-review`, `support-readiness-review` | agent |
 | `principles/documentation/audience-layered-docs.md` | `apt-harness-docs-reviewer`, `documentation-normalizer` | `audience-layered-docs` | agent |
 | `principles/documentation/README.md` | `apt-api-docs-writer`, `apt-audience-docs-reviewer`, `apt-demo-and-diagram-planner`, `apt-docs-reviewer`, `apt-implementation-blueprint-writer`, `apt-product-hub-builder` | `hallucination-review`, `api-guide-writer`, `audience-layered-docs`, `demo-plan-writer`, `diagram-generator`, `implementation-blueprint-writer`, `product-hub-builder` | agent |
 | `principles/documentation/support-ready-docs.md` | `apt-docs-reviewer` | `hallucination-review` | agent |
 | `principles/ecommerce/cart-to-payment-flow.md` | `apt-checkout-reviewer` | `checkout-experience-review` | agent |
 | `principles/ecommerce/checkout-design.md` | `apt-checkout-reviewer` | `checkout-experience-review` | agent |
-| `principles/ecommerce/customer-payment-experience.md` | `apt-commerce-experience-reviewer` | `customer-journey-mapping` | agent |
-| `principles/ecommerce/marketplace-payments.md` | `kaidan` | `partner-acquirer-onboarding-review` | agent |
-| `principles/ecommerce/merchant-onboarding.md` | `apt-merchant-onboarding-reviewer` | `merchant-onboarding-review` | agent |
-| `principles/execution/delivery-increments.md` | `apt-launch-readiness-lead`, `apt-prd-writer`, `apt-voice-of-customer-analyst`, `miranda` | `prd-writer`, `roadmap-planner`, `voice-of-customer`, `launch-readiness-review`, `release-communication-writer` | agent |
-| `principles/execution/knowledge-and-learning.md` | `apt-harness-docs-reviewer`, `documentation-normalizer` | `audience-layered-docs` | agent |
-| `principles/execution/quality-and-testing.md` | `ai-output-auditor`, `apt-code-reviewer`, `apt-engineering-reviewer`, `apt-principles-reviewer`, `apt-refactor-agent`, `apt-repo-scanner`, `apt-verifier`, `drack` | `hallucination-review`, `cloudflare-hono-architecture`, `implementation-review`, `refactor-safety` | agent |
-| `principles/execution/release-and-change-management.md` | `apt-architect`, `apt-cloudflare-builder`, `apt-installer`, `apt-repair-agent` | `cloudflare-hono-architecture`, `system-architecture-review`, `refactor-safety` | agent |
-| `principles/framework.md` | `apt-architecture-lead`, `apt-design-lead`, `apt-execution-lead`, `apt-principal`, `apt-principles-reviewer`, `apt-router`, `apt-thinking-lead` | `agent-routing`, `system-architecture-review`, `intent-based-ui-design`, `implementation-review`, `decision-rationalization`, `problem-framing` | agent |
+| `principles/ecommerce/customer-payment-experience.md` | `apt-commerce-experience-reviewer`, `apt-payer-reviewer` | `customer-journey-mapping`, `subscription-payment-review`, `refund-void-dispute-review` | agent |
+| `principles/ecommerce/marketplace-payments.md` | `apt-isv-tech-partner-reviewer`, `kaidan` | `api-auth-design`, `partner-acquirer-guide-writer`, `partner-acquirer-onboarding-review` | agent |
+| `principles/ecommerce/merchant-onboarding.md` | `apt-merchant-onboarding-reviewer`, `apt-referral-iso-partner-reviewer` | `partner-acquirer-guide-writer`, `merchant-onboarding-review`, `partner-acquirer-onboarding-review` | agent |
+| `principles/execution/delivery-increments.md` | `apt-launch-readiness-lead`, `apt-prd-writer`, `apt-voice-of-customer-analyst`, `apt-wb-orchestrator`, `apt-wb-requirements-writer`, `miranda` | `prd-writer`, `roadmap-planner`, `voice-of-customer`, `launch-readiness-review`, `release-communication-writer`, `package-status`, `run-session` | agent |
+| `principles/execution/knowledge-and-learning.md` | `apt-harness-docs-reviewer`, `apt-principles-steward`, `documentation-normalizer` | `micro-group-review`, `audience-layered-docs`, `decision-rationalization` | agent |
+| `principles/execution/quality-and-testing.md` | `ai-output-auditor`, `apt-code-reviewer`, `apt-engineering-reviewer`, `apt-principles-reviewer`, `apt-refactor-agent`, `apt-repo-scanner`, `apt-verifier`, `apt-wb-requirements-writer`, `drack` | `hallucination-review`, `cloudflare-hono-architecture`, `implementation-review`, `refactor-safety`, `prd-writer`, `launch-readiness-review` | agent |
+| `principles/execution/release-and-change-management.md` | `apt-architect`, `apt-cloudflare-builder`, `apt-installer`, `apt-principles-steward`, `apt-repair-agent` | `micro-group-review`, `cloudflare-hono-architecture`, `system-architecture-review`, `refactor-safety`, `decision-rationalization` | agent |
+| `principles/execution/working-backwards.md` | `apt-wb-critic`, `apt-wb-faq-writer`, `apt-wb-orchestrator`, `apt-wb-press-release-writer`, `apt-wb-requirements-writer` | `hallucination-review`, `micro-group-review`, `prd-writer`, `voice-of-customer`, `launch-readiness-review`, `assumption-check`, `problem-framing`, `critic-review`, `package-status`, `run-session` | agent |
+| `principles/framework.md` | `apt-architecture-lead`, `apt-design-lead`, `apt-execution-lead`, `apt-principal`, `apt-principles-reviewer`, `apt-principles-steward`, `apt-router`, `apt-thinking-lead` | `agent-routing`, `micro-group-review`, `system-architecture-review`, `intent-based-ui-design`, `implementation-review`, `decision-rationalization`, `problem-framing` | agent |
 | `principles/game-development/README.md` | `apt-beginner-game-dev-reviewer`, `apt-game-architect`, `apt-game-designer`, `apt-game-development-coach`, `apt-game-docs-writer`, `apt-game-prototype-planner`, `apt-game-scope-guardian`, `apt-game-testing-reviewer`, `apt-game-ui-reviewer`, `apt-gameplay-reviewer` | `game-architecture-review`, `game-dev-learning-plan`, `game-engine-selection`, `game-idea-framing`, `game-loop-designer`, `game-scope-review`, `game-state-design`, `game-test-plan`, `game-ui-hud-review`, `input-control-design`, `mechanics-designer`, `player-journey-mapping`, `playtest-feedback-review`, `prototype-planner`, `save-system-design` | agent |
 | `principles/modernization/api-facade-design.md` | `apt-api-bridge-reviewer`, `apt-gateway-migration-reviewer` | `bridge-architecture-review`, `gateway-design` | agent |
 | `principles/modernization/deprecation-planning.md` | `apt-api-migration-planner` | `modern-api-design` | agent |
@@ -55,12 +59,15 @@ enforceable domain with no agent row is unenforced doctrine.
 | `principles/payments/fraud-risk.md` | `apt-fraud-risk-reviewer` | `fraud-rule-review` | agent |
 | `principles/payments/gateway-abstraction.md` | `apt-gateway-migration-reviewer`, `apt-payment-architect` | `payment-architecture-review`, `gateway-design` | agent |
 | `principles/payments/payment-lifecycle.md` | `wrex` | `payment-lifecycle-analysis` | agent |
-| `principles/payments/refunds-voids-disputes.md` | `apt-chargeback-risk-reviewer` | `chargeback-risk-review` | agent |
+| `principles/payments/reconciliation-funding.md` | `apt-referral-iso-partner-reviewer` | `partner-acquirer-guide-writer`, `partner-acquirer-onboarding-review` | agent |
+| `principles/payments/recurring-and-subscriptions.md` | `apt-payer-reviewer` | `customer-journey-mapping`, `subscription-payment-review`, `refund-void-dispute-review` | agent |
+| `principles/payments/refunds-voids-disputes.md` | `apt-chargeback-risk-reviewer`, `apt-payer-reviewer` | `customer-journey-mapping`, `subscription-payment-review`, `chargeback-risk-review`, `refund-void-dispute-review` | agent |
 | `principles/payments/transaction-intelligence.md` | `apt-transaction-intelligence-analyst` | `transaction-intelligence-analysis` | agent |
 | `principles/security-risk/compliance-awareness.md` | `apt-compliance-awareness-reviewer` | `privacy-review` | agent |
 | `principles/security-risk/data-handling.md` | `apt-compliance-awareness-reviewer`, `apt-security-reviewer` | `permission-review`, `privacy-review`, `security-review` | agent |
 | `principles/security-risk/fraud-risk-review.md` | `apt-fraud-risk-reviewer` | `fraud-rule-review` | agent |
 | `principles/security-risk/permission-design.md` | `apt-security-reviewer`, `samara` | `permission-review`, `security-review` | agent |
+| `principles/security-risk/privacy-review.md` | `apt-payer-reviewer` | `customer-journey-mapping`, `subscription-payment-review`, `refund-void-dispute-review` | agent |
 | `principles/security-risk/security-review.md` | `apt-code-reviewer`, `apt-security-reviewer`, `kasumi` | `implementation-review`, `refactor-safety`, `permission-review`, `security-review` | agent |
 | `principles/service-readiness/escalation-paths.md` | `apt-support-operations-reviewer` | `escalation-path-review`, `support-readiness-review` | agent |
 | `principles/service-readiness/knowledge-base-readiness.md` | `apt-new-support-agent-reviewer` | `kb-article-writer` | agent |
@@ -73,12 +80,12 @@ enforceable domain with no agent row is unenforced doctrine.
 | `principles/stablecoin-crypto/digital-asset-risk.md` | `apt-crypto-payment-risk-reviewer` | `crypto-payment-risk-review` | agent |
 | `principles/stablecoin-crypto/settlement-and-reconciliation.md` | `suvi` | `stablecoin-readiness-review` | agent |
 | `principles/stablecoin-crypto/stablecoin-readiness.md` | `suvi` | `stablecoin-readiness-review` | agent |
+| `principles/thinking/assumption-checking.md` | `apt-wb-press-release-writer` | `voice-of-customer`, `problem-framing` | agent |
 | `principles/thinking/beginner-clarity.md` | `apt-beginner-user-reviewer`, `apt-new-developer-reviewer`, `apt-new-merchant-reviewer`, `apt-new-support-agent-reviewer` | `developer-guide-writer`, `merchant-onboarding-review`, `kb-article-writer`, `beginner-clarity-review` | agent |
+| `principles/thinking/decision-framing.md` | `apt-principles-steward` | `micro-group-review`, `decision-rationalization` | agent |
 | `principles/thinking/practical-thinking.md` | `apt-architecture-lead`, `apt-design-lead`, `apt-execution-lead`, `apt-principal`, `apt-router`, `apt-task-router`, `apt-thinking-lead` | `agent-routing`, `system-architecture-review`, `intent-based-ui-design`, `implementation-review`, `clarify-before-acting`, `decision-rationalization`, `problem-framing` | agent |
-| `principles/ai/prompt-engineering.md` | — | — | **unenforced** |
-| `principles/ai/skill-design.md` | — | — | **unenforced** |
+| `principles/thinking/tradeoff-analysis.md` | `apt-wb-faq-writer` | `micro-group-review`, `assumption-check` | agent |
 | `principles/ai/swarm-review.md` | — | — | **unenforced** |
-| `principles/api/api-auth.md` | — | — | **unenforced** |
 | `principles/api/api-errors.md` | — | — | **unenforced** |
 | `principles/api/api-idempotency.md` | — | — | **unenforced** |
 | `principles/api/api-observability.md` | — | — | **unenforced** |
@@ -92,10 +99,7 @@ enforceable domain with no agent row is unenforced doctrine.
 | `principles/payments/authorization-capture-settlement.md` | — | — | **unenforced** |
 | `principles/payments/embedded-payments.md` | — | — | **unenforced** |
 | `principles/payments/hosted-payments.md` | — | — | **unenforced** |
-| `principles/payments/reconciliation-funding.md` | — | — | **unenforced** |
-| `principles/payments/recurring-and-subscriptions.md` | — | — | **unenforced** |
 | `principles/payments/tokenization.md` | — | — | **unenforced** |
-| `principles/security-risk/privacy-review.md` | — | — | **unenforced** |
 
 Hooks: `SessionStart` (`session-sync-check.mjs`) is repo-wide, not
 principle-specific. Per-principle `PreToolUse` / `Stop` gates are tracked here

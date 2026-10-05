@@ -39,3 +39,4 @@ Generated from active repository artifacts by `scripts/generate-catalogs.mjs`. D
 | [standard.yaml](../../manifests/standard.yaml) | `manifests/standard.yaml` | Core APT plus documentation, governance, API, security, and UX review. |
 | [training.yaml](../../manifests/training.yaml) | `manifests/training.yaml` | Beginner clarity, learning plans, examples, and progressive enablement. |
 | [ux-review.yaml](../../manifests/ux-review.yaml) | `manifests/ux-review.yaml` | Intent-based UI, accessibility, roles, journeys, responsive behavior, and design review. |
+| [working-backwards.yaml](../../manifests/working-backwards.yaml) | `manifests/working-backwards.yaml` | Working Backwards product method — principle, stage templates, domain profiles (payments, game-development), orchestrator and writer/critic sub-agents, session and critic skills, a |

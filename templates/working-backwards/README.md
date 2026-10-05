@@ -18,7 +18,10 @@ Use these templates when turning an idea into a staged product package before ba
 2. External FAQ
 3. Internal FAQ
 4. Requirements
-5. Engineering prompt or implementation blueprint
+5. Engineering handoff (stored under the `engineering-prompt` stage key in `session.json`)
+6. Readiness
+
+The method itself is defined in [principles/execution/working-backwards.md](../../principles/execution/working-backwards.md). Domain profiles in [domains/](domains/README.md) add stage guidance and rubric dimensions for payments and game development.
 
 Each stage should preserve open items with an owner. Blockers must remain visible until resolved and should prevent build handoff.
 
@@ -28,6 +31,10 @@ Each stage should preserve open items with an owner. Blockers must remain visibl
 - [Press Release](press-release.md)
 - [FAQ](faq.md)
 - [Requirements](requirements.md)
+- [Engineering Handoff](engineering-handoff.md)
+- [Readiness](readiness.md)
+- [Critic Review](critic-review.md)
+- [Domain Profiles](domains/README.md)
 - [Critic Rubric](critic-rubric.json)
 - [Agent Role Contracts](agent-role-contracts.md)
 - [Stage Gate Status](stage-gate-status.md)

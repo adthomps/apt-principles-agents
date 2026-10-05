@@ -260,7 +260,8 @@
       "manifests": [
         "core",
         "documentation",
-        "game-development"
+        "game-development",
+        "working-backwards"
       ],
       "platforms": [
         "codex",

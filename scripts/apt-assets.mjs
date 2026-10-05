@@ -454,8 +454,14 @@ function install(options = {}) {
   const old = readRecord(target);
   const backupRoot = path.join(target, ".apt-backups", timestamp());
   const managed = new Map((old?.managedFiles || []).map((item) => [item.target, item]));
+  const localTargets = localTargetsOf(old);
   const actions = [];
   for (const mapping of mappings) {
+    if (localTargets.has(mapping.target)) {
+      managed.delete(mapping.target);
+      actions.push({ action: "local-owned", ...mapping });
+      continue;
+    }
     const source = path.join(sourceRoot, mapping.source);
     const destination = path.join(target, mapping.target);
     const sourceHash = sha256(source);
@@ -492,16 +498,26 @@ function install(options = {}) {
       managedFiles: [...managed.values()].sort((a, b) => a.target.localeCompare(b.target)),
       ...(hasDesignFiles([...managed.values()]) ? { designVersion: currentDesignVersion() } : {}),
       localContext: old?.localContext || "docs/project-context.md",
+      ...(old?.localTargets?.length ? { localTargets: old.localTargets } : {}),
       lastOperation: { type: "install", at: new Date().toISOString() },
     });
   }
   return { target, dryRun, force, manifests: manifests.map((item) => item.name), platforms, actions };
 }
 
+// Paths a repository owns even though a selected manifest maps a file there
+// (installation.json "localTargets"). install, sync and repair never write them,
+// even with --force; scan reports them as "local".
+function localTargetsOf(record) {
+  return new Set((record?.localTargets || []).map((item) => normalize(item)));
+}
+
 function scanTarget(target) {
   const record = readRecord(target);
   if (!record) return { target, status: "not-installed", files: [] };
+  const localTargets = localTargetsOf(record);
   const files = record.managedFiles.map((item) => {
+    if (localTargets.has(item.target)) return { ...item, status: "local" };
     const source = path.join(sourceRoot, item.source);
     const destination = path.join(target, item.target);
     if (!exists(source)) return { ...item, status: "missing-source" };
@@ -516,8 +532,9 @@ function scanTarget(target) {
   let newFiles = [];
   try {
     newFiles = mappingsFor(resolveManifests(record.manifests), record.platforms)
-      .filter((mapping) => !recorded.has(mapping.target))
+      .filter((mapping) => !recorded.has(mapping.target) && !localTargets.has(mapping.target))
       .map((mapping) => ({ ...mapping, status: "new" }));
+    for (const target of localTargets) if (!recorded.has(target)) newFiles.push({ target, status: "local" });
   } catch {
     newFiles = []; // a manifest the record names no longer exists; reported elsewhere
   }
@@ -613,7 +630,9 @@ function syncOrRepair(type) {
     }
   }
   const nextManaged = [];
+  const localTargets = localTargetsOf(record);
   for (const mapping of desiredMappings) {
+    if (localTargets.has(mapping.target)) continue; // repo-owned: never written, dropped from managedFiles
     if (selectedTargets && !selectedTargets.has(mapping.target)) {
       const old = previous.get(mapping.target);
       if (old) nextManaged.push(old);
@@ -653,6 +672,7 @@ function syncOrRepair(type) {
     nextManaged.push(item);
   }
   for (const mapping of desiredMappings) {
+    if (localTargets.has(mapping.target)) continue;
     if (selectedTargets && !selectedTargets.has(mapping.target)) continue;
     if (nextManaged.some((item) => item.target === mapping.target)) continue;
     if (skippedDesiredTargets.has(mapping.target)) continue;

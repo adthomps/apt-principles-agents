@@ -38,6 +38,8 @@ APT Product Team declares four active, Claude Code-oriented Working Backwards st
 
 The Product Team is maintained as an internal subsystem of `apt-principles-agents`; its files share the parent repository's version history. These are repository-relative links.
 
+**Canonical Working Backwards agents.** Working Backwards is now an APT-wide system: the [orchestrator, writer sub-agents, and independent critic](../agents/working-backwards/README.md), with the method in [principles/execution/working-backwards.md](../principles/execution/working-backwards.md) and domain profiles for payments and game development. Repositories opt in through the `working-backwards` manifest. The four Product Team workers above are the Claude Code–specific precursor and stay in place for the Product Team pipeline; APT Commerce keeps its own local critic skill and hook, recorded as a repository-owned path (`localTargets`).
+
 The active-source inventory found no other declared local-only agent bundle. Generated or installed copies of canonical roles belong in the platform-availability view below, not in this local-role list.
 
 ## Platform Availability

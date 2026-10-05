@@ -28,5 +28,6 @@ For the role-versus-persona distinction and authoring criteria, see the [agent a
 - **Risk:** `agents/risk/`
 - **Game Development:** [agents/game-development/](game-development/README.md)
 - **Design:** [agents/design/](design/README.md)
+- **Working Backwards:** [agents/working-backwards/](working-backwards/README.md) (orchestrator plus writer and critic sub-agents; installed by the `working-backwards` manifest)
 - **Harness:** `agents/harness/` (installable harness workflow: task routing, install, scan, repair, verify)
 - **Support** and **Thinking:** no dedicated agents by design. Use the core leads and the customer and beginner reviewers ([support](support/README.md), [thinking](thinking/README.md)).

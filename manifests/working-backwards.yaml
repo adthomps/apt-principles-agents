@@ -1,0 +1,20 @@
+name: working-backwards
+description: Working Backwards product method — principle, stage templates, domain profiles (payments, game-development), orchestrator and writer/critic sub-agents, session and critic skills, and the readiness checklist.
+extends:
+  - core
+principles:
+  - principles/execution/working-backwards.md
+standards:
+checklists:
+  - checklists/working-backwards-package-readiness-checklist.md
+context:
+  - context/working-backwards/
+skills:
+  - skills/working-backwards/
+agents:
+  - agents/working-backwards/
+templates:
+  - templates/working-backwards/
+prompts:
+knowledge:
+platforms:

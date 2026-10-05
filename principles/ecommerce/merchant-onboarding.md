@@ -49,6 +49,7 @@ See the [Ecommerce canonical hub](README.md) and linked standards/checklists bef
 ## Applied by
 
 - [apt-merchant-onboarding-reviewer](../../agents/ecommerce/apt-merchant-onboarding-reviewer.md) — Use when a merchant onboarding flow — signup through first live transaction — needs review for completeness and time-to-first-sale.
+- [apt-referral-iso-partner-reviewer](../../agents/customer/apt-referral-iso-partner-reviewer.md) — Use when a deliverable will be used by a referral partner, reseller, or independent sales organization (ISO) that brings in or services a merchant portfolio without being the acquiring bank, to confirm it covers attribution, compensation reporting, portfolio visibility, and their limited authority.
 
 ## Related
 

@@ -59,6 +59,26 @@ scan = JSON.parse(run(["scan", "--target", target]));
 if (scan.status !== "current") throw new Error("Forced repair did not restore current state");
 if (!existsSync(path.join(target, ".apt-backups"))) throw new Error("Forced repair did not create a backup");
 
+// localTargets: a repo-owned path is never written, even with --force, and scans as "local".
+const localRecord = JSON.parse(readFileSync(recordPath, "utf8"));
+localRecord.localTargets = [secondManaged.target];
+writeFileSync(recordPath, `${JSON.stringify(localRecord, null, 2)}\n`, "utf8");
+writeFileSync(secondManagedPath, "repo-owned content\n", "utf8");
+run(["sync", "--target", target, "--apply", "--force"]);
+run(["repair", "--target", target, "--apply", "--force"]);
+const localInstall = JSON.parse(run(["install", "--target", target, "--manifests", "core", "--platforms", "none", "--force"]));
+if (readFileSync(secondManagedPath, "utf8") !== "repo-owned content\n") throw new Error("A localTargets path was overwritten");
+if (!localInstall.actions.some((item) => item.action === "local-owned" && item.target === secondManaged.target)) throw new Error("Install did not report the local-owned target");
+scan = JSON.parse(run(["scan", "--target", target]));
+if (scan.files.find((item) => item.target === secondManaged.target)?.status !== "local") throw new Error("Scan did not report the localTargets path as local");
+if (scan.status !== "current") throw new Error("A localTargets path made the scan non-current");
+const afterLocal = JSON.parse(readFileSync(recordPath, "utf8"));
+if (!afterLocal.localTargets?.includes(secondManaged.target)) throw new Error("localTargets was not preserved");
+if (afterLocal.managedFiles.some((item) => item.target === secondManaged.target)) throw new Error("A localTargets path stayed in managedFiles");
+delete afterLocal.localTargets;
+writeFileSync(recordPath, `${JSON.stringify(afterLocal, null, 2)}\n`, "utf8");
+run(["repair", "--target", target, "--apply", "--force"]);
+
 // An unedited target installed from an older source must update without --force:
 // simulate the older install by rewriting the target and recording that content's hash.
 {
