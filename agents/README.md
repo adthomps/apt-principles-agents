@@ -27,3 +27,6 @@ For the role-versus-persona distinction and authoring criteria, see the [agent a
 - **Beginner Reviewers:** `agents/beginner-reviewers/`
 - **Risk:** `agents/risk/`
 - **Game Development:** [agents/game-development/](game-development/README.md)
+- **Design:** [agents/design/](design/README.md)
+- **Harness:** `agents/harness/` (installable harness workflow: task routing, install, scan, repair, verify)
+- **Support** and **Thinking:** no dedicated agents by design. Use the core leads and the customer and beginner reviewers ([support](support/README.md), [thinking](thinking/README.md)).

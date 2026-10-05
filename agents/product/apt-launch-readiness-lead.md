@@ -7,8 +7,12 @@ scope: domain
 description: Use before a launch or major release, to confirm the product, support, and operational readiness checks are actually complete, not just planned.
 applies_principles:
   - principles/execution/delivery-increments.md
+  - principles/service-readiness/launch-readiness.md
+  - principles/service-readiness/operational-readiness.md
+  - principles/service-readiness/release-communications.md
 uses_skills:
   - skills/service-readiness/launch-readiness-review
+  - skills/service-readiness/release-communication-writer
 tools:
   - read
   - search
@@ -54,6 +58,9 @@ Use before a launch or major release, to confirm the product, support, and opera
 ## Enforces
 
 - [APT Execution Model (Build)](../../principles/execution/delivery-increments.md) — check the work against this principle and cite the clause any finding rests on.
+- [Launch Readiness](../../principles/service-readiness/launch-readiness.md) — check the work against this principle and cite the clause any finding rests on.
+- [Operational Readiness](../../principles/service-readiness/operational-readiness.md) — check the work against this principle and cite the clause any finding rests on.
+- [Release Communications](../../principles/service-readiness/release-communications.md) — check the work against this principle and cite the clause any finding rests on.
 
 ## Inputs
 

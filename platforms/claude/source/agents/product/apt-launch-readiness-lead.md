@@ -40,10 +40,14 @@ Use before a launch or major release, to confirm the product, support, and opera
 ## Required Skills
 
 - `launch-readiness-review` — installed under `.claude/skills/launch-readiness-review/`.
+- `release-communication-writer` — installed under `.claude/skills/release-communication-writer/`.
 
 ## Enforces
 
 - APT Execution Model (Build) — check the work against this principle and cite the clause any finding rests on.
+- Launch Readiness — check the work against this principle and cite the clause any finding rests on.
+- Operational Readiness — check the work against this principle and cite the clause any finding rests on.
+- Release Communications — check the work against this principle and cite the clause any finding rests on.
 
 ## Inputs
 

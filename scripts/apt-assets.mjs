@@ -13,7 +13,7 @@ import {
 } from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
-import { auditKnowledge, loadKnowledge } from "./workspace-knowledge-lib.mjs";
+import { auditKnowledge, loadAgentIds, loadKnowledge, loadPersonas } from "./workspace-knowledge-lib.mjs";
 
 const sourceRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const packageJson = JSON.parse(readFileSync(path.join(sourceRoot, "package.json"), "utf8"));
@@ -793,7 +793,7 @@ function auditWorkspace() {
     designTierMismatch: repositories.filter((item) => item.design?.tierMismatch).map((item) => item.repository),
     designBehind: repositories.filter((item) => item.design && [1, 2].includes(item.design.tier) && !item.design.designCurrent).map((item) => item.repository),
     // Knowledge relationships (PROJECTS.md, feeds, copies) have their own status; they don't change the asset status above.
-    knowledge: auditKnowledge({ workspaceRoot, knowledge: loadKnowledge(sourceRoot) }),
+    knowledge: auditKnowledge({ workspaceRoot, knowledge: loadKnowledge(sourceRoot), personas: loadPersonas(sourceRoot), agentIds: loadAgentIds(sourceRoot) }),
     repositories,
   };
 }

@@ -4,7 +4,7 @@
 //   node scripts/workspace-knowledge.mjs audit [--workspace-root ..]                report copies, feeds and identity problems
 import path from "node:path";
 import { fileURLToPath } from "node:url";
-import { auditKnowledge, loadKnowledge, renderProjects } from "./workspace-knowledge-lib.mjs";
+import { auditKnowledge, loadAgentIds, loadKnowledge, loadPersonas, renderProjects } from "./workspace-knowledge-lib.mjs";
 import { writeOrCheck } from "./project-inventory-lib.mjs";
 
 const sourceRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
@@ -23,7 +23,7 @@ if (command === "projects") {
     process.exitCode = 1;
   }
 } else if (command === "audit") {
-  const result = auditKnowledge({ workspaceRoot, knowledge });
+  const result = auditKnowledge({ workspaceRoot, knowledge, personas: loadPersonas(sourceRoot), agentIds: loadAgentIds(sourceRoot) });
   console.log(JSON.stringify(result, null, 2));
   if (result.status !== "passed") process.exitCode = 1;
 } else {

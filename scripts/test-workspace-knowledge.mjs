@@ -5,7 +5,7 @@ import os from "node:os";
 import path from "node:path";
 import { execFileSync } from "node:child_process";
 import { fileURLToPath } from "node:url";
-import { auditKnowledge, loadKnowledge, readIdentity, renderProjects } from "./workspace-knowledge-lib.mjs";
+import { auditKnowledge, auditPersonas, loadAgentIds, loadKnowledge, loadPersonas, readIdentity, renderProjects } from "./workspace-knowledge-lib.mjs";
 
 // The real registry must be internally consistent; this runs without the sibling repos (as in CI).
 const sourceRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
@@ -76,6 +76,23 @@ fs.writeFileSync(path.join(root, "tool/docs/project-identity.md"), fs.readFileSy
 result = auditKnowledge({ workspaceRoot: root, knowledge: { ...knowledge, groups: [...knowledge.groups, { id: "c", title: "C", repositories: ["toolbox"] }] } });
 assert.ok(result.errors.some((error) => error === "toolbox is in groups a and c"));
 assert.ok(result.errors.some((error) => error === 'tool: identity folder is "other"'));
+
+// Persona register: the real register uses canonical agents only; cited files and names must exist.
+const realPersonas = loadPersonas(sourceRoot);
+const agentIds = loadAgentIds(sourceRoot);
+for (const persona of realPersonas.personas) for (const agent of persona.reviewerAgents) assert.ok(agentIds.includes(agent), `persona ${persona.id}: unknown agent ${agent}`);
+write("product/docs/personas.md", "## Merchant\n\nA business.\n");
+const register = { personas: [
+  { id: "merchant", sources: [{ repository: "product", path: "docs/personas.md", name: "Merchant" }], reviewerAgents: [agentIds[0]] },
+  { id: "partner", sources: [{ repository: "product", path: "docs/personas.md", name: "Partner" }, { repository: "product", path: "docs/missing.md" }], reviewerAgents: ["not-an-agent"], gap: "No reviewer." },
+] };
+const personaResult = auditPersonas({ workspaceRoot: root, register, agentIds });
+assert.deepEqual(personaResult.errors, [
+  "persona partner: unknown reviewer agent not-an-agent",
+  'persona partner: "Partner" not found in product/docs/personas.md',
+  "persona partner: product/docs/missing.md not found",
+]);
+assert.deepEqual(personaResult.warnings, ["persona partner: No reviewer."]);
 
 fs.rmSync(root, { recursive: true, force: true });
 console.log("Workspace knowledge tests passed.");

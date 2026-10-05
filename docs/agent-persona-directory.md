@@ -75,11 +75,21 @@ The current Commerce pilot contains six audience profiles:
 
 The pilot status is **direction**: owner-provided framing, directional and unvalidated. It is not validated user research, evidence of shipped behavior, an authorization model, or build approval. The source document records goals, boundaries, open questions, current-versus-intended journey grounding, and related test navigation. Planned test sittings are not proof that a test or capability exists.
 
-The Commerce persona source is currently an untracked workspace file, so its link above is workspace-relative and is not present in the published repository page. Use the repository link for published Commerce context; do not assume it contains the local pilot file.
+The Commerce persona source is committed in `apt-commerce`; its link above is workspace-relative.
 
 **Separate transactional audience:** The Commerce source explicitly keeps Payer outside this account-persona pilot: payment by payer is a transactional journey, not a separate account persona in the current framing.
 
-The active persona-document search found this explicit product-persona profile in the workspace. Keep any future personas and their evidence in the owning product repository; do not infer a persona from a passing mention in a journey, report, or test.
+Keep any future personas and their evidence in the owning product repository; do not infer a persona from a passing mention in a journey, report, or test.
+
+### Persona register
+
+[`references/persona-register.json`](../references/persona-register.json) indexes the personas across the workspace without moving them. For each persona it records:
+
+- the owning sources and the name each one uses: the Commerce persona file, and the `personas` tags (`merchant`, `partner`, `isv`, `developer`) in `apt-anet-training` and `apt-vas-smb-training`;
+- the canonical reviewer agents that act as a lens for it, which gives them no extra authority;
+- any coverage gap where no reviewer agent owns the persona's perspective.
+
+`npm run knowledge:audit` (and `audit-workspace`) checks that every cited file and section exists and every reviewer agent is canonical, and reports the gaps as warnings. When you add or rename a persona in a product repository, update the register in the same change.
 
 ## Persona Lenses, Skills, and Routing
 

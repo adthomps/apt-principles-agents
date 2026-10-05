@@ -12,6 +12,37 @@ export function loadKnowledge(sourceRoot) {
   return JSON.parse(fs.readFileSync(path.join(sourceRoot, "references", "workspace-knowledge.json"), "utf8"));
 }
 
+export function loadPersonas(sourceRoot) {
+  return JSON.parse(fs.readFileSync(path.join(sourceRoot, "references", "persona-register.json"), "utf8"));
+}
+
+export function loadAgentIds(sourceRoot) {
+  return JSON.parse(fs.readFileSync(path.join(sourceRoot, "references", "agent-catalog.json"), "utf8")).agents.map((agent) => agent.id);
+}
+
+// Persona register: cited sources must exist in the workspace and name the persona; reviewer agents must be canonical.
+export function auditPersonas({ workspaceRoot, register, agentIds }) {
+  const errors = [];
+  const warnings = [];
+  const known = new Set(agentIds);
+  const ids = new Set();
+  for (const persona of register.personas) {
+    if (ids.has(persona.id)) errors.push(`persona ${persona.id} is listed twice`);
+    ids.add(persona.id);
+    for (const agent of persona.reviewerAgents) if (!known.has(agent)) errors.push(`persona ${persona.id}: unknown reviewer agent ${agent}`);
+    if (persona.gap) warnings.push(`persona ${persona.id}: ${persona.gap}`);
+    for (const source of persona.sources) {
+      const repository = path.join(workspaceRoot, source.repository);
+      if (!fs.existsSync(repository)) { errors.push(`persona ${persona.id}: repository ${source.repository} not found`); continue; }
+      if (!source.path) continue;
+      const file = path.join(repository, source.path);
+      if (!fs.existsSync(file)) { errors.push(`persona ${persona.id}: ${source.repository}/${source.path} not found`); continue; }
+      if (source.name && !normalize(fs.readFileSync(file, "utf8")).includes(source.name)) errors.push(`persona ${persona.id}: "${source.name}" not found in ${source.repository}/${source.path}`);
+    }
+  }
+  return { errors, warnings };
+}
+
 export function readIdentity(workspaceRoot, repository) {
   const file = path.join(workspaceRoot, repository, IDENTITY);
   if (!fs.existsSync(file)) return null;
@@ -83,9 +114,14 @@ function git(cwd, args) {
   }
 }
 
-export function auditKnowledge({ workspaceRoot, knowledge, projectsPath = path.join(workspaceRoot, "PROJECTS.md") }) {
+export function auditKnowledge({ workspaceRoot, knowledge, personas = null, agentIds = [], projectsPath = path.join(workspaceRoot, "PROJECTS.md") }) {
   const errors = [];
   const warnings = [];
+  if (personas) {
+    const result = auditPersonas({ workspaceRoot, register: personas, agentIds });
+    errors.push(...result.errors);
+    warnings.push(...result.warnings);
+  }
   const folderExists = (repository) => fs.existsSync(path.join(workspaceRoot, repository));
 
   // Identity files and grouping.
