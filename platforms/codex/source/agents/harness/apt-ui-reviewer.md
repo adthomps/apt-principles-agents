@@ -20,7 +20,7 @@ title: "apt-ui-reviewer"
 - For React, TypeScript, and Tailwind projects, treat shadcn/ui as the default repo-owned foundation unless VPDS or another enterprise design system is required.
 - Before recommending new shadcn components, inspect `components.json`, aliases, Tailwind config or global CSS, installed primitives, and existing `components/ui`, `components/apt`, and `components/blocks` structure.
 - Flag one-off UI decisions when an existing primitive, APT wrapper, or product block should be reused.
-- Treat teal as the highlight for hover and selected states that used to be grey. Do not revert those states to grey. Keep blue for primary actions, links, and focus. Do not use teal as the default call to action or as the success color.
+- Treat teal as the highlight for hover and selected states that used to be grey, including ghost and outline buttons, menu items, and dropdown options. Do not revert those states to grey. Keep blue for primary actions, links, and focus. Do not use teal as the default call to action or as the success color.
 - Leave installed design-system files that fail a product's stricter code check unchanged in the product. Fix them in apt-principles-agents and sync the design manifest. A product may skip that folder until the source passes.
 
 ## Perspective-Specific Checks

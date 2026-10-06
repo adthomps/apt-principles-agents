@@ -230,9 +230,9 @@
     },
     "animation": {
       "duration": {
-        "fast": { "value": "150ms", "type": "duration" },
-        "normal": { "value": "200ms", "type": "duration" },
-        "slow": { "value": "300ms", "type": "duration" },
+        "fast": { "value": "140ms", "type": "duration" },
+        "normal": { "value": "220ms", "type": "duration" },
+        "slow": { "value": "360ms", "type": "duration" },
         "slower": { "value": "400ms", "type": "duration" },
         "slowest": { "value": "500ms", "type": "duration" }
       },
@@ -269,7 +269,7 @@
           "description": "Hero/modal entrances"
         },
         "hover-lift": {
-          "transition": "transform 200ms ease-out, box-shadow 200ms ease-out",
+          "transition": "transform 140ms ease-out, box-shadow 140ms ease-out",
           "hover": { "transform": "translateY(-2px)", "boxShadow": "{shadow.apt-hover-lift}" },
           "description": "Interactive card hover"
         },
@@ -336,6 +336,22 @@
             "background": { "value": "{color.dark.accent}", "type": "color" },
             "foreground": { "value": "{color.dark.accent-foreground}", "type": "color" }
           }
+        }
+      },
+      "menu": {
+        "item": {
+          "background": { "value": "transparent", "type": "color" },
+          "foreground": { "value": "{color.dark.foreground}", "type": "color" },
+          "hoverBackground": { "value": "{color.dark.accent}", "type": "color", "description": "Menu item hover highlight" },
+          "hoverForeground": { "value": "{color.dark.accent-foreground}", "type": "color" }
+        }
+      },
+      "dropdown": {
+        "option": {
+          "background": { "value": "transparent", "type": "color" },
+          "foreground": { "value": "{color.dark.foreground}", "type": "color" },
+          "hoverBackground": { "value": "{color.dark.accent}", "type": "color", "description": "Dropdown option hover highlight" },
+          "hoverForeground": { "value": "{color.dark.accent-foreground}", "type": "color" }
         }
       },
       "card": {
@@ -424,7 +440,7 @@
   },
   "$metadata": {
     "tokenSetOrder": ["apt"],
-    "version": "2.1.0",
+    "version": "2.1.1",
     "name": "APT Design System",
     "description": "Applied Practical Thinking design tokens. Canonical source: apt-principles-agents/design/tokens (APT-019).",
     "author": "APT"

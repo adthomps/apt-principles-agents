@@ -6,6 +6,7 @@
 //                                      design/generated/tailwind-preset.cjs       (Tailwind v3 preset)
 //                                      design/generated/apt-theme.css             (Tailwind v4 @theme inline)
 //                                      design/generated/tokens.ts                 (typed values)
+//                                      design/generated/apt-preview.html          (portable token preview)
 //                                      references/design-tokens.json         (color values only)
 //
 // Usage: node scripts/build-design.mjs [--check]
@@ -125,6 +126,120 @@ function tailwindV4Theme() {
   return `/*\n${HEADER("Tailwind CSS v4 theme mapping")}\nImport after apt-tokens*.css: @import "./.apt/design/generated/apt-theme.css";\n*/\n@theme inline {\n${lines.join("\n")}\n}\n`;
 }
 
+function previewHtml() {
+  const css = tokensCss("dark-first");
+  return `<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>APT design preview v${version}</title>
+<style>
+${css}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  padding: 2rem;
+  font-family: Inter, ui-sans-serif, system-ui, sans-serif;
+  background: hsl(var(--background));
+  color: hsl(var(--foreground));
+  line-height: 1.5;
+}
+main { max-width: 52rem; }
+h1 { font-size: 1.75rem; line-height: 1.15; margin: 0 0 0.5rem; }
+h2 { font-size: 1.1rem; margin: 2rem 0 0.75rem; }
+p { color: hsl(var(--muted-foreground)); margin: 0 0 1rem; }
+.row { display: flex; flex-wrap: wrap; gap: 0.75rem; align-items: center; }
+.swatch {
+  width: 7.5rem;
+  border: 1px solid hsl(var(--border));
+  border-radius: var(--radius);
+  overflow: hidden;
+  background: hsl(var(--card));
+}
+.swatch i { display: block; height: 3rem; }
+.swatch span { display: block; padding: 0.4rem 0.5rem; font-size: 0.75rem; }
+button, .option {
+  font: inherit;
+  border-radius: var(--radius);
+  border: 1px solid transparent;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  transition: background var(--motion-fast) ease-out, color var(--motion-fast) ease-out, box-shadow var(--motion-fast) ease-out;
+}
+button:focus-visible, .option:focus-visible {
+  outline: 2px solid hsl(var(--ring));
+  outline-offset: 2px;
+}
+.primary { background: hsl(var(--primary)); color: hsl(var(--primary-foreground)); }
+.primary:hover { filter: brightness(1.08); }
+.outline, .ghost, .option { background: transparent; color: hsl(var(--foreground)); }
+.outline { border-color: hsl(var(--border)); }
+.outline:hover, .ghost:hover, .option:hover, .option:focus {
+  background: hsl(var(--accent));
+  color: hsl(var(--accent-foreground));
+}
+.menu {
+  width: 16rem;
+  padding: 0.35rem;
+  border: 1px solid hsl(var(--border));
+  border-radius: var(--radius);
+  background: hsl(var(--popover));
+}
+.option { display: block; width: 100%; text-align: left; }
+.bar { height: 0.5rem; width: 2rem; border-radius: 999px; background: hsl(var(--primary)); }
+.fast { animation: slide var(--motion-fast) ease-out infinite alternate; }
+.medium { animation: slide var(--motion-medium) ease-out infinite alternate; }
+.slow { animation: slide var(--motion-slow) ease-out infinite alternate; }
+@keyframes slide { from { transform: translateX(0); } to { transform: translateX(8rem); } }
+</style>
+</head>
+<body>
+<main>
+  <h1>APT design preview</h1>
+  <p>Version ${version}. Generated from design/tokens/APT-TOKENS.json. Open this file directly. The historical standalone HTML files in apt-design-reference are not this preview.</p>
+  <div class="row">
+    <button class="outline" type="button" id="theme">Use light theme</button>
+  </div>
+  <h2>Color</h2>
+  <div class="row">
+    <div class="swatch"><i style="background:hsl(var(--background))"></i><span>background</span></div>
+    <div class="swatch"><i style="background:hsl(var(--primary))"></i><span>primary</span></div>
+    <div class="swatch"><i style="background:hsl(var(--accent))"></i><span>accent</span></div>
+    <div class="swatch"><i style="background:hsl(var(--secondary))"></i><span>secondary</span></div>
+    <div class="swatch"><i style="background:hsl(var(--success))"></i><span>success</span></div>
+  </div>
+  <h2>Buttons</h2>
+  <p>Primary stays blue. Ghost and outline use the teal accent on hover. Keyboard focus is the blue ring.</p>
+  <div class="row">
+    <button class="primary" type="button">Primary</button>
+    <button class="outline" type="button">Outline</button>
+    <button class="ghost" type="button">Ghost</button>
+  </div>
+  <h2>Menu and dropdown</h2>
+  <p>Highlighted options use the teal accent, including when focus moves onto the option.</p>
+  <div class="menu" role="menu">
+    <button class="option" type="button" role="menuitem">Overview</button>
+    <button class="option" type="button" role="menuitem">Tokens</button>
+    <button class="option" type="button" role="menuitem">Patterns</button>
+  </div>
+  <h2>Motion</h2>
+  <p>fast ${tokens.animation.duration.fast.value}, normal ${tokens.animation.duration.normal.value}, slow ${tokens.animation.duration.slow.value}.</p>
+  <div class="row"><div class="bar fast"></div><span>fast</span></div>
+  <div class="row"><div class="bar medium"></div><span>normal</span></div>
+  <div class="row"><div class="bar slow"></div><span>slow</span></div>
+</main>
+<script>
+document.getElementById("theme").addEventListener("click", () => {
+  const light = document.documentElement.classList.toggle("light");
+  document.getElementById("theme").textContent = light ? "Use dark theme" : "Use light theme";
+});
+</script>
+</body>
+</html>
+`;
+}
+
 function tokensTs() {
   const theme = (t) => Object.fromEntries(themeVariables(t));
   const data = { version, shared: Object.fromEntries(sharedVariables()), dark: theme("dark"), light: theme("light") };
@@ -171,6 +286,7 @@ const outputs = {
   "design/generated/tailwind-preset.cjs": tailwindPreset(),
   "design/generated/apt-theme.css": tailwindV4Theme(),
   "design/generated/tokens.ts": tokensTs(),
+  "design/generated/apt-preview.html": previewHtml(),
   "references/design-tokens.json": flatReference(),
 };
 

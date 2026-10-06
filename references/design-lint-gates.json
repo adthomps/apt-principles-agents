@@ -11,7 +11,7 @@
     "Color usage is token-based and accessible.",
     "Navigation, action, status, selection, focus, hover, and disabled states use the semantic color roles from design-tokens.json.",
     "Primary calls to action, links, focus rings, and high-frequency action emphasis use the blue primary/action role.",
-    "The teal accent is the highlight for hover and selected states that previously used a neutral grey surface. It is not the default call to action, link, or focus color. Success treatment uses the success token.",
+    "The teal accent is the highlight for hover and selected states that previously used a neutral grey surface, including ghost and outline buttons, menu items, and dropdown options. It is not the default call to action, link, or focus color. Success treatment uses the success token.",
     "Raw color values, teal-as-default-CTA treatment, missing focus color, or ambiguous active navigation are critical failures unless a decision record accepts the exception.",
     "Danger, warning, and success colors are used for semantic feedback only, not decoration.",
     "Status colors come from the canonical success, warning, and destructive tokens; products do not define their own status colors.",

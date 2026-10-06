@@ -21,6 +21,7 @@ This folder is the single source of APT design tokens (DR-015 / APT-019). Produc
 | `generated/tailwind-preset.cjs` | Generated Tailwind v3 preset (colors, radius, shadows, durations). |
 | `generated/apt-theme.css` | Generated Tailwind v4 `@theme inline` mapping. |
 | `generated/tokens.ts` | Generated typed token values. |
+| `generated/apt-preview.html` | Generated portable preview. Open the file directly. It is not the historical standalone HTML in `apt-design-reference`. |
 | `bin/apt-design-check.mjs` | Contrast, token-drift and design-lint check driven by `apt-design.json`. |
 
 The generated folder is deliberately not called `dist/`: nearly every product's `.gitignore` ignores `dist/`, which would leave `.apt/design/dist/` out of fresh clones and CI.
@@ -52,7 +53,11 @@ The generated folder is deliberately not called `dist/`: nearly every product's 
 
 Teal (`accent`) is the highlight. Hover and selected states that used to be a neutral grey surface may use it. Blue stays the color for primary actions, links, and focus. Success uses the success token.
 
-Ghost and outline controls already take their hover background from `accent`. Reviewers should leave that teal highlight in place.
+Ghost and outline buttons, menu items, and dropdown options take their highlight from `accent`. Menu and dropdown options use `focus:bg-accent` with `focus:text-accent-foreground`, because Radix highlights the option by moving focus to it. Keyboard focus on buttons and other controls stays a blue `focus-visible` ring. `focus-visible:bg-accent` fails the design check.
+
+Motion is `140ms` / `220ms` / `360ms` (`--motion-fast`, `--motion-medium`, `--motion-slow`). The flat reference and the generated stylesheets use the same three values.
+
+Open `generated/apt-preview.html` for a portable view of the current tokens. `apt-design-reference` still has historical standalone exports, including `APT Patterns (standalone).html`. Leave those files unchanged. They are not generated from these tokens, and `APT Primitives (standalone).html` is not in this workspace.
 
 ## Product code checks
 

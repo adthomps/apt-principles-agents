@@ -111,7 +111,7 @@ The public APT site keeps blue for brand, primary actions, links, and focus. Tea
 Color choices must start from semantic role, not visual preference.
 
 - Primary action, links, focus, and brand identity use the blue primary role.
-- Teal is the highlight for hover and selected states that previously used a neutral grey surface, including ghost and outline control hover and selected support. It is not the default call-to-action color.
+- Teal is the highlight for hover and selected states that previously used a neutral grey surface. That includes ghost and outline buttons, menu items, dropdown options, and selected support. It is not the default call-to-action color.
 - Neutral surfaces remain the resting treatment for default navigation, secondary buttons, inactive tabs, cards, panels, dividers, and disabled surfaces.
 - Danger, warning, and success colors are semantic feedback colors. Do not use them as general decoration or to create arbitrary variety.
 - Disabled treatment should reduce contrast and interaction affordance without hiding the control or changing its meaning.
