@@ -186,7 +186,8 @@ button:focus-visible, .option:focus-visible {
   border-radius: var(--radius);
   background: hsl(var(--popover));
 }
-.option { display: block; width: 100%; text-align: left; }
+.option, .nav-item { display: block; width: 100%; text-align: left; background: transparent; color: hsl(var(--foreground)); border: 0; }
+.nav-item:hover, .nav-item:focus { background: hsl(var(--sidebar-accent)); color: hsl(var(--sidebar-accent-foreground)); }
 .bar { height: 0.5rem; width: 2rem; border-radius: 999px; background: hsl(var(--primary)); }
 .fast { animation: slide var(--motion-fast) ease-out infinite alternate; }
 .medium { animation: slide var(--motion-medium) ease-out infinite alternate; }
@@ -222,6 +223,13 @@ button:focus-visible, .option:focus-visible {
     <button class="option" type="button" role="menuitem">Overview</button>
     <button class="option" type="button" role="menuitem">Tokens</button>
     <button class="option" type="button" role="menuitem">Patterns</button>
+  </div>
+  <h2>Sidebar and docs navigation</h2>
+  <p>Sidebar items and docs navigation use the same teal highlight. The token is sidebar-accent.</p>
+  <div class="menu" role="navigation">
+    <button class="nav-item" type="button">Getting started</button>
+    <button class="nav-item" type="button">Tokens</button>
+    <button class="nav-item" type="button">Patterns</button>
   </div>
   <h2>Motion</h2>
   <p>fast ${tokens.animation.duration.fast.value}, normal ${tokens.animation.duration.normal.value}, slow ${tokens.animation.duration.slow.value}.</p>

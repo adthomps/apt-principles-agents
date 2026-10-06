@@ -36,8 +36,8 @@
         "sidebar-foreground": { "value": "hsl(220, 10%, 95%)", "type": "color", "description": "Sidebar foreground" },
         "sidebar-primary": { "value": "hsl(220, 70%, 61%)", "type": "color", "description": "Sidebar primary" },
         "sidebar-primary-foreground": { "value": "hsl(220, 20%, 8%)", "type": "color", "description": "Sidebar primary-foreground" },
-        "sidebar-accent": { "value": "hsl(220, 15%, 15%)", "type": "color", "description": "Sidebar accent" },
-        "sidebar-accent-foreground": { "value": "hsl(220, 10%, 95%)", "type": "color", "description": "Sidebar accent-foreground" },
+        "sidebar-accent": { "value": "hsl(165, 45%, 40%)", "type": "color", "description": "Sidebar and docs navigation hover highlight. Same teal as accent." },
+        "sidebar-accent-foreground": { "value": "hsl(220, 20%, 8%)", "type": "color", "description": "Text on the sidebar hover highlight" },
         "sidebar-border": { "value": "hsl(220, 15%, 18%)", "type": "color", "description": "Sidebar border" },
         "sidebar-ring": { "value": "hsl(220, 70%, 61%)", "type": "color", "description": "Sidebar ring" }
       },
@@ -75,8 +75,8 @@
         "sidebar-foreground": { "value": "hsl(220, 20%, 10%)", "type": "color", "description": "Sidebar foreground" },
         "sidebar-primary": { "value": "hsl(220, 70%, 50%)", "type": "color", "description": "Sidebar primary" },
         "sidebar-primary-foreground": { "value": "hsl(0, 0%, 100%)", "type": "color", "description": "Sidebar primary-foreground" },
-        "sidebar-accent": { "value": "hsl(220, 15%, 92%)", "type": "color", "description": "Sidebar accent" },
-        "sidebar-accent-foreground": { "value": "hsl(220, 20%, 10%)", "type": "color", "description": "Sidebar accent-foreground" },
+        "sidebar-accent": { "value": "hsl(165, 45%, 35%)", "type": "color", "description": "Light sidebar and docs navigation hover highlight. Same teal as accent." },
+        "sidebar-accent-foreground": { "value": "hsl(0, 0%, 100%)", "type": "color", "description": "Text on the light sidebar hover highlight" },
         "sidebar-border": { "value": "hsl(220, 15%, 85%)", "type": "color", "description": "Sidebar border" },
         "sidebar-ring": { "value": "hsl(220, 70%, 50%)", "type": "color", "description": "Sidebar ring" }
       },
@@ -354,6 +354,22 @@
           "hoverForeground": { "value": "{color.dark.accent-foreground}", "type": "color" }
         }
       },
+      "sidebar": {
+        "item": {
+          "background": { "value": "transparent", "type": "color" },
+          "foreground": { "value": "{color.dark.sidebar-foreground}", "type": "color" },
+          "hoverBackground": { "value": "{color.dark.accent}", "type": "color", "description": "Sidebar item hover highlight" },
+          "hoverForeground": { "value": "{color.dark.accent-foreground}", "type": "color" }
+        }
+      },
+      "docsNav": {
+        "item": {
+          "background": { "value": "transparent", "type": "color" },
+          "foreground": { "value": "{color.dark.foreground}", "type": "color" },
+          "hoverBackground": { "value": "{color.dark.accent}", "type": "color", "description": "Docs navigation item hover highlight" },
+          "hoverForeground": { "value": "{color.dark.accent-foreground}", "type": "color" }
+        }
+      },
       "card": {
         "borderRadius": { "value": "{borderRadius.lg}", "type": "borderRadius" },
         "padding": { "value": "{spacing.6}", "type": "spacing" },
@@ -440,7 +456,7 @@
   },
   "$metadata": {
     "tokenSetOrder": ["apt"],
-    "version": "2.1.1",
+    "version": "2.1.2",
     "name": "APT Design System",
     "description": "Applied Practical Thinking design tokens. Canonical source: apt-principles-agents/design/tokens (APT-019).",
     "author": "APT"

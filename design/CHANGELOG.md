@@ -12,6 +12,14 @@ source_paths: ["apt-principles-agents/design/VERSION", "apt-principles-agents/de
 
 Each entry matches a `design/VERSION` value. Consumers record the version they synced in `.apt/installation.json` (`designVersion`). Run `node scripts/apt-assets.mjs audit-workspace --workspace-root ..` to see which repos are behind.
 
+## 2.1.2 - 2026-10-05
+
+Sidebar and docs navigation use the same teal hover as menus.
+
+- **Sidebar:** `sidebar-accent` and `sidebar-accent-foreground` match `accent` in both themes. `hover:bg-sidebar-accent` is the teal highlight, not a grey surface.
+- **Docs navigation:** sidebar items and docs navigation items are named beside menus and dropdowns. Their hover background is `accent`.
+- **Preview:** `design/generated/apt-preview.html` includes the sidebar and docs navigation sample. Historical standalone HTML in `apt-design-reference` is not rebuilt.
+
 ## 2.1.1 - 2026-10-05
 
 Motion and hover highlights match the flat token reference.

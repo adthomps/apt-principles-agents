@@ -53,7 +53,7 @@ The generated folder is deliberately not called `dist/`: nearly every product's 
 
 Teal (`accent`) is the highlight. Hover and selected states that used to be a neutral grey surface may use it. Blue stays the color for primary actions, links, and focus. Success uses the success token.
 
-Ghost and outline buttons, menu items, and dropdown options take their highlight from `accent`. Menu and dropdown options use `focus:bg-accent` with `focus:text-accent-foreground`, because Radix highlights the option by moving focus to it. Keyboard focus on buttons and other controls stays a blue `focus-visible` ring. `focus-visible:bg-accent` fails the design check.
+Ghost and outline buttons, menu items, dropdown options, sidebar items, and docs navigation items take their highlight from `accent`. Sidebar hover uses `sidebar-accent`, which is the same teal. Menu and dropdown options use `focus:bg-accent` with `focus:text-accent-foreground`, because Radix highlights the option by moving focus to it. Keyboard focus on buttons and other controls stays a blue `focus-visible` ring. `focus-visible:bg-accent` fails the design check.
 
 Motion is `140ms` / `220ms` / `360ms` (`--motion-fast`, `--motion-medium`, `--motion-slow`). The flat reference and the generated stylesheets use the same three values.
 
