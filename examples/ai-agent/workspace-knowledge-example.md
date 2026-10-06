@@ -50,8 +50,8 @@ Design:
 - Use token-based styling only.
 - Keep the experience dark-first unless a project decision says otherwise.
 - Use blue for brand identity, primary calls to action, links, focus rings, and high-frequency action emphasis.
-- Use the restricted accent only for explicit support semantics such as section identity, selected support states, badges, callouts, charts, and success treatment.
-- Use neutral surfaces for default navigation, secondary actions, inactive tabs, cards, panels, and disabled surfaces.
+- Use teal as the highlight for hover and selected states that previously used a neutral grey surface. Do not use teal as the default call to action, and do not use it as the success color.
+- Use neutral surfaces for resting navigation, secondary actions, inactive tabs, cards, panels, and disabled surfaces.
 - Use danger, warning, and success colors only for semantic feedback, not decoration.
 - Include loading, empty, success, error, disabled, permission, offline, and degraded states when relevant.
 - Keep copy concise, precise, and non-marketing.

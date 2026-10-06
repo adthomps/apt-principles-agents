@@ -1,0 +1,67 @@
+{
+  "version": "1.0.0",
+  "profile": "integration-toolbox",
+  "extends": "critic-rubric@1.x",
+  "stages": {
+    "press-release": {
+      "dimensions": [
+        {
+          "id": "developer-job",
+          "name": "Developer Job",
+          "pass_criteria": "Names the developer persona and a concrete job they finish with the toolbox (which method, from what starting point, to what working sandbox result).",
+          "fail_criteria": "The customer is 'developers' in general, or the release describes pages and features instead of a developer outcome."
+        }
+      ]
+    },
+    "external-faq": {
+      "dimensions": [
+        {
+          "id": "developer-concerns",
+          "name": "Developer Concerns Coverage",
+          "pass_criteria": "Answers cover PCI scope, sandbox setup and credentials, errors and webhooks, the migration path or counterparts, and what the demo does not do.",
+          "fail_criteria": "Two or more of these developer concerns are missing or answered vaguely."
+        }
+      ]
+    },
+    "internal-faq": {
+      "dimensions": [
+        {
+          "id": "sources-and-sandbox",
+          "name": "Sources and Sandbox Safety",
+          "pass_criteria": "Every provider claim has an authoritative source or a to-verify label, and the FAQ confirms sandbox-only demos, no plaintext card data, and secrets kept out of the client and repository.",
+          "fail_criteria": "Provider behavior is stated without a source or label, or card-data and secret handling is not addressed."
+        }
+      ]
+    },
+    "requirements": {
+      "dimensions": [
+        {
+          "id": "counterpart-and-catalog-consistency",
+          "name": "Counterpart and Catalog Consistency",
+          "pass_criteria": "Requirements keep counterpart links consistent in both toolboxes and statuses consistent with the migration catalog, or name the catalog change the package needs.",
+          "fail_criteria": "A mapping or status is changed in one place only, or contradicts the migration catalog without a recorded reason."
+        }
+      ]
+    },
+    "engineering-handoff": {
+      "dimensions": [
+        {
+          "id": "demo-validation",
+          "name": "Demo Validation",
+          "pass_criteria": "Each slice that touches a demo is validated by a sandbox run or smoke test as the persona, and no slice shows a success the provider did not return.",
+          "fail_criteria": "A demo slice has no sandbox validation, or allows a simulated or assumed success."
+        }
+      ]
+    },
+    "readiness": {
+      "dimensions": [
+        {
+          "id": "source-verification",
+          "name": "Source Verification",
+          "pass_criteria": "Pages shipped by the package have no unlabelled unverified claims, and each demo has a recorded sandbox smoke run.",
+          "fail_criteria": "Unverified claims ship without a label, or a demo ships without a sandbox smoke run."
+        }
+      ]
+    }
+  }
+}

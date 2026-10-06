@@ -80,7 +80,7 @@ Evidence required:
 - Do not suggest a new visual language.
 - Do not accept raw color values, teal-as-default-CTA treatment, missing focus color, or ambiguous active navigation without a decision record.
 - Verify that blue carries primary actions, links, focus rings, and high-frequency action emphasis.
-- Verify that active navigation, hover, and focus states use primary or neutral selected-surface roles, and that the restricted accent is limited to explicit support semantics such as badges, callouts, charts, and success treatment.
+- Verify that hover and selected highlights use the teal accent where those states previously used a neutral grey surface. Do not revert them to grey. Focus rings, links, and primary calls to action stay blue. Success uses the success token.
 - Verify that danger, warning, and success colors are semantic feedback only.
 - Verify that charts lead with primary blue, use the chart ramp in order, and reserve status colors for real status or risk.
 - Verify that Lucide-style icons and the AptEmblem pattern are used where iconography or brand marks are needed.

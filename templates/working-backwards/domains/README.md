@@ -16,6 +16,7 @@ A profile adapts the Working Backwards method to a domain without forking it. A 
 | --- | --- | --- |
 | [payments](payments.md) ([rubric](payments.rubric.json)) | Gateways, acquiring, merchant and partner portals, money paths | APT Commerce practice |
 | [game-development](game-development.md) ([rubric](game-development.rubric.json)) | Video games and interactive experiences | APT game-development principles |
+| [integration-toolbox](integration-toolbox.md) ([rubric](integration-toolbox.rubric.json)) | Developer reference toolboxes: method pages, sandbox demos, migration maps between gateways | The Authorize.Net and VAS SMB integration toolboxes |
 
 Each profile defines:
 

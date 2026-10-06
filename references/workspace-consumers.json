@@ -58,7 +58,8 @@
         "training",
         "migration",
         "modernization",
-        "ai-development"
+        "ai-development",
+        "working-backwards"
       ],
       "platforms": [
         "codex",
@@ -398,7 +399,9 @@
         "api-review",
         "security",
         "payments",
-        "governance"
+        "governance",
+        "working-backwards",
+        "migration"
       ],
       "platforms": [
         "codex",
@@ -406,7 +409,9 @@
         "copilot",
         "gemini"
       ],
-      "validation": [],
+      "validation": [
+        "pnpm check:alignment"
+      ],
       "tier": 1
     },
     {

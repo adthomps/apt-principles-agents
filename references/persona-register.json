@@ -124,6 +124,12 @@
           "path": "content/foundations/03-audiences-and-relationships.md",
           "name": "Technology partners / ISVs",
           "status": "draft"
+        },
+        {
+          "repository": "apt-anet-integration-toolbox",
+          "path": "docs/apt/personas/README.md",
+          "name": "Platform Developer",
+          "status": "direction"
         }
       ],
       "reviewerAgents": [
@@ -166,6 +172,24 @@
           "repository": "apt-vas-smb-training",
           "tag": "developer",
           "status": "draft"
+        },
+        {
+          "repository": "apt-anet-integration-toolbox",
+          "path": "docs/apt/personas/README.md",
+          "name": "Merchant Integration Developer",
+          "status": "direction"
+        },
+        {
+          "repository": "apt-vas-integration-toolbox",
+          "path": "docs/apt/personas/README.md",
+          "name": "Migrating Developer",
+          "status": "direction"
+        },
+        {
+          "repository": "apt-vas-integration-toolbox",
+          "path": "docs/apt/personas/README.md",
+          "name": "New VAS SMB Developer",
+          "status": "direction"
         }
       ],
       "reviewerAgents": [

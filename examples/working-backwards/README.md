@@ -17,12 +17,13 @@ Working Backwards is a general APT method. Each repository builds its own versio
 
 [booking-data-export/](booking-data-export/README.md): a complete, short package for a small booking app — press release through critic review — with no domain profile. Use it to see what each stage must contain. Its evidence is illustrative and labelled as such.
 
-## Three adoption patterns
+## Adoption patterns
 
 | Pattern | Repository | Layers | What it shows |
 | --- | --- | --- | --- |
 | **Established local implementation** | APT Commerce (`apt-commerce/docs/apt/working-backwards/`) | Method + its own rules in its package README; its own critic skill and hook | A mature practice (50+ packages) that predates the APT system. It references the APT rubric and role contracts, keeps its own critic and hook as repository-owned paths (`localTargets`), and is the source of the `payments` domain profile. It can move its README rules into a repository profile when its owner chooses. |
 | **Domain profile plus repository profile** | Grey Rain (`apt-grey-rain/docs/apt/working-backwards/`) | Method + `game-development` + Grey Rain profile | A new adoption: the shared game profile handles what every game needs (core loop, playtests, cut list); Grey Rain's own profile adds its AI dungeon master, campaign state, and pilot scope. |
+| **Shared domain profile for sibling repositories** | Authorize.Net and VAS SMB integration toolboxes (`docs/apt/working-backwards/` in each) | Method + `integration-toolbox` + each toolbox's profile | Two repositories with the same rules share one domain profile (developer job, sources, sandbox safety, counterpart and catalog consistency); each profile adds only its own rules, such as legacy-method honesty or SMB applicability. |
 | **Method plus repository profile only** | Any repository with no matching domain | Method + repository profile | Start from `templates/working-backwards/repo-profile.md`. Propose a new shared domain profile only when a second repository needs the same rules. |
 
 ## How a repository adopts it

@@ -4,7 +4,7 @@ kind: guide
 domain: design
 status: active
 owner: APT
-last_updated: 2026-10-04
+last_updated: 2026-10-05
 source_paths: ["apt-principles-agents/design/"]
 ---
 
@@ -47,6 +47,18 @@ The generated folder is deliberately not called `dist/`: nearly every product's 
 
 4. Tailwind v3: `presets: [require("../../.apt/design/generated/tailwind-preset.cjs")]`. Tailwind v4: `@import` `apt-theme.css` after the token CSS.
 5. Run the check in a script and in CI: `node .apt/design/bin/apt-design-check.mjs`.
+
+## Highlight color
+
+Teal (`accent`) is the highlight. Hover and selected states that used to be a neutral grey surface may use it. Blue stays the color for primary actions, links, and focus. Success uses the success token.
+
+Ghost and outline controls already take their hover background from `accent`. Reviewers should leave that teal highlight in place.
+
+## Product code checks
+
+Some files in this folder can fail a product's strict type or lint check. The product still runs, and those files should stay unchanged in the product. The product may exclude the installed design folder from that check.
+
+To make the files pass, fix them here, run `node scripts/build-design.mjs`, sync the `design` manifest, and then remove the product's exclusion.
 
 ## Tiers
 
