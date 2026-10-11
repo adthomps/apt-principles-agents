@@ -568,8 +568,19 @@ function designStatus(target, consumer, record, runCheck) {
   const workflowText = exists(workflowsDir)
     ? readdirSync(workflowsDir).filter((name) => /\.ya?ml$/.test(name)).map((name) => readFileSync(path.join(workflowsDir, name), "utf8")).join("\n")
     : "";
-  const designScripts = Object.entries(scripts).filter(([, command]) => String(command).includes("apt-design-check")).map(([name]) => name);
-  const ciWired = Boolean(workflowText) && (workflowText.includes("apt-design-check") || designScripts.some((name) => workflowText.includes(name)));
+  // Scripts that run the check directly or through other scripts (check -> check:design -> verify:tokens -> apt-design-check).
+  const runs = (text, name) => new RegExp(`\\b(?:pnpm|npm|yarn|bun)(?:\\s+run)?\\s+${name.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}(?=$|[\\s"'&;|)])`, "m").test(String(text));
+  const designScripts = new Set(Object.entries(scripts).filter(([, command]) => String(command).includes("apt-design-check")).map(([name]) => name));
+  for (let grew = true; grew;) {
+    grew = false;
+    for (const [name, command] of Object.entries(scripts)) {
+      if (!designScripts.has(name) && [...designScripts].some((target) => runs(command, target))) {
+        designScripts.add(name);
+        grew = true;
+      }
+    }
+  }
+  const ciWired = Boolean(workflowText) && (workflowText.includes("apt-design-check") || [...designScripts].some((name) => runs(workflowText, name)));
   const current = currentDesignVersion();
   const result = {
     tier,

@@ -119,6 +119,14 @@ run(["repair", "--target", target, "--apply", "--force"]);
   writeFileSync(css, '@import "../.apt/design/generated/apt-tokens.dark-first.css";\n:root { --muted-foreground: 220 10% 55%; }\n', "utf8");
   const failing = spawnSync("node", [designCheck], { cwd: designTarget, encoding: "utf8" });
   if (failing.status === 0 || !failing.stdout.includes("muted-foreground")) throw new Error("apt-design-check did not fail on a drifted, low-contrast token");
+  // Conditional @media overrides (here a prefers-contrast: high border) are not theme values and must not count as drift.
+  writeFileSync(css, '@import "../.apt/design/generated/apt-tokens.dark-first.css";\n@media (prefers-contrast: high) { :root { --border: 220 20% 60%; } .light { --border: 220 20% 50%; } }\n', "utf8");
+  const mediaOverride = spawnSync("node", [designCheck], { cwd: designTarget, encoding: "utf8" });
+  if (mediaOverride.status !== 0) throw new Error(`apt-design-check treated a @media override as drift:\n${mediaOverride.stdout}`);
+  // :root and .light have equal specificity: a :root override declared after the import also applies in light mode.
+  writeFileSync(css, '@import "../.apt/design/generated/apt-tokens.dark-first.css";\n:root { --sidebar-ring: 220 70% 55%; }\n', "utf8");
+  const cascadeLeak = spawnSync("node", [designCheck], { cwd: designTarget, encoding: "utf8" });
+  if (cascadeLeak.status === 0 || !cascadeLeak.stdout.includes("light: --sidebar-ring")) throw new Error(`apt-design-check missed a :root override leaking into the light theme:\n${cascadeLeak.stdout}`);
   // Lint ratchet: findings at or under lint.baseline pass, findings above it fail.
   writeFileSync(css, '@import "../.apt/design/generated/apt-tokens.dark-first.css";\n', "utf8");
   writeFileSync(path.join(designTarget, "src", "view.tsx"), 'export const a = "bg-zinc-900";\nexport const b = "text-white";\n', "utf8");
