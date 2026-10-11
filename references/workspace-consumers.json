@@ -284,7 +284,8 @@
         "api-review",
         "ux-review",
         "security",
-        "ai-development"
+        "ai-development",
+        "design"
       ],
       "platforms": [
         "codex",
@@ -458,7 +459,8 @@
         "cloudflare",
         "documentation",
         "ux-review",
-        "ai-development"
+        "ai-development",
+        "design"
       ],
       "platforms": [
         "codex",
