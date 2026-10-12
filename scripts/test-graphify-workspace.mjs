@@ -55,7 +55,6 @@ assert(portfolio.nodes.some((node) => node.repo === "apt-vas-integration-toolbox
 assert(portfolio.links.every((edge) => edge.confidence === "EXTRACTED" && edge.confidence_score === 1));
 assert(portfolio.links.some((edge) => edge.relation === "provides_training_truth_for"));
 assert(portfolio.links.some((edge) => edge.source === "project:apt-principles-agents" && edge.target === "project:apt-commerce" && edge.relation === "distributes_assets_to"));
-assert(portfolio.links.some((edge) => edge.relation === "accepted_context_to_product_planning"));
 assert(portfolioReport(portfolio).includes("| Workspace folder |"));
 assert(portfolioReport(portfolio).includes("## Explicit relationships"));
 

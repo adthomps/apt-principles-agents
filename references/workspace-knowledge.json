@@ -1,13 +1,13 @@
 {
   "version": "1.0.0",
   "owner": "APT",
-  "last_updated": "2026-10-11",
+  "last_updated": "2026-10-12",
   "description": "How workspace repos relate: PROJECTS.md grouping, which repos feed which knowledge source, and which files are copies of a source of truth. Names and descriptions stay in each repo's docs/project-identity.md.",
   "groups": [
     {
       "id": "core",
       "title": "Portfolio and APT core",
-      "repositories": ["adthomps.github.io", "applied-practical-thinking", "apt-principles-agents", "apt-design-reference", "apt-dream-to-reality", "apt-intake", "apt-security-harness", "apt-remotion"]
+      "repositories": ["adthomps.github.io", "applied-practical-thinking", "apt-principles-agents", "apt-dream-to-reality", "apt-security-harness", "apt-remotion"]
     },
     {
       "id": "products",
