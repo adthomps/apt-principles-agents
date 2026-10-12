@@ -1,7 +1,7 @@
 ---
 title: Cloudflare Pages + Workers Example
 version: v1
-last_updated: 2026-04-24
+last_updated: 2026-10-12
 owner: APT
 status: draft
 kind: "example"
@@ -10,6 +10,8 @@ source_paths: ["apt-principles/examples/architecture/cloudflare-pages-workers-ex
 ---
 
 # Cloudflare Pages + Workers Example
+
+This example records the Pages-plus-separate-Worker layout used by apps that already deploy that way, including commerce, dream-to-reality, health, and the portfolio. A new full-stack app uses one Worker with static assets. See [Cloudflare Standards](../../standards/installable-summaries/cloudflare-standards.md).
 
 ## Context
 

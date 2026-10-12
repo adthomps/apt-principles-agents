@@ -20,8 +20,8 @@ prompt carries the equivalent operating instructions.
 ## Instructions
 
 1. Identify frontend, API, auth, data, environment, and deployment patterns.
-2. Map static frontend behavior toward React/Vite on Cloudflare Pages.
-3. Map dynamic behavior toward Hono Worker `/api` routes.
+2. Map a new app toward React, Vite, and TypeScript on one Worker with static assets. Keep an existing Pages app until a reviewed move.
+3. Map dynamic behavior toward Hono routes on that same Worker.
 4. Recommend D1, KV, or R2 only when the current behavior justifies them.
 5. Document migration risks before editing.
 6. Preserve current routes, working demos, and user-visible behavior unless a reviewed migration step changes them.

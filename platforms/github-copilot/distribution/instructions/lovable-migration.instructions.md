@@ -22,7 +22,7 @@ Move generated or Lovable-influenced projects toward APT standards without unnec
 
 ## Cloudflare Direction
 
-When Cloudflare is the target, map static frontend behavior to Pages and dynamic behavior to Worker `/api` routes. Recommend D1, KV, or R2 only when the current data model requires them.
+When Cloudflare is the target, follow Cloudflare Standards. A new app uses React, Vite, TypeScript, Hono, and one Worker with static assets. An existing Pages project stays until a reviewed move. Recommend D1, KV, or R2 only when the current data model requires them.
 
 ## Output Expectations
 

@@ -1,5 +1,5 @@
 name: cloudflare
-description: Cloudflare Workers, Hono, Pages, bindings, deployment, and modernization.
+description: Cloudflare Workers, Hono, static assets, bindings, deployment, and modernization.
 principles:
   - principles/architecture/cloudflare-hono-architecture.md
 standards:
