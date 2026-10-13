@@ -12,7 +12,7 @@
     {
       "id": "products",
       "title": "Products",
-      "repositories": ["apt-commerce", "apt-health", "apt-novel-reviewer", "apt-grey-rain"]
+      "repositories": ["apt-commerce", "apt-health", "apt-novel-reviewer", "apt-grey-rain", "crt-world"]
     },
     {
       "id": "anet",
@@ -36,11 +36,6 @@
       "id": "playwright",
       "title": "Playwright overview",
       "repositories": ["apt-playwright-compass"]
-    },
-    {
-      "id": "unconfirmed",
-      "title": "Present on disk, description not confirmed",
-      "repositories": ["crt-world"]
     }
   ],
   "feeds": [

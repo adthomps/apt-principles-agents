@@ -82,7 +82,7 @@ export function renderProjects({ workspaceRoot, knowledge }) {
     "",
     "**This file is generated. Don't edit it by hand.** Names and descriptions come from each project's `docs/project-identity.md`. Grouping and section notes come from `apt-principles-agents/references/workspace-knowledge.json`. Regenerate with `npm run projects:generate` in `apt-principles-agents`.",
     "",
-    "Current names are this file. [WORKSPACE_PROJECT_INVENTORY.md](WORKSPACE_PROJECT_INVENTORY.md) is a historical profile snapshot. Disposition notes in [WORKSPACE_PROJECT_INVENTORY_2026-09-26.md](WORKSPACE_PROJECT_INVENTORY_2026-09-26.md) are a historical review: its on-disk column is not current. crt-world still needs an owner decision before new work.",
+    "Current names are this file. [WORKSPACE_PROJECT_INVENTORY.md](WORKSPACE_PROJECT_INVENTORY.md) is a historical profile snapshot. Disposition notes in [WORKSPACE_PROJECT_INVENTORY_2026-09-26.md](WORKSPACE_PROJECT_INVENTORY_2026-09-26.md) are a historical review: its on-disk column is not current.",
   ];
   for (const group of knowledge.groups) {
     lines.push("", `## ${group.title}`, "");
