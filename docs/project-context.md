@@ -158,3 +158,11 @@ Assets are installed or synchronized into independent target repositories throug
 - `docs/public-showcase-contract.md` — Evidence, safety, and multi-format requirements for public APT case studies and portfolio narratives.
 - `docs/refactor/boilerplate-and-specialization-review.md` — Verified shared-core and thin-specialization baseline, pilot changes, priority sequence, and deletion decision.
 - `references/content-specialization-baseline.json` — Hash-backed non-regression baseline for thin canonical content families.
+
+## Local Cloudflare
+
+Status: Not a Cloudflare app.
+
+Local command: `npm run check` validates this repository. There is no application server.
+
+Fix: none. Wrangler is not part of local testing here.
