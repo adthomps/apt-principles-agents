@@ -2,18 +2,14 @@
 // Cheap, fast SessionStart-hook check: is this repo behind apt-principles-agents,
 // or does it have .claude/.codex/.cursor agent files the canonical system doesn't know
 // about? Prints a short notice only when there's something worth looking at; silent
-// otherwise. Deliberately avoids hashing every managed file (that's what
-// `npm run audit:workspace` / `apt-assets.mjs scan --target .` are for on demand) so it
-// stays fast enough to run on every session start.
+// otherwise. The behind check is `apt-assets.mjs scan` through sync-status-lib.mjs, the same
+// one the pre-push gate uses; it takes well under a second per repo.
 
 import { execFileSync } from "node:child_process";
-import { existsSync, readFileSync } from "node:fs";
+import { existsSync } from "node:fs";
 import path from "node:path";
 import process from "node:process";
-import { fileURLToPath } from "node:url";
-
-const scriptDir = path.dirname(fileURLToPath(import.meta.url));
-const sourceRoot = path.resolve(scriptDir, "..");
+import { sourceRoot, syncCommand, syncStatus } from "./sync-status-lib.mjs";
 
 function parseArgs(argv) {
   const args = { repoRoot: "." };
@@ -24,14 +20,6 @@ function parseArgs(argv) {
     }
   }
   return args;
-}
-
-function gitHead(directory) {
-  try {
-    return execFileSync("git", ["-C", directory, "rev-parse", "HEAD"], { encoding: "utf8" }).trim();
-  } catch {
-    return null;
-  }
 }
 
 function main() {
@@ -47,20 +35,23 @@ function main() {
     notes.push("This repo has no .apt/installation.json — it isn't registered with apt-principles-agents. Run `node ../apt-principles-agents/scripts/apt-assets.mjs install --target . --manifests core` if it should be.");
   } else {
     try {
-      const record = JSON.parse(readFileSync(installationFile, "utf8"));
-      // Design tokens are versioned separately (DR-015): flag a stale designVersion explicitly,
-      // since that changes what the product renders, not just its guidance files.
-      const designVersionFile = path.join(sourceRoot, "design", "VERSION");
-      const currentDesign = existsSync(designVersionFile) ? readFileSync(designVersionFile, "utf8").trim() : null;
-      if (currentDesign && record.designVersion && record.designVersion !== currentDesign) {
-        notes.push(`APT design tokens changed: this repo has design ${record.designVersion}, canonical is ${currentDesign}. See apt-principles-agents/design/CHANGELOG.md, then run \`node ../apt-principles-agents/scripts/apt-assets.mjs sync --target . --apply\` and \`node .apt/design/bin/apt-design-check.mjs\`.`);
+      // Hash-based, shared with the pre-push gate: a repo counts as behind only when a sync
+      // would change a managed file, not merely because apt-principles-agents has a newer commit.
+      // Design is reported first (DR-015) because it changes what the product renders.
+      const status = syncStatus(repoRoot);
+      if (status.designVersionBehind || status.design.length) {
+        const version = status.designVersionBehind ? ` (${status.designFrom} -> ${status.designTo})` : "";
+        const files = status.design.length ? `${status.design.length} design file(s) to update` : "the recorded design version is older";
+        notes.push(`APT design is behind${version}: ${files}, and pushes are blocked until it is synced. See apt-principles-agents/design/CHANGELOG.md, then run \`${syncCommand}\` and \`node .apt/design/bin/apt-design-check.mjs\`.`);
       }
-      const currentHead = gitHead(sourceRoot);
-      if (currentHead && record.source?.commit && record.source.commit !== currentHead) {
-        notes.push(`This repo's canonical content is behind apt-principles-agents (installed at ${record.source.commit.slice(0, 8)}, canonical is now at ${currentHead.slice(0, 8)}). Run \`node ../apt-principles-agents/scripts/apt-assets.mjs sync --target . --apply\` to check for updates (it will not overwrite local changes without --force).`);
+      if (status.guidance.length) {
+        notes.push(`${status.guidance.length} APT guidance file(s) (docs, skills, agents) are behind. Run \`${syncCommand}\` (it will not overwrite local changes without --force).`);
+      }
+      if (status.drifted.length) {
+        notes.push(`${status.drifted.length} APT-managed file(s) were edited locally, so sync leaves them alone. Run \`node ../apt-principles-agents/scripts/apt-assets.mjs scan --target .\` to see which.`);
       }
     } catch (error) {
-      notes.push(`This repo's .apt/installation.json could not be read: ${error.message}`);
+      notes.push(`Could not check this repo's APT sync status: ${String(error.message).split("\n")[0]}`);
     }
   }
 

@@ -75,6 +75,11 @@ export function validateProjectProfile(schema, profile) {
   requireString(errors, profile.runtime?.local_server, "runtime.local_server");
   requireString(errors, profile.runtime?.build, "runtime.build");
   requireString(errors, profile.runtime?.deployment, "runtime.deployment");
+  if ("local_cloudflare" in profile) {
+    requireString(errors, profile.local_cloudflare?.status, "local_cloudflare.status");
+    requireString(errors, profile.local_cloudflare?.local_command, "local_cloudflare.local_command");
+    requireString(errors, profile.local_cloudflare?.fix, "local_cloudflare.fix");
+  }
 
   if (!Array.isArray(profile.runtime?.requirements) || profile.runtime.requirements.length === 0) {
     errors.push("runtime.requirements must be a non-empty array");
@@ -254,6 +259,20 @@ ${bullets(profile.constraints)}
 ## Evidence
 
 ${evidence}
+${localCloudflare(profile.local_cloudflare)}`;
+}
+
+/** Optional "Local Cloudflare" section: how to run the repo locally against Wrangler, if at all. */
+function localCloudflare(section) {
+  if (!section) return "";
+  return `
+## Local Cloudflare
+
+Status: ${section.status}
+
+Local command: ${section.local_command}
+
+Fix: ${section.fix}
 `;
 }
 

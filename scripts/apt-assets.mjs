@@ -2,6 +2,7 @@
 import { createHash } from "node:crypto";
 import { execFileSync } from "node:child_process";
 import {
+  chmodSync,
   copyFileSync,
   existsSync,
   mkdirSync,
@@ -380,6 +381,10 @@ function mappingsFor(manifests, platforms) {
     }
   }
 
+  // Git pre-push sync gate: every install gets it, whatever the platforms, because git
+  // pushes happen outside any one agent tool. enableGitHooks() turns it on.
+  if (exists(path.join(sourceRoot, "git-hooks", "pre-push"))) add("git-hooks/pre-push", ".apt/git-hooks/pre-push", "git-hook");
+
   const roots = {
     codex: ["CODEX.md", "CODEX.md"],
     claude: ["CLAUDE.md", "CLAUDE.md"],
@@ -442,6 +447,43 @@ function backup(target, relative, backupRoot) {
   return normalize(path.relative(target, destination));
 }
 
+/**
+ * Points git at .apt/git-hooks (core.hooksPath) so the pre-push sync gate runs. Leaves the repo
+ * alone when it is not a git checkout, the hook file is not installed, core.hooksPath already
+ * points elsewhere, or it uses husky or its own .git/hooks scripts. Returns an action record.
+ */
+function enableGitHooks(target, apply) {
+  const hooksPath = ".apt/git-hooks";
+  if (apply && !exists(path.join(target, hooksPath, "pre-push"))) return null;
+  const git = (...gitArgs) => execFileSync("git", ["-C", target, ...gitArgs], { encoding: "utf8", stdio: ["ignore", "pipe", "ignore"] }).trim();
+  let gitDir;
+  try {
+    gitDir = path.resolve(target, git("rev-parse", "--git-dir"));
+  } catch {
+    return null;
+  }
+  let current = "";
+  try {
+    current = git("config", "--local", "--get", "core.hooksPath");
+  } catch {
+    current = "";
+  }
+  if (normalize(current) === hooksPath) return { action: "git-hooks-enabled", target: hooksPath };
+  const ownHooks = exists(path.join(gitDir, "hooks"))
+    ? readdirSync(path.join(gitDir, "hooks")).filter((name) => !name.endsWith(".sample"))
+    : [];
+  const reason = current
+    ? `core.hooksPath is ${current}`
+    : exists(path.join(target, ".husky"))
+      ? "repo uses husky"
+      : ownHooks.length
+        ? `repo has its own hooks: ${ownHooks.join(", ")}`
+        : null;
+  if (reason) return { action: "skipped-git-hooks", target: hooksPath, reason };
+  if (apply) git("config", "--local", "core.hooksPath", hooksPath);
+  return { action: apply ? "enabled-git-hooks" : "would-enable-git-hooks", target: hooksPath };
+}
+
 function install(options = {}) {
   const target = path.resolve(options.target || args.target || "");
   if (!target || !exists(target)) throw new Error("--target must be an existing repository path");
@@ -482,6 +524,7 @@ function install(options = {}) {
     if (!dryRun) {
       ensureParent(destination);
       copyFileSync(source, destination);
+      if (mapping.kind === "git-hook") chmodSync(destination, 0o755);
       managed.set(mapping.target, { ...mapping, sha256: sourceHash });
     }
   }
@@ -502,6 +545,8 @@ function install(options = {}) {
       lastOperation: { type: "install", at: new Date().toISOString() },
     });
   }
+  const gitHooks = enableGitHooks(target, !dryRun);
+  if (gitHooks) actions.push(gitHooks);
   return { target, dryRun, force, manifests: manifests.map((item) => item.name), platforms, actions };
 }
 
@@ -678,6 +723,7 @@ function syncOrRepair(type) {
       const destination = path.join(target, item.target);
       ensureParent(destination);
       copyFileSync(source, destination);
+      if (item.kind === "git-hook") chmodSync(destination, 0o755);
       item.sha256 = sha256(source);
     }
     nextManaged.push(item);
@@ -696,6 +742,9 @@ function syncOrRepair(type) {
     if (hasDesignFiles(record.managedFiles)) record.designVersion = currentDesignVersion();
     writeRecord(target, record);
   }
+  // A --targets run touches only the selected files, so it leaves git config alone too.
+  const gitHooks = !selectedTargets || selectedTargets.has(".apt/git-hooks/pre-push") ? enableGitHooks(target, apply) : null;
+  if (gitHooks) actions.push(gitHooks);
   return { target, type, apply, force, selectedTargets: selectedTargets ? [...selectedTargets].sort() : null, actions };
 }
 

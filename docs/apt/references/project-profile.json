@@ -59,6 +59,11 @@
     "build": "Not applicable as an application build. Catalog and inventory generation produce documentation projections.",
     "deployment": "Not applicable for the repository. Distribution targets are independent downstream repositories."
   },
+  "local_cloudflare": {
+    "status": "Not a Cloudflare app.",
+    "local_command": "`npm run check` validates this repository. There is no application server.",
+    "fix": "none. Wrangler is not part of local testing here."
+  },
   "commands": [
     {
       "name": "Repository completion gate",
