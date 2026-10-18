@@ -45,7 +45,7 @@ Design rules:
 - Use APT visual tokens and shared components instead of raw colors, spacing, radius, shadows, or motion.
 - Keep the experience dark-first unless the project has an approved brand exception.
 - Use blue for brand identity, primary calls to action, links, focus rings, and high-frequency action emphasis.
-- Use teal as the highlight for hover and selected states that previously used a neutral grey surface. Do not use teal as the default call to action, and do not use it as the success color.
+- Use the quiet `accent` surface for hover. Mark selected items with a faint primary tint and a 2px primary bar. Do not use success green outside status.
 - Use neutral surface roles for resting navigation, secondary actions, inactive tabs, cards, panels, and disabled surfaces.
 - Use danger, warning, and success colors only for semantic feedback, not decoration.
 - Keep UI calm, structured, accessible, and non-marketing. Define loading, empty, success, error, disabled, permission, offline, and degraded states where applicable.

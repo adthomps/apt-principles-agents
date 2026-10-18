@@ -187,7 +187,12 @@ button:focus-visible, .option:focus-visible {
   background: hsl(var(--popover));
 }
 .option, .nav-item { display: block; width: 100%; text-align: left; background: transparent; color: hsl(var(--foreground)); border: 0; }
+.nav-item { border-inline-start: 2px solid transparent; border-radius: 0 var(--radius) var(--radius) 0; }
 .nav-item:hover, .nav-item:focus { background: hsl(var(--sidebar-accent)); color: hsl(var(--sidebar-accent-foreground)); }
+.nav-item[aria-current="page"] { background: hsl(var(--primary) / 0.12); border-inline-start-color: hsl(var(--primary)); }
+.tag { display: inline-block; font-size: 0.75rem; padding: 0.125rem 0.625rem; border-radius: calc(var(--radius) - 2px); }
+.tag-success { background: hsl(var(--success) / 0.16); color: hsl(var(--success)); }
+.tag-primary { background: hsl(var(--primary) / 0.16); color: hsl(var(--primary)); }
 .bar { height: 0.5rem; width: 2rem; border-radius: 999px; background: hsl(var(--primary)); }
 .fast { animation: slide var(--motion-fast) ease-out infinite alternate; }
 .medium { animation: slide var(--motion-medium) ease-out infinite alternate; }
@@ -206,30 +211,44 @@ button:focus-visible, .option:focus-visible {
   <div class="row">
     <div class="swatch"><i style="background:hsl(var(--background))"></i><span>background</span></div>
     <div class="swatch"><i style="background:hsl(var(--primary))"></i><span>primary</span></div>
-    <div class="swatch"><i style="background:hsl(var(--accent))"></i><span>accent</span></div>
+    <div class="swatch"><i style="background:hsl(var(--accent))"></i><span>accent (hover)</span></div>
     <div class="swatch"><i style="background:hsl(var(--secondary))"></i><span>secondary</span></div>
     <div class="swatch"><i style="background:hsl(var(--success))"></i><span>success</span></div>
   </div>
   <h2>Buttons</h2>
-  <p>Primary stays blue. Ghost and outline use the teal accent on hover. Keyboard focus is the blue ring.</p>
+  <p>Primary stays blue and is the strongest color on the page. Ghost and outline use the quiet accent surface on hover. Keyboard focus is the blue ring.</p>
   <div class="row">
     <button class="primary" type="button">Primary</button>
     <button class="outline" type="button">Outline</button>
     <button class="ghost" type="button">Ghost</button>
   </div>
   <h2>Menu and dropdown</h2>
-  <p>Highlighted options use the teal accent, including when focus moves onto the option.</p>
+  <p>Highlighted options use the quiet accent surface, including when focus moves onto the option.</p>
   <div class="menu" role="menu">
     <button class="option" type="button" role="menuitem">Overview</button>
     <button class="option" type="button" role="menuitem">Tokens</button>
     <button class="option" type="button" role="menuitem">Patterns</button>
   </div>
   <h2>Sidebar and docs navigation</h2>
-  <p>Sidebar items and docs navigation use the same teal highlight. The token is sidebar-accent.</p>
+  <p>Hover uses the quiet sidebar-accent surface. The selected item uses a faint primary tint and a 2px primary bar on its inline-start edge.</p>
   <div class="menu" role="navigation">
-    <button class="nav-item" type="button">Getting started</button>
+    <button class="nav-item" type="button" aria-current="page">Getting started</button>
     <button class="nav-item" type="button">Tokens</button>
     <button class="nav-item" type="button">Patterns</button>
+  </div>
+  <h2>Tags</h2>
+  <p>Primary tags mark emphasis. Success tags mean a completed or approved status only.</p>
+  <div class="row">
+    <span class="tag tag-primary">Primary</span>
+    <span class="tag tag-success">Approved</span>
+  </div>
+  <h2>Chart series</h2>
+  <div class="row">
+    <div class="swatch"><i style="background:hsl(var(--chart-1))"></i><span>chart-1</span></div>
+    <div class="swatch"><i style="background:hsl(var(--chart-2))"></i><span>chart-2</span></div>
+    <div class="swatch"><i style="background:hsl(var(--chart-3))"></i><span>chart-3</span></div>
+    <div class="swatch"><i style="background:hsl(var(--chart-4))"></i><span>chart-4</span></div>
+    <div class="swatch"><i style="background:hsl(var(--chart-5))"></i><span>chart-5</span></div>
   </div>
   <h2>Motion</h2>
   <p>fast ${tokens.animation.duration.fast.value}, normal ${tokens.animation.duration.normal.value}, slow ${tokens.animation.duration.slow.value}.</p>
@@ -264,7 +283,7 @@ const FLAT_COLOR_MAP = {
   accentForeground: "accent-foreground", danger: "destructive", dangerForeground: "destructive-foreground",
   warning: "warning", warningForeground: "warning-foreground", success: "success",
   successForeground: "success-foreground", link: "primary", focusRing: "ring", navActive: "primary",
-  actionPrimary: "primary", selected: "primary", selectedSupport: "accent", glow: "apt-glow",
+  actionPrimary: "primary", selected: "primary", selectedSupport: "primary", glow: "apt-glow",
 };
 const flatHsl = (value) => `hsl(${channels(value).replace(" / ", ",").replace(/\s+/g, ",")})`;
 

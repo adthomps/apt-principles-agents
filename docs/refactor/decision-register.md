@@ -252,3 +252,22 @@ Additional DR-013 requirements for approval:
 - Blocking or non-blocking: Non-blocking for doctrine; blocking for Tier 1 design changes made outside the canonical source.
 - Target phase: Phase 1 (source, generator, checks, delivery); Phase 2 (repository migration); Phase 3 (shared Apt* components); Phase 4 (release flow).
 - Status: Accepted.
+
+## DR-016: Quiet Hover And Blue Selection (design 2.2.0)
+
+- Identifier: DR-016. Supersedes the teal hover fill introduced in design 2.1.1 and 2.1.2.
+- Decision: APT UI chrome is blue-led with one accent hue. `accent` becomes a quiet blue-grey hover surface. Selected items use a faint primary tint and a 2px primary bar. Teal is removed from UI chrome and charts, and `chart-2` becomes orange.
+- Why it matters: The 2.1.x teal (`165°`) filled every hovered row, read as green, and sat next to success green.
+- Verified evidence (review of `design/tokens/APT-TOKENS.json`, 2026-10-18):
+  - `accent` `165°` and `success` `155°` dark / `160°` light were 5 to 10 degrees apart, so hovered rows read as approved.
+  - A saturated hover fill on every menu, sidebar and ghost-button row competed with the blue primary action.
+  - The accent tag used `165 55% 45%`, which is not the token value.
+  - `chart-2` was the same teal, so charts with status showed teal next to green.
+  - The flat reference already mapped `navActive` and `selected` to primary. Only `selectedSupport` used teal.
+  - A cyan-teal `188°` replacement was tried and rejected. In OKLCH it sits at hue `210`, halfway between success (`157`) and primary (`263`), with low chroma and the same lightness as both. It still read as green, and too dark for a highlight.
+- Practice basis: established design systems mark selection with the brand color and use neutral surfaces for hover. A second accent hue is kept for data visualization. The APT doctrine asks for calm, blue-led, role-driven color.
+- Consequences: Products that use `bg-accent` for hover get the quiet surface after a sync with no code change. Products that styled selected states or tags with teal move to primary.
+- Human approval required: Yes (direction chosen by the owner, 2026-10-18).
+- Blocking or non-blocking: Non-blocking. Tier 1 products pick it up through the next `design` sync.
+- Target phase: Phase 2 (repository migration).
+- Status: Accepted.

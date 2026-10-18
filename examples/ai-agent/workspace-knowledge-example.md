@@ -50,7 +50,7 @@ Design:
 - Use token-based styling only.
 - Keep the experience dark-first unless a project decision says otherwise.
 - Use blue for brand identity, primary calls to action, links, focus rings, and high-frequency action emphasis.
-- Use teal as the highlight for hover and selected states that previously used a neutral grey surface. Do not use teal as the default call to action, and do not use it as the success color.
+- Use the quiet `accent` surface for hover. Mark selected items with a faint primary tint and a 2px primary bar. Do not use success green outside status.
 - Use neutral surfaces for resting navigation, secondary actions, inactive tabs, cards, panels, and disabled surfaces.
 - Use danger, warning, and success colors only for semantic feedback, not decoration.
 - Include loading, empty, success, error, disabled, permission, offline, and degraded states when relevant.
@@ -81,7 +81,7 @@ A short workspace block is easier to paste into tools, but it cannot contain eve
 - Copying the entire doctrine into a tool until the important rules are buried.
 - Omitting the canonical repository link.
 - Letting generated UI introduce raw colors or unsupported styling.
-- Treating teal as the default CTA color instead of a restrained accent.
+- Adding a second accent hue to UI chrome instead of staying blue-led.
 - Using danger, warning, or success colors as decoration instead of semantic feedback.
 - Asking the tool to build without naming states, validation, or project boundaries.
 - Mixing project-specific stack rules into canonical APT doctrine.
