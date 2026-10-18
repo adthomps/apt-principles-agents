@@ -271,3 +271,19 @@ Additional DR-013 requirements for approval:
 - Blocking or non-blocking: Non-blocking. Tier 1 products pick it up through the next `design` sync.
 - Target phase: Phase 2 (repository migration).
 - Status: Accepted.
+
+## DR-017: Canonical apt-check With Warn-First Ratchet And Managed CI
+
+- Identifier: DR-017.
+- Decision: APT repository checks run from a single canonical runner, `bin/apt-check.mjs`, with modules `sync`, `profile`, `architecture` and `design`. The pre-push hook (`--mode push`) and a managed workflow, `.github/workflows/apt-check.yml` (`--mode ci`), run it through an installed shim, `.apt/bin/apt-check.mjs`. Every install and sync distributes the shim and the workflow, whatever the manifests.
+- Why it matters: Checks were scattered across repositories. Architecture rules lived only in `apt-health/scripts/check-architecture-guardrails.mjs`, `references/architecture-map.json` forbidden flows were not enforced, and 15 of 22 APT repositories had no CI. Local hooks can be skipped, so CI is the gate that holds.
+- Decision details:
+  - Design behind blocks, which is unchanged from the pre-push gate. `profile` and `architecture` start at level `warn` and move to `error` per repository in `apt.json`, with a `baseline` that can only go down. New rules always ship as warnings.
+  - The architecture defaults are: no app imports another app, packages import no app, and no `fetch()` in presentational components.
+  - The `profile` module enforces the forbidden flow "deployable surfaces have no named owner or validation command matrix".
+  - The runner is canonical, not copied, so rule fixes reach every repository without a sync. Only the shim, hook, schema and workflow are copied.
+- Consequences: A canonical change to a rule can change every repository's CI result. That's why new rules ship as warnings and only design-behind fails by default. Repositories need `apt-principles-agents` to stay public, or need access to it in Actions.
+- Human approval required: Yes (approved by the owner, 2026-10-18).
+- Blocking or non-blocking: Non-blocking. It applies to each repository on its next sync.
+- Target phase: Phase 2 (repository migration).
+- Status: Accepted.

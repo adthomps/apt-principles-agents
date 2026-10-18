@@ -384,6 +384,13 @@ function mappingsFor(manifests, platforms) {
   // Git pre-push sync gate: every install gets it, whatever the platforms, because git
   // pushes happen outside any one agent tool. enableGitHooks() turns it on.
   if (exists(path.join(sourceRoot, "git-hooks", "pre-push"))) add("git-hooks/pre-push", ".apt/git-hooks/pre-push", "git-hook");
+  // apt-check (DR-017): the shim that finds the canonical runner, its config schema, and the CI
+  // workflow that runs it. Every install gets them, like the pre-push hook.
+  if (exists(path.join(sourceRoot, "bin", "apt-check-shim.mjs"))) {
+    add("bin/apt-check-shim.mjs", ".apt/bin/apt-check.mjs", "apt-check");
+    add("references/apt.schema.json", ".apt/references/apt.schema.json", "apt-check");
+    add("templates/ci/apt-check.yml", ".github/workflows/apt-check.yml", "ci");
+  }
 
   const roots = {
     codex: ["CODEX.md", "CODEX.md"],

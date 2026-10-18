@@ -18,7 +18,8 @@ Contract, hook table, and per-repo activation: see
 
 The git pre-push sync gate is a git hook, not a Claude hook: its source is
 [`git-hooks/pre-push`](../git-hooks/pre-push), and every install puts it in `.apt/git-hooks/`
-and turns it on with `core.hooksPath`.
+and turns it on with `core.hooksPath`. It runs [apt-check](../docs/apt-check.md), which
+the managed CI workflow also runs.
 
 Only the `SessionStart` notice is active by default. The blocking guards and the
 `Stop` gate are opt-in — a maintainer adds the `hooks` entry to

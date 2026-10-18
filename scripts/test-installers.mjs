@@ -35,6 +35,10 @@ const recordPath = path.join(target, ".apt", "installation.json");
 if (!existsSync(recordPath)) throw new Error("Installation record was not created");
 const record = JSON.parse(readFileSync(recordPath, "utf8"));
 if (!record.schemaVersion || !record.source?.commit || !record.managedFiles?.length) throw new Error("Installation record is incomplete");
+// Every install carries the push gate and apt-check (DR-017), whatever the platforms.
+for (const always of [".apt/git-hooks/pre-push", ".apt/bin/apt-check.mjs", ".apt/references/apt.schema.json", ".github/workflows/apt-check.yml"]) {
+  if (!record.managedFiles.some((item) => item.target === always) || !existsSync(path.join(target, always))) throw new Error(`Install did not include ${always}`);
+}
 
 const [managed, secondManaged] = record.managedFiles;
 const managedPath = path.join(target, managed.target);

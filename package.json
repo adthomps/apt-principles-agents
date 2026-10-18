@@ -34,6 +34,7 @@
     "install": "node scripts/apt-assets.mjs install",
     "scan": "node scripts/apt-assets.mjs scan",
     "sync": "node scripts/apt-assets.mjs sync",
+    "apt-check": "node bin/apt-check.mjs --repo-root .",
     "repair": "node scripts/apt-assets.mjs repair",
     "validate:ai": "node scripts/validate-ai-readiness.mjs",
     "validate:specialization": "node scripts/validate-content-specialization.mjs",
@@ -45,7 +46,7 @@
     "scaffold:audit-report": "node scripts/scaffold-apt-audit-report.mjs",
     "sweep:project-profiles": "node scripts/sweep-project-profiles.mjs",
     "test:graphify": "node scripts/test-graphify-workspace.mjs",
-    "test": "node scripts/test-installers.mjs && node scripts/test-project-inventory.mjs && node scripts/test-graphify-workspace.mjs && node scripts/test-agent-coverage.mjs && node scripts/test-workspace-knowledge.mjs",
+    "test": "node scripts/test-installers.mjs && node scripts/test-apt-check.mjs && node scripts/test-project-inventory.mjs && node scripts/test-graphify-workspace.mjs && node scripts/test-agent-coverage.mjs && node scripts/test-workspace-knowledge.mjs",
     "check": "npm run validate && npm run validate:graphify && npm run validate:okf && npm run validate:metadata && npm run validate:parity && npm run validate:design && npm run validate:agents && npm run validate:adapters && npm run validate:principle-links && npm run validate:council && npm run validate:hooks && npm run validate:specialization && npm run validate:project-profile && npm run inventory:check && npm run test"
   },
   "engines": {

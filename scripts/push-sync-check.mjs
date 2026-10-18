@@ -1,46 +1,17 @@
 #!/usr/bin/env node
-// Pre-push sync gate, run by .apt/git-hooks/pre-push in each target repository.
-// Blocks (exit 1) when the repository's APT design is behind, because that changes what the
-// product renders. Warns (exit 0) when only guidance files (docs, skills, agents) are behind.
-// Locally edited files never block. Fails open on its own errors.
+// Compatibility entry point for pre-push hooks installed before apt-check (DR-017). Those hooks
+// call this script directly; it now runs the apt-check sync module. Repos pick up the new hook,
+// which runs the full push mode through .apt/bin/apt-check.mjs, on their next sync.
 //
 // Usage: node push-sync-check.mjs --repo-root <repo>
 
+import { spawnSync } from "node:child_process";
 import path from "node:path";
 import process from "node:process";
-import { syncCommand, syncStatus } from "./sync-status-lib.mjs";
+import { fileURLToPath } from "node:url";
 
 const index = process.argv.indexOf("--repo-root");
 const repoRoot = path.resolve(index >= 0 ? process.argv[index + 1] : ".");
-const name = path.basename(repoRoot);
-
-let status;
-try {
-  status = syncStatus(repoRoot);
-} catch (error) {
-  process.stderr.write(`[APT sync check] skipped: ${String(error.message).split("\n")[0]}\n`);
-  process.exit(0);
-}
-if (!status.installed) process.exit(0);
-
-const designBehind = status.designVersionBehind || status.design.length > 0;
-const lines = [];
-if (designBehind) {
-  const version = status.designVersionBehind ? ` ${status.designFrom} -> ${status.designTo}` : "";
-  const files = status.design.length ? `${status.design.length} design file(s) to update` : "recorded design version is older";
-  lines.push(`- Design${version}: ${files}. This blocks the push.`);
-}
-if (status.guidance.length) lines.push(`- Guidance: ${status.guidance.length} file(s) behind (docs, skills, agents). Warning only.`);
-if (status.drifted.length) lines.push(`- ${status.drifted.length} managed file(s) edited locally. Sync leaves them alone.`);
-if (!lines.length) process.exit(0);
-
-const out = designBehind ? process.stderr : process.stdout;
-out.write(`[APT sync check] ${name} is behind apt-principles-agents.\n${lines.join("\n")}\n`);
-if (designBehind || status.guidance.length) {
-  out.write(`Sync: ${syncCommand}\n`);
-}
-if (designBehind) {
-  out.write("Then: node .apt/design/bin/apt-design-check.mjs, commit, and push again.\n");
-  out.write("Push anyway: git push --no-verify (or APT_SKIP_SYNC_CHECK=1).\n");
-  process.exit(1);
-}
+const runner = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..", "bin", "apt-check.mjs");
+const result = spawnSync(process.execPath, [runner, "--repo-root", repoRoot, "--mode", "push", "--only", "sync"], { stdio: "inherit" });
+process.exit(result.status === 1 ? 1 : 0);
