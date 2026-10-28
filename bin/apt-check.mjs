@@ -3,7 +3,7 @@
 // (--mode push) and the managed CI workflow (--mode ci). Products call it through the installed
 // shim .apt/bin/apt-check.mjs, which finds this canonical copy.
 //
-//   node bin/apt-check.mjs --repo-root <repo> [--mode push|ci] [--only sync,profile,architecture,design] [--json]
+//   node bin/apt-check.mjs --repo-root <repo> [--mode push|ci] [--only sync,profile,architecture,design] [--json] [--fix]
 //
 // Modules: sync (design behind = error), profile and architecture (level from apt.json, default
 // warn, with a baseline ratchet), design (ci only; the repo's installed apt-design-check).
@@ -40,7 +40,7 @@ const profileSchema = JSON.parse(readFileSync(path.join(sourceRoot, "references"
 const runners = {
   // apt-principles-agents is the source, so it has nothing to sync from.
   sync: () => (repoRoot === sourceRoot ? { skipped: "canonical source" } : checkSync(repoRoot)),
-  profile: () => checkProfile(repoRoot, profileSchema),
+  profile: () => checkProfile(repoRoot, profileSchema, { fix: process.argv.includes("--fix") }),
   architecture: () => checkArchitecture(repoRoot, config.architecture || {}),
   design: () => checkDesign(repoRoot),
 };

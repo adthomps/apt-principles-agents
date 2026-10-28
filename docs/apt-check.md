@@ -13,7 +13,7 @@ source_paths: ["apt-principles-agents/bin/apt-check.mjs", "apt-principles-agents
 `apt-check` checks an APT repository against apt-principles-agents (DR-017). It runs in two places:
 
 - **Before a push.** The pre-push hook `.apt/git-hooks/pre-push` runs `--mode push`.
-- **In CI.** The workflow `.github/workflows/apt-check.yml` runs `--mode ci` on pushes to `main` and on pull requests.
+- **In CI.** The workflow `.github/workflows/apt-check.yml` runs `--mode ci` on pushes to `main` or `master` and on pull requests.
 
 Every install and sync puts three files in the repository: the hook, the shim `.apt/bin/apt-check.mjs`, and the workflow. Sync also sets `git config core.hooksPath .apt/git-hooks`. The runner itself stays in apt-principles-agents at `bin/apt-check.mjs`. The shim looks for it in this order:
 
@@ -58,6 +58,17 @@ With no `apt.json` zones, each `apps/<name>` folder is a zone named `<name>`, an
 - Packages import no app.
 
 Workspace `package.json` names count as aliases for their zone, so `@apt/api` resolves to the `api` zone. `apps/web/src/components` and `apps/web/components` are treated as presentational when they exist. Override any of these in `apt.json` with `zones`, `aliases`, `forbid` and `presentational`. Test files (`test/`, `tests/`, `__tests__/`, `e2e/`, `*.test.*`, `*.spec.*`) are not checked, because tests may reach across apps to exercise contracts. To accept a single finding, put `apt-check-ignore` on its line or on the line above.
+
+## Keeping profiles current
+
+Each repository describes itself in `docs/apt/references/project-profile.json` (inventory version 2). `docs/project-context.md` is generated from that profile, so edit the profile and never the context.
+
+- **Start a profile:** `node ../apt-principles-agents/scripts/scaffold-project-profile.mjs --target . --write`. It drafts the profile from `package.json` scripts, the lockfile, the `apps/` and `packages/` folders, wrangler and workflow files, `docs/project-identity.md`, and the Local Cloudflare section of an existing context. It carries over the fields of a version 1 profile and leaves `TODO:` placeholders for anything that needs judgment. It never replaces a version 2 profile.
+- **Regenerate the context:** `node .apt/bin/apt-check.mjs --only profile --fix`.
+- **What the `profile` module reports:** a missing or invalid profile, a version 1 profile, a stale context, `TODO:` placeholders, `last_verified` older than 180 days, commands that run a script `package.json` doesn't define, and `check`, `test`, `lint`, `typecheck` or `build` scripts that the command matrix doesn't run.
+- **Once the profile is clean,** set `"profile": { "level": "error" }` in `apt.json`. From then on, a profile that falls behind fails the push and CI. Do the same for `architecture` once it has no findings.
+
+When a change adds a script, a folder, a service or a deployment step, update the profile in the same change, set `last_verified` to today, and run `--fix`.
 
 ## Skipping
 

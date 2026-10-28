@@ -3,7 +3,7 @@
 // Covers the architecture-map forbidden flow "Deployable surfaces have no named owner or
 // validation command matrix".
 
-import { existsSync, readdirSync, readFileSync } from "node:fs";
+import { existsSync, readdirSync, readFileSync, writeFileSync } from "node:fs";
 import path from "node:path";
 import {
   CONTEXT_RELATIVE_PATH,
@@ -83,7 +83,28 @@ function scriptCalls(command, repoRoot) {
   return calls;
 }
 
-export function checkProfile(repoRoot, schema) {
+const STALE_DAYS = 180;
+// Root scripts a command matrix must cover: the repo's own quality gates, by their plain names.
+// Sub-scripts (test:web, build:pages) are usually run through these, so they are not required.
+const GATE_SCRIPT = /^(check|test|lint|typecheck|build)$/;
+
+/** JSON paths of every string that still starts with "TODO:". */
+function todoPaths(value, at = "", found = []) {
+  if (typeof value === "string") {
+    if (value.startsWith("TODO:")) found.push(at || "(root)");
+  } else if (Array.isArray(value)) {
+    value.forEach((item, index) => todoPaths(item, `${at}[${index}]`, found));
+  } else if (value && typeof value === "object") {
+    for (const [key, item] of Object.entries(value)) todoPaths(item, at ? `${at}.${key}` : key, found);
+  }
+  return found;
+}
+
+/**
+ * --fix regenerates docs/project-context.md from a valid version 2 profile, so a repo without its
+ * own inventory script can clear a stale context: node .apt/bin/apt-check.mjs --only profile --fix
+ */
+export function checkProfile(repoRoot, schema, { fix = false, today = new Date() } = {}) {
   const warnings = [];
   const { profilePath, profile, error } = loadProfile(repoRoot);
   const rel = PROFILE_RELATIVE_PATH.split(path.sep).join("/");
@@ -91,7 +112,8 @@ export function checkProfile(repoRoot, schema) {
     warnings.push(error ? `${rel}: invalid JSON (${error})` : `${rel}: missing. Add a project profile so owner and commands are recorded.`);
     return { warnings, summary: "no profile" };
   }
-  for (const problem of validateProjectProfile(schema, profile)) warnings.push(`${rel}: ${problem}`);
+  const problems = validateProjectProfile(schema, profile);
+  for (const problem of problems) warnings.push(`${rel}: ${problem}`);
   if (profile.inventory_version !== 2) {
     warnings.push(`${rel}: inventory_version 1. Upgrade to version 2 to record owner, commands and structure.`);
     return { warnings, summary: `profile v1 (${path.basename(profilePath)})` };
@@ -99,8 +121,21 @@ export function checkProfile(repoRoot, schema) {
 
   const contextPath = path.join(repoRoot, CONTEXT_RELATIVE_PATH);
   const context = existsSync(contextPath) ? readFileSync(contextPath, "utf8").replace(/\r\n/g, "\n") : null;
-  if (context !== renderProjectContext(profile)) {
-    warnings.push("docs/project-context.md: stale or missing. Regenerate it from the profile (inventory:generate).");
+  const rendered = renderProjectContext(profile);
+  let fixed = false;
+  if (context !== rendered) {
+    if (fix && !problems.length) {
+      writeFileSync(contextPath, rendered);
+      fixed = true;
+    } else {
+      warnings.push("docs/project-context.md: stale or missing. Regenerate it: node .apt/bin/apt-check.mjs --only profile --fix");
+    }
+  }
+  const todos = todoPaths(profile);
+  if (todos.length) warnings.push(`${rel}: ${todos.length} TODO placeholder(s) to fill: ${todos.slice(0, 8).join(", ")}${todos.length > 8 ? ", ..." : ""}`);
+  const verified = Date.parse(profile.last_verified);
+  if (!Number.isNaN(verified) && (today - verified) / 86400000 > STALE_DAYS) {
+    warnings.push(`${rel}: last_verified ${profile.last_verified} is more than ${STALE_DAYS} days old. Re-check the profile against the repo and update the date.`);
   }
   if (!profile.ownership?.owner) warnings.push(`${rel}: ownership.owner is empty`);
 
@@ -114,14 +149,20 @@ export function checkProfile(repoRoot, schema) {
 
   const scripts = packageScripts(repoRoot);
   if (scripts.size) {
+    const covered = new Set();
     for (const item of commands) {
       for (const call of scriptCalls(item.command, repoRoot)) {
+        if (!call.dir || call.dir === path.resolve(repoRoot)) covered.add(call.script);
         const found = call.dir
           ? scripts.get(call.dir)?.has(call.script)
           : [...scripts.values()].some((names) => names.has(call.script));
         if (!found) warnings.push(`${rel}: command "${item.name}" runs script "${call.script}", which no package.json defines`);
       }
     }
+    // Matrix drift: a quality gate added to package.json but never recorded in the profile.
+    for (const name of scripts.get(path.resolve(repoRoot)) || []) {
+      if (GATE_SCRIPT.test(name) && !covered.has(name)) warnings.push(`${rel}: package.json script "${name}" is not in the command matrix`);
+    }
   }
-  return { warnings, summary: `profile v2, ${commands.length} commands` };
+  return { warnings, summary: `profile v2, ${commands.length} commands${fixed ? "; regenerated docs/project-context.md" : ""}` };
 }

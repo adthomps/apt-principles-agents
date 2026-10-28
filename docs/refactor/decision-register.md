@@ -282,6 +282,7 @@ Additional DR-013 requirements for approval:
   - The architecture defaults are: no app imports another app, packages import no app, and no `fetch()` in presentational components.
   - The `profile` module enforces the forbidden flow "deployable surfaces have no named owner or validation command matrix".
   - The runner is canonical, not copied, so rule fixes reach every repository without a sync. Only the shim, hook, schema and workflow are copied.
+- Upkeep: `scripts/scaffold-project-profile.mjs` drafts version 2 profiles. `apt-check --fix` regenerates `docs/project-context.md`. The `profile` module also reports `TODO:` placeholders, `last_verified` older than 180 days, and quality-gate scripts missing from the command matrix. A repository moves `profile` and `architecture` to level `error` in `apt.json` once it is clean, so its profile can't silently fall behind.
 - Consequences: A canonical change to a rule can change every repository's CI result. That's why new rules ship as warnings and only design-behind fails by default. Repositories need `apt-principles-agents` to stay public, or need access to it in Actions.
 - Human approval required: Yes (approved by the owner, 2026-10-18).
 - Blocking or non-blocking: Non-blocking. It applies to each repository on its next sync.

@@ -80,7 +80,9 @@ expect(moduleOf(result.report, "architecture").warnings.length === 2, "configure
 
 // ── profile ─────────────────────────────────────────────────────────────────
 const prof = path.join(tempRoot, "profile");
-const profile = JSON.parse(readFileSync(path.join(root, "docs", "apt", "references", "project-profile.json"), "utf8"));
+// Today's date keeps the fixture clear of the 180-day staleness rule whenever the test runs.
+const today = new Date().toISOString().slice(0, 10);
+const profile = { ...JSON.parse(readFileSync(path.join(root, "docs", "apt", "references", "project-profile.json"), "utf8")), last_verified: today };
 write(path.join(prof, "package.json"), { scripts: JSON.parse(readFileSync(path.join(root, "package.json"), "utf8")).scripts });
 write(path.join(prof, "docs", "apt", "references", "project-profile.json"), profile);
 write(path.join(prof, "docs", "project-context.md"), renderProjectContext(profile));
@@ -95,9 +97,54 @@ expect(profileWarnings.some((item) => item.includes('"ghost-script"')), "missing
 expect(profileWarnings.some((item) => item.includes("project-context.md: stale")), "stale project-context.md not reported");
 expect(result.status === 0, "profile findings must warn by default");
 
+// --fix regenerates a stale context only when the profile itself is valid.
+write(path.join(prof, "docs", "apt", "references", "project-profile.json"), profile);
+write(path.join(prof, "docs", "project-context.md"), "hand edited\n");
+result = check(prof, ["--only", "profile", "--fix"]);
+expect(moduleOf(result.report, "profile").status === "pass" && readFileSync(path.join(prof, "docs", "project-context.md"), "utf8") === renderProjectContext(profile), "--fix must regenerate a stale context");
+
+// TODO placeholders, an old last_verified date, and a gate script missing from the matrix.
+const pkg = JSON.parse(readFileSync(path.join(prof, "package.json"), "utf8"));
+write(path.join(prof, "package.json"), { scripts: { ...pkg.scripts, typecheck: "tsc --noEmit" } });
+write(path.join(prof, "docs", "apt", "references", "project-profile.json"), { ...profile, purpose: "TODO: one-sentence purpose", last_verified: "2020-01-01" });
+result = check(prof, ["--only", "profile", "--fix"]);
+const upkeep = moduleOf(result.report, "profile").warnings;
+expect(upkeep.some((item) => item.includes("1 TODO placeholder(s) to fill: purpose")), "TODO placeholder not reported");
+expect(upkeep.some((item) => item.includes("last_verified 2020-01-01 is more than 180 days old")), "stale last_verified not reported");
+expect(upkeep.some((item) => item.includes('script "typecheck" is not in the command matrix')), "matrix drift not reported");
+expect(!upkeep.some((item) => item.includes('"test:agent-coverage"')), "sub-scripts must not count as matrix drift");
+write(path.join(prof, "package.json"), pkg);
+
 rmSync(path.join(prof, "docs", "apt"), { recursive: true });
 result = check(prof, ["--only", "profile"]);
 expect(moduleOf(result.report, "profile").warnings[0].includes("missing"), "missing profile not reported");
+
+// ── scaffold ────────────────────────────────────────────────────────────────
+const scaffoldCli = path.join(root, "scripts", "scaffold-project-profile.mjs");
+const fresh = path.join(tempRoot, "fresh");
+write(path.join(fresh, "package.json"), { engines: { node: ">=20" }, scripts: { dev: "vite", build: "vite build", test: "vitest run", "deploy:worker": "wrangler deploy" } });
+write(path.join(fresh, "pnpm-lock.yaml"), "lockfileVersion: '9.0'\n");
+write(path.join(fresh, "apps", "web", "package.json"), { name: "@fresh/web" });
+write(path.join(fresh, "packages", "ui", "package.json"), { name: "@fresh/ui" });
+write(path.join(fresh, "docs", "project-identity.md"), "---\nfolder: fresh\nname: Fresh App\nstatus: active\n---\n\n# Fresh App\n\nA fresh app for testing.\n");
+write(path.join(fresh, "docs", "project-context.md"), "# Context\n\n## Local Cloudflare\n\nStatus: Ready.\n\nLocal command: `pnpm dev`.\n\nFix: none.\n");
+const scaffoldRun = spawnSync(process.execPath, [scaffoldCli, "--target", fresh, "--write"], { encoding: "utf8" });
+expect(scaffoldRun.status === 0, `scaffold failed: ${scaffoldRun.stderr}`);
+const drafted = JSON.parse(readFileSync(path.join(fresh, "docs", "apt", "references", "project-profile.json"), "utf8"));
+expect(drafted.inventory_version === 2 && drafted.repository_type === "monorepo" && drafted.runtime.package_manager === "pnpm", "scaffold must detect monorepo and pnpm");
+expect(drafted.purpose === "A fresh app for testing." && drafted.local_cloudflare?.status === "Ready.", "scaffold must read identity and Local Cloudflare");
+const categories = Object.fromEntries(drafted.commands.map((item) => [item.name, item.category]));
+expect(categories.dev === "run" && categories.build === "build" && categories.test === "test" && categories["deploy:worker"] === "deploy", "scaffold must infer command categories");
+expect(drafted.commands.find((item) => item.name === "deploy:worker").mutates === true, "deploy commands must be marked as mutating");
+const refuse = spawnSync(process.execPath, [scaffoldCli, "--target", fresh, "--write"], { encoding: "utf8" });
+expect(refuse.status === 1 && refuse.stderr.includes("already has a version 2 profile"), "scaffold must not replace a version 2 profile");
+
+const legacy = path.join(tempRoot, "legacy");
+write(path.join(legacy, "docs", "apt", "references", "project-profile.json"), { purpose: "Legacy purpose.", audience: ["operators"], adoptionMode: "sync", status: "alpha", security_model: "Keys stay server side.", links: { docs: "/docs" } });
+const legacyRun = spawnSync(process.execPath, [scaffoldCli, "--target", legacy], { encoding: "utf8" });
+const merged = JSON.parse(legacyRun.stdout);
+expect(merged.purpose === "Legacy purpose." && merged.adoption_mode === "sync" && merged.maturity === "prototype" && merged.security_model === "Keys stay server side.", "scaffold must merge version 1 fields");
+expect(legacyRun.stderr.includes("version 1 fields to review by hand: links"), "scaffold must list version 1 fields it did not carry");
 
 // ── sync and shim ───────────────────────────────────────────────────────────
 const synced = path.join(tempRoot, "synced");
